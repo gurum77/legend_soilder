@@ -1,0 +1,105 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/ui/BTN PLAY.png" type="Texture" id=1]
+[ext_resource path="res://assets/ui/BTN SETTINGS.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/Button BG shadow.png" type="Texture" id=3]
+[ext_resource path="res://assets/ui/GAME LOGO.png" type="Texture" id=4]
+[ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://scenes/Home.gd" type="Script" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 5 )
+
+[node name="Home" type="Panel"]
+self_modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.629944
+margin_top = 0.629974
+margin_right = 0.629944
+margin_bottom = 0.629974
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayButton" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -416.888
+margin_top = -282.092
+margin_right = -216.888
+margin_bottom = -234.092
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingsButton" type="TextureButton" parent="."]
+margin_left = 224.088
+margin_top = 310.78
+margin_right = 424.088
+margin_bottom = 357.78
+texture_normal = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Logo" type="TextureRect" parent="."]
+margin_left = 170.947
+margin_top = 50.5366
+margin_right = 470.947
+margin_bottom = 141.537
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExitButton" type="TextureButton" parent="."]
+margin_left = 225.289
+margin_top = 367.143
+margin_right = 425.289
+margin_bottom = 415.143
+texture_normal = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ExitButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 0.227451, 0, 1 )
+text = "EXIT"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EquipmentButton" type="TextureButton" parent="."]
+margin_left = 225.289
+margin_top = 254.143
+margin_right = 425.289
+margin_bottom = 302.143
+texture_normal = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="EquipmentButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.0
+margin_right = -1.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.662745, 0.490196, 0.164706, 1 )
+text = "EQUIPMENT	"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="EquipmentButton" to="." method="_on_EquipmentButton_pressed"]
