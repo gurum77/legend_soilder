@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/WeaponButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/SettingWeaponPanel.gd" type="Script" id=2]
+[ext_resource path="res://assets/ui/BTN Exit.png" type="Texture" id=3]
+
+[node name="SettingWeaponPanel" type="Panel"]
+self_modulate = Color( 1, 1, 1, 0.52549 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -20.0
+margin_bottom = 20.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WeaponButton1" parent="HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 211.0
+margin_right = 281.0
+
+[node name="WeaponButton2" parent="HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 285.0
+margin_right = 355.0
+
+[node name="WeaponButton3" parent="HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 359.0
+margin_right = 429.0
+
+[node name="ExitButton" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -28.0
+margin_bottom = 27.0
+texture_normal = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WeaponTexture" type="TextureRect" parent="."]
+anchor_right = 1.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 0, 60 )
+stretch_mode = 4
+[connection signal="pressed" from="HBoxContainer/WeaponButton1" to="." method="_on_WeaponButton1_pressed"]
+[connection signal="pressed" from="HBoxContainer/WeaponButton2" to="." method="_on_WeaponButton2_pressed"]
+[connection signal="pressed" from="HBoxContainer/WeaponButton3" to="." method="_on_WeaponButton3_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_ExitButton_pressed"]

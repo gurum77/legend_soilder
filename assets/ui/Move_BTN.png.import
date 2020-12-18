@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/GAME LOGO.png-2018a63fa56fc660cc29ebca56b8314f.stex"
+path="res://.import/Move_BTN.png-cd6d3e0c0debe081a89f772aebea1645.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/GAME LOGO.png"
-dest_files=[ "res://.import/GAME LOGO.png-2018a63fa56fc660cc29ebca56b8314f.stex" ]
+source_file="res://assets/ui/Move_BTN.png"
+dest_files=[ "res://.import/Move_BTN.png-cd6d3e0c0debe081a89f772aebea1645.stex" ]
 
 [params]
 

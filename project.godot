@@ -8,15 +8,25 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Reference",
+"class": "WeaponInventoryItem",
+"language": "GDScript",
+"path": "res://scripts/WeaponInventoryItem.gd"
+} ]
 _global_script_class_icons={
-
+"WeaponInventoryItem": ""
 }
 
 [application]
 
 config/name="Legend Soilder"
 config/icon="res://icon.png"
+
+[autoload]
+
+Define="*res://scenes/Define.tscn"
+StaticData="*res://scenes/StaticData.tscn"
 
 [display]
 

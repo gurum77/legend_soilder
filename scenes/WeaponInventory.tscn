@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/WeaponButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/WeaponInventory.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.137255, 0.137255, 0.137255, 1 )
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.713726, 0.631373, 0.247059, 0.6 )
+shadow_size = 3
+
+[node name="WeaponInventory" type="Panel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -150.0
+margin_top = -50.0
+margin_right = 150.0
+rect_min_size = Vector2( 300, 50 )
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -20.0
+margin_right = 200.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 400, 40 )
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WeaponButton1" parent="HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 91.0
+margin_right = 161.0
+
+[node name="WeaponButton2" parent="HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 165.0
+margin_right = 235.0
+
+[node name="WeaponButton3" parent="HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 239.0
+margin_right = 309.0
