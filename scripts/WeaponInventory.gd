@@ -15,3 +15,15 @@ func update():
 	$HBoxContainer/WeaponButton1.update()
 	$HBoxContainer/WeaponButton2.update()
 	$HBoxContainer/WeaponButton3.update()	
+
+
+func _on_WeaponButton1_pressed():
+	StaticData.current_weapon_index = 0
+
+
+func _on_WeaponButton2_pressed():
+	StaticData.current_weapon_index = 1
+
+
+func _on_WeaponButton3_pressed():
+	StaticData.current_weapon_index = 2

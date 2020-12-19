@@ -55,3 +55,6 @@ weapon_index = 1
 margin_left = 239.0
 margin_right = 309.0
 weapon_index = 2
+[connection signal="pressed" from="HBoxContainer/WeaponButton1" to="." method="_on_WeaponButton1_pressed"]
+[connection signal="pressed" from="HBoxContainer/WeaponButton2" to="." method="_on_WeaponButton2_pressed"]
+[connection signal="pressed" from="HBoxContainer/WeaponButton3" to="." method="_on_WeaponButton3_pressed"]

@@ -20,9 +20,10 @@ func get_weapon_texture(var weapon) -> Texture:
 		return SMG_texture
 	else:
 		return null
+		
 func get_weapon_name(var weapon) -> String:
 	if weapon == Weapon.FlameThrower:
-		return "Flame Thrower"
+		return "FlameThrower"
 	elif weapon == Weapon.MG:
 		return "MG"
 	elif weapon == Weapon.Pistol:

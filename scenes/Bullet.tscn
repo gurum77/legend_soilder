@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scenes/Bullet.gd" type="Script" id=4]
+[ext_resource path="res://assets/bullets/FlameThrower/5.png" type="Texture" id=5]
+[ext_resource path="res://assets/bullets/FlameThrower/6.png" type="Texture" id=16]
+[ext_resource path="res://assets/bullets/pistol/4.png" type="Texture" id=22]
+[ext_resource path="res://assets/bullets/MG/4.png" type="Texture" id=23]
+[ext_resource path="res://assets/bullets/SMG/4.png" type="Texture" id=24]
+[ext_resource path="res://assets/bullets/RPG/5.png" type="Texture" id=25]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 4.25007
+height = 4.42619
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "FlameThrower",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 23 ) ],
+"loop": true,
+"name": "MG",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 24 ) ],
+"loop": true,
+"name": "SMG",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ) ],
+"loop": true,
+"name": "Pistol",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 25 ) ],
+"loop": true,
+"name": "RPG",
+"speed": 5.0
+} ]
+
+[node name="Bullet" type="Area2D"]
+script = ExtResource( 4 )
+weapon = 1
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="BulletAnimatedSprite" type="AnimatedSprite" parent="."]
+rotation = -1.5708
+frames = SubResource( 3 )
+animation = "RPG"
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

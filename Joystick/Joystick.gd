@@ -1,156 +1,150 @@
-tool
 extends Control
 
-#emitted when pressed state changes
-signal pressed(pressed)
-#emitted when force changes
-signal updated(force, pressed)
+class_name Joystick
 
-const DEBUG = false
-const INACTIVE_IDX = -100
+# If the joystick is receiving inputs.
+var is_working := false
 
-#distance from center to get to maximum force
-export var radius:float = 64.0 setget _set_radius
-#distances from center shorter than deadzone count as zero force
-export var deadzone:float = 8.0 setget _set_deadzone
-#maximum distance from center that accepts touches, should be a bit larger than radius
-export var proximity:float = 96.0 setget _set_proximity
-export var background_texture:Texture = preload("background.png") setget _set_bg_tex
-export var ball_texture:Texture = preload("ball.png") setget _set_ball_tex
+# The joystick output.
+var output := Vector2.ZERO
 
-#action names to use for different axis
-export var action_left:String = "ui_left"	# -X Axis
-export var action_right:String = "ui_right"	# +X Axis
-export var action_up:String = "ui_up"		# -Y Axis
-export var action_down:String = "ui_down"	# +Y Axis
+# FIXED: The joystick doesn't move.
+# DYNAMIC: Every time the joystick area is pressed, the joystick position is set on the touched position.
+# FOLLOWING: If the finger moves outside the joystick background, the joystick follows it.
+enum JoystickMode {FIXED, DYNAMIC, FOLLOWING}
 
-#background texture
-var bg:TextureRect
-#handle texture
-var ball:Sprite
+export(JoystickMode) var joystick_mode := JoystickMode.FIXED
 
-var touches:Array = []
+# REAL: return a vector with a lenght beetween 0 (deadzone) and 1; useful for implementing different velocity or acceleration.
+# NORMALIZED: return a normalized vector.
+enum VectorMode {REAL, NORMALIZED}
 
-var currentTouchIdx = INACTIVE_IDX
+export(VectorMode) var vector_mode := VectorMode.REAL
 
-# For visualising in editor
-const Circle = preload("circle.gd")
-var radius_v:Circle
-var deadzone_v:Circle
-var proximity_v:Circle
+# The color of the button when the joystick is in use.
+export(Color) var _pressed_color := Color.gray
 
-func is_pressed() -> bool:
-	return touches.size() > 0
+# The number of directions, e.g. a D-pad is joystick with 4 directions, keep 0 for a free joystick.
+export(int, 0, 12) var directions := 0
 
-func _init():
-	var container:CenterContainer = CenterContainer.new();
-	container.use_top_left = true
-	add_child(container)
+# It changes the angle of simmetry of the directions.
+#export(int, -180, 180) 
+export var simmetry_angle := 90
+
+#If the handle is inside this range, in proportion to the background size, the output is zero.
+export(float, 0, 0.5) var dead_zone := 0.2;
+
+#The max distance the handle can reach, in proportion to the background size.
+export(float, 0.5, 2) var clamp_zone := 1;
+
+#VISIBILITY_ALWAYS = Always visible.
+#VISIBILITY_TOUCHSCREEN_ONLY = Visible on touch screens only.
+enum VisibilityMode {ALWAYS , TOUCHSCREEN_ONLY }
+
+export(VisibilityMode) var visibility_mode := VisibilityMode.ALWAYS
+
+onready var _background := $Background
+onready var _handle := $Background/Handle
+onready var _original_color : Color = _handle.self_modulate
+onready var _original_position : Vector2 = _background.rect_position
+
+var _touch_index :int = -1
+
+func _ready() -> void:
+	if not OS.has_touchscreen_ui_hint() and visibility_mode == VisibilityMode.TOUCHSCREEN_ONLY:
+		hide()
+
+func _touch_started(event: InputEventScreenTouch) -> bool:
+	return event.pressed and _touch_index == -1
+
+func _touch_ended(event: InputEventScreenTouch) -> bool:
+	return not event.pressed and _touch_index == event.index
+
+func _input(event: InputEvent) -> void:
+	if not (event is InputEventScreenTouch or event is InputEventScreenDrag):
+		return
 	
-	bg = TextureRect.new()
-	bg.texture = background_texture
-	container.add_child(bg)
-	
-	ball = Sprite.new()
-	ball.texture = ball_texture
-	container.add_child(ball)
-	
-	if Engine.editor_hint: _setup_visual_hints(container)
-
-func _set_radius(value:float):
-	radius = value 
-	if Engine.editor_hint: radius_v.radius = radius
-
-func _set_deadzone(value:float):
-	deadzone = value
-	if Engine.editor_hint: deadzone_v.radius = value
-
-func _set_proximity(value:float):
-	proximity = value
-	if Engine.editor_hint: proximity_v.radius = value
-
-func _set_bg_tex(tex:Texture):
-	background_texture = tex
-	bg.texture = tex
-
-func _set_ball_tex(tex:Texture):
-	ball_texture = tex
-	ball.texture = tex
-
-func _input(event):
-	if event is InputEventScreenTouch or event is InputEventScreenDrag:
-		_process_input(make_input_local(event))
-
-func _process_input(event):
-	var idx = _get_event_idx(event)
-	var down = _is_event_down(event)
-	
-	if idx == INACTIVE_IDX: return
-	if down == null: return
-	
-	var captured = touches.has(idx)
-	var was_pressed = is_pressed()
-	
-	if  down and not captured:
-		touches.append(idx)
-		captured = true
-	elif not down and captured:
-		touches.erase(idx)
-	
-	var pressed = is_pressed()
-	if captured:
-		if pressed:
-			var in_dedzone:bool = event.position.length() <= deadzone
-			var shift:Vector2 = event.position.clamped(radius)
-			ball.position = shift
-			_update_force(Vector2.ZERO if in_dedzone else shift/radius)
-		elif was_pressed:
-			ball.position = Vector2.ZERO
-			_update_force(Vector2.ZERO)
-	
-	if was_pressed != pressed: emit_signal("pressed", pressed)
-
-func _update_force(_force):
-	if _force.x <= 0:
-		Input.action_press(action_left, -_force.x)
-		Input.action_release(action_right)
-	
-	if _force.x >= 0:
-		Input.action_press(action_right, _force.x)
-		Input.action_release(action_left)
-	
-	if _force.y >= 0:
-		Input.action_press(action_down, _force.y)
-		Input.action_release(action_up)
-	
-	if _force.y <= 0:
-		Input.action_press(action_up, -_force.y)
-		Input.action_release(action_down)
-	
-	emit_signal("updated", _force, is_pressed())
-	
-func _get_event_idx(event):
-	if event is InputEventScreenTouch or event is InputEventScreenDrag:
-		return event.index
-	return INACTIVE_IDX
-
-func _is_event_down(event):
-	var in_proximity:bool = event.position.length() <= proximity
 	if event is InputEventScreenTouch:
-		return event.pressed and in_proximity
-	elif event is InputEventScreenDrag:
-		return in_proximity
-	return null
+		if _touch_started(event) and _is_inside_control_rect(event.position, self):
+			if (joystick_mode == JoystickMode.DYNAMIC or joystick_mode == JoystickMode.FOLLOWING):
+				_center_control(_background, event.position)
+			if _is_inside_control_circle(event.position, _background):
+				_touch_index = event.index
+				_handle.self_modulate = _pressed_color
+		elif _touch_ended(event):
+			_reset()
+	
+	elif event is InputEventScreenDrag and _touch_index == event.index:
+		var ray :float = _background.rect_size.x / 2
+		var dead_size := dead_zone * ray
+		var clamp_size := clamp_zone * ray
+		
+		var center :Vector2 = _background.rect_global_position + (_background.rect_size / 2)
+		var vector :Vector2 = event.position - center
+		
+		if vector.length() > dead_size:
+			if directions > 0:
+				vector = _directional_vector(vector, directions, deg2rad(simmetry_angle))
+			
+			if vector_mode == VectorMode.NORMALIZED:
+				output = vector.normalized()
+				_center_control(_handle, output * clamp_size + center)
+			elif vector_mode == VectorMode.REAL:
+				var clamped_vector := vector.clamped(clamp_size)
+				output = vector.normalized() * (clamped_vector.length() - dead_size) / (clamp_size - dead_size)
+				_center_control(_handle, clamped_vector + center)
+			
+			is_working = true
+			if joystick_mode == JoystickMode.FOLLOWING:
+				_following(vector)
+		else:
+			is_working = false
+			output = Vector2.ZERO
+			_reset_handle()
+			return
 
-func _setup_visual_hints(container):
-	proximity_v = Circle.new(deadzone, Color("3370ff60"))
-	radius_v = Circle.new(radius, Color("334050ff"))
-	deadzone_v = Circle.new(deadzone, Color("33ff5040"))
-	
-	proximity_v.radius = proximity
-	radius_v.radius = radius
-	deadzone_v.radius = deadzone
-	
-	container.add_child(proximity_v)
-	container.add_child(radius_v)
-	container.add_child(deadzone_v)
+func _center_control(control: Control, new_global_position: Vector2) -> void:
+	control.rect_global_position = new_global_position - (control.rect_size / 2)
+	#control.rect_global_position = new_global_position - control.rect_pivot_offset
+
+func _reset_handle():
+	_center_control(_handle, _background.rect_global_position + (_background.rect_size / 2))
+
+func _reset():
+	_touch_index = -1
+	is_working = false
+	output = Vector2.ZERO
+	_handle.self_modulate = _original_color
+	_background.rect_position = _original_position
+	_reset_handle()
+
+func _is_inside_control_rect(global_position: Vector2, control: Control) -> bool:
+	var x: bool = global_position.x > control.rect_global_position.x and global_position.x < control.rect_global_position.x + (control.rect_size.x * control.rect_scale.x)
+	var y: bool = global_position.y > control.rect_global_position.y and global_position.y < control.rect_global_position.y + (control.rect_size.y * control.rect_scale.y)
+	return x and y
+
+func _is_inside_control_circle(global_position: Vector2, control: Control) -> bool:
+	var ray := control.rect_size.x * control.rect_scale.x / 2
+	var center := control.rect_global_position + Vector2(ray, ray)
+	var ray_position := global_position - center
+	return ray_position.length_squared() < ray * ray
+
+func _following(vector: Vector2) -> void:
+	var clamp_size :float = clamp_zone * _background.rect_size.x / 2
+	if vector.length() > clamp_size:
+		var radius := vector.normalized() * clamp_size
+		var delta := vector - radius
+		var new_pos :Vector2 = _background.rect_position + delta
+		new_pos.x = clamp(new_pos.x, -_background.rect_size.x / 2, rect_size.x - _background.rect_size.x / 2)
+		new_pos.y = clamp(new_pos.y, -_background.rect_size.y / 2, rect_size.y - _background.rect_size.y / 2)
+		_background.rect_position = new_pos
+
+# warning-ignore:shadowed_variable
+func _directional_vector(vector: Vector2, n_directions: int, simmetry_angle := PI/2) -> Vector2:
+	var angle := (vector.angle() + simmetry_angle) / (PI / n_directions)
+	angle = floor(angle) if angle >= 0 else ceil(angle)
+	if abs(angle) as int % 2 == 1:
+		angle = angle + 1 if angle >= 0 else angle - 1
+	angle *= PI / n_directions
+	angle -= simmetry_angle
+	return Vector2(cos(angle), sin(angle)) * vector.length()
