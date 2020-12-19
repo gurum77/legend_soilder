@@ -1,5 +1,10 @@
 extends Node
 var initialized:bool = false
+
+# settings
+var music_enabled:bool = true
+var sound_enabled:bool = true
+
 # 인벤토리 정보(최대 3개)
 var inventory_item1 = null
 var inventory_item2 = null

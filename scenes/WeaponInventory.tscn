@@ -49,7 +49,9 @@ margin_right = 161.0
 [node name="WeaponButton2" parent="HBoxContainer" instance=ExtResource( 1 )]
 margin_left = 165.0
 margin_right = 235.0
+weapon_index = 1
 
 [node name="WeaponButton3" parent="HBoxContainer" instance=ExtResource( 1 )]
 margin_left = 239.0
 margin_right = 309.0
+weapon_index = 2

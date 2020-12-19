@@ -3,6 +3,8 @@ extends Panel
 export (Define.Weapon) var weapon
 
 var settingWeaponPanel = preload("res://scenes/SettingWeaponPanel.tscn")
+var weaponInventory = preload("res://scenes/WeaponInventory.tscn")
+
 func _ready():
 	$WeaponButton/TextureRect.texture = Define.get_weapon_texture(weapon)
 	$NameLabel.text = Define.get_weapon_name(weapon)
@@ -17,9 +19,8 @@ func _on_WeaponButton_pressed():
 	desc_panel.get_node("WeaponNameLabel").text = Define.get_weapon_name(weapon)
 
 
-# set 버튼을 누르면 weapon inventory를 보여준다.
+# set 버튼을 누르면 setting weapon panel을 보여준다.
 func _on_EquipmentButton_pressed():
 	var ins = settingWeaponPanel.instance()
 	ins.weapon = weapon
 	get_tree().root.add_child(ins)
-		

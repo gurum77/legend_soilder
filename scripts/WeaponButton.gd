@@ -1,12 +1,18 @@
 extends TextureButton
 
-export (Define.Weapon) var weapon
+# weapon  index
+export (int) var weapon_index
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	update()
-
+	
 func update():
+	var item = StaticData.get_inventory_item(weapon_index)
+	if item == null:
+		return;
+	
+	var weapon = item.weapon
 	if weapon == null:
 		$TextureRect.visible = false
 		$Label.visible = true
@@ -14,6 +20,3 @@ func update():
 		$TextureRect.visible = true
 		$TextureRect.texture = Define.get_weapon_texture(weapon)
 		$Label.visible = false
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

@@ -26,10 +26,9 @@ __meta__ = {
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 21.0595
-margin_top = 18.9405
-margin_right = -18.9406
-margin_bottom = -21.0594
+margin_left = 23.5822
+margin_top = 20.6223
+margin_right = -16.4179
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -38,7 +37,8 @@ __meta__ = {
 anchor_bottom = 1.0
 margin_top = 34.0
 margin_right = 251.0
-margin_bottom = -67.0
+margin_bottom = -85.3777
+rect_min_size = Vector2( 0, 340 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -78,7 +78,7 @@ anchor_bottom = 1.0
 margin_left = -323.0
 margin_top = -4.0
 margin_right = 1.0
-margin_bottom = -71.0
+margin_bottom = -83.3777
 texture = ExtResource( 9 )
 expand = true
 __meta__ = {

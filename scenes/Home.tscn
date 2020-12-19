@@ -102,4 +102,7 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_SettingsButton_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_ExitButton_pressed"]
 [connection signal="pressed" from="EquipmentButton" to="." method="_on_EquipmentButton_pressed"]

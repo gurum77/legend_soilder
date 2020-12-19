@@ -1,21 +1,20 @@
 extends Panel
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
+var settings = preload("res://scenes/Settings.tscn")
 
 # equipment 버튼 클릭
 func _on_EquipmentButton_pressed():
 	get_tree().change_scene("res://scenes/Equipment.tscn")
+
+# play 버튼 클릭
+func _on_PlayButton_pressed():
+	get_tree().change_scene("res://scenes/World.tscn")
+
+
+func _on_SettingsButton_pressed():
+	var ins = settings.instance()
+	get_tree().root.add_child(ins)
+
+
+func _on_ExitButton_pressed():
+	get_tree().quit()

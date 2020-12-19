@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/ui/BTN Exit.png" type="Texture" id=3]
 
 [node name="SettingWeaponPanel" type="Panel"]
-self_modulate = Color( 1, 1, 1, 0.52549 )
+self_modulate = Color( 1, 1, 1, 0.647059 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
@@ -31,10 +31,12 @@ margin_right = 281.0
 [node name="WeaponButton2" parent="HBoxContainer" instance=ExtResource( 1 )]
 margin_left = 285.0
 margin_right = 355.0
+weapon_index = 1
 
 [node name="WeaponButton3" parent="HBoxContainer" instance=ExtResource( 1 )]
 margin_left = 359.0
 margin_right = 429.0
+weapon_index = 2
 
 [node name="ExitButton" type="TextureButton" parent="."]
 anchor_left = 1.0
