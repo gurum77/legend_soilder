@@ -1,6 +1,7 @@
 extends Area2D
 
 var speed = 500
+var is_player:bool = true
 
 export (Define.Weapon) var weapon
 
@@ -21,3 +22,7 @@ func _ready():
 # bullet이 날아가도록 한다
 func _physics_process(delta):
 	translate(Vector2.RIGHT.rotated(rotation) * speed * delta)
+
+
+func _on_Bullet_body_entered(body):
+	pass # Replace with function body.

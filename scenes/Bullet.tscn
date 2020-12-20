@@ -9,34 +9,34 @@
 [ext_resource path="res://assets/bullets/RPG/5.png" type="Texture" id=25]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 4.25007
-height = 4.42619
+radius = 5.38948
+height = 0.0
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 25 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 16 ) ],
 "loop": true,
-"name": "RPG",
-"speed": 5.0
+"name": "FlameThrower",
+"speed": 15.0
 }, {
 "frames": [ ExtResource( 22 ) ],
 "loop": true,
 "name": "Pistol",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 16 ) ],
+"frames": [ ExtResource( 24 ) ],
 "loop": true,
-"name": "FlameThrower",
-"speed": 15.0
+"name": "SMG",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 23 ) ],
 "loop": true,
 "name": "MG",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 24 ) ],
+"frames": [ ExtResource( 25 ) ],
 "loop": true,
-"name": "SMG",
+"name": "RPG",
 "speed": 5.0
 } ]
 
@@ -48,6 +48,7 @@ weapon = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
+scale = Vector2( 0.742184, 1.34345 )
 shape = SubResource( 1 )
 
 [node name="BulletAnimatedSprite" type="AnimatedSprite" parent="."]
@@ -56,4 +57,5 @@ frames = SubResource( 2 )
 animation = "RPG"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

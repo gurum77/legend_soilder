@@ -93,16 +93,16 @@ func play_animation_by_velocity(velocity):
 	# leg animation
 	# walk
 	if velocity.length() > 0.5:
-		$LegAnimatedSprite.play("walk")
+		$AnimatedSprites/LegAnimatedSprite.play("walk")
 		$AudioStreamPlayer2D.stream_paused = false
 	# idle
 	else:
-		$LegAnimatedSprite.play("idle")	
+		$AnimatedSprites/LegAnimatedSprite.play("idle")	
 		$AudioStreamPlayer2D.stream_paused = true
 		
 	# body animation
 	if playing_body_animation_for_fire == false:
-		$BodyAnimatedSprite.play(get_body_animation_name_header())
+		$AnimatedSprites/BodyAnimatedSprite.play(get_body_animation_name_header())
 
 func get_fire_position_node() -> Node:
 	if StaticData.get_current_inventory_item().weapon == Define.Weapon.Pistol:
@@ -127,13 +127,13 @@ func fire():
 	ins.rotation = rotation
 	
 	# body animation
-	$BodyAnimatedSprite.play(get_body_animation_name_header()+ "_fire")
+	$AnimatedSprites/BodyAnimatedSprite.play(get_body_animation_name_header()+ "_fire")
 	playing_body_animation_for_fire = true
 	
 	# fire animation
-	$FireAnimatedSprite.position = get_fire_position_node().position
-	$FireAnimatedSprite.visible = true
-	$FireAnimatedSprite.play(get_body_animation_name_header())
+	$AnimatedSprites/FireAnimatedSprite.position = get_fire_position_node().position
+	$AnimatedSprites/FireAnimatedSprite.visible = true
+	$AnimatedSprites/FireAnimatedSprite.play(get_body_animation_name_header())
 	
 	
 	
@@ -141,7 +141,7 @@ func _on_FireTimer_timeout():
 	fire()
 
 func _on_FireAnimatedSprite_animation_finished():
-	$FireAnimatedSprite.visible = false
+	$AnimatedSprites/FireAnimatedSprite.visible = false
 
 func _on_BodyAnimatedSprite_animation_finished():
 	playing_body_animation_for_fire = false
