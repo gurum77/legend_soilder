@@ -1,6 +1,8 @@
 extends Node
 enum Weapon{None, Pistol, SMG, RPG, FlameThrower, MG}
 
+
+
 export (Texture) var FlameThrower_texture = null
 export (Texture) var MG_texture = null
 export (Texture) var Pistol_texture = null

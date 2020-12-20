@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/RPG_shot.ogg-41c777dc0f378fd2b3bc58c4f1045a0b.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/RPG_shot.ogg"
+dest_files=[ "res://.import/RPG_shot.ogg-41c777dc0f378fd2b3bc58c4f1045a0b.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

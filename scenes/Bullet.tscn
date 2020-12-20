@@ -12,8 +12,18 @@
 radius = 4.25007
 height = 4.42619
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
+"frames": [ ExtResource( 25 ) ],
+"loop": true,
+"name": "RPG",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ) ],
+"loop": true,
+"name": "Pistol",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 5 ), ExtResource( 16 ) ],
 "loop": true,
 "name": "FlameThrower",
@@ -27,16 +37,6 @@ animations = [ {
 "frames": [ ExtResource( 24 ) ],
 "loop": true,
 "name": "SMG",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 22 ) ],
-"loop": true,
-"name": "Pistol",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 25 ) ],
-"loop": true,
-"name": "RPG",
 "speed": 5.0
 } ]
 
@@ -52,6 +52,8 @@ shape = SubResource( 1 )
 
 [node name="BulletAnimatedSprite" type="AnimatedSprite" parent="."]
 rotation = -1.5708
-frames = SubResource( 3 )
+frames = SubResource( 2 )
 animation = "RPG"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

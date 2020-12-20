@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/FlameThrower_shot.ogg-b32125b38a3117a491ba8fb58b1e530c.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/FlameThrower_shot.ogg"
+dest_files=[ "res://.import/FlameThrower_shot.ogg-b32125b38a3117a491ba8fb58b1e530c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

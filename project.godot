@@ -34,6 +34,7 @@ config/icon="res://icon.png"
 
 Define="*res://scenes/Define.tscn"
 StaticData="*res://scenes/StaticData.tscn"
+SoundManager="*res://scenes/SoundManager.tscn"
 
 [display]
 

@@ -10,9 +10,11 @@ var inventory_item1 = null
 var inventory_item2 = null
 var inventory_item3 = null
 
+
 # 현재 무기
 var current_weapon_index = 0
-
+func _ready():
+	init()
 
 func init():
 	if initialized == true:
@@ -22,6 +24,8 @@ func init():
 	inventory_item2 = WeaponInventoryItem.new()
 	inventory_item3 = WeaponInventoryItem.new()
 	initialized = true
+	
+	
 	
 	# 첫번째 인벤토리는 기본으로 권총을 넣어준다
 	inventory_item1.weapon = Define.Weapon.Pistol

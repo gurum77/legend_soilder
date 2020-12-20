@@ -13,6 +13,11 @@ func _ready():
 	var animation_name = Define.get_weapon_name(weapon)
 	$BulletAnimatedSprite.play(animation_name)
 	
+	# 무기 종류에 맞는 소리 실행
+	$AudioStreamPlayer2D.stream = SoundManager.get_bullet_shot_audio_stream(weapon)
+	$AudioStreamPlayer2D.play()
+	
+	
 # bullet이 날아가도록 한다
 func _physics_process(delta):
 	translate(Vector2.RIGHT.rotated(rotation) * speed * delta)

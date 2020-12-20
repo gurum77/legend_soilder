@@ -13,11 +13,12 @@ enum {idle, walking, Die, Fire}
 var playing_body_animation_for_fire = false
 
 func _ready():
-	pass
+	$AudioStreamPlayer2D.play()
 	
 func _physics_process(delta):
 	# 이동 / 애니메이션 처리
 	move_and_animation(delta)
+	
 	# fire
 	if not aim_joystick_node == null and aim_joystick_node._touch_index > -1:
 		start_fire()
@@ -36,8 +37,9 @@ func stop_fire():
 		$FireTimer.stop()
 	
 		
+# 무기 발사 interval(sec)
 func get_fire_interval():
-	return 0.5
+	return 0.2
 	
 # 이동 방향에 맞게 회전
 # aim이 없으면 이동 방향에 따라 회전하고,
@@ -86,16 +88,17 @@ func get_body_animation_name_header() -> String:
 	return Define.get_weapon_name(item.weapon)
 		
 
-	
 # veloity에 따라 player의 animation을 한다.
 func play_animation_by_velocity(velocity):
 	# leg animation
 	# walk
 	if velocity.length() > 0.5:
 		$LegAnimatedSprite.play("walk")
+		$AudioStreamPlayer2D.stream_paused = false
 	# idle
 	else:
 		$LegAnimatedSprite.play("idle")	
+		$AudioStreamPlayer2D.stream_paused = true
 		
 	# body animation
 	if playing_body_animation_for_fire == false:

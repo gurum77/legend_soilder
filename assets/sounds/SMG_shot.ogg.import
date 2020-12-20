@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/SMG_shot.ogg-be6f90e99a2d8758dd5f36e48288a01e.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/SMG_shot.ogg"
+dest_files=[ "res://.import/SMG_shot.ogg-be6f90e99a2d8758dd5f36e48288a01e.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
