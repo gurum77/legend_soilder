@@ -75,7 +75,9 @@ rotation = -1.5708
 frames = SubResource( 1 )
 animation = "idle"
 
-[node name="BodyAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites"]
+[node name="BodyPivot" type="Node2D" parent="Body/AnimatedSprites"]
+
+[node name="BodyAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites/BodyPivot"]
 rotation = -1.5708
 frames = SubResource( 2 )
 animation = "idle"

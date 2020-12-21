@@ -1,0 +1,98 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://scenes/EnemyBody.gd" type="Script" id=1]
+[ext_resource path="res://scenes/HPBar.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/vehicles/panzer/move/PanzerMove (1).png" type="Texture" id=3]
+[ext_resource path="res://assets/vehicles/panzer/idle/PanzerTower.png" type="Texture" id=4]
+[ext_resource path="res://assets/vehicles/panzer/broken/Panzer_BrokenTower.png" type="Texture" id=5]
+[ext_resource path="res://assets/vehicles/panzer/fire/Panzer Shot 03.png" type="Texture" id=6]
+[ext_resource path="res://assets/vehicles/panzer/broken/Panzer_Broken.png" type="Texture" id=7]
+[ext_resource path="res://assets/vehicles/panzer/move/PanzerMove (2).png" type="Texture" id=8]
+[ext_resource path="res://assets/vehicles/panzer/fire/Panzer Shot 01.png" type="Texture" id=9]
+[ext_resource path="res://assets/vehicles/panzer/fire/Panzer Shot 02.png" type="Texture" id=10]
+[ext_resource path="res://assets/vehicles/panzer/move/PanzerMove (4).png" type="Texture" id=11]
+[ext_resource path="res://assets/vehicles/panzer/move/PanzerMove (3).png" type="Texture" id=12]
+[ext_resource path="res://assets/vehicles/panzer/broken/Panzer_Broken2.png" type="Texture" id=13]
+[ext_resource path="res://scenes/Enemy.gd" type="Script" id=14]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 8 ), ExtResource( 12 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "walk",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 13 ) ],
+"loop": false,
+"name": "die",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 6 ) ],
+"loop": false,
+"name": "fire",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": false,
+"name": "die",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 44.4687, 31.4294 )
+
+[node name="Panzer" type="Node2D"]
+script = ExtResource( 14 )
+HP = 10000
+
+[node name="Body" type="KinematicBody2D" parent="."]
+script = ExtResource( 1 )
+weapon = 3
+vehicle = true
+
+[node name="AnimatedSprites" type="Node2D" parent="Body"]
+
+[node name="LegAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites"]
+rotation = -1.5708
+frames = SubResource( 1 )
+animation = "walk"
+frame = 1
+
+[node name="BodyPivot" type="Node2D" parent="Body/AnimatedSprites"]
+position = Vector2( 5.96046e-08, 0 )
+
+[node name="BodyAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites/BodyPivot"]
+position = Vector2( 28, -1 )
+rotation = -1.5708
+frames = SubResource( 2 )
+animation = "fire"
+frame = 2
+
+[node name="AimTimer" type="Timer" parent="Body"]
+
+[node name="FireTimer" type="Timer" parent="Body"]
+
+[node name="FirePosition" type="Node2D" parent="Body"]
+position = Vector2( 90, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+shape = SubResource( 3 )
+
+[node name="HPBar" parent="." instance=ExtResource( 2 )]
+margin_top = -49.0
+margin_bottom = -45.0
+[connection signal="timeout" from="Body/AimTimer" to="Body" method="_on_AimTimer_timeout"]
+[connection signal="timeout" from="Body/FireTimer" to="Body" method="_on_FireTimer_timeout"]

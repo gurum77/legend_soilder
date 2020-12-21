@@ -18,8 +18,8 @@ func damage(power):
 
 func die():
 	# dia animation 실행
-	$Body/AnimatedSprites/BodyAnimatedSprite.play("die")
-	$Body/AnimatedSprites/LegAnimatedSprite.visible = false
+	$Body/AnimatedSprites/BodyPivot/BodyAnimatedSprite.play("die")
+	$Body/AnimatedSprites/LegAnimatedSprite.play("die")
 	$Body.stop_aim()
 	$Body.stop_fire()
 	

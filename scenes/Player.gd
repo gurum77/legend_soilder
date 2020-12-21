@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 var velocity = Vector2(0, 0)
-var HP = 3000
+var HP = 30000
 const SPEED = 150
 export (NodePath) var move_joystick
 onready var move_joystick_node : Joystick = get_node(move_joystick)
