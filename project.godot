@@ -9,10 +9,20 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "EnemyBody",
+"language": "GDScript",
+"path": "res://scenes/EnemyBody.gd"
+}, {
 "base": "Control",
 "class": "Joystick",
 "language": "GDScript",
 "path": "res://Joystick/Joystick.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "PlayerBody",
+"language": "GDScript",
+"path": "res://scenes/PlayerBody.gd"
 }, {
 "base": "Reference",
 "class": "WeaponInventoryItem",
@@ -20,7 +30,9 @@ _global_script_classes=[ {
 "path": "res://scripts/WeaponInventoryItem.gd"
 } ]
 _global_script_class_icons={
+"EnemyBody": "",
 "Joystick": "",
+"PlayerBody": "",
 "WeaponInventoryItem": ""
 }
 
@@ -35,6 +47,7 @@ config/icon="res://icon.png"
 Define="*res://scenes/Define.tscn"
 StaticData="*res://scenes/StaticData.tscn"
 SoundManager="*res://scenes/SoundManager.tscn"
+Preloader="*res://scenes/Preloader.tscn"
 
 [display]
 

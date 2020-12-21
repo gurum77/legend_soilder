@@ -1,7 +1,7 @@
 extends Area2D
 
 var speed = 500
-var power = 100
+var power = 400
 var player:bool = false
 var free_after_animation = false
 
@@ -32,8 +32,8 @@ func _on_Bullet_body_entered(body):
 		return
 	
 	# player나 enemy이면 damage를 준다
-#	if body is Player or body is Enemy:
-#		body.damage(power)
+	if body is PlayerBody or body is EnemyBody:
+		body.get_parent().damage(power)
 	
 	# 어디든 부딪히면 총알은 터진	
 	explosion()

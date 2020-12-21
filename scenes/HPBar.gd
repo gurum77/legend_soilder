@@ -7,3 +7,4 @@ func init(max_hp):
 	
 func set_hp(hp):
 	set_value(hp)
+	

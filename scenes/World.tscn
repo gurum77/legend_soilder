@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/ui/Money Icon.png" type="Texture" id=1]
 [ext_resource path="res://assets/ui/Money Panel EMPTY HUD.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://scenes/World.gd" type="Script" id=8]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/Soldier.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/Soldier2.tscn" type="PackedScene" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 3 )
@@ -86,7 +87,16 @@ _pressed_color = Color( 0.776471, 0.192157, 0.192157, 1 )
 position = Vector2( 490.815, 116.097 )
 
 [node name="Player" parent="." instance=ExtResource( 9 )]
-position = Vector2( 188.358, 216.076 )
-move_joystick = NodePath("../CanvasLayer/MoveJoystick")
-aim_joystick = NodePath("../CanvasLayer/AimJoystick")
+position = Vector2( 204.964, 186.716 )
+
+[node name="Body" parent="Player" index="0"]
+aim_joystick = NodePath("../../CanvasLayer/AimJoystick")
+
+[node name="LegAnimatedSprite" parent="Player/Body/AnimatedSprites" index="0"]
+frame = 2
+
+[node name="Soldier2" parent="." instance=ExtResource( 11 )]
+position = Vector2( 432.567, 284.145 )
 [connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_PauseButton_pressed"]
+
+[editable path="Player"]

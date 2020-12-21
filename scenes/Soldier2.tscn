@@ -1,21 +1,25 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=24 format=2]
 
-[ext_resource path="res://assets/enemies/soldier/Die/SD_04.png" type="Texture" id=1]
+[ext_resource path="res://assets/enemies/soldier2/Die/SD2_02.png" type="Texture" id=1]
 [ext_resource path="res://assets/enemies/soldier/Walk/SW_07.png" type="Texture" id=2]
-[ext_resource path="res://assets/enemies/soldier/Die/SD_02.png" type="Texture" id=3]
-[ext_resource path="res://assets/enemies/soldier/Die/SD_01.png" type="Texture" id=4]
-[ext_resource path="res://assets/enemies/soldier/Die/SD_03.png" type="Texture" id=5]
-[ext_resource path="res://assets/enemies/soldier/Shot/Soldier Shot.png" type="Texture" id=6]
+[ext_resource path="res://assets/enemies/soldier2/Fire/SF_04.png" type="Texture" id=3]
+[ext_resource path="res://assets/enemies/soldier2/Die/SD2_01.png" type="Texture" id=4]
+[ext_resource path="res://assets/enemies/soldier2/Die/SD2_03.png" type="Texture" id=5]
+[ext_resource path="res://assets/enemies/soldier2/Fire/SF_02.png" type="Texture" id=6]
 [ext_resource path="res://assets/enemies/soldier/Walk/SW_02.png" type="Texture" id=7]
 [ext_resource path="res://assets/enemies/soldier/Walk/SW_04.png" type="Texture" id=8]
 [ext_resource path="res://assets/enemies/soldier/Walk/SW_01.png" type="Texture" id=9]
 [ext_resource path="res://assets/enemies/soldier/Walk/SW_03.png" type="Texture" id=10]
 [ext_resource path="res://assets/enemies/soldier/Walk/SW_06.png" type="Texture" id=11]
 [ext_resource path="res://assets/enemies/soldier/Walk/SW_05.png" type="Texture" id=12]
-[ext_resource path="res://assets/enemies/soldier/Idle/Soldier.png" type="Texture" id=13]
+[ext_resource path="res://assets/enemies/soldier2/Idle/Soldier02.png" type="Texture" id=13]
 [ext_resource path="res://scenes/Enemy.gd" type="Script" id=14]
 [ext_resource path="res://scenes/HPBar.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/EnemyBody.gd" type="Script" id=16]
+[ext_resource path="res://assets/enemies/soldier2/Fire/SF_01.png" type="Texture" id=17]
+[ext_resource path="res://assets/enemies/soldier2/Fire/SF_05.png" type="Texture" id=18]
+[ext_resource path="res://assets/enemies/soldier2/Fire/SF_03.png" type="Texture" id=19]
+[ext_resource path="res://assets/enemies/soldier2/Die/SD2_04.png" type="Texture" id=20]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -37,12 +41,12 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ) ],
+"frames": [ ExtResource( 17 ), ExtResource( 6 ), ExtResource( 19 ), ExtResource( 3 ), ExtResource( 18 ) ],
 "loop": true,
 "name": "fire",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 1 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 5 ), ExtResource( 20 ) ],
 "loop": false,
 "name": "die",
 "speed": 8.0
@@ -52,19 +56,19 @@ animations = [ {
 radius = 10.1944
 height = 4.63671
 
-[node name="Soldier" type="Node2D" groups=[
+[node name="Soldier2" type="Node2D" groups=[
 "enemy",
 ]]
 script = ExtResource( 14 )
 
 [node name="Body" type="KinematicBody2D" parent="."]
 script = ExtResource( 16 )
-weapon = 1
+weapon = 3
 
 [node name="FireTimer" type="Timer" parent="Body"]
 
 [node name="FirePosition" type="Node2D" parent="Body"]
-position = Vector2( 17, 3 )
+position = Vector2( 24, 7 )
 
 [node name="AimTimer" type="Timer" parent="Body"]
 
