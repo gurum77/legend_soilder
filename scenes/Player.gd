@@ -122,6 +122,7 @@ func fire():
 	var ins = bullet.instance()
 	ins.position = get_fire_position_node().global_position
 	ins.visible = true
+	ins.player = true
 	ins.weapon = StaticData.get_current_inventory_item().weapon
 	get_tree().root.add_child(ins)
 	ins.rotation = rotation

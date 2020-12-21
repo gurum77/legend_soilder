@@ -1,7 +1,8 @@
 extends Area2D
 
 var speed = 500
-var is_player:bool = true
+var player:bool = false
+var free_after_animation = false
 
 export (Define.Weapon) var weapon
 
@@ -12,7 +13,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 func _ready():
 	# 무기종류에 맞는 animation을 실행
 	var animation_name = Define.get_weapon_name(weapon)
-	$BulletAnimatedSprite.play(animation_name)
+	$AnimatedSprite.play(animation_name)
 	
 	# 무기 종류에 맞는 소리 실행
 	$AudioStreamPlayer2D.stream = SoundManager.get_bullet_shot_audio_stream(weapon)
@@ -25,4 +26,23 @@ func _physics_process(delta):
 
 
 func _on_Bullet_body_entered(body):
-	pass # Replace with function body.
+	if player == body.is_in_group("player"):
+		return
+		
+	explosion()
+	
+# bullet을 폭파 시킨다.
+func explosion():
+	free_after_animation = true
+	if weapon == Define.Weapon.RPG:
+		$AnimatedSprite.play("middle_explosion")
+	else:
+		$AnimatedSprite.play("small_explosion")
+	speed = 0
+	
+	
+
+
+func _on_AnimatedSprite_animation_finished():
+	if free_after_animation:
+		call_deferred("queue_free")

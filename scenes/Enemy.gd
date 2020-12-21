@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+export var HP = 3000
 var bullet = preload("res://scenes/Bullet.tscn")
 var target_position:Vector2
 var weight = 0.3

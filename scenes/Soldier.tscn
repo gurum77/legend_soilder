@@ -30,14 +30,14 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 1 ) ],
-"loop": true,
-"name": "die",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 13 ) ],
 "loop": true,
 "name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "die",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ) ],
