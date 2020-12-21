@@ -29,6 +29,31 @@ height = 0.0
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
+"frames": [ ExtResource( 23 ) ],
+"loop": true,
+"name": "MG",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ) ],
+"loop": true,
+"name": "Pistol",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 25 ) ],
+"loop": true,
+"name": "RPG",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 24 ) ],
+"loop": true,
+"name": "SMG",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "FlameThrower",
+"speed": 15.0
+}, {
 "frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 17 ), ExtResource( 1 ), ExtResource( 18 ) ],
 "loop": true,
 "name": "small_explosion",
@@ -43,31 +68,6 @@ animations = [ {
 "loop": true,
 "name": "big_explosion",
 "speed": 15.0
-}, {
-"frames": [ ExtResource( 22 ) ],
-"loop": true,
-"name": "Pistol",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 24 ) ],
-"loop": true,
-"name": "SMG",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 23 ) ],
-"loop": true,
-"name": "MG",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ), ExtResource( 16 ) ],
-"loop": true,
-"name": "FlameThrower",
-"speed": 15.0
-}, {
-"frames": [ ExtResource( 25 ) ],
-"loop": true,
-"name": "RPG",
-"speed": 5.0
 } ]
 
 [node name="Bullet" type="Area2D"]

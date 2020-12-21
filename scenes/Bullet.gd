@@ -1,6 +1,7 @@
 extends Area2D
 
 var speed = 500
+var power = 100
 var player:bool = false
 var free_after_animation = false
 
@@ -26,9 +27,15 @@ func _physics_process(delta):
 
 
 func _on_Bullet_body_entered(body):
+	# 같은 편이면 리턴
 	if player == body.is_in_group("player"):
 		return
-		
+	
+	# player나 enemy이면 damage를 준다
+#	if body is Player or body is Enemy:
+#		body.damage(power)
+	
+	# 어디든 부딪히면 총알은 터진	
 	explosion()
 	
 # bullet을 폭파 시킨다.

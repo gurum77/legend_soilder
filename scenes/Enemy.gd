@@ -7,6 +7,7 @@ var weight = 0.3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$HPBar.init(HP)
 	start_aim()
 	start_fire()
 	
@@ -66,7 +67,25 @@ func aim():
 		return
 	target_position = players[0].position
 
+# damage 를 준다.
+func damage(power):
+	HP = HP - power
+	$HPBar.set_hp(HP)
+	if HP <= 0:
+		HP = 0
+		die()
+	
 
+func die():
+	# dia animation 실행
+	$AnimatedSprites/BodyAnimatedSprite.play("die")
+	$AnimatedSprites/LegAnimatedSprite.visible = false
+	# 모든 총돌 해제
+	$CollisionShape2D.visible = false
+	# 3초뒤 삭제
+	yield(get_tree().create_timer(3), "timeout")
+	call_deferred("queue_free")
+	
 	
 func _on_FireTimer_timeout():
 	fire()
