@@ -1,9 +1,7 @@
 extends Node
 var initialized:bool = false
 
-# settings
-var music_enabled:bool = true
-var sound_enabled:bool = true
+
 
 # 인벤토리 정보(최대 3개)
 var inventory_item1 = null
@@ -24,8 +22,6 @@ func init():
 	inventory_item2 = WeaponInventoryItem.new()
 	inventory_item3 = WeaponInventoryItem.new()
 	initialized = true
-	
-	
 	
 	# 첫번째 인벤토리는 기본으로 권총을 넣어준다
 	inventory_item1.weapon = Define.Weapon.Pistol

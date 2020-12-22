@@ -9,8 +9,8 @@
 [ext_resource path="res://scenes/WeaponInventory.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/World.gd" type="Script" id=8]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/Soldier.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/Soldier2.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/BTR.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/Sniper.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/Panzer.tscn" type="PackedScene" id=12]
 
 [sub_resource type="DynamicFont" id=1]
@@ -84,9 +84,6 @@ margin_bottom = 77.0
 joystick_mode = 1
 _pressed_color = Color( 0.776471, 0.192157, 0.192157, 1 )
 
-[node name="Soldier" parent="." instance=ExtResource( 10 )]
-position = Vector2( 490.815, 116.097 )
-
 [node name="Player" parent="." instance=ExtResource( 9 )]
 position = Vector2( 204.964, 186.716 )
 
@@ -94,13 +91,16 @@ position = Vector2( 204.964, 186.716 )
 aim_joystick = NodePath("../../CanvasLayer/AimJoystick")
 
 [node name="LegAnimatedSprite" parent="Player/Body/AnimatedSprites" index="0"]
-frame = 4
+frame = 0
 
-[node name="Soldier2" parent="." instance=ExtResource( 11 )]
-position = Vector2( 432.567, 284.145 )
+[node name="Sniper" parent="." instance=ExtResource( 11 )]
+position = Vector2( 453, 188 )
 
 [node name="Panzer" parent="." instance=ExtResource( 12 )]
-position = Vector2( 331.767, 75.4016 )
+position = Vector2( 386.606, 99.8183 )
+
+[node name="BTR" parent="." instance=ExtResource( 10 )]
+position = Vector2( 437.506, 298.163 )
 [connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_PauseButton_pressed"]
 
 [editable path="Player"]

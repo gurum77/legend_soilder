@@ -19,7 +19,7 @@ func _ready():
 	# 무기 종류에 맞는 소리 실행
 	$AudioStreamPlayer2D.stream = SoundManager.get_bullet_shot_audio_stream(weapon)
 	$AudioStreamPlayer2D.play()
-	
+		
 	
 # bullet이 날아가도록 한다
 func _physics_process(delta):

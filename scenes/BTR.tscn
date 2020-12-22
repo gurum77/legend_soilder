@@ -1,22 +1,18 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scenes/EnemyBody.gd" type="Script" id=1]
 [ext_resource path="res://scenes/HPBar.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/vehicles/panzer/move/PanzerMove (1).png" type="Texture" id=3]
-[ext_resource path="res://assets/vehicles/panzer/idle/PanzerTower.png" type="Texture" id=4]
-[ext_resource path="res://assets/vehicles/panzer/broken/Panzer_BrokenTower.png" type="Texture" id=5]
-[ext_resource path="res://assets/vehicles/panzer/fire/Panzer Shot 03.png" type="Texture" id=6]
-[ext_resource path="res://assets/vehicles/panzer/broken/Panzer_Broken.png" type="Texture" id=7]
-[ext_resource path="res://assets/vehicles/panzer/move/PanzerMove (2).png" type="Texture" id=8]
-[ext_resource path="res://assets/vehicles/panzer/fire/Panzer Shot 01.png" type="Texture" id=9]
-[ext_resource path="res://assets/vehicles/panzer/fire/Panzer Shot 02.png" type="Texture" id=10]
-[ext_resource path="res://assets/vehicles/panzer/move/PanzerMove (4).png" type="Texture" id=11]
-[ext_resource path="res://assets/vehicles/panzer/move/PanzerMove (3).png" type="Texture" id=12]
-[ext_resource path="res://assets/vehicles/panzer/broken/Panzer_Broken2.png" type="Texture" id=13]
+[ext_resource path="res://assets/vehicles/BTR/move/BTR_Move01.png" type="Texture" id=3]
+[ext_resource path="res://assets/vehicles/BTR/fire/BTR_Fire_02.png" type="Texture" id=4]
+[ext_resource path="res://assets/vehicles/BTR/broken/BTR_BrokenBase.png" type="Texture" id=5]
+[ext_resource path="res://assets/vehicles/BTR/move/BTR_Move02.png" type="Texture" id=6]
+[ext_resource path="res://assets/vehicles/BTR/idle/BTR_Tower.png" type="Texture" id=7]
+[ext_resource path="res://assets/vehicles/BTR/broken/BTR_BrokenTower.png" type="Texture" id=8]
+[ext_resource path="res://assets/vehicles/BTR/fire/BTR_Shot01.png" type="Texture" id=9]
+[ext_resource path="res://assets/vehicles/BTR/fire/BTR_Fire_01.png" type="Texture" id=10]
+[ext_resource path="res://assets/vehicles/BTR/fire/BTR_Fire_03.png" type="Texture" id=11]
+[ext_resource path="res://assets/vehicles/BTR/fire/BTR_Shot02.png" type="Texture" id=12]
 [ext_resource path="res://scenes/Enemy.gd" type="Script" id=14]
-[ext_resource path="res://assets/vehicles/panzer/fire/Panzer_fire2.png" type="Texture" id=15]
-[ext_resource path="res://assets/vehicles/panzer/fire/Panzer_fire3.png" type="Texture" id=16]
-[ext_resource path="res://assets/vehicles/panzer/fire/Panzer_fire1.png" type="Texture" id=17]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -25,27 +21,9 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 8 ), ExtResource( 12 ), ExtResource( 11 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "walk",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 7 ), ExtResource( 13 ) ],
-"loop": false,
-"name": "die",
-"speed": 5.0
-} ]
-
-[sub_resource type="SpriteFrames" id=2]
-animations = [ {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 6 ) ],
-"loop": false,
-"name": "fire",
 "speed": 10.0
 }, {
 "frames": [ ExtResource( 5 ) ],
@@ -54,9 +32,27 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 12 ) ],
+"loop": false,
+"name": "fire",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": false,
+"name": "die",
+"speed": 5.0
+} ]
+
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 17 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 4 ), ExtResource( 11 ) ],
 "loop": false,
 "name": "fire",
 "speed": 10.0
@@ -65,7 +61,7 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 44.4687, 31.4294 )
 
-[node name="Panzer" type="Node2D"]
+[node name="BTR" type="Node2D"]
 script = ExtResource( 14 )
 HP = 10000
 
@@ -73,6 +69,7 @@ HP = 10000
 script = ExtResource( 1 )
 weapon = 3
 vehicle = true
+bullet_nums = 2
 
 [node name="AnimatedSprites" type="Node2D" parent="Body"]
 
@@ -80,26 +77,27 @@ vehicle = true
 rotation = -1.5708
 frames = SubResource( 1 )
 animation = "walk"
-frame = 1
 
 [node name="BodyPivot" type="Node2D" parent="Body/AnimatedSprites"]
 position = Vector2( 5.96046e-08, 0 )
 
 [node name="BodyAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites/BodyPivot"]
-position = Vector2( 28, -1 )
+position = Vector2( 16, -1 )
 rotation = -1.5708
 frames = SubResource( 2 )
 animation = "fire"
-frame = 2
 
 [node name="FireAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites/BodyPivot"]
-position = Vector2( 106, -1 )
+position = Vector2( 62, -1 )
 rotation = -1.5708
 frames = SubResource( 3 )
 animation = "fire"
 
 [node name="FirePosition" type="Node2D" parent="Body/AnimatedSprites/BodyPivot"]
-position = Vector2( 81.3173, -0.470428 )
+position = Vector2( 60.3173, -5.47043 )
+
+[node name="FirePosition2" type="Node2D" parent="Body/AnimatedSprites/BodyPivot"]
+position = Vector2( 60.3173, 4.52957 )
 
 [node name="AimTimer" type="Timer" parent="Body"]
 

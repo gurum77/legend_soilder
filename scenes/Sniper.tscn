@@ -1,0 +1,119 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://assets/enemies/sniper/Walk/SW_02.png" type="Texture" id=1]
+[ext_resource path="res://assets/enemies/sniper/Walk/SW_04.png" type="Texture" id=2]
+[ext_resource path="res://assets/enemies/sniper/Die/SniperDIe_01.png" type="Texture" id=3]
+[ext_resource path="res://assets/enemies/sniper/Walk/SW_06.png" type="Texture" id=4]
+[ext_resource path="res://assets/enemies/sniper/Walk/SW_07.png" type="Texture" id=5]
+[ext_resource path="res://assets/enemies/sniper/Die/SniperDIe_00.png" type="Texture" id=6]
+[ext_resource path="res://assets/enemies/sniper/Walk/SW_05.png" type="Texture" id=7]
+[ext_resource path="res://assets/enemies/sniper/Walk/SW_03.png" type="Texture" id=8]
+[ext_resource path="res://assets/enemies/sniper/Walk/SW_01.png" type="Texture" id=9]
+[ext_resource path="res://assets/enemies/sniper/Die/SniperDIe_03.png" type="Texture" id=10]
+[ext_resource path="res://assets/enemies/sniper/Shot/Shot.png" type="Texture" id=11]
+[ext_resource path="res://assets/enemies/sniper/Die/SniperDIe_02.png" type="Texture" id=12]
+[ext_resource path="res://assets/enemies/sniper/Idle/Base.png" type="Texture" id=13]
+[ext_resource path="res://scenes/Enemy.gd" type="Script" id=14]
+[ext_resource path="res://scenes/HPBar.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/EnemyBody.gd" type="Script" id=16]
+[ext_resource path="res://assets/enemies/sniper/Die/SniperDIe_04.png" type="Texture" id=17]
+[ext_resource path="res://assets/enemies/sniper/Shot/3.png" type="Texture" id=18]
+[ext_resource path="res://assets/enemies/sniper/Shot/2.png" type="Texture" id=19]
+[ext_resource path="res://assets/enemies/sniper/Shot/1.png" type="Texture" id=20]
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 1 ), ExtResource( 8 ), ExtResource( 2 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "walk",
+"speed": 15.0
+}, {
+"frames": [  ],
+"loop": false,
+"name": "die",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 13 ) ],
+"loop": false,
+"name": "idle",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": false,
+"name": "fire",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 3 ), ExtResource( 12 ), ExtResource( 10 ), ExtResource( 17 ) ],
+"loop": false,
+"name": "die",
+"speed": 10.0
+} ]
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 20 ), ExtResource( 19 ), ExtResource( 18 ) ],
+"loop": false,
+"name": "fire",
+"speed": 15.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 10.1944
+height = 4.63671
+
+[node name="Sniper" type="Node2D" groups=[
+"enemy",
+]]
+position = Vector2( 98.7783, 98.7783 )
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Body" type="KinematicBody2D" parent="."]
+script = ExtResource( 16 )
+weapon = 2
+
+[node name="FireTimer" type="Timer" parent="Body"]
+
+[node name="AimTimer" type="Timer" parent="Body"]
+
+[node name="AnimatedSprites" type="Node2D" parent="Body"]
+
+[node name="LegAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites"]
+rotation = -1.5708
+frames = SubResource( 4 )
+animation = "die"
+
+[node name="BodyPivot" type="Node2D" parent="Body/AnimatedSprites"]
+
+[node name="BodyAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites/BodyPivot"]
+rotation = -1.5708
+frames = SubResource( 5 )
+animation = "fire"
+
+[node name="FirePosition" type="Node2D" parent="Body/AnimatedSprites/BodyPivot"]
+position = Vector2( 24, 3 )
+
+[node name="FireAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites/BodyPivot"]
+position = Vector2( 34, 3 )
+rotation = -1.5708
+frames = SubResource( 6 )
+animation = "fire"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+position = Vector2( -2.20486, 0.157492 )
+rotation = 1.5708
+shape = SubResource( 3 )
+
+[node name="HPBar" parent="." instance=ExtResource( 15 )]
+margin_top = -18.0
+margin_bottom = -14.0

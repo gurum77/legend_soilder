@@ -9,7 +9,38 @@ var FlameThrower_shot_audio = preload("res://assets/sounds/FlameThrower_shot.ogg
 
 var footstep_audio = preload("res://assets/sounds/footstep.ogg")
 
+# settings
+func set_music_volume(volume):
+	var bus_index = AudioServer.get_bus_index("music")
+	if volume == 0:
+		AudioServer.set_bus_mute(AudioServer.get_bus_index("music"), true) 
+	else:
+		AudioServer.set_bus_mute(AudioServer.get_bus_index("music"), false) 
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("music"), volume) 
+	
 
+func set_sound_volume(volume):	
+	var bus_index = AudioServer.get_bus_index("sound")
+	if volume == 0:
+		AudioServer.set_bus_mute(bus_index, true) 
+	else:
+		AudioServer.set_bus_mute(bus_index, false) 
+		AudioServer.set_bus_volume_db(bus_index, volume)
+		
+func get_sound_volume()->float:
+	var bus_index = AudioServer.get_bus_index("sound")
+	if AudioServer.is_bus_mute(bus_index):
+		return 0.0
+	else:
+		return AudioServer.get_bus_volume_db(bus_index)
+
+func get_music_volume()->float:
+	var bus_index = AudioServer.get_bus_index("music")
+	if AudioServer.is_bus_mute(bus_index):
+		return 0.0
+	else:
+		return AudioServer.get_bus_volume_db(bus_index)		
+		
 func _ready():
 	# audio 설정
 	Pistol_shot_audio.loop = false
@@ -17,6 +48,10 @@ func _ready():
 	SMG_shot_audio.loop = false
 	RPG_shot_audio.loop = false
 	FlameThrower_shot_audio.loop = false
+	
+	# sound, music 셋팅 초기화
+	set_sound_volume(0)
+	set_music_volume(0)
 		
 # 총알 발사 소리 리
 func get_bullet_shot_audio_stream(weapon)->AudioStream:

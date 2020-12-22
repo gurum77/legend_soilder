@@ -39,17 +39,17 @@ animations = [ {
 "frames": [ ExtResource( 13 ) ],
 "loop": true,
 "name": "idle",
-"speed": 5.0
+"speed": 1.0
 }, {
 "frames": [ ExtResource( 17 ), ExtResource( 6 ), ExtResource( 19 ), ExtResource( 3 ), ExtResource( 18 ) ],
 "loop": true,
 "name": "fire",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 5 ), ExtResource( 20 ) ],
 "loop": false,
 "name": "die",
-"speed": 8.0
+"speed": 10.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=3]
@@ -67,9 +67,6 @@ weapon = 3
 
 [node name="FireTimer" type="Timer" parent="Body"]
 
-[node name="FirePosition" type="Node2D" parent="Body"]
-position = Vector2( 24, 7 )
-
 [node name="AimTimer" type="Timer" parent="Body"]
 
 [node name="AnimatedSprites" type="Node2D" parent="Body"]
@@ -84,7 +81,11 @@ animation = "idle"
 [node name="BodyAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites/BodyPivot"]
 rotation = -1.5708
 frames = SubResource( 2 )
-animation = "idle"
+animation = "fire"
+frame = 1
+
+[node name="FirePosition" type="Node2D" parent="Body/AnimatedSprites/BodyPivot"]
+position = Vector2( 24, 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
 position = Vector2( -2.20486, 0.157492 )
@@ -94,5 +95,3 @@ shape = SubResource( 3 )
 [node name="HPBar" parent="." instance=ExtResource( 15 )]
 margin_top = -18.0
 margin_bottom = -14.0
-[connection signal="timeout" from="Body/FireTimer" to="Body" method="_on_FireTimer_timeout"]
-[connection signal="timeout" from="Body/AimTimer" to="Body" method="_on_AimTimer_timeout"]

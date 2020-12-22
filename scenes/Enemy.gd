@@ -17,15 +17,11 @@ func damage(power):
 		die()
 
 func die():
-	# dia animation 실행
-	$Body/AnimatedSprites/BodyPivot/BodyAnimatedSprite.play("die")
-	$Body/AnimatedSprites/LegAnimatedSprite.play("die")
-	$Body.stop_aim()
-	$Body.stop_fire()
 	
-	# 모든 총돌 해제
-	$Body/CollisionShape2D.queue_free()
+	$Body.die()
+	
 	# 3초뒤 삭제
 	yield(get_tree().create_timer(3), "timeout")
 	call_deferred("queue_free")
 	
+
