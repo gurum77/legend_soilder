@@ -28,12 +28,17 @@ func _physics_process(delta):
 
 func _on_Bullet_body_entered(body):
 	# 같은 편이면 리턴
-	if player == body.is_in_group("player"):
+	# 건물은 편이 없으므로 그냥 총알을 터트린
+	if player and body.is_in_group("player"):
+		return
+	if not player and body.is_in_group("enemy"):
 		return
 	
 	# player나 enemy이면 damage를 준다
 	if body is PlayerBody or body is EnemyBody:
 		body.get_parent().damage(power)
+	elif body is Obstacle:
+		body.damage(power)
 	
 	# 어디든 부딪히면 총알은 터진	
 	explosion()

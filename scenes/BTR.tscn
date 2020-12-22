@@ -61,7 +61,9 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 44.4687, 31.4294 )
 
-[node name="BTR" type="Node2D"]
+[node name="BTR" type="Node2D" groups=[
+"enemy",
+]]
 script = ExtResource( 14 )
 HP = 10000
 

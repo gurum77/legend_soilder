@@ -51,7 +51,7 @@ animations = [ {
 "speed": 8.0
 } ]
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 19 ), ExtResource( 18 ), ExtResource( 17 ) ],
 "loop": true,
@@ -59,7 +59,7 @@ animations = [ {
 "speed": 20.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=4]
 radius = 10.1944
 height = 4.63671
 
@@ -96,13 +96,13 @@ position = Vector2( 17, 3 )
 [node name="FireAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites/BodyPivot"]
 position = Vector2( 29, 3 )
 rotation = -1.5708
-frames = SubResource( 4 )
+frames = SubResource( 3 )
 animation = "fire"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
 position = Vector2( -2.20486, 0.157492 )
 rotation = 1.5708
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="HPBar" parent="." instance=ExtResource( 15 )]
 margin_top = -18.0

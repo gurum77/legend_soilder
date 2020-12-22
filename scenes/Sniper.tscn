@@ -21,7 +21,7 @@
 [ext_resource path="res://assets/enemies/sniper/Shot/2.png" type="Texture" id=19]
 [ext_resource path="res://assets/enemies/sniper/Shot/1.png" type="Texture" id=20]
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 8 ) ],
 "loop": true,
@@ -39,7 +39,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 13 ) ],
 "loop": false,
@@ -57,7 +57,7 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 20 ), ExtResource( 19 ), ExtResource( 18 ) ],
 "loop": false,
@@ -65,7 +65,7 @@ animations = [ {
 "speed": 15.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=4]
 radius = 10.1944
 height = 4.63671
 
@@ -90,14 +90,14 @@ weapon = 2
 
 [node name="LegAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites"]
 rotation = -1.5708
-frames = SubResource( 4 )
+frames = SubResource( 1 )
 animation = "die"
 
 [node name="BodyPivot" type="Node2D" parent="Body/AnimatedSprites"]
 
 [node name="BodyAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites/BodyPivot"]
 rotation = -1.5708
-frames = SubResource( 5 )
+frames = SubResource( 2 )
 animation = "fire"
 
 [node name="FirePosition" type="Node2D" parent="Body/AnimatedSprites/BodyPivot"]
@@ -106,13 +106,13 @@ position = Vector2( 24, 3 )
 [node name="FireAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites/BodyPivot"]
 position = Vector2( 34, 3 )
 rotation = -1.5708
-frames = SubResource( 6 )
+frames = SubResource( 3 )
 animation = "fire"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
 position = Vector2( -2.20486, 0.157492 )
 rotation = 1.5708
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="HPBar" parent="." instance=ExtResource( 15 )]
 margin_top = -18.0

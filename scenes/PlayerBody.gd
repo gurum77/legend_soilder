@@ -8,6 +8,7 @@ export (NodePath) var aim_joystick
 onready var aim_joystick_node : Joystick = get_node(aim_joystick)
 var fire_position_node
 var playing_body_animation_for_fire = false
+var target_position:Vector2
 enum {idle, walking, Die, Fire}
 
 func get_velocity()->Vector2:
@@ -16,6 +17,7 @@ func get_velocity()->Vector2:
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$AudioStreamPlayer2D.play()
+	target_position = self.global_position
 
 func _physics_process(delta):
 	# 이동 속도에 따른 animation sprite 설정
@@ -47,11 +49,19 @@ func stop_fire():
 	
 		
 # 이동 방향에 맞게 회전
-# aim이 없으면 이동 방향에 따라 회전하고,
+# aim이 없고 터치도 없으면 이동 방향에 따라 회전하고,
+# aim이 없고 터치만 있으면 지정된 목표위치를 향해서 회전한다
 # aim이 있으면 aim 방향으로 회전한다.
 func rotate_by_velocity(velocity):
-	if not aim_joystick_node == null and aim_joystick_node.is_working:
-		self.look_at(global_position + aim_joystick_node.output)
+	# aim joystick을 터치중인 경우
+	if not aim_joystick_node == null and aim_joystick_node._touch_index > -1:
+		# aim joystick을 drag중인 경우 joystick 방향으로 바라 본다.
+		if aim_joystick_node.is_working:
+			self.look_at(global_position + aim_joystick_node.output)
+		# aim joystick을 drag하지 않은 경우 target position 방향을 바라 본다
+		else:
+			self.look_at(target_position)
+	# aim joystick을 터치하지 않고 있는 경우
 	else:
 		self.look_at(global_position + velocity)
 		
@@ -121,3 +131,37 @@ func get_fire_position_node() -> Node:
 		return $SMGFirePosition
 		
 	return self	
+
+
+# 조이스틱을 누르고만 있다면 자동으로 가장 가까운 적을 조준한다.
+func _on_AimTimer_timeout():
+	if aim_joystick_node == null:
+		return
+	if aim_joystick_node._touch_index < 0:
+		return
+
+	# 가까운 적을 찾는다.
+	var enemy = find_nearest_enemy()
+	if enemy == null:
+		target_position = self.global_position + get_velocity() * 100
+	else:
+		target_position = enemy.global_position
+		
+func find_nearest_enemy()->Node2D:
+	var minimum_distance = INF
+	var nearest_enemy
+	
+	var enemies = get_tree().get_nodes_in_group("enemy")
+	for i in range(enemies.size()):
+		var enemy:Node2D = enemies[i]
+		# hp가 없는 적은 통과
+		if enemy.HP <= 0:
+			continue
+		var distance = enemy.global_position.distance_to(self.global_position)
+		if distance < minimum_distance:
+			minimum_distance = distance
+			nearest_enemy = enemy
+			
+	return nearest_enemy
+	
+	
