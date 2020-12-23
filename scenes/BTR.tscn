@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://scenes/EnemyBody.gd" type="Script" id=1]
+[ext_resource path="res://scripts/EnemyBody.gd" type="Script" id=1]
 [ext_resource path="res://scenes/HPBar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/vehicles/BTR/move/BTR_Move01.png" type="Texture" id=3]
 [ext_resource path="res://assets/vehicles/BTR/fire/BTR_Fire_02.png" type="Texture" id=4]
@@ -12,7 +12,7 @@
 [ext_resource path="res://assets/vehicles/BTR/fire/BTR_Fire_01.png" type="Texture" id=10]
 [ext_resource path="res://assets/vehicles/BTR/fire/BTR_Fire_03.png" type="Texture" id=11]
 [ext_resource path="res://assets/vehicles/BTR/fire/BTR_Shot02.png" type="Texture" id=12]
-[ext_resource path="res://scenes/Enemy.gd" type="Script" id=14]
+[ext_resource path="res://scripts/Enemy.gd" type="Script" id=14]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -61,9 +61,7 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 44.4687, 31.4294 )
 
-[node name="BTR" type="Node2D" groups=[
-"enemy",
-]]
+[node name="BTR" type="Node2D"]
 script = ExtResource( 14 )
 HP = 10000
 
@@ -111,5 +109,3 @@ shape = SubResource( 4 )
 [node name="HPBar" parent="." instance=ExtResource( 2 )]
 margin_top = -49.0
 margin_bottom = -45.0
-[connection signal="timeout" from="Body/AimTimer" to="Body" method="_on_AimTimer_timeout"]
-[connection signal="timeout" from="Body/FireTimer" to="Body" method="_on_FireTimer_timeout"]

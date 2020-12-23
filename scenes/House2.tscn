@@ -1,7 +1,7 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/tilesets/House/TDS04_House02.png" type="Texture" id=1]
-[ext_resource path="res://scenes/Obstacle.gd" type="Script" id=2]
+[ext_resource path="res://scripts/Obstacle.gd" type="Script" id=2]
 [ext_resource path="res://scenes/HPBar.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/effects/big_explosion/Explode Source.png" type="Texture" id=4]
 [ext_resource path="res://assets/effects/big_explosion/2.png" type="Texture" id=5]
@@ -15,6 +15,7 @@
 [ext_resource path="res://assets/effects/light_smoke/Light-Smoke_0000s_0004_3.png" type="Texture" id=13]
 [ext_resource path="res://assets/effects/light_smoke/Light-Smoke_0000s_0006_1.png" type="Texture" id=14]
 [ext_resource path="res://assets/effects/light_smoke/Light-Smoke_0000s_0005_2.png" type="Texture" id=15]
+[ext_resource path="res://scripts/ObstacleBody.gd" type="Script" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 128.436, 62.9545 )
@@ -37,23 +38,24 @@ animations = [ {
 "speed": 3.0
 } ]
 
-[node name="House2" type="StaticBody2D" groups=[
-"obstacle",
-]]
+[node name="House2" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Body" type="StaticBody2D" parent="."]
+script = ExtResource( 16 )
+
+[node name="Sprite" type="Sprite" parent="Body"]
 texture = ExtResource( 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
 position = Vector2( 0, -3 )
 shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Body"]
+scale = Vector2( 2, 2 )
+frames = SubResource( 2 )
+animation = "idle"
 
 [node name="HPBar" parent="." instance=ExtResource( 3 )]
 margin_top = -78.0
 margin_bottom = -74.0
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 2, 2 )
-frames = SubResource( 2 )
-animation = "idle"

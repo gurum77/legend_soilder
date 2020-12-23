@@ -13,9 +13,9 @@
 [ext_resource path="res://assets/enemies/soldier/Walk/SW_06.png" type="Texture" id=11]
 [ext_resource path="res://assets/enemies/soldier/Walk/SW_05.png" type="Texture" id=12]
 [ext_resource path="res://assets/enemies/soldier/Idle/Soldier.png" type="Texture" id=13]
-[ext_resource path="res://scenes/Enemy.gd" type="Script" id=14]
+[ext_resource path="res://scripts/Enemy.gd" type="Script" id=14]
 [ext_resource path="res://scenes/HPBar.tscn" type="PackedScene" id=15]
-[ext_resource path="res://scenes/EnemyBody.gd" type="Script" id=16]
+[ext_resource path="res://scripts/EnemyBody.gd" type="Script" id=16]
 [ext_resource path="res://assets/enemies/sniper/Shot/3.png" type="Texture" id=17]
 [ext_resource path="res://assets/enemies/sniper/Shot/2.png" type="Texture" id=18]
 [ext_resource path="res://assets/enemies/sniper/Shot/1.png" type="Texture" id=19]
@@ -63,9 +63,7 @@ animations = [ {
 radius = 10.1944
 height = 4.63671
 
-[node name="Soldier" type="Node2D" groups=[
-"enemy",
-]]
+[node name="Soldier" type="Node2D"]
 script = ExtResource( 14 )
 
 [node name="Body" type="KinematicBody2D" parent="."]

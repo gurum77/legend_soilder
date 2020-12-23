@@ -12,27 +12,32 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "EnemyAI",
 "language": "GDScript",
-"path": "res://EnemyAI.gd"
+"path": "res://scripts/EnemyAI.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "EnemyBody",
 "language": "GDScript",
-"path": "res://scenes/EnemyBody.gd"
+"path": "res://scripts/EnemyBody.gd"
 }, {
 "base": "Control",
 "class": "Joystick",
 "language": "GDScript",
 "path": "res://Joystick/Joystick.gd"
 }, {
-"base": "StaticBody2D",
+"base": "Node2D",
 "class": "Obstacle",
 "language": "GDScript",
-"path": "res://scenes/Obstacle.gd"
+"path": "res://scripts/Obstacle.gd"
+}, {
+"base": "StaticBody2D",
+"class": "ObstacleBody",
+"language": "GDScript",
+"path": "res://scripts/ObstacleBody.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "PlayerBody",
 "language": "GDScript",
-"path": "res://scenes/PlayerBody.gd"
+"path": "res://scripts/PlayerBody.gd"
 }, {
 "base": "Reference",
 "class": "WeaponInventoryItem",
@@ -44,6 +49,7 @@ _global_script_class_icons={
 "EnemyBody": "",
 "Joystick": "",
 "Obstacle": "",
+"ObstacleBody": "",
 "PlayerBody": "",
 "WeaponInventoryItem": ""
 }
@@ -67,6 +73,7 @@ window/size/width=640
 window/size/height=480
 window/size/test_width=1024
 window/size/test_height=768
+window/stretch/mode="2d"
 
 [input]
 

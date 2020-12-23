@@ -2,7 +2,10 @@ extends KinematicBody2D
 
 class_name PlayerBody
 
-
+var velocity = Vector2(0, 0)
+const SPEED = 150
+export (NodePath) var move_joystick
+onready var move_joystick_node : Joystick = get_node_or_null(move_joystick)
 
 export (NodePath) var aim_joystick
 onready var aim_joystick_node : Joystick = get_node(aim_joystick)
@@ -12,7 +15,7 @@ var target_position:Vector2
 enum {idle, walking, Die, Fire}
 
 func get_velocity()->Vector2:
-	return get_parent().velocity
+	return velocity
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,6 +23,9 @@ func _ready():
 	target_position = self.global_position
 
 func _physics_process(delta):
+	# 이동처리
+	move(delta)
+	
 	# 이동 속도에 따른 animation sprite 설정
 	play_animation_by_velocity(get_velocity())
 	
@@ -31,6 +37,7 @@ func _physics_process(delta):
 		start_fire()
 	else:
 		stop_fire()
+		
 		
 # 무기 발사 interval(sec)
 func get_fire_interval():
@@ -152,8 +159,7 @@ func find_nearest_enemy()->Node2D:
 	var nearest_enemy
 	
 	var enemies = get_tree().get_nodes_in_group("enemy")
-	for i in range(enemies.size()):
-		var enemy:Node2D = enemies[i]
+	for enemy in enemies:
 		# hp가 없는 적은 통과
 		if enemy.HP <= 0:
 			continue
@@ -165,3 +171,37 @@ func find_nearest_enemy()->Node2D:
 	return nearest_enemy
 	
 	
+	
+# 이동 처리를 하고 velocity를 계산한
+func move(delta):
+	# velocity를 받아 온다.
+	input_velocity_player()
+	
+	if velocity == Vector2(0, 0):
+		return
+
+	# 이동 전에 자신의 상대위치를 기억한다.
+	var position_old = self.position
+		
+	# 이동	
+	velocity = move_and_slide(velocity)
+	velocity.x = lerp(velocity.x, 0, 0.2)
+	velocity.y = lerp(velocity.y, 0, 0.2)
+	
+	# 이동을 하고 나면 이동 된 위치로 부모를 이동시키고, 
+	# 자신의 부모기준 상대위치를 복구시킨다.
+	get_parent().global_position = self.global_position
+	self.position = position_old
+	
+# player 입력을 받는다
+func input_velocity_player():
+	if Input.is_action_pressed("ui_left"):
+		velocity.x = -SPEED
+	elif Input.is_action_pressed("ui_right"):
+		velocity.x = SPEED
+	if Input.is_action_pressed("ui_up"):
+		velocity.y = -SPEED
+	elif Input.is_action_pressed("ui_down"):
+		velocity.y = SPEED
+	elif not move_joystick_node == null and move_joystick_node.is_working:
+		velocity = move_joystick_node.output.normalized() * SPEED
