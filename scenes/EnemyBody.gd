@@ -14,7 +14,7 @@ onready var fire_animated_sprite = get_node_or_null("AnimatedSprites/BodyPivot/F
 onready var body_animated_sprite = $AnimatedSprites/BodyPivot/BodyAnimatedSprite
 onready var leg_animated_sprite = $AnimatedSprites/LegAnimatedSprite
 onready var fire_position = $AnimatedSprites/BodyPivot/FirePosition
-onready var fire_position2 = $AnimatedSprites/BodyPivot/FirePosition2
+onready var fire_position2 = get_node_or_null("AnimatedSprites/BodyPivot/FirePosition2")
 onready var body_pivot = $AnimatedSprites/BodyPivot
 onready var fire_timer = $FireTimer
 onready var aim_timer = $AimTimer
@@ -85,7 +85,7 @@ func fire():
 			ins.weapon = Define.Weapon.Pistol
 		else:
 			ins.weapon = weapon
-		get_tree().root.add_child(ins)
+		get_tree().root.call_deferred("add_child", ins)
 		if vehicle == true:
 			ins.rotation = body_pivot.rotation
 		else:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://assets/enemies/sniper/Walk/SW_02.png" type="Texture" id=1]
 [ext_resource path="res://assets/enemies/sniper/Walk/SW_04.png" type="Texture" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://assets/enemies/sniper/Shot/3.png" type="Texture" id=18]
 [ext_resource path="res://assets/enemies/sniper/Shot/2.png" type="Texture" id=19]
 [ext_resource path="res://assets/enemies/sniper/Shot/1.png" type="Texture" id=20]
+[ext_resource path="res://scenes/EnemyAI.tscn" type="PackedScene" id=21]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -46,14 +47,14 @@ animations = [ {
 "name": "idle",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 11 ) ],
-"loop": false,
-"name": "fire",
-"speed": 10.0
-}, {
 "frames": [ ExtResource( 6 ), ExtResource( 3 ), ExtResource( 12 ), ExtResource( 10 ), ExtResource( 17 ) ],
 "loop": false,
 "name": "die",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": false,
+"name": "fire",
 "speed": 10.0
 } ]
 
@@ -72,7 +73,6 @@ height = 4.63671
 [node name="Sniper" type="Node2D" groups=[
 "enemy",
 ]]
-position = Vector2( 98.7783, 98.7783 )
 script = ExtResource( 14 )
 __meta__ = {
 "_edit_group_": true
@@ -117,3 +117,5 @@ shape = SubResource( 4 )
 [node name="HPBar" parent="." instance=ExtResource( 15 )]
 margin_top = -18.0
 margin_bottom = -14.0
+
+[node name="EnemyAI" parent="." instance=ExtResource( 21 )]
