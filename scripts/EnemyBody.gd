@@ -5,9 +5,12 @@ class_name EnemyBody
 export (Define.Weapon) var weapon
 export var vehicle = false
 export var bullet_nums = 1 # 총알 발사 개수
+export var speed = 50
 
 var weight = 0.3
-var target_position:Vector2
+var target_position_to_fire:Vector2 # 발사 목표 지점
+var target_position_to_move:Vector2 # 이동 목표 지점
+var velocity:Vector2
 var dead = false # 죽었는지?
 
 onready var fire_animated_sprite = get_node_or_null("AnimatedSprites/BodyPivot/FireAnimatedSprite")
@@ -20,6 +23,9 @@ onready var fire_timer = $FireTimer
 onready var aim_timer = $AimTimer
 
 func _ready():
+	# 이동 목표지점을 제자리로 한다.
+	target_position_to_move = self.global_position
+	
 	# connect
 	fire_timer.connect("timeout", self, "_on_FireTimer_timeout")
 	aim_timer.connect("timeout", self, "_on_AimTimer_timeout")
@@ -27,28 +33,78 @@ func _ready():
 	if not fire_animated_sprite == null:
 		fire_animated_sprite.connect("animation_finished", self, "_on_FireAnimatedSprite_animation_finished")
 
-
-		
 	start_aim()
 	start_fire()
 
 
 func _physics_process(delta):
+	move_to_target()
+	play_animation_by_velocity(velocity)
 	turn_to_target()
+	
+	
+
+# veloity에 따라 player의 animation을 한다.
+func play_animation_by_velocity(velocity):
+	if dead:
+		return
+		
+	# leg animation
+	# walk
+	if velocity.length() > 0.5:
+		leg_animated_sprite.play("walk")
+	# idle
+	else:
+		leg_animated_sprite.play("idle")	
+			
+# 목표 지점으로 이동
+func move_to_target():
+	# die상태이면 이동하지 않는다
+	if dead:
+		return
+		
+	# 목표 지점 근처까지 오면 더이상 이동하지 않는다.
+	if target_position_to_move.distance_to(self.global_position) < 10:
+		return
+		
+	# velocity 결정
+	velocity = (target_position_to_move - self.global_position).normalized() * speed
+	
+	if velocity == Vector2(0, 0):
+		return
+	
+	# 이동 전에 자신의 상대위치를 기억한다.
+	var position_old = self.position
+		
+	# 이동	
+	velocity = move_and_slide(velocity)
+	velocity.x = lerp(velocity.x, 0, 0.2)
+	velocity.y = lerp(velocity.y, 0, 0.2)
+	
+	# 이동을 하고 나면 이동 된 위치로 부모를 이동시키고, 
+	# 자신의 부모기준 상대위치를 복구시킨다.
+	get_parent().global_position = self.global_position
+	self.position = position_old
+	
+
 	
 # target을 향해서 회전
 func turn_to_target():
-	if target_position == null:
+	if dead:
 		return
+	if target_position_to_fire == null:
+		return
+	# vehicle은 이동 방향에 따라서 전체를 회전하고 target position to fire를 향해서 body를 회전한다
 	if vehicle == true:
-		body_pivot.rotation = lerp_angle(body_pivot.rotation, (target_position - body_pivot.global_position).normalized().angle(), weight)
+		self.rotation = lerp_angle(self.rotation, (target_position_to_move - self.global_position).normalized().angle(), weight/10)
+		body_pivot.rotation = lerp_angle(body_pivot.rotation, (target_position_to_fire - body_pivot.global_position).normalized().angle() - self.rotation, weight)
 	else:
-		self.rotation = lerp_angle(self.rotation, (target_position - self.global_position).normalized().angle(), weight)
+		self.rotation = lerp_angle(self.rotation, (target_position_to_fire - self.global_position).normalized().angle(), weight)
 
 func get_fire_interval()->float:
 	return 0.5
 func get_aim_interval()->float:
-	return 1.0
+	return 0.5
 	
 # 발사를 시작한다
 func start_fire():
@@ -87,7 +143,7 @@ func fire():
 			ins.weapon = weapon
 		get_tree().root.call_deferred("add_child", ins)
 		if vehicle == true:
-			ins.rotation = body_pivot.rotation
+			ins.rotation = self.rotation + body_pivot.rotation
 		else:
 			ins.rotation = rotation
 	
@@ -109,7 +165,7 @@ func aim():
 	var players = get_tree().get_nodes_in_group("player")
 	if players == null or players.size() == 0:
 		return
-	target_position = players[0].position
+	target_position_to_fire = players[0].position
 
 
 func _on_FireTimer_timeout():

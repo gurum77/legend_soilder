@@ -44,8 +44,10 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
+HP = 30000
 
 [node name="HPBar" parent="." instance=ExtResource( 3 )]
+visible = false
 margin_top = -78.0
 margin_bottom = -74.0
 

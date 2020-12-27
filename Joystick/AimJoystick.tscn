@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Joystick/Joystick.gd" type="Script" id=1]
-[ext_resource path="res://Joystick/joystick_background_cross.png" type="Texture" id=2]
 [ext_resource path="res://assets/ui/Aim_BTN.png" type="Texture" id=3]
 
 [node name="AimJoystick" type="Control"]
@@ -29,7 +28,6 @@ margin_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_pivot_offset = Vector2( 128, 128 )
-texture = ExtResource( 2 )
 stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false

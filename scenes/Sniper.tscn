@@ -83,6 +83,7 @@ weapon = 2
 [node name="FireTimer" type="Timer" parent="Body"]
 
 [node name="AimTimer" type="Timer" parent="Body"]
+wait_time = 0.5
 
 [node name="AnimatedSprites" type="Node2D" parent="Body"]
 
@@ -117,3 +118,5 @@ margin_top = -18.0
 margin_bottom = -14.0
 
 [node name="EnemyAI" parent="." instance=ExtResource( 21 )]
+
+[editable path="EnemyAI"]

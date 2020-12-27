@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/enemies/soldier/Die/SD_04.png" type="Texture" id=1]
 [ext_resource path="res://assets/enemies/soldier/Walk/SW_07.png" type="Texture" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://assets/enemies/sniper/Shot/3.png" type="Texture" id=17]
 [ext_resource path="res://assets/enemies/sniper/Shot/2.png" type="Texture" id=18]
 [ext_resource path="res://assets/enemies/sniper/Shot/1.png" type="Texture" id=19]
+[ext_resource path="res://scenes/EnemyAI.tscn" type="PackedScene" id=20]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -105,3 +106,5 @@ shape = SubResource( 4 )
 [node name="HPBar" parent="." instance=ExtResource( 15 )]
 margin_top = -18.0
 margin_bottom = -14.0
+
+[node name="EnemyAI" parent="." instance=ExtResource( 20 )]
