@@ -39,7 +39,6 @@ animations = [ {
 } ]
 
 [node name="House1" type="StaticBody2D"]
-position = Vector2( 215.203, 199.157 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true

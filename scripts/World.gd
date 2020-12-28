@@ -7,5 +7,5 @@ func _on_PauseButton_pressed():
 	get_tree().paused = true
 	
 	var ins = pausePanel.instance()
-	get_tree().root.add_child(ins)
+	$CanvasLayer.add_child(ins)
 	
