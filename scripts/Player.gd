@@ -1,6 +1,6 @@
 extends Node2D
 
-var HP = 20000
+var HP = 5000
 
 func _ready():
 	$HPBar.init(HP)

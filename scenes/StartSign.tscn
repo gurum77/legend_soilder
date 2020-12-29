@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/StartSign.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 80
+outline_size = 2
+outline_color = Color( 0.792157, 0.607843, 0.0823529, 1 )
+font_data = ExtResource( 2 )
+
+[node name="StartSign" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -152.0
+margin_top = -48.5
+margin_right = 152.0
+margin_bottom = 48.5
+rect_pivot_offset = Vector2( 152, 48.5 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.909804, 0.576471, 0.14902, 1 )
+custom_colors/font_outline_modulate = Color( 0.611765, 0.203922, 0.121569, 1 )
+custom_colors/font_color_shadow = Color( 0.278431, 0.207843, 0.207843, 0.27451 )
+custom_constants/shadow_offset_x = 3
+custom_constants/shadow_offset_y = 3
+text = "START"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]

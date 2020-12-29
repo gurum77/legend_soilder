@@ -10,5 +10,8 @@ func init(max_hp):
 	rect_scale.x = (max_hp / 3000)
 	
 func set_hp(hp):
-	set_value(hp)
+	var cur_val = value
+	$Tween.interpolate_property(self, "value", cur_val, hp, rect_scale.x / 3, Tween.EASE_OUT)
+	$Tween.start()
+#	set_value(hp)
 	
