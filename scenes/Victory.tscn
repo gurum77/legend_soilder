@@ -71,7 +71,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="TextureRect"]
+[node name="Coins" type="Label" parent="TextureRect"]
 margin_left = 88.0
 margin_top = 108.0
 margin_right = 153.0

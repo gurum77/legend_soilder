@@ -39,6 +39,11 @@ func die():
 	# 3초뒤 삭제
 	yield(get_tree().create_timer(3), "timeout")
 	call_deferred("queue_free")
+	
+	# money를 떨어뜨린다
+	var ins = Preloader.money.instance()
+	ins.global_position = global_position
+	get_tree().root.add_child(ins)
 
 func get_body()->Node:
 	return $Body

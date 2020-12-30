@@ -192,7 +192,7 @@ bus = "sound"
 rotation = -1.5708
 frames = SubResource( 1 )
 animation = "walk"
-frame = 1
+frame = 2
 playing = true
 
 [node name="BodyAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites"]

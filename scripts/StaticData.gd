@@ -6,6 +6,8 @@ var game_state = Define.GameState.ready
 var current_stage = 1
 var current_score_for_stage = 0
 var requirement_score_for_stage = 10000
+var total_money = 0	
+var current_stage_money = 0	# 현재 stage에서 모은 돈
 
 
 # 인벤토리 정보(최대 3개)
@@ -32,7 +34,9 @@ func save_game():
 		"current_stage" : current_stage,
 		"current_score_for_stage" : current_score_for_stage,
 		"requirement_score_for_stage" : requirement_score_for_stage,
-		"current_weapon_index" : current_weapon_index
+		"current_weapon_index" : current_weapon_index,
+		"total_money" : total_money,
+		"current_stage_money" : current_stage_money
 	}
 	var save_file = File.new()
 	save_file.open("user://legend_soldier.save", File.WRITE)
@@ -51,6 +55,8 @@ func load_game():
 		current_score_for_stage = get_gamedata(dic, "current_score_for_stage", current_score_for_stage)
 		requirement_score_for_stage = get_gamedata(dic, "requirement_score_for_stage", requirement_score_for_stage)
 		current_weapon_index = get_gamedata(dic, "current_weapon_index", current_weapon_index)
+		total_money = get_gamedata(dic, "total_money", total_money)
+		current_stage_money = get_gamedata(dic, "current_stage_money", current_stage_money)
 	save_file.close()
 	
 func get_gamedata(var dic:Dictionary, var key, var default_value):
