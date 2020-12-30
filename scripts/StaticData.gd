@@ -1,6 +1,11 @@
 extends Node
 var initialized:bool = false
 
+# state clear에 필요한 내용들
+var game_state = Define.GameState.ready
+var current_stage = 1
+var current_score_for_stage = 0
+var requirement_score_for_stage = 10000
 
 
 # 인벤토리 정보(최대 3개)

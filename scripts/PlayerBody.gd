@@ -23,6 +23,10 @@ func _ready():
 	target_position = self.global_position
 
 func _physics_process(delta):
+	# 게임중이 아니라면 이동을 하지 않는다
+	if StaticData.game_state != Define.GameState.play:
+		return
+		
 	# 이동처리
 	move(delta)
 	
