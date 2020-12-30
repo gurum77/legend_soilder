@@ -12,14 +12,33 @@ func _on_PauseButton_pressed():
 	var ins = pausePanel.instance()
 	$CanvasLayer.add_child(ins)
 	
+# 게임 오버
+func game_over(var victory:bool):
+	StaticData.game_state = Define.GameState.over
+	# 승리시 현재 stage 증가
+	# next 버튼을 안누르고 바로 home으로 갈수도 있기 때문에 여기서 미리 올려준다
+	if victory:
+		StaticData.current_stage += 1
+	# game data 저장
+	StaticData.save_game()
+	# 결과 표시 
+	if victory:
+		$CanvasLayer.add_child(load("res://scenes/Victory.tscn").instance())
+	else:
+		$CanvasLayer.add_child(load("res://scenes/Failed.tscn").instance())	
+	
+		
 # enemy가 죽을때마다 게임 오버인지 체크한다.
-func on_enemy_dead():
+func on_Enemy_dead():
 	# play 중이 아니라면 리턴
 	if StaticData.game_state != Define.GameState.play:
 		return
-		
 	if StaticData.requirement_score_for_stage <= StaticData.current_score_for_stage:
-		StaticData.game_state = Define.GameState.over
-		$CanvasLayer.add_child(load("res://scenes/Victory.tscn").instance())
-	
-	
+		game_over(true)
+		
+# player가 죽으면 게임 오버	
+func on_Player_dead():
+	# play 중이 아니라면 리턴
+	if StaticData.game_state != Define.GameState.play:
+		return
+	game_over(false)	

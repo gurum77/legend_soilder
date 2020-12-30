@@ -11,3 +11,6 @@ func _ready():
 # tween이 끝나면 게임을 시작한다
 func _on_Tween_tween_all_completed():
 	StaticData.game_state = Define.GameState.play
+	# 게임을 시작하면 이거는 삭제한다
+	# 삭제를 안하면 화면을 덮고 있어서 무기버튼이 안눌러짐
+	self.call_deferred("queue_free")

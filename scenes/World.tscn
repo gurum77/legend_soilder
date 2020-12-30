@@ -52,7 +52,6 @@ script = ExtResource( 8 )
 
 [node name="Spawner" parent="Spawners" instance=ExtResource( 10 )]
 position = Vector2( 367.634, 138.79 )
-interval = 5.0
 
 [node name="Sniper" parent="Spawners/Spawner" instance=ExtResource( 11 )]
 
@@ -420,7 +419,7 @@ move_joystick = NodePath("../../CanvasLayer/MoveJoystick")
 aim_joystick = NodePath("../../CanvasLayer/AimJoystick")
 
 [node name="LegAnimatedSprite" parent="Player/Body/AnimatedSprites" index="0"]
-frame = 5
+frame = 3
 [connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_PauseButton_pressed"]
 
 [editable path="Player"]

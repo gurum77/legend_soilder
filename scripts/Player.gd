@@ -1,8 +1,15 @@
 extends Node2D
 
+signal dead
+
 var HP = 5000
 
 func _ready():
+	# signal 연결
+	var world = get_tree().root.get_node_or_null("World")
+	if world != null:
+		connect("dead", world, "on_Player_dead")
+		
 	$HPBar.init(HP)
 	add_to_group("player")
 	
@@ -15,11 +22,8 @@ func damage(power):
 		die()
 
 func die():
-	# dia animation 실행
-	$Body/AnimatedSprites/BodyAnimatedSprite.play("die")
-	$Body/AnimatedSprites/LegAnimatedSprite.visible = false
-	$Body/AnimatedSprites/FireAnimatedSprite.visible = false
+	$Body.die()
 	
-	# 모든 총돌 해제
-	$Body/CollisionShape2D.queue_free()	
+	# dead signal
+	emit_signal("dead")
 

@@ -16,6 +16,48 @@ var inventory_item3 = null
 
 # 현재 무기
 var current_weapon_index = 0
+
+# 게임 데이타 저장 / 읽기
+# game data를을 reset한
+func reset_game():
+	game_state = Define.GameState.ready
+	current_stage = 1
+	current_score_for_stage = 0
+	requirement_score_for_stage = 10000
+	current_weapon_index = 0
+
+func save_game():
+	var save_dic={
+		"game_state" : game_state,
+		"current_stage" : current_stage,
+		"current_score_for_stage" : current_score_for_stage,
+		"requirement_score_for_stage" : requirement_score_for_stage,
+		"current_weapon_index" : current_weapon_index
+	}
+	var save_file = File.new()
+	save_file.open("user://legend_soldier.save", File.WRITE)
+	save_file.store_line(to_json(save_dic))
+	save_file.close()
+	
+func load_game():
+	var save_file = File.new()
+	if not save_file.file_exists("user://legend_soldier.save"):
+		return
+	save_file.open("user://legend_soldier.save", File.READ)
+	if save_file.get_position() < save_file.get_len():
+		var dic = parse_json(save_file.get_line())
+		game_state = get_gamedata(dic, "game_state", game_state)
+		current_stage = get_gamedata(dic, "current_stage", current_stage)
+		current_score_for_stage = get_gamedata(dic, "current_score_for_stage", current_score_for_stage)
+		requirement_score_for_stage = get_gamedata(dic, "requirement_score_for_stage", requirement_score_for_stage)
+		current_weapon_index = get_gamedata(dic, "current_weapon_index", current_weapon_index)
+	save_file.close()
+	
+func get_gamedata(var dic:Dictionary, var key, var default_value):
+	if !dic.has(key):
+		return default_value
+	return dic[key]
+	
 func _ready():
 	init()
 

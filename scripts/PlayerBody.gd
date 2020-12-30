@@ -12,8 +12,7 @@ onready var aim_joystick_node : Joystick = get_node(aim_joystick)
 var fire_position_node
 var playing_body_animation_for_fire = false
 var target_position:Vector2
-enum {idle, walking, Die, Fire}
-
+var player_dead = false
 func get_velocity()->Vector2:
 	return velocity
 	
@@ -25,6 +24,9 @@ func _ready():
 func _physics_process(delta):
 	# 게임중이 아니라면 이동을 하지 않는다
 	if StaticData.game_state != Define.GameState.play:
+		return
+	# player가 죽은 상태이면 이동불가
+	if player_dead:
 		return
 		
 	# 이동처리
@@ -209,3 +211,14 @@ func input_velocity_player():
 		velocity.y = SPEED
 	elif not move_joystick_node == null and move_joystick_node.is_working:
 		velocity = move_joystick_node.output.normalized() * SPEED
+
+func die():
+	player_dead = true
+	
+	# die animation 실행
+	$AnimatedSprites/BodyAnimatedSprite.play("die")
+	$AnimatedSprites/LegAnimatedSprite.visible = false
+	$AnimatedSprites/FireAnimatedSprite.visible = false
+	
+	# 모든 총돌 해제
+	$CollisionShape2D.queue_free()	
