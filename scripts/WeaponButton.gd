@@ -22,7 +22,8 @@ func update():
 		$TextureRect.texture = Define.get_weapon_texture(weapon)
 		$Label.visible = false
 		
-	if StaticData.current_weapon_index == weapon_index:
-		$TextureRect/Light2D.visible = true
-	else:
-		$TextureRect/Light2D.visible = false		
+	if StaticData.game_state == Define.GameState.play:
+		if StaticData.current_weapon_index == weapon_index:
+			$TextureRect/Light2D.visible = true
+		else:
+			$TextureRect/Light2D.visible = false		

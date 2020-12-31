@@ -9,6 +9,15 @@ var requirement_score_for_stage = 10000
 var total_money = 0	
 var current_stage_money = 0	# 현재 stage에서 모은 돈
 
+# weapon 정보
+var weapon_informations:Dictionary = {
+	Define.get_weapon_name(Define.Weapon.Pistol) : WeaponInformation.new(),
+	Define.get_weapon_name(Define.Weapon.SMG) : WeaponInformation.new(),
+	Define.get_weapon_name(Define.Weapon.RPG) : WeaponInformation.new(),
+	Define.get_weapon_name(Define.Weapon.FlameThrower) : WeaponInformation.new(),
+	Define.get_weapon_name(Define.Weapon.MG) : WeaponInformation.new()
+}
+
 
 # 인벤토리 정보(최대 3개)
 var inventory_item1 = null
@@ -87,6 +96,7 @@ func init():
 func get_current_inventory_item() -> WeaponInventoryItem:
 	return get_inventory_item(current_weapon_index)
 	
+# 
 func get_inventory_item(index) -> WeaponInventoryItem:
 	init()
 	if index == 0:
@@ -97,3 +107,12 @@ func get_inventory_item(index) -> WeaponInventoryItem:
 		return inventory_item3
 	else:
 		return null
+
+# 무기 정보를 리턴한다
+# 없으면 만들어서 리턴한다
+func get_weapon_information(weapon)->WeaponInformation:
+	if weapon_informations.has(Define.get_weapon_name(weapon)):
+		return weapon_informations[Define.get_weapon_name(weapon)]
+	else:
+		weapon_informations[Define.get_weapon_name(weapon)] = WeaponInformation.new()
+	return weapon_informations[Define.get_weapon_name(weapon)]		

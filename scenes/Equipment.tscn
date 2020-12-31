@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/WeaponPanel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/ui/Pistol HUD.png" type="Texture" id=2]
+[ext_resource path="res://scenes/PowerPanel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/Equipment.gd" type="Script" id=4]
 [ext_resource path="res://assets/ui/BTN BACK.png" type="Texture" id=5]
 [ext_resource path="res://assets/ui/BG.png" type="Texture" id=9]
@@ -12,6 +13,10 @@
 size = 18
 outline_size = 1
 outline_color = Color( 0.831373, 0.745098, 0.184314, 1 )
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 13
 font_data = ExtResource( 10 )
 
 [node name="Equipment" type="Panel"]
@@ -110,6 +115,34 @@ custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.396078, 0.388235, 0.345098, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "Pistol"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PowerPanel" parent="Control/WeaponDescriptionPanel" instance=ExtResource( 3 )]
+margin_top = 256.0
+margin_bottom = 299.0
+
+[node name="RangePanel" parent="Control/WeaponDescriptionPanel" instance=ExtResource( 3 )]
+margin_top = 308.0
+margin_bottom = 351.0
+upgrade_item = 1
+
+[node name="Infomation" type="Label" parent="Control/WeaponDescriptionPanel"]
+margin_left = 31.0
+margin_top = 87.0
+margin_right = 287.0
+margin_bottom = 236.0
+custom_fonts/font = SubResource( 2 )
+text = "Basic gun
+
+Interval : 0.2 sec
+All of soldiers can get this gun.
+
+It is a handgun, more
+ specifically one with the chamfer.
+
+"
 __meta__ = {
 "_edit_use_anchors_": false
 }

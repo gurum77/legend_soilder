@@ -39,6 +39,7 @@ __meta__ = {
 }
 
 [node name="Light2D" type="Light2D" parent="TextureRect"]
+visible = false
 position = Vector2( 24.8948, 15.7981 )
 scale = Vector2( 2.01057, 1.00194 )
 texture = ExtResource( 5 )
