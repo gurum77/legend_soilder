@@ -19,11 +19,14 @@ func update():
 
 func _on_WeaponButton1_pressed():
 	StaticData.current_weapon_index = 0
+	update()
 
 
 func _on_WeaponButton2_pressed():
 	StaticData.current_weapon_index = 1
+	update()
 
 
 func _on_WeaponButton3_pressed():
 	StaticData.current_weapon_index = 2
+	update()

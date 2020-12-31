@@ -7,6 +7,7 @@ export (int) var weapon_index
 func _ready():
 	update()
 	
+	
 func update():
 	var item = StaticData.get_inventory_item(weapon_index)
 	if item == null:
@@ -20,3 +21,8 @@ func update():
 		$TextureRect.visible = true
 		$TextureRect.texture = Define.get_weapon_texture(weapon)
 		$Label.visible = false
+		
+	if StaticData.current_weapon_index == weapon_index:
+		$TextureRect/Light2D.visible = true
+	else:
+		$TextureRect/Light2D.visible = false		

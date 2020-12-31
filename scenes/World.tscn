@@ -359,8 +359,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="WeaponInventory" parent="CanvasLayer" instance=ExtResource( 7 )]
-
 [node name="MoveJoystick" parent="CanvasLayer" instance=ExtResource( 5 )]
 margin_left = -73.0
 margin_top = -225.0
@@ -380,8 +378,12 @@ _pressed_color = Color( 0.776471, 0.192157, 0.192157, 1 )
 [node name="StageProgress" parent="CanvasLayer" instance=ExtResource( 12 )]
 
 [node name="StartSign" parent="CanvasLayer" instance=ExtResource( 14 )]
-margin_left = 0.396851
-margin_right = 0.396851
+margin_left = 2.39685
+margin_top = -1.0
+margin_right = 2.39685
+margin_bottom = -1.0
+
+[node name="WeaponInventory" parent="CanvasLayer" instance=ExtResource( 7 )]
 
 [node name="Player" parent="." instance=ExtResource( 9 )]
 position = Vector2( 183.964, 186.716 )
@@ -392,10 +394,14 @@ aim_joystick = NodePath("../../CanvasLayer/AimJoystick")
 
 [node name="LegAnimatedSprite" parent="Player/Body/AnimatedSprites" index="0"]
 position = Vector2( 0.28064, 0 )
-frame = 6
+frame = 3
 
 [node name="Money" parent="." instance=ExtResource( 15 )]
 position = Vector2( 149.913, 136.683 )
 [connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_PauseButton_pressed"]
+
+[editable path="CanvasLayer/WeaponInventory"]
+
+[editable path="CanvasLayer/WeaponInventory/HBoxContainer/WeaponButton1"]
 
 [editable path="Player"]
