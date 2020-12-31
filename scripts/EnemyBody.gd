@@ -77,11 +77,14 @@ func move_to_target():
 	if velocity == Vector2(0, 0):
 		return
 	
+	move_by_velocity(velocity)
+
+func move_by_velocity(v):
 	# 이동 전에 자신의 상대위치를 기억한다.
 	var position_old = self.position
 		
 	# 이동	
-	velocity = move_and_slide(velocity)
+	velocity = move_and_slide(v)
 	velocity.x = lerp(velocity.x, 0, 0.2)
 	velocity.y = lerp(velocity.y, 0, 0.2)
 	
@@ -89,8 +92,6 @@ func move_to_target():
 	# 자신의 부모기준 상대위치를 복구시킨다.
 	get_parent().global_position = self.global_position
 	self.position = position_old
-	
-
 	
 # target을 향해서 회전
 func turn_to_target():

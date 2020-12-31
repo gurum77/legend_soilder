@@ -80,7 +80,12 @@ func rotate_by_velocity(velocity):
 			self.look_at(target_position)
 	# aim joystick을 터치하지 않고 있는 경우
 	else:
-		self.look_at(global_position + velocity)
+		if not velocity == Vector2.ZERO:
+			self.look_at(global_position + velocity * 10)
+		
+	# guide line
+	$GuideLine.position = get_fire_position_node().position
+
 		
 func _on_FireTimer_timeout():
 	fire()
@@ -92,6 +97,7 @@ func _on_BodyAnimatedSprite_animation_finished():
 	playing_body_animation_for_fire = false		
 
 func fire():
+	
 	var ins = Preloader.bullet.instance()
 	ins.position = get_fire_position_node().global_position
 	ins.visible = true
@@ -152,9 +158,11 @@ func get_fire_position_node() -> Node:
 
 # 조이스틱을 누르고만 있다면 자동으로 가장 가까운 적을 조준한다.
 func _on_AimTimer_timeout():
-	if aim_joystick_node == null:
-		return
-	if aim_joystick_node._touch_index < 0:
+	# 터치를 안하고 있으면 진행방향을 target_position으로 준다
+	if aim_joystick_node == null or aim_joystick_node._touch_index < 0:
+		# velocity가 있으면 aim을 한
+		if not get_velocity() == Vector2.ZERO:
+			target_position = self.global_position + get_velocity() * 100
 		return
 
 	# 가까운 적을 찾는다.

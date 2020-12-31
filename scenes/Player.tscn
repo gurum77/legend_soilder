@@ -154,6 +154,7 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=4]
 
 [node name="Player" type="Node2D"]
+modulate = Color( 1, 1, 1, 0.858824 )
 script = ExtResource( 23 )
 
 [node name="Body" type="KinematicBody2D" parent="."]
@@ -163,7 +164,7 @@ script = ExtResource( 45 )
 [node name="FireTimer" type="Timer" parent="Body"]
 
 [node name="AimTimer" type="Timer" parent="Body"]
-wait_time = 0.5
+wait_time = 0.2
 autostart = true
 
 [node name="PistolFirePosition" type="Node2D" parent="Body"]

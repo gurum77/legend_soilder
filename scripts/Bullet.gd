@@ -43,10 +43,16 @@ func _on_Bullet_body_entered(body):
 		body.get_parent().damage(power)
 	elif body is ObstacleBody:
 		body.get_parent().damage(power)
-	
+	# push
+	push_body(body)
 	# 어디든 부딪히면 총알은 터진	
 	explosion()
 	
+func push_body(body):
+	if body is EnemyBody:
+		var push_velocity = Vector2(cos(rotation), sin(rotation)) * power / 3
+		body.move_by_velocity(push_velocity)
+		
 # bullet을 폭파 시킨다.s
 func explosion():
 	free_after_animation = true
