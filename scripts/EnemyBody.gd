@@ -23,6 +23,10 @@ onready var fire_timer = $FireTimer
 onready var aim_timer = $AimTimer
 
 func _ready():
+	# layer/mask
+	collision_layer = 0b10
+	collision_mask	= 0b11011
+
 	# 이동 목표지점을 제자리로 한다.
 	target_position_to_move = self.global_position
 	

@@ -48,6 +48,8 @@ margin_top = -44.0
 margin_bottom = -40.0
 
 [node name="Body" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 54
 script = ExtResource( 16 )
 
 [node name="Sprite" type="Sprite" parent="Body"]

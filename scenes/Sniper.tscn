@@ -29,15 +29,15 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ), ExtResource( 1 ), ExtResource( 8 ), ExtResource( 2 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "walk",
-"speed": 15.0
-}, {
 "frames": [  ],
 "loop": false,
 "name": "die",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 1 ), ExtResource( 8 ), ExtResource( 2 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "walk",
+"speed": 15.0
 } ]
 
 [sub_resource type="SpriteFrames" id=2]
@@ -77,6 +77,8 @@ __meta__ = {
 }
 
 [node name="Body" type="KinematicBody2D" parent="."]
+collision_layer = 2
+collision_mask = 23
 script = ExtResource( 16 )
 weapon = 2
 

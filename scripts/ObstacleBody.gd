@@ -6,6 +6,10 @@ enum {idle, explosion, die}
 var state = idle
 
 func _ready():
+	# layer / mask
+	collision_layer = 0b10000
+	collision_mask = 0b110110
+	
 	$AnimatedSprite.connect("animation_finished", self, "_on_AnimatedSprite_animation_finished")
 
 func die():

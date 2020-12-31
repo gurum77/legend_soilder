@@ -67,6 +67,8 @@ script = ExtResource( 14 )
 HP = 7000
 
 [node name="Body" type="KinematicBody2D" parent="."]
+collision_layer = 15
+collision_mask = 23
 script = ExtResource( 1 )
 weapon = 3
 vehicle = true

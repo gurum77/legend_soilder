@@ -12,6 +12,10 @@ func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 
 func _ready():
+	# layer / mask
+	collision_layer = 0b100
+	collision_mask = 0b10011
+	
 	# 무기종류에 맞는 animation을 실행
 	var animation_name = Define.get_weapon_name(weapon)
 	$AnimatedSprite.play(animation_name)

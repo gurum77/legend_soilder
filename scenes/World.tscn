@@ -48,6 +48,7 @@ script = ExtResource( 8 )
 
 [node name="Spawner" parent="Spawners" instance=ExtResource( 10 )]
 position = Vector2( 367.634, 138.79 )
+interval = 3.0
 
 [node name="Sniper" parent="Spawners/Spawner" instance=ExtResource( 11 )]
 

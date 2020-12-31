@@ -18,6 +18,10 @@ func get_velocity()->Vector2:
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# layer / mask
+	collision_layer = 0b1
+	collision_mask = 0b11110
+	
 	$AudioStreamPlayer2D.play()
 	target_position = self.global_position
 
@@ -159,6 +163,7 @@ func _on_AimTimer_timeout():
 		target_position = self.global_position + get_velocity() * 100
 	else:
 		target_position = enemy.global_position
+	
 		
 func find_nearest_enemy()->Node2D:
 	var minimum_distance = INF
