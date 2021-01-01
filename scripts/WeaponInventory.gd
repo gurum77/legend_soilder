@@ -1,14 +1,16 @@
 extends Panel
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+var initialized = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	update()
+	
+func _process(delta):
+	if !initialized and StaticData.game_state == Define.GameState.play:
+		update()
+		initialized = true
 
 # weapon inventory의 무기들을 갱신한다.
 func update():

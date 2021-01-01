@@ -18,7 +18,7 @@ func _on_WeaponButton_pressed():
 	desc_panel.get_node("WeaponTexture").texture = Define.get_weapon_texture(weapon)
 	desc_panel.get_node("WeaponNameLabel").text = Define.get_weapon_name(weapon)
 	desc_panel.get_node("PowerPanel").change_weapon(weapon)
-	desc_panel.get_node("RangePanel").change_weapon(weapon)
+	desc_panel.get_node("IntervalPanel").change_weapon(weapon)
 
 
 # set 버튼을 누르면 setting weapon panel을 보여준다.

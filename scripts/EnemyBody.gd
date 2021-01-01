@@ -25,7 +25,7 @@ onready var aim_timer = $AimTimer
 func _ready():
 	# layer/mask
 	collision_layer = 0b10
-	collision_mask	= 0b11011
+	collision_mask	= 0b10111
 
 	# 이동 목표지점을 제자리로 한다.
 	target_position_to_move = self.global_position
@@ -63,6 +63,10 @@ func play_animation_by_velocity(velocity):
 			
 # 목표 지점으로 이동
 func move_to_target():
+	# 게임중이 아니라면 이동하지 않는다.
+	if StaticData.game_state != Define.GameState.play:
+		return
+		
 	# die상태이면 이동하지 않는다
 	if dead:
 		return
@@ -135,6 +139,9 @@ func stop_aim():
 
 # fire		
 func fire():
+	if StaticData.game_state != Define.GameState.play:
+		return
+		
 	for i in range(bullet_nums):
 		var ins = Preloader.bullet.instance()
 		var fire_position_node = fire_position

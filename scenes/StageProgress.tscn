@@ -42,7 +42,8 @@ margin_bottom = 46.0
 rect_min_size = Vector2( 300, 15 )
 custom_styles/fg = SubResource( 1 )
 custom_fonts/font = SubResource( 2 )
-value = 30.0
+step = 1.0
+value = 100.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -55,6 +56,9 @@ margin_right = -1.33098
 margin_bottom = 17.6933
 texture = ExtResource( 1 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="CurrentStage"]
 anchor_right = 1.0

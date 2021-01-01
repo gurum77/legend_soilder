@@ -1,8 +1,9 @@
 extends Node2D
-
+class_name Enemy
 signal dead
 
 export var HP = 3000
+onready var score = HP
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,18 +18,22 @@ func _ready():
 
 # 이 적을 죽이면 받는 score
 func get_score()->int:
-	return $HPBar.max_value
+	return score
 		
 # damage 를 준다.
 func damage(power):
 	HP = HP - power
-	on_take_damage()
+	on_take_damage(power)
 	$HPBar.set_hp(HP)
 	if HP <= 0:
 		HP = 0
 		die()
 		
-func on_take_damage():
+func on_take_damage(power):
+	var ins = Preloader.hud.instance()
+	ins.message = str(power as int)
+	add_child(ins)
+	
 	# Flicker 4 times
 	for i in 4:
 		$Body.modulate.r = 1

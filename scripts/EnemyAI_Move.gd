@@ -15,6 +15,8 @@ func get_ai_level()->int:
 func _physics_process(delta):
 	if enemy_ai == null:
 		return
+	if StaticData.game_state != Define.GameState.play:
+		return
 		
 	# state를 결정한다.
 	determine_state()

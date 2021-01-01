@@ -21,12 +21,20 @@ func _on_SettingsButton_pressed():
 
 
 func _on_ExitButton_pressed():
+	var dlg = AcceptDialog.new()
+	dlg.dialog_text = "Quit?"
+	dlg.add_cancel("cancel")
+	dlg.get_ok().connect("pressed", self, "on_ExitButton_ok_pressed")
+	add_child(dlg)
+	dlg.popup_centered()
+	
+func on_ExitButton_ok_pressed():
 	get_tree().quit()
-
+	
 # reset
 func _on_ResetButton_pressed():
 	var dlg = AcceptDialog.new()
-	dlg.dialog_text = "reset ?"
+	dlg.dialog_text = "Reset?"
 	dlg.add_cancel("cancel")
 	dlg.get_ok().connect("pressed", self, "on_ResetButton_ok_pressed")
 	add_child(dlg)

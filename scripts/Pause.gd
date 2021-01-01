@@ -6,7 +6,7 @@ var settings = preload("res://scenes/Settings.tscn")
 func _on_SettingButton_pressed():
 	get_tree().paused = false
 	var ins = settings.instance()
-	get_tree().root.add_child(ins)
+	add_child(ins)
 
 
 func _on_HomeButton_pressed():

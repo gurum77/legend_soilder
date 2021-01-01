@@ -1,9 +1,12 @@
 extends Area2D
 
+
+var distance = 100	# 사거리
 var speed = 500
 var power = 400
 var player:bool = false
 var free_after_animation = false
+var start_position 
 
 export (Define.Weapon) var weapon
 
@@ -16,7 +19,16 @@ func _ready():
 	collision_layer = 0b100
 	collision_mask = 0b10011
 	
-	# 무기종류에 맞는 animation을 실행
+	# power
+	power = Table.get_weapon_power_by_level(weapon)
+
+	# 무기 종류에 맞는 사거리 결정
+	distance = Table.get_weapon_bullet_distance(weapon)
+
+	# 시작 위치 보관	
+	start_position = position
+	
+	# 무기 종류에 맞는 animation을 실행
 	var animation_name = Define.get_weapon_name(weapon)
 	$AnimatedSprite.play(animation_name)
 	
@@ -28,6 +40,9 @@ func _ready():
 # bullet이 날아가도록 한다
 func _physics_process(delta):
 	translate(Vector2.RIGHT.rotated(rotation) * speed * delta)
+	# 사거리가 지정된 경우 사거리 이상 날아가면 폭파
+	if distance > 0 and position.distance_to(start_position) > distance:
+		explosion()
 
 
 func _on_Bullet_body_entered(body):
@@ -45,6 +60,7 @@ func _on_Bullet_body_entered(body):
 		body.get_parent().damage(power)
 	# push
 	push_body(body)
+	
 	# 어디든 부딪히면 총알은 터진	
 	explosion()
 	

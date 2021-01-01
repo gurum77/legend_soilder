@@ -51,7 +51,7 @@ func _physics_process(delta):
 		
 # 무기 발사 interval(sec)
 func get_fire_interval():
-	return 0.2
+	return Table.get_weapon_interval_by_level(get_weapon())
 	
 # 발사를 시작한다
 func start_fire():
@@ -84,6 +84,7 @@ func rotate_by_velocity(velocity):
 			self.look_at(global_position + velocity * 10)
 		
 	# guide line
+	$GuideLine.cast_to = Vector2(Table.get_weapon_bullet_distance(get_weapon()), 0)
 	$GuideLine.position = get_fire_position_node().position
 
 		
@@ -97,12 +98,16 @@ func _on_BodyAnimatedSprite_animation_finished():
 	playing_body_animation_for_fire = false		
 
 func fire():
-	
+	if StaticData.game_state != Define.GameState.play:
+		return
+		
+	# bullet 생성
 	var ins = Preloader.bullet.instance()
 	ins.position = get_fire_position_node().global_position
 	ins.visible = true
 	ins.player = true
 	ins.weapon = StaticData.get_current_inventory_item().weapon
+	
 	get_tree().root.add_child(ins)
 	ins.rotation = rotation
 	
@@ -116,13 +121,16 @@ func fire():
 	$AnimatedSprites/FireAnimatedSprite.play(get_body_animation_name_header())
 	
 	
-# 무기에 따른 body animation의 이름
-func get_body_animation_name_header() -> String:
+# 무기 종류 리턴
+func get_weapon():
 	var item = StaticData.get_current_inventory_item()
 	if item == null:
-		return "None"
-		
-	return Define.get_weapon_name(item.weapon)
+		return Define.Weapon.Pistol
+	return item.weapon
+	
+# 무기에 따른 body animation의 이름
+func get_body_animation_name_header() -> String:
+	return Define.get_weapon_name(get_weapon())
 		
 
 # veloity에 따라 player의 animation을 한다.

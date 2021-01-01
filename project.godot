@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node2D",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://scripts/Enemy.gd"
+}, {
+"base": "Node2D",
 "class": "EnemyAI",
 "language": "GDScript",
 "path": "res://scripts/EnemyAI.gd"
@@ -50,6 +55,7 @@ _global_script_classes=[ {
 "path": "res://scripts/WeaponInventoryItem.gd"
 } ]
 _global_script_class_icons={
+"Enemy": "",
 "EnemyAI": "",
 "EnemyBody": "",
 "Joystick": "",
@@ -72,6 +78,7 @@ Define="*res://scenes/Define.tscn"
 StaticData="*res://scenes/StaticData.tscn"
 SoundManager="*res://scenes/SoundManager.tscn"
 Preloader="*res://scenes/Preloader.tscn"
+Table="*res://scenes/Table.tscn"
 
 [display]
 

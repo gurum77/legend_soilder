@@ -5,6 +5,7 @@ enum GameState{ready, play, over}
 # 최대 upgrade 레벨
 var max_power_level = 20
 var max_range_level = 20
+var max_interval_level = 20
 
 export (Texture) var FlameThrower_texture = null
 export (Texture) var MG_texture = null
@@ -27,6 +28,8 @@ func get_weapon_texture(var weapon) -> Texture:
 		return SMG_texture
 	else:
 		return null
+		
+
 		
 func get_weapon_name(var weapon) -> String:
 	if weapon == Weapon.FlameThrower:

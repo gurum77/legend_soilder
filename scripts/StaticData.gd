@@ -6,6 +6,7 @@ var game_state = Define.GameState.ready
 var current_stage = 1
 var current_score_for_stage = 0
 var requirement_score_for_stage = 10000
+var spawned_score_for_stage = 0	# 현재 spawn되어 있는 전체 점수(필요한 만큼만 스폰되어야 한다)
 var total_money = 0	
 var current_stage_money = 0	# 현재 stage에서 모은 돈
 

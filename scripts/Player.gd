@@ -16,13 +16,17 @@ func _ready():
 # damage 를 준다.
 func damage(power):
 	HP = HP - power
-	on_take_damage()
+	on_take_damage(power)
+	
 	$HPBar.set_hp(HP)
 	if HP <= 0:
 		HP = 0
 		die()
 
-func on_take_damage():
+func on_take_damage(power):
+	var ins = Preloader.hud.instance()
+	ins.message = str(power as int)
+	add_child(ins)
 	# Flicker 4 times
 	for i in 4:
 		$Body.modulate.r = 1

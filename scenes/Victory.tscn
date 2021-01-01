@@ -4,7 +4,8 @@
 [ext_resource path="res://assets/ui/Victory/Star.png" type="Texture" id=2]
 [ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://assets/ui/BTN SETTINGS_EMPTY.png" type="Texture" id=4]
-[ext_resource path="res://scenes/Victory.gd" type="Script" id=5]
+[ext_resource path="res://scripts/Victory.gd" type="Script" id=5]
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 14

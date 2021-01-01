@@ -6,7 +6,20 @@ func _ready():
 	# 게임을 시작하면 현재  stage에 대한 데이타를 초기화 한다
 	StaticData.current_score_for_stage = 0
 	StaticData.current_stage_money = 0
+	StaticData.requirement_score_for_stage = Table.get_stage_clear_score(StaticData.current_stage)
+	StaticData.spawned_score_for_stage = 0
+	$CanvasLayer/StageProgress.update()
 	
+	# debug information
+	update_debug_information()
+	
+func update_debug_information():
+	var line1 = "Stage : " + str(StaticData.current_stage)
+	var line2 = "\nClear score : " + str(StaticData.requirement_score_for_stage as int)
+	var line3 = "\nSpawned score : " + str(StaticData.spawned_score_for_stage as int)
+	$CanvasLayer/DebugLabel.text = line1 + line2 + line3
+	
+
 # pause
 func _on_PauseButton_pressed():
 	get_tree().paused = true
@@ -28,7 +41,8 @@ func game_over(var victory:bool):
 		$CanvasLayer.add_child(load("res://scenes/Victory.tscn").instance())
 	else:
 		$CanvasLayer.add_child(load("res://scenes/Failed.tscn").instance())	
-	
+func _process(delta):
+	update_debug_information()
 		
 # enemy가 죽을때마다 게임 오버인지 체크한다.
 func on_Enemy_dead():
@@ -37,6 +51,7 @@ func on_Enemy_dead():
 		return
 	if StaticData.requirement_score_for_stage <= StaticData.current_score_for_stage:
 		game_over(true)
+	
 		
 # player가 죽으면 게임 오버	
 func on_Player_dead():
