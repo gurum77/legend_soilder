@@ -31,6 +31,7 @@ __meta__ = {
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Label" type="Label" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -20.0

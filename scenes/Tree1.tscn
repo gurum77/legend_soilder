@@ -39,6 +39,7 @@ animations = [ {
 } ]
 
 [node name="Tree1" type="Node2D"]
+z_index = 1
 script = ExtResource( 2 )
 HP = 20000
 
