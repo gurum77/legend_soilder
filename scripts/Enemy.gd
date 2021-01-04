@@ -2,6 +2,7 @@ extends Node2D
 class_name Enemy
 signal dead
 signal added
+signal removed
 export var HP = 3000
 onready var score = HP
 export var minimap_icon = "mob"
@@ -16,6 +17,7 @@ func _ready():
 	var minimap = get_tree().root.get_node_or_null("World/CanvasLayer/MiniMap")
 	if minimap != null:
 		connect("added", minimap, "on_Object_added")
+		connect("removed", minimap, "on_Object_removed")
 		emit_signal("added", self)
 	
 		
@@ -58,8 +60,10 @@ func die():
 	# enemy가 죽을때 마다 player의 점수를 올린다
 	StaticData.current_score_for_stage += get_score()
 	
-	# dead signal
+	# dead signal(world에서 제거)
 	emit_signal("dead")
+	# removed signal(미니맵에서 제거)
+	emit_signal("removed", self)
 	
 	# 3초뒤 삭제
 	yield(get_tree().create_timer(3), "timeout")

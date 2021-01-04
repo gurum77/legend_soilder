@@ -25,11 +25,30 @@ script = ExtResource( 3 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="StartSign" parent="CanvasLayer" instance=ExtResource( 14 )]
+margin_left = 2.39685
+margin_top = -1.0
+margin_right = 2.39685
+margin_bottom = -1.0
+
 [node name="MoneyPanel" parent="CanvasLayer" instance=ExtResource( 1 )]
+anchor_left = 0.0
+anchor_right = 0.0
+margin_left = 0.0
+margin_right = 80.0
+
+[node name="MiniMap" parent="CanvasLayer" instance=ExtResource( 10 )]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -100.0
+margin_right = 0.0
+player = NodePath("../../Player/Body")
 
 [node name="PauseButton" type="TextureButton" parent="CanvasLayer"]
-margin_right = 28.0
-margin_bottom = 27.0
+margin_left = 608.437
+margin_top = 66.0398
+margin_right = 636.437
+margin_bottom = 93.0398
 texture_normal = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -54,12 +73,6 @@ _pressed_color = Color( 0.776471, 0.192157, 0.192157, 1 )
 [node name="StageProgress" parent="CanvasLayer" instance=ExtResource( 12 )]
 step = 0.01
 
-[node name="StartSign" parent="CanvasLayer" instance=ExtResource( 14 )]
-margin_left = 2.39685
-margin_top = -1.0
-margin_right = 2.39685
-margin_bottom = -1.0
-
 [node name="WeaponInventory" parent="CanvasLayer" instance=ExtResource( 7 )]
 
 [node name="DebugLabel" type="Label" parent="CanvasLayer"]
@@ -74,14 +87,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MiniMap" parent="CanvasLayer" instance=ExtResource( 10 )]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -100.0
-margin_top = 27.0
-margin_right = 0.0
-margin_bottom = 91.0
-
 [node name="Player" parent="." instance=ExtResource( 9 )]
 position = Vector2( 183.964, 186.716 )
 
@@ -91,11 +96,12 @@ aim_joystick = NodePath("../../CanvasLayer/AimJoystick")
 
 [node name="LegAnimatedSprite" parent="Player/Body/AnimatedSprites" index="0"]
 position = Vector2( 0.28064, 0 )
-frame = 3
 
 [node name="Money" parent="." instance=ExtResource( 15 )]
 position = Vector2( 149.913, 136.683 )
 [connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_PauseButton_pressed"]
+
+[editable path="CanvasLayer/MiniMap"]
 
 [editable path="CanvasLayer/WeaponInventory"]
 

@@ -34,9 +34,11 @@ func on_Object_added(object):
 func _process(delta):
 	if !player:
 		return
-	player_marker.rotation = get_node(player).rotation + PI/2
+	player_marker.rotation = get_node(player).rotation
 	for item in markers:
-		var obj_pos = (item.position - get_node(player).position) * grid_scale + grid.rect_size / 2
+		if item == null:
+			continue
+		var obj_pos = (item.global_position - get_node(player).global_position) * grid_scale + grid.rect_size / 2
 		markers[item].position = obj_pos
 		obj_pos.x = clamp(obj_pos.x, 0, grid.rect_size.x)
 		obj_pos.y = clamp(obj_pos.y, 0, grid.rect_size.y)
