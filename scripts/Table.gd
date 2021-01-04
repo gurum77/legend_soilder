@@ -13,6 +13,10 @@ var weapon_power_factor = 1.2
 # weapon interval factor
 var weapon_interval_factor = 0.965
 
+# upgrade cost factor
+var upgrade1_cost = 1000	# 첫번째 upgrade 비용
+var upgrade_cost_factor = 1.3	# 이후 upgrade시 늘어나는 비용 factor
+
 # 무기별 interval
 var interval_Pistol = 0.5
 var interval_SMG = 0.25
@@ -76,18 +80,27 @@ func get_stage_clear_score(stage)->int:
 	for i in range(stage-1):
 		score = score * stage_clear_score_factor
 	return score
+	
+# to_level로 업그레이드 하는데 필요한 비용 리턴
+func get_upgrade_cost(to_level)->int:
+	return 0
+	var cost = upgrade1_cost
+	for i in range(to_level-1):
+		cost = cost * upgrade_cost_factor
+	return cost as int
+	
 
 # stage별 적 hp를 리턴
 func get_enemy_hp(hp, stage)->int:
 	for i in range(stage-1):
 		hp = hp * enemy_hp_factor
-	return hp
+	return hp as int
 
 # power level별 무기 공격력 리턴
 func get_weapon_power(power, power_level)->int:
 	for i in range(power_level-1):
 		power = power * weapon_power_factor
-	return power
+	return power as int
 	
 # interval level별 무기 inerval 리턴
 func get_weapon_interval(interval, interval_level)->int:

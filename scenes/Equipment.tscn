@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/WeaponPanel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/ui/Pistol HUD.png" type="Texture" id=2]
 [ext_resource path="res://scenes/UpgradePanel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/Equipment.gd" type="Script" id=4]
 [ext_resource path="res://assets/ui/BTN BACK.png" type="Texture" id=5]
+[ext_resource path="res://scenes/MoneyPanel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/ui/BG.png" type="Texture" id=9]
 [ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://scenes/WeaponInventory.tscn" type="PackedScene" id=11]
@@ -81,8 +82,8 @@ anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -323.0
-margin_top = -4.0
-margin_right = 1.0
+margin_top = 34.0
+margin_right = 1.00012
 margin_bottom = -83.3777
 texture = ExtResource( 9 )
 expand = true
@@ -120,19 +121,19 @@ __meta__ = {
 }
 
 [node name="PowerPanel" parent="Control/WeaponDescriptionPanel" instance=ExtResource( 3 )]
-margin_top = 256.0
-margin_bottom = 299.0
+margin_top = 223.0
+margin_bottom = 266.0
 
 [node name="IntervalPanel" parent="Control/WeaponDescriptionPanel" instance=ExtResource( 3 )]
-margin_top = 308.0
-margin_bottom = 351.0
+margin_top = 275.0
+margin_bottom = 318.0
 upgrade_item = 1
 
 [node name="Infomation" type="Label" parent="Control/WeaponDescriptionPanel"]
 margin_left = 31.0
-margin_top = 87.0
+margin_top = 72.0
 margin_right = 287.0
-margin_bottom = 236.0
+margin_bottom = 249.0
 custom_fonts/font = SubResource( 2 )
 text = "Basic gun
 
@@ -158,4 +159,6 @@ texture_normal = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MoneyPanel" parent="." instance=ExtResource( 6 )]
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]

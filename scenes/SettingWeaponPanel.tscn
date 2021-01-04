@@ -1,11 +1,16 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/WeaponButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/SettingWeaponPanel.gd" type="Script" id=2]
 [ext_resource path="res://assets/ui/BTN Exit.png" type="Texture" id=3]
+[ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/ui/Pistol HUD.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 4 )
 
 [node name="SettingWeaponPanel" type="Panel"]
-self_modulate = Color( 1, 1, 1, 0.647059 )
+self_modulate = Color( 1, 1, 1, 0.815686 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
@@ -50,9 +55,31 @@ __meta__ = {
 
 [node name="WeaponTexture" type="TextureRect" parent="."]
 anchor_right = 1.0
-margin_bottom = 60.0
+margin_top = 134.0
+margin_bottom = 194.0
 rect_min_size = Vector2( 0, 60 )
+texture = ExtResource( 5 )
 stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -120.5
+margin_top = -142.0
+margin_right = 120.5
+margin_bottom = -122.0
+custom_fonts/font = SubResource( 1 )
+text = "Select your inventory"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="HBoxContainer/WeaponButton1" to="." method="_on_WeaponButton1_pressed"]
 [connection signal="pressed" from="HBoxContainer/WeaponButton2" to="." method="_on_WeaponButton2_pressed"]
 [connection signal="pressed" from="HBoxContainer/WeaponButton3" to="." method="_on_WeaponButton3_pressed"]

@@ -5,6 +5,7 @@ export (UpgradeItem) var upgrade_item = UpgradeItem.power
 export (Define.Weapon) var weapon = Define.Weapon.Pistol
 
 onready var weapon_information:WeaponInformation = StaticData.get_weapon_information(weapon)
+var need_more_money_to_upgrade = false	# upgrade하기 위해서 돈이 더 필요한지?
 
 func _ready():
 	update()
@@ -39,9 +40,19 @@ func update():
 	$Value.text = value_text
 	update_bar(level)
 	if is_max_level:
+		$Button.disabled = true
 		$Button.text = "MAX"
 	else:
-		$Button.text = "UP"			
+		$Button.disabled = false
+		var upgrade_cost = Table.get_upgrade_cost(level+1)
+		$Button.text = str(upgrade_cost)
+		# 돈이 부족하면 text를 붉은색으로
+		if StaticData.total_money < upgrade_cost:
+			need_more_money_to_upgrade = true
+			$Button.set("custom_colors/font_color", Color(1, 0, 0, 1))
+		else:
+			need_more_money_to_upgrade = false
+			$Button.set("custom_colors/font_color", Color(1, 1, 1, 1))
 		
 
 func update_bar(level):
@@ -59,7 +70,17 @@ func update_bar(level):
 		
 
 # UP 버튼
+# 돈이 부족하면 shop으로 이동할지 물어본다.
 func _on_Button_pressed():
+	if need_more_money_to_upgrade:
+		var dlg = AcceptDialog.new()
+		dlg.dialog_text = "You need more money.\nGo to shop?"
+		dlg.add_cancel("Cancel")
+		dlg.get_ok().connect("pressed", self, "on_GoToShopButton_pressed")
+		add_child(dlg)
+		dlg.popup_centered()
+		return
+		
 	var wi:WeaponInformation = StaticData.get_weapon_information(weapon)
 	if wi == null:
 		return
@@ -71,3 +92,6 @@ func _on_Button_pressed():
 		UpgradeItem.interval:
 			wi.upgrade_interval_level()
 	update()
+
+func on_GoToShopButton_pressed():
+	pass
