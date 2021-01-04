@@ -29,8 +29,7 @@ func _on_Timer_timeout():
 	# 필요한 만큼 spawn을 했다면 더이상 spawn하지 않는다.
 	if StaticData.spawned_score_for_stage >= StaticData.requirement_score_for_stage:
 		return
-			
-	
+
 	
 	var node = spawn_node.instance()
 	add_child(node)
@@ -41,6 +40,9 @@ func _on_Timer_timeout():
 		# 점점 커지게 만들어 준다.
 		$Tween.interpolate_property(enemy, "scale", Vector2(0.1, 0.1), Vector2(1, 1), 0.3, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 		$Tween.start()
+		# 앞으로 조금 밀어준다.
+		enemy.get_body().target_position_to_move = global_position + Vector2(50, 50)
+		
 		
 	
 	

@@ -7,6 +7,7 @@ var power = 400
 var player:bool = false
 var free_after_animation = false
 var start_position 
+var hit_object:Dictionary
 
 export (Define.Weapon) var weapon
 
@@ -46,12 +47,18 @@ func _physics_process(delta):
 
 
 func _on_Bullet_body_entered(body):
+	# 한번 맞으면 더이상 맞지 않도록 한다.
+	if hit_object.has(body) == true:
+		return
+	hit_object[body] = true
+	
 	# 같은 편이면 리턴
 	# 건물은 편이 없으므로 그냥 총알을 터트린다.
 	if player and body is PlayerBody:
 		return
 	if not player and body is EnemyBody:
 		return
+		
 	
 	# player나 enemy이면 damage를 준다
 	if body is PlayerBody or body is EnemyBody:
@@ -61,7 +68,7 @@ func _on_Bullet_body_entered(body):
 	# push
 	push_body(body)
 	
-	# 어디든 부딪히면 총알은 터진	
+	# 어디든 부딪히면 총알은 터진다
 	explosion()
 	
 func push_body(body):
@@ -69,9 +76,12 @@ func push_body(body):
 		var push_velocity = Vector2(cos(rotation), sin(rotation)) * power / 3
 		body.move_by_velocity(push_velocity)
 		
-# bullet을 폭파 시킨다.s
+# bullet을 폭파 시킨다.
 func explosion():
+	# animation이 끝나면 제거한다.
 	free_after_animation = true
+	
+	# 폭파 animation 실행
 	if weapon == Define.Weapon.RPG:
 		$AnimatedSprite.play("middle_explosion")
 	else:

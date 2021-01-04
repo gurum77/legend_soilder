@@ -1,9 +1,10 @@
 extends Node2D
 class_name Enemy
 signal dead
-
+signal added
 export var HP = 3000
 onready var score = HP
+export var minimap_icon = "mob"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,6 +12,12 @@ func _ready():
 	var world = get_tree().root.get_node_or_null("World")
 	if world != null:
 		connect("dead", world, "on_Enemy_dead")
+		
+	var minimap = get_tree().root.get_node_or_null("World/CanvasLayer/MiniMap")
+	if minimap != null:
+		connect("added", minimap, "on_Object_added")
+		emit_signal("added", self)
+	
 		
 	$HPBar.init(HP)
 	add_to_group("enemy")
@@ -34,18 +41,16 @@ func on_take_damage(power):
 	ins.message = str(power as int)
 	add_child(ins)
 	
-	# Flicker 4 times
-	for i in 4:
-		$Body.modulate.r = 1
-		$Body.modulate.g = 0
-		$Body.modulate.b = 0
-		$Body.modulate.a = 0.5
-		yield(get_tree(), "idle_frame")
-		$Body.modulate.r = 1
-		$Body.modulate.g = 1
-		$Body.modulate.b = 1
-		$Body.modulate.a = 1.0
-		yield(get_tree(), "idle_frame")
+	for i in 1:
+		modulate.r = 0.5
+		modulate.g = 1
+		modulate.b = 1
+		modulate.a = 0.6
+		yield(get_tree().create_timer(0.05), "timeout")
+		modulate.r = 1
+		modulate.g = 1
+		modulate.b = 1
+		modulate.a = 1.0
 		
 func die():
 	$Body.die()

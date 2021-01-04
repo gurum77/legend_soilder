@@ -27,18 +27,16 @@ func on_take_damage(power):
 	var ins = Preloader.hud.instance()
 	ins.message = str(power as int)
 	add_child(ins)
-	# Flicker 4 times
-	for i in 4:
-		$Body.modulate.r = 1
-		$Body.modulate.g = 0
-		$Body.modulate.b = 0
-		$Body.modulate.a = 0.5
-		yield(get_tree(), "idle_frame")
-		$Body.modulate.r = 1
-		$Body.modulate.g = 1
-		$Body.modulate.b = 1
-		$Body.modulate.a = 1.0
-		yield(get_tree(), "idle_frame")
+	for i in 1:
+		modulate.r = 0.5
+		modulate.g = 1
+		modulate.b = 1
+		modulate.a = 0.9
+		yield(get_tree().create_timer(0.05), "timeout")
+		modulate.r = 1
+		modulate.g = 1
+		modulate.b = 1
+		modulate.a = 1.0
 		
 func die():
 	$Body.die()

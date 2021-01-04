@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://tilesets/battle_field_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/Tree1.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/House2.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/Spawner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Soldier.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/PlayerSpawner.tscn" type="PackedScene" id=7]
 
 [node name="VerticalVillidgeMap" type="Node2D"]
 
@@ -73,27 +74,11 @@ position = Vector2( 320, 232 )
 
 [node name="Spawners" type="Node" parent="."]
 
-[node name="SoldierSpawner" parent="Spawners" instance=ExtResource( 5 )]
-position = Vector2( 304, -152 )
-
-[node name="Soldier" parent="Spawners/SoldierSpawner" instance=ExtResource( 6 )]
-
-[node name="SoldierSpawner2" parent="Spawners" instance=ExtResource( 5 )]
-position = Vector2( 184, -232 )
-
-[node name="Soldier" parent="Spawners/SoldierSpawner2" instance=ExtResource( 6 )]
-
-[node name="SoldierSpawner3" parent="Spawners" instance=ExtResource( 5 )]
-position = Vector2( 440, -232 )
-
-[node name="Soldier" parent="Spawners/SoldierSpawner3" instance=ExtResource( 6 )]
-
-[node name="SoldierSpawner4" parent="Spawners" instance=ExtResource( 5 )]
-position = Vector2( 448, 88 )
-
-[node name="Soldier" parent="Spawners/SoldierSpawner4" instance=ExtResource( 6 )]
-
 [node name="SoldierSpawner5" parent="Spawners" instance=ExtResource( 5 )]
-position = Vector2( 200, 88 )
+position = Vector2( 184.126, 268.964 )
 
 [node name="Soldier" parent="Spawners/SoldierSpawner5" instance=ExtResource( 6 )]
+HP = 10000
+
+[node name="PlayerSpawner" parent="." instance=ExtResource( 7 )]
+position = Vector2( 321.28, 404.435 )

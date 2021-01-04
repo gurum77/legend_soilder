@@ -1,8 +1,13 @@
 extends Node2D
 
+export var specify_stage = -1
+
 var pausePanel = preload("res://scenes/Pause.tscn")
 
 func _ready():
+	if specify_stage > -1:
+		StaticData.current_stage = specify_stage
+		
 	# 게임을 시작하면 현재  stage에 대한 데이타를 초기화 한다
 	StaticData.current_score_for_stage = 0
 	StaticData.current_stage_money = 0
