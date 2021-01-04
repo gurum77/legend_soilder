@@ -83,7 +83,6 @@ func get_stage_clear_score(stage)->int:
 	
 # to_level로 업그레이드 하는데 필요한 비용 리턴
 func get_upgrade_cost(to_level)->int:
-	return 0
 	var cost = upgrade1_cost
 	for i in range(to_level-1):
 		cost = cost * upgrade_cost_factor
