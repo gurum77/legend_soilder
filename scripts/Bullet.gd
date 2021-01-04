@@ -73,7 +73,10 @@ func _on_Bullet_body_entered(body):
 	
 func push_body(body):
 	if body is EnemyBody:
-		var push_velocity = Vector2(cos(rotation), sin(rotation)) * power / 3
+		var push_power = power / 3
+		if push_power > 3000:
+			push_power = 3000
+		var push_velocity = Vector2(cos(rotation), sin(rotation)) * push_power
 		body.move_by_velocity(push_velocity)
 		
 # bullet을 폭파 시킨다.

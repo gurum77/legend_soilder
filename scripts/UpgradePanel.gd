@@ -16,15 +16,18 @@ func change_weapon(w):
 	
 func update():
 	var title_text
+	var value_text
 	var level
 	var is_max_level = false
 	match upgrade_item:
 		UpgradeItem.power:
 			title_text = "POWER"
+			value_text = str(stepify(Table.get_weapon_power_by_level(weapon), 1))
 			level = weapon_information.power_level
 			is_max_level = weapon_information.is_max_power_level()
 		UpgradeItem.interval:
 			title_text = "INT."
+			value_text = str(stepify(Table.get_weapon_interval_by_level(weapon), 0.01))
 			level = weapon_information.interval_level
 			is_max_level = weapon_information.is_max_interval_level()
 		UpgradeItem.fire_range:
@@ -33,6 +36,7 @@ func update():
 			is_max_level = weapon_information.is_max_range_level()
 			
 	$Title.text = title_text
+	$Value.text = value_text
 	update_bar(level)
 	if is_max_level:
 		$Button.text = "MAX"

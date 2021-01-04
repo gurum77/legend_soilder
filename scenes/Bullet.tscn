@@ -34,6 +34,11 @@ animations = [ {
 "name": "FlameThrower",
 "speed": 15.0
 }, {
+"frames": [ ExtResource( 24 ) ],
+"loop": true,
+"name": "SMG",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 23 ) ],
 "loop": true,
 "name": "MG",
@@ -49,25 +54,20 @@ animations = [ {
 "name": "RPG",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 24 ) ],
-"loop": true,
-"name": "SMG",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 17 ), ExtResource( 1 ), ExtResource( 18 ) ],
 "loop": true,
 "name": "small_explosion",
 "speed": 23.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 12 ), ExtResource( 10 ), ExtResource( 2 ) ],
-"loop": true,
-"name": "big_explosion",
-"speed": 15.0
-}, {
 "frames": [ ExtResource( 9 ), ExtResource( 15 ), ExtResource( 3 ), ExtResource( 11 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "middle_explosion",
 "speed": 18.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 12 ), ExtResource( 10 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "big_explosion",
+"speed": 15.0
 } ]
 
 [node name="Bullet" type="Area2D"]

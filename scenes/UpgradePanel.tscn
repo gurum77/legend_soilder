@@ -34,14 +34,29 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="."]
-margin_left = 10.7424
-margin_top = 3.08908
-margin_right = 63.7424
-margin_bottom = 42.0891
+margin_left = 11.0
+margin_top = 3.0
+margin_right = 64.0
+margin_bottom = 28.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.858824, 0.364706, 0.137255, 1 )
 custom_colors/font_color_shadow = Color( 0.227451, 0.223529, 0.219608, 1 )
 text = "POWER"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Value" type="Label" parent="."]
+margin_left = 10.0
+margin_top = 17.0
+margin_right = 63.0
+margin_bottom = 42.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0.227451, 0.223529, 0.219608, 1 )
+text = "12120"
 align = 1
 valign = 1
 __meta__ = {
