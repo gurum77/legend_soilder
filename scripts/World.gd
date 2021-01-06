@@ -15,6 +15,9 @@ func _ready():
 	StaticData.spawned_score_for_stage = 0
 	$CanvasLayer/StageProgress.update()
 	
+	# revival 데이타 초기화
+	StaticData.has_revival_chance = true
+	
 	# debug information
 	update_debug_information()
 	

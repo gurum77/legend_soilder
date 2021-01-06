@@ -29,6 +29,9 @@ var inventory_item3 = null
 # 현재 무기
 var current_weapon_index = 0
 
+# revival 정보
+var has_revival_chance = true
+
 # 게임 데이타 저장 / 읽기
 # game data를을 reset한
 func reset_game():
