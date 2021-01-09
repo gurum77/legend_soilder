@@ -6,6 +6,7 @@ func _ready():
 	# home이 시작되면 game을 loading한다
 	StaticData.load_game()
 
+
 # equipment 버튼 클릭
 func _on_EquipmentButton_pressed():
 	get_tree().change_scene("res://scenes/Equipment.tscn")
@@ -46,3 +47,12 @@ func on_ResetButton_ok_pressed():
 
 	
 	
+
+# admob이 ready되면 초기화를 한다
+func _on_AdMob_ready():
+	$AdMob.init()
+	$AdMob.load_banner()
+
+# banner 가 로드되면 보여준다.
+func _on_AdMob_banner_loaded():
+	$AdMob.show_banner()

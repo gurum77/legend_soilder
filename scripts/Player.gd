@@ -1,5 +1,5 @@
 extends Node2D
-
+class_name Player
 signal dead
 
 var HP = 5000
@@ -13,8 +13,20 @@ func _ready():
 	$HPBar.init(HP)
 	add_to_group("player")
 	
+
+# shield가 활성화 되어 있는지?	
+func is_enable_shield()->bool:
+	if $Shield.visible:
+		return true
+	return false
+	
 # damage 를 준다.
 func damage(power):
+	if HP < 0:
+		return
+	if is_enable_shield():
+		return
+	
 	HP = HP - power
 	on_take_damage(power)
 	
@@ -44,3 +56,20 @@ func die():
 	# dead signal
 	emit_signal("dead")
 
+# 부활한다
+func revival():
+	HP = 5000
+	$HPBar.set_hp(HP)
+	$Body.revival()
+	$Shield.start()
+
+# dash를 한다
+func dash()->bool:
+	var dir:Vector2 = $Body.velocity.normalized()
+	if dir == Vector2.ZERO:
+		return false
+		
+	var new_position = position + dir * 70
+	$Tween.interpolate_property(self, "position", position, new_position, 0.2, Tween.TRANS_SINE, Tween.EASE_OUT)
+	$Tween.start()
+	return true

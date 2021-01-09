@@ -59,7 +59,6 @@ func _on_Bullet_body_entered(body):
 	if not player and body is EnemyBody:
 		return
 		
-	
 	# player나 enemy이면 damage를 준다
 	if body is PlayerBody or body is EnemyBody:
 		body.get_parent().damage(power)

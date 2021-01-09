@@ -1,4 +1,4 @@
-#Wed Jan 06 09:12:23 KST 2021
-base.0=E\:\\MyProjects\\Godot\\legend_soilder\\legend_soilder\\android\\build\\build\\intermediates\\dex\\release\\mergeDexRelease\\out\\classes.dex
+#Sat Jan 09 11:36:31 KST 2021
+base.0=E\:\\Trunk_Godot\\legend_soilder\\android\\build\\build\\intermediates\\dex\\release\\mergeDexRelease\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

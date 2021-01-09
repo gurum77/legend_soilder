@@ -3,16 +3,18 @@ extends KinematicBody2D
 class_name PlayerBody
 
 var velocity = Vector2(0, 0)
-const SPEED = 150
+const SPEED = 100
 export (NodePath) var move_joystick
 onready var move_joystick_node : Joystick = get_node_or_null(move_joystick)
 
 export (NodePath) var aim_joystick
 onready var aim_joystick_node : Joystick = get_node(aim_joystick)
+
 var fire_position_node
 var playing_body_animation_for_fire = false
 var target_position:Vector2
 var player_dead = false
+
 func get_velocity()->Vector2:
 	return velocity
 	
@@ -232,6 +234,7 @@ func input_velocity_player():
 		velocity.y = SPEED
 	elif not move_joystick_node == null and move_joystick_node.is_working:
 		velocity = move_joystick_node.output.normalized() * SPEED
+	
 
 func die():
 	player_dead = true
@@ -241,5 +244,16 @@ func die():
 	$AnimatedSprites/LegAnimatedSprite.visible = false
 	$AnimatedSprites/FireAnimatedSprite.visible = false
 	
-	# 모든 총돌 해제
-	$CollisionShape2D.queue_free()	
+	# 모든 충돌 해제(부활도 해야 하니 충돌을 제거하지는 말자)
+	# 대신 player_dead 상태를 봐서 데미지를 입지않게 한
+#	$CollisionShape2D.queue_free()	
+
+func revival():
+	player_dead = false
+	
+	StaticData.game_state = Define.GameState.play
+	
+	# die animation 실행
+	$AnimatedSprites/BodyAnimatedSprite.play("idle")
+	$AnimatedSprites/LegAnimatedSprite.visible = true
+	$AnimatedSprites/FireAnimatedSprite.visible = true

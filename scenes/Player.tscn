@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://assets/player/body/HPistolFire_02.png" type="Texture" id=1]
 [ext_resource path="res://assets/player/body/Hero_MachineGunFire.png" type="Texture" id=2]
@@ -51,6 +51,8 @@
 [ext_resource path="res://assets/player/die/1.png" type="Texture" id=49]
 [ext_resource path="res://assets/player/die/2.png" type="Texture" id=50]
 [ext_resource path="res://scripts/GuideLine.gd" type="Script" id=51]
+[ext_resource path="res://Joystick/joystick_circle.png" type="Texture" id=52]
+[ext_resource path="res://scenes/Shield.gd" type="Script" id=53]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -67,16 +69,6 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 11 ), ExtResource( 1 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "Pistol_fire",
-"speed": 15.0
-}, {
-"frames": [ ExtResource( 16 ), ExtResource( 22 ), ExtResource( 21 ) ],
-"loop": true,
-"name": "FlameThrower_fire",
-"speed": 15.0
-}, {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "MG_fire",
@@ -86,6 +78,16 @@ animations = [ {
 "loop": true,
 "name": "SMG_fire",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 1 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "Pistol_fire",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 22 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "FlameThrower_fire",
+"speed": 15.0
 }, {
 "frames": [ ExtResource( 10 ), ExtResource( 7 ), ExtResource( 9 ) ],
 "loop": true,
@@ -97,16 +99,6 @@ animations = [ {
 "name": "FlameThrower",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "MG",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "Pistol",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "RPG",
@@ -115,6 +107,16 @@ animations = [ {
 "frames": [ ExtResource( 8 ) ],
 "loop": true,
 "name": "SMG",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "MG",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "Pistol",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 49 ), ExtResource( 50 ), ExtResource( 47 ), ExtResource( 48 ) ],
@@ -130,16 +132,6 @@ animations = [ {
 "name": "FlameThrower",
 "speed": 15.0
 }, {
-"frames": [ ExtResource( 34 ), ExtResource( 30 ), ExtResource( 24 ) ],
-"loop": true,
-"name": "MG",
-"speed": 15.0
-}, {
-"frames": [ ExtResource( 39 ), ExtResource( 41 ), ExtResource( 40 ) ],
-"loop": true,
-"name": "Pistol",
-"speed": 15.0
-}, {
 "frames": [ ExtResource( 26 ), ExtResource( 32 ), ExtResource( 36 ), ExtResource( 25 ) ],
 "loop": true,
 "name": "RPG",
@@ -148,6 +140,16 @@ animations = [ {
 "frames": [ ExtResource( 35 ), ExtResource( 27 ), ExtResource( 33 ) ],
 "loop": true,
 "name": "SMG",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 34 ), ExtResource( 30 ), ExtResource( 24 ) ],
+"loop": true,
+"name": "MG",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 39 ), ExtResource( 41 ), ExtResource( 40 ) ],
+"loop": true,
+"name": "Pistol",
 "speed": 15.0
 } ]
 
@@ -195,7 +197,7 @@ bus = "sound"
 rotation = -1.5708
 frames = SubResource( 1 )
 animation = "walk"
-frame = 5
+frame = 3
 playing = true
 
 [node name="BodyAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites"]
@@ -239,7 +241,22 @@ drag_margin_left = 0.5
 drag_margin_top = 0.5
 drag_margin_right = 0.5
 drag_margin_bottom = 0.5
+
+[node name="Shield" type="Sprite" parent="."]
+modulate = Color( 0.368627, 1, 0.0509804, 0.152941 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 52 )
+script = ExtResource( 53 )
+
+[node name="Timer" type="Timer" parent="Shield"]
+wait_time = 0.05
+
+[node name="EnableTimer" type="Timer" parent="Shield"]
+
+[node name="Tween" type="Tween" parent="."]
 [connection signal="timeout" from="Body/FireTimer" to="Body" method="_on_FireTimer_timeout"]
 [connection signal="timeout" from="Body/AimTimer" to="Body" method="_on_AimTimer_timeout"]
 [connection signal="animation_finished" from="Body/AnimatedSprites/BodyAnimatedSprite" to="Body" method="_on_BodyAnimatedSprite_animation_finished"]
 [connection signal="animation_finished" from="Body/AnimatedSprites/FireAnimatedSprite" to="Body" method="_on_FireAnimatedSprite_animation_finished"]
+[connection signal="timeout" from="Shield/Timer" to="Shield" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Shield/EnableTimer" to="Shield" method="_on_EnableTimer_timeout"]

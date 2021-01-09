@@ -1,37 +1,37 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="org.godotengine.legendsoilder"
+3    package="com.Byung.legendsoilder"
 4    android:installLocation="auto"
 5    android:versionCode="1"
 6    android:versionName="1.0" >
 7
 8    <uses-sdk
 9        android:minSdkVersion="18"
-9-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml
+9-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml
 10        android:targetSdkVersion="29" />
-10-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml
+10-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml
 11
 12    <!-- Adding custom text to the manifest is fine, but do it outside the custom USER and APPLICATION BEGIN/END comments, -->
 13    <!-- as that gets rewritten. -->
 14
 15    <supports-screens
-15-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:12:5-16:40
+15-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:12:5-16:40
 16        android:largeScreens="true"
-16-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:15:9-36
+16-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:15:9-36
 17        android:normalScreens="true"
-17-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:14:9-37
+17-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:14:9-37
 18        android:smallScreens="true"
-18-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:13:9-36
+18-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:13:9-36
 19        android:xlargeScreens="true" />
-19-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:16:9-37
+19-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:16:9-37
 20
 21    <!-- glEsVersion is modified by the exporter, changing this value here has no effect. -->
 22    <uses-feature
-22-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:19:5-21:35
+22-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:19:5-21:35
 23        android:glEsVersion="0x00020000"
-23-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:20:9-41
+23-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:20:9-41
 24        android:required="true" />
-24-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:21:9-32
+24-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:21:9-32
 25
 26    <instrumentation
 26-->[godot-lib.debug.aar] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\4078a0b16d2c56e4a80978d5ef960a67\godot-lib.debug\AndroidManifest.xml:11:5-15:57
@@ -41,91 +41,142 @@
 28-->[godot-lib.debug.aar] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\4078a0b16d2c56e4a80978d5ef960a67\godot-lib.debug\AndroidManifest.xml:13:9-36
 29        android:label="@string/godot_project_name_string"
 29-->[godot-lib.debug.aar] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\4078a0b16d2c56e4a80978d5ef960a67\godot-lib.debug\AndroidManifest.xml:14:9-58
-30        android:targetPackage="org.godotengine.godot" /> <!-- Custom user permissions XML added by add-ons. It's recommended to add them from the export preset, though. -->
+30        android:targetPackage="org.godotengine.godot" />
 30-->[godot-lib.debug.aar] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\4078a0b16d2c56e4a80978d5ef960a67\godot-lib.debug\AndroidManifest.xml:15:9-54
-31    <!-- CHUNK_USER_PERMISSIONS_BEGIN -->
-32    <!-- CHUNK_USER_PERMISSIONS_END -->
-33    <!-- Any tag in this line after android:icon will be erased when doing custom builds. -->
-34    <!-- If you want to add tags manually, do before it. -->
-35    <!-- WARNING: This should stay on a single line until the parsing code is improved. See GH-32414. -->
-36    <application
-36-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:30:5-68:19
-37        android:allowBackup="false"
-37-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:30:68-95
-38        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-38-->[androidx.core:core:1.0.0] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\947833f03979c6d84fcd9a8feba7ce42\core-1.0.0\AndroidManifest.xml:22:18-86
-39        android:debuggable="true"
-40        android:icon="@mipmap/icon"
-40-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:30:136-163
-41        android:label="@string/godot_project_name_string"
-41-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:30:18-67
-42        android:requestLegacyExternalStorage="true" >
-42-->[godot-lib.debug.aar] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\4078a0b16d2c56e4a80978d5ef960a67\godot-lib.debug\AndroidManifest.xml:18:18-61
-43
-44        <!-- The following metadata values are replaced when Godot exports, modifying them here has no effect. -->
-45        <!-- Do these changes in the export preset. Adding new ones is fine. -->
-46
+31
+32    <uses-permission android:name="android.permission.INTERNET" />
+32-->[GodotAdMob.4.1.1.release.aar] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\4fc5d2b0f3ff8e8616573f1f42dccc48\GodotAdMob.4.1.1.release\AndroidManifest.xml:11:5-67
+32-->[GodotAdMob.4.1.1.release.aar] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\4fc5d2b0f3ff8e8616573f1f42dccc48\GodotAdMob.4.1.1.release\AndroidManifest.xml:11:22-64
+33    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+33-->[com.google.android.gms:play-services-ads-lite:19.3.0] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\d92a04b3463e4fa1d7d09fa4a789e569\play-services-ads-lite-19.3.0\AndroidManifest.xml:24:5-79
+33-->[com.google.android.gms:play-services-ads-lite:19.3.0] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\d92a04b3463e4fa1d7d09fa4a789e569\play-services-ads-lite-19.3.0\AndroidManifest.xml:24:22-76
+34    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Custom user permissions XML added by add-ons. It's recommended to add them from the export preset, though. -->
+34-->[com.google.android.gms:play-services-measurement-sdk-api:17.1.0] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\97fe7eae467b7c543274f9b2f42d765e\play-services-measurement-sdk-api-17.1.0\AndroidManifest.xml:25:5-68
+34-->[com.google.android.gms:play-services-measurement-sdk-api:17.1.0] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\97fe7eae467b7c543274f9b2f42d765e\play-services-measurement-sdk-api-17.1.0\AndroidManifest.xml:25:22-65
+35    <!-- CHUNK_USER_PERMISSIONS_BEGIN -->
+36    <!-- CHUNK_USER_PERMISSIONS_END -->
+37    <!-- Any tag in this line after android:icon will be erased when doing custom builds. -->
+38    <!-- If you want to add tags manually, do before it. -->
+39    <!-- WARNING: This should stay on a single line until the parsing code is improved. See GH-32414. -->
+40    <application
+40-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:30:5-70:19
+41        android:allowBackup="false"
+41-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:30:68-95
+42        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+42-->[androidx.core:core:1.0.0] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\947833f03979c6d84fcd9a8feba7ce42\core-1.0.0\AndroidManifest.xml:22:18-86
+43        android:debuggable="true"
+44        android:icon="@mipmap/icon"
+44-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:30:136-163
+45        android:label="@string/godot_project_name_string"
+45-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:30:18-67
+46        android:requestLegacyExternalStorage="true" >
+46-->[godot-lib.debug.aar] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\4078a0b16d2c56e4a80978d5ef960a67\godot-lib.debug\AndroidManifest.xml:18:18-61
 47
-48        <!-- XR mode metadata. This is modified by the exporter based on the selected xr mode. DO NOT CHANGE the values here. -->
-49        <meta-data
-49-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:36:9-38:54
-50            android:name="xr_mode_metadata_name"
-50-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:37:13-49
-51            android:value="xr_mode_metadata_value" />
-51-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:38:13-51
-52
-53        <!-- Metadata populated at export time and used by Godot to figure out which plugins must be enabled. -->
-54        <meta-data
-54-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:41:9-43:44
-55            android:name="plugins"
-55-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:42:13-35
-56            android:value="plugins_value" />
-56-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:43:13-42
-57
-58        <activity
-58-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:45:9-62:20
-59            android:name="com.godot.game.GodotApp"
-59-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:46:13-37
-60            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|density|keyboard|navigation|screenLayout|uiMode"
-60-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:51:13-141
-61            android:label="@string/godot_project_name_string"
-61-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:47:13-62
-62            android:launchMode="singleTask"
-62-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:49:13-44
-63            android:resizeableActivity="false"
-63-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:52:13-47
-64            android:screenOrientation="landscape"
-64-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:50:13-50
-65            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
-65-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:48:13-77
-66
-67            <!-- Focus awareness metadata is updated at export time if the user enables it in the 'Xr Features' section. -->
-68            <meta-data
-68-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:56:13-88
-69                android:name="com.oculus.vr.focusaware"
-69-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:56:24-63
-70                android:value="false" />
-70-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:56:64-85
-71
-72            <intent-filter>
-72-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:58:13-61:29
-73                <action android:name="android.intent.action.MAIN" />
-73-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:59:17-69
-73-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:59:25-66
-74
-75                <category android:name="android.intent.category.LAUNCHER" />
-75-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:60:17-77
-75-->E:\MyProjects\Godot\legend_soilder\legend_soilder\android\build\AndroidManifest.xml:60:27-74
-76            </intent-filter>
-77        </activity>
+48        <!-- The following metadata values are replaced when Godot exports, modifying them here has no effect. -->
+49        <!-- Do these changes in the export preset. Adding new ones is fine. -->
+50
+51
+52        <!-- XR mode metadata. This is modified by the exporter based on the selected xr mode. DO NOT CHANGE the values here. -->
+53        <meta-data
+53-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:36:9-38:54
+54            android:name="xr_mode_metadata_name"
+54-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:37:13-49
+55            android:value="xr_mode_metadata_value" />
+55-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:38:13-51
+56
+57        <!-- Metadata populated at export time and used by Godot to figure out which plugins must be enabled. -->
+58        <meta-data
+58-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:41:9-43:44
+59            android:name="plugins"
+59-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:42:13-35
+60            android:value="plugins_value" />
+60-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:43:13-42
+61
+62        <activity
+62-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:45:9-62:20
+63            android:name="com.godot.game.GodotApp"
+63-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:46:13-37
+64            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|density|keyboard|navigation|screenLayout|uiMode"
+64-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:51:13-141
+65            android:label="@string/godot_project_name_string"
+65-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:47:13-62
+66            android:launchMode="singleTask"
+66-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:49:13-44
+67            android:resizeableActivity="false"
+67-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:52:13-47
+68            android:screenOrientation="landscape"
+68-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:50:13-50
+69            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+69-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:48:13-77
+70
+71            <!-- Focus awareness metadata is updated at export time if the user enables it in the 'Xr Features' section. -->
+72            <meta-data
+72-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:56:13-88
+73                android:name="com.oculus.vr.focusaware"
+73-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:56:24-63
+74                android:value="false" />
+74-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:56:64-85
+75
+76            <intent-filter>
+76-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:58:13-61:29
+77                <action android:name="android.intent.action.MAIN" />
+77-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:59:17-69
+77-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:59:25-66
 78
-79        <!-- Custom application XML added by add-ons. -->
-80        <!-- CHUNK_APPLICATION_BEGIN -->
-81        <!-- CHUNK_APPLICATION_END -->
+79                <category android:name="android.intent.category.LAUNCHER" />
+79-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:60:17-77
+79-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:60:27-74
+80            </intent-filter>
+81        </activity>
 82
-83        <service android:name="org.godotengine.godot.GodotDownloaderService" />
-83-->[godot-lib.debug.aar] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\4078a0b16d2c56e4a80978d5ef960a67\godot-lib.debug\AndroidManifest.xml:19:9-80
-83-->[godot-lib.debug.aar] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\4078a0b16d2c56e4a80978d5ef960a67\godot-lib.debug\AndroidManifest.xml:19:18-77
-84    </application>
-85
-86</manifest>
+83        <!-- Custom application XML added by add-ons. -->
+84        <!-- CHUNK_APPLICATION_BEGIN -->
+85        <!-- CHUNK_APPLICATION_END -->
+86        <meta-data
+86-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:67:9-69:69
+87            android:name="com.google.android.gms.ads.APPLICATION_ID"
+87-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:68:13-69
+88            android:value="ca-app-pub-9339197324494616~9170536566" />
+88-->E:\Trunk_Godot\legend_soilder\android\build\AndroidManifest.xml:69:13-67
+89
+90        <service android:name="org.godotengine.godot.GodotDownloaderService" />
+90-->[godot-lib.debug.aar] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\4078a0b16d2c56e4a80978d5ef960a67\godot-lib.debug\AndroidManifest.xml:19:9-80
+90-->[godot-lib.debug.aar] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\4078a0b16d2c56e4a80978d5ef960a67\godot-lib.debug\AndroidManifest.xml:19:18-77
+91
+92        <meta-data
+92-->[GodotAdMob.4.1.1.release.aar] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\4fc5d2b0f3ff8e8616573f1f42dccc48\GodotAdMob.4.1.1.release\AndroidManifest.xml:14:9-16:82
+93            android:name="org.godotengine.plugin.v1.GodotAdMob"
+93-->[GodotAdMob.4.1.1.release.aar] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\4fc5d2b0f3ff8e8616573f1f42dccc48\GodotAdMob.4.1.1.release\AndroidManifest.xml:15:13-64
+94            android:value="shinnil.godot.plugin.android.godotadmob.GodotAdMob" /> <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
+94-->[GodotAdMob.4.1.1.release.aar] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\4fc5d2b0f3ff8e8616573f1f42dccc48\GodotAdMob.4.1.1.release\AndroidManifest.xml:16:13-79
+95        <activity
+95-->[com.google.android.gms:play-services-ads-lite:19.3.0] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\d92a04b3463e4fa1d7d09fa4a789e569\play-services-ads-lite-19.3.0\AndroidManifest.xml:29:9-33:64
+96            android:name="com.google.android.gms.ads.AdActivity"
+96-->[com.google.android.gms:play-services-ads-lite:19.3.0] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\d92a04b3463e4fa1d7d09fa4a789e569\play-services-ads-lite-19.3.0\AndroidManifest.xml:30:13-65
+97            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+97-->[com.google.android.gms:play-services-ads-lite:19.3.0] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\d92a04b3463e4fa1d7d09fa4a789e569\play-services-ads-lite-19.3.0\AndroidManifest.xml:31:13-122
+98            android:exported="false"
+98-->[com.google.android.gms:play-services-ads-lite:19.3.0] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\d92a04b3463e4fa1d7d09fa4a789e569\play-services-ads-lite-19.3.0\AndroidManifest.xml:32:13-37
+99            android:theme="@android:style/Theme.Translucent" />
+99-->[com.google.android.gms:play-services-ads-lite:19.3.0] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\d92a04b3463e4fa1d7d09fa4a789e569\play-services-ads-lite-19.3.0\AndroidManifest.xml:33:13-61
+100
+101        <provider
+101-->[com.google.android.gms:play-services-ads-lite:19.3.0] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\d92a04b3463e4fa1d7d09fa4a789e569\play-services-ads-lite-19.3.0\AndroidManifest.xml:35:9-39:39
+102            android:name="com.google.android.gms.ads.MobileAdsInitProvider"
+102-->[com.google.android.gms:play-services-ads-lite:19.3.0] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\d92a04b3463e4fa1d7d09fa4a789e569\play-services-ads-lite-19.3.0\AndroidManifest.xml:36:13-76
+103            android:authorities="com.Byung.legendsoilder.mobileadsinitprovider"
+103-->[com.google.android.gms:play-services-ads-lite:19.3.0] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\d92a04b3463e4fa1d7d09fa4a789e569\play-services-ads-lite-19.3.0\AndroidManifest.xml:37:13-73
+104            android:exported="false"
+104-->[com.google.android.gms:play-services-ads-lite:19.3.0] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\d92a04b3463e4fa1d7d09fa4a789e569\play-services-ads-lite-19.3.0\AndroidManifest.xml:38:13-37
+105            android:initOrder="100" />
+105-->[com.google.android.gms:play-services-ads-lite:19.3.0] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\d92a04b3463e4fa1d7d09fa4a789e569\play-services-ads-lite-19.3.0\AndroidManifest.xml:39:13-36
+106
+107        <meta-data
+107-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\6cdfbeea7ad835627f8852cb50ecbc4b\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
+108            android:name="com.google.android.gms.version"
+108-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\6cdfbeea7ad835627f8852cb50ecbc4b\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
+109            android:value="@integer/google_play_services_version" />
+109-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\hilee\.gradle\caches\transforms-2\files-2.1\6cdfbeea7ad835627f8852cb50ecbc4b\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
+110    </application>
+111
+112</manifest>

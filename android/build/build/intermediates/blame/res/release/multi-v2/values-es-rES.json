@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\MyProjects\\Godot\\legend_soilder\\legend_soilder\\android\\build\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-es-rES\\values-es-rES.xml",
+            "outputFile": "E:\\Trunk_Godot\\legend_soilder\\android\\build\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-es-rES\\values-es-rES.xml",
             "map": [
                 {
                     "source": "C:\\Users\\hilee\\.gradle\\caches\\transforms-2\\files-2.1\\2f29423de5771cd0c2f475b364e10860\\godot-lib.release\\res\\values-es-rES\\values-es-rES.xml",

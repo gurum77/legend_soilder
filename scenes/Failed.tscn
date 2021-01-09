@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/ui/BTN SETTINGS_EMPTY.png" type="Texture" id=1]
 [ext_resource path="res://assets/ui/ads.png" type="Texture" id=2]
 [ext_resource path="res://assets/ui/Mission Failed/BG Preset.png" type="Texture" id=3]
 [ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://scripts/Failed.gd" type="Script" id=5]
+[ext_resource path="res://scenes/AdMob.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 15
@@ -18,10 +19,13 @@ font_data = ExtResource( 4 )
 font_data = ExtResource( 4 )
 
 [node name="Failed" type="Panel"]
+self_modulate = Color( 1, 1, 1, 0.454902 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -0.420471
-margin_right = -0.420471
+margin_left = -0.0236204
+margin_top = 0.396851
+margin_right = -0.0236206
+margin_bottom = 0.396851
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -113,10 +117,30 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="TextureRect/RevivalButton"]
-margin_left = 6.0
-margin_top = 1.0
-margin_right = 38.0
-margin_bottom = 33.0
+margin_left = 10.2045
+margin_top = 5.83514
+margin_right = 42.2045
+margin_bottom = 37.8351
+rect_scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AdMob" parent="." instance=ExtResource( 6 )]
+
+[node name="Label" type="Label" parent="."]
+margin_left = 100.8
+margin_top = 69.052
+margin_right = 557.8
+margin_bottom = 143.052
+text = "asdfasdfsdf"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="TextureRect/HomeButton" to="." method="_on_HomeButton_pressed"]
 [connection signal="pressed" from="TextureRect/RevivalButton" to="." method="_on_RevivalButton_pressed"]
+[connection signal="rewarded" from="AdMob" to="." method="_on_AdMob_rewarded"]
+[connection signal="rewarded_video_failed_to_load" from="AdMob" to="." method="_on_AdMob_rewarded_video_failed_to_load"]
+[connection signal="rewarded_video_left_application" from="AdMob" to="." method="_on_AdMob_rewarded_video_left_application"]
+[connection signal="rewarded_video_loaded" from="AdMob" to="." method="_on_AdMob_rewarded_video_loaded"]

@@ -111,7 +111,7 @@ func turn_to_target():
 		self.rotation = lerp_angle(self.rotation, (target_position_to_fire - self.global_position).normalized().angle(), weight)
 
 func get_fire_interval()->float:
-	return 110.5
+	return 1.0
 func get_aim_interval()->float:
 	return 0.5
 	
