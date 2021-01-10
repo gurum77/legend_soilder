@@ -1,7 +1,7 @@
 extends Area2D
 
 
-export var money_amount = 1000
+var money_amount = Define.default_money_amount
 
 func _on_Money_body_entered(body):
 	if body is PlayerBody:

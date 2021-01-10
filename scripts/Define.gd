@@ -7,6 +7,9 @@ var max_power_level = 20
 var max_range_level = 20
 var max_interval_level = 20
 
+# 기본 money 
+var default_money_amount = 10
+
 export (Texture) var FlameThrower_texture = null
 export (Texture) var MG_texture = null
 export (Texture) var Pistol_texture = null

@@ -7,6 +7,7 @@ export var HP = 3000
 onready var score = HP
 export var minimap_icon = "mob"
 
+onready var max_HP = HP
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# signal 연결
@@ -37,7 +38,13 @@ func damage(power):
 	if HP <= 0:
 		HP = 0
 		die()
+		make_item()
 		
+	
+func make_item():
+	if $ItemMaker:
+		$ItemMaker.make_item(max_HP)
+	
 func on_take_damage(power):
 	var ins = Preloader.hud.instance()
 	ins.message = str(power as int)
@@ -69,10 +76,7 @@ func die():
 	yield(get_tree().create_timer(3), "timeout")
 	call_deferred("queue_free")
 	
-	# money를 떨어뜨린다
-	var ins = Preloader.money.instance()
-	ins.global_position = global_position
-	get_tree().root.add_child(ins)
+	
 
 func get_body()->Node:
 	return $Body
