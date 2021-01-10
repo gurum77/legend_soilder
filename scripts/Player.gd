@@ -3,6 +3,7 @@ class_name Player
 signal dead
 
 var HP = 5000
+onready var max_HP = HP
 
 func _ready():
 	# signal 연결
@@ -58,7 +59,7 @@ func die():
 
 # 부활한다
 func revival():
-	HP = 5000
+	HP = max_HP
 	$HPBar.set_hp(HP)
 	$Body.revival()
 	$Shield.start()

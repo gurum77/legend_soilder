@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://tilesets/battle_field_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/Tree1.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/Spawner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Soldier.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/PlayerSpawner.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/Medicine.tscn" type="PackedScene" id=8]
 
 [node name="HorizontalVillidgeMap" type="Node2D"]
 
@@ -102,3 +103,6 @@ position = Vector2( 251.959, 331.673 )
 
 [node name="PlayerSpawner" parent="." instance=ExtResource( 7 )]
 position = Vector2( 96.6408, 234.485 )
+
+[node name="Medicine" parent="." instance=ExtResource( 8 )]
+position = Vector2( 265.89, 196.838 )

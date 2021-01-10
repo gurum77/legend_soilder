@@ -19,10 +19,11 @@
 
 [node name="World" type="Node2D"]
 script = ExtResource( 8 )
-specify_stage = 3
+specify_stage = 2
 
 [node name="MapManager" type="Node2D" parent="."]
 script = ExtResource( 3 )
+disabled = true
 
 [node name="HorizontalVillidgeMap" parent="MapManager" instance=ExtResource( 2 )]
 
@@ -127,6 +128,7 @@ aim_joystick = NodePath("../../CanvasLayer/AimJoystick")
 
 [node name="LegAnimatedSprite" parent="Player/Body/AnimatedSprites" index="0"]
 position = Vector2( 0.28064, 0 )
+frame = 5
 
 [node name="Money" parent="." instance=ExtResource( 15 )]
 position = Vector2( 149.913, 136.683 )
