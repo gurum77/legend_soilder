@@ -38,17 +38,32 @@ func _on_PauseButton_pressed():
 # 게임 오버
 func game_over(var victory:bool):
 	StaticData.game_state = Define.GameState.over
+	
+	# 적이 죽고 item을 만드는 시간이 있다 0.5초 대기후에 게임 오버한다.
+	yield(get_tree().create_timer(0.5), "timeout")
+	
+	# item을 모두 먹는다.
+	var items = get_tree().get_nodes_in_group("item")
+	for item in items:
+		item.get_item()
+		
+	# item을 먹는 시간이 있으니 1초 대기 후에 계속 진행한다.
+	yield(get_tree().create_timer(1), "timeout")
+	
 	# 승리시 현재 stage 증가
 	# next 버튼을 안누르고 바로 home으로 갈수도 있기 때문에 여기서 미리 올려준다
 	if victory:
 		StaticData.current_stage += 1
+		
 	# game data 저장
 	StaticData.save_game()
+	
 	# 결과 표시 
 	if victory:
 		$CanvasLayer.add_child(load("res://scenes/Victory.tscn").instance())
 	else:
 		$CanvasLayer.add_child(load("res://scenes/Failed.tscn").instance())	
+		
 func _process(delta):
 	update_debug_information()
 		
