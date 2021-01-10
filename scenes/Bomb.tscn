@@ -1,0 +1,99 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://assets/bullets/FlameThrower/7.png" type="Texture" id=1]
+[ext_resource path="res://assets/effects/big_explosion/Explode Source.png" type="Texture" id=2]
+[ext_resource path="res://assets/effects/middle_explosion/3.png" type="Texture" id=3]
+[ext_resource path="res://scripts/Bullet.gd" type="Script" id=4]
+[ext_resource path="res://assets/effects/small_explosion/4.png" type="Texture" id=5]
+[ext_resource path="res://assets/effects/big_explosion/1.png" type="Texture" id=6]
+[ext_resource path="res://assets/effects/big_explosion/2.png" type="Texture" id=7]
+[ext_resource path="res://assets/effects/middle_explosion/Explode Source.png" type="Texture" id=8]
+[ext_resource path="res://assets/effects/middle_explosion/1.png" type="Texture" id=9]
+[ext_resource path="res://assets/effects/big_explosion/4.png" type="Texture" id=10]
+[ext_resource path="res://assets/effects/middle_explosion/4.png" type="Texture" id=11]
+[ext_resource path="res://assets/effects/big_explosion/3.png" type="Texture" id=12]
+[ext_resource path="res://assets/effects/small_explosion/1.png" type="Texture" id=13]
+[ext_resource path="res://assets/effects/small_explosion/2.png" type="Texture" id=14]
+[ext_resource path="res://assets/effects/middle_explosion/2.png" type="Texture" id=15]
+[ext_resource path="res://assets/bullets/FlameThrower/6.png" type="Texture" id=16]
+[ext_resource path="res://assets/effects/small_explosion/3.png" type="Texture" id=17]
+[ext_resource path="res://assets/effects/small_explosion/Explode Source.png" type="Texture" id=18]
+[ext_resource path="res://assets/bullets/pistol/4.png" type="Texture" id=22]
+[ext_resource path="res://assets/bullets/MG/4.png" type="Texture" id=23]
+[ext_resource path="res://assets/bullets/SMG/4.png" type="Texture" id=24]
+[ext_resource path="res://assets/bullets/RPG/5.png" type="Texture" id=25]
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 30.0
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 16 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "FlameThrower",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 25 ) ],
+"loop": true,
+"name": "RPG",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ) ],
+"loop": true,
+"name": "Pistol",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 23 ) ],
+"loop": true,
+"name": "MG",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 24 ) ],
+"loop": true,
+"name": "SMG",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 17 ), ExtResource( 5 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "small_explosion",
+"speed": 23.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 15 ), ExtResource( 3 ), ExtResource( 11 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "middle_explosion",
+"speed": 18.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 12 ), ExtResource( 10 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "big_explosion",
+"speed": 5.0
+} ]
+
+[node name="Bomb" type="Area2D"]
+collision_layer = 4
+collision_mask = 19
+script = ExtResource( 4 )
+distance = 0
+speed = 0
+power = 2000
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( -2.6226e-06, 0.420921 )
+scale = Vector2( 2.16455, 2.23471 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -0.125 )
+rotation = -1.5708
+frames = SubResource( 2 )
+animation = "big_explosion"
+frame = 4
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = "sound"
+[connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]

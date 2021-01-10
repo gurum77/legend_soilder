@@ -59,6 +59,21 @@ func get_weapon_power_by_level(weapon):
 		Define.Weapon.RPG:
 			return get_weapon_power(power_RPG, StaticData.get_weapon_information(Define.Weapon.RPG).power_level)
 	
+# 공격다음 폭파가 있는지?
+func get_weapon_bullet_next_bomb(weapon) -> bool:
+	match weapon:
+		Define.Weapon.Pistol:
+			return false
+		Define.Weapon.SMG:
+			return false
+		Define.Weapon.MG:
+			return false
+		Define.Weapon.FlameThrower:
+			return false
+		Define.Weapon.RPG:
+			return true
+	return false
+	
 # 무기 사거리
 func get_weapon_bullet_distance(weapon) -> int:
 	match weapon:
