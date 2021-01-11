@@ -44,8 +44,6 @@ func _on_ResetButton_pressed():
 func on_ResetButton_ok_pressed():
 	StaticData.reset_game()
 	StaticData.save_game()
-
-	
 	
 
 # admob이 ready되면 초기화를 한다

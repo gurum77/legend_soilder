@@ -14,6 +14,7 @@ var fire_position_node
 var playing_body_animation_for_fire = false
 var target_position:Vector2
 var player_dead = false
+var time_from_last_fire = 0	# 마지막 발사 이후로 지난 시
 
 func get_velocity()->Vector2:
 	return velocity
@@ -28,6 +29,7 @@ func _ready():
 	target_position = self.global_position
 
 func _physics_process(delta):
+	time_from_last_fire += delta
 	# 게임중이 아니라면 이동을 하지 않는다
 	if StaticData.game_state != Define.GameState.play:
 		return
@@ -58,7 +60,9 @@ func get_fire_interval():
 # 발사를 시작한다
 func start_fire():
 	if $FireTimer.is_stopped() == true:
-		fire()
+		auto_aim()	# 시작은 항상 auto aim
+		rotate_by_velocity(get_velocity())	# 몸을 aim방향으로 회
+		fire()		# 발사
 		$FireTimer.start(get_fire_interval())
 
 # 발사를 중지한다.
@@ -100,8 +104,17 @@ func _on_BodyAnimatedSprite_animation_finished():
 	playing_body_animation_for_fire = false		
 
 func fire():
+	# play 중이 아니면 발사를 하지 않는다.
 	if StaticData.game_state != Define.GameState.play:
 		return
+		
+	# 마지막 발사 이후로 지난 시간이 인터벌 보다 작으면 통과
+	# 수동 발사의 간격을 조절하기 위함(자동 발사는 timer로 하기 때문에 이 조건문이  필요없음)
+	# 단, 수동발사는 시간 간격을 80%로 혜택을 준다.
+	if time_from_last_fire < get_fire_interval() * 0.8:
+		return
+	time_from_last_fire = 0
+	
 		
 	# bullet 생성
 	var ins = Preloader.bullet.instance()
@@ -176,12 +189,15 @@ func _on_AimTimer_timeout():
 		return
 
 	# 가까운 적을 찾는다.
+	auto_aim()
+	
+# auto aim을 한다.	
+func auto_aim():
 	var enemy = find_nearest_enemy()
 	if enemy == null:
 		target_position = self.global_position + get_velocity() * 100
 	else:
 		target_position = enemy.global_position
-	
 		
 func find_nearest_enemy()->Node2D:
 	var minimum_distance = INF

@@ -14,6 +14,8 @@ var hit_object:Dictionary
 
 export (Define.Weapon) var weapon
 export var next_bomb = false	# 폭탄공격이 이어지는지?
+export var penetrate = false	# 관통공격인지?
+export var last_scale = 1.0		# 사정거리에 도달했을때의 scale
 
 # 화면을 벗어나면 삭제
 func _on_VisibilityNotifier2D_screen_exited():
@@ -28,12 +30,20 @@ func _ready():
 	if weapon != Define.Weapon.None:
 		# power
 		power = Table.get_weapon_power_by_level(weapon)
-
+		# speed
+		speed = Table.get_weapon_bullet_speed(weapon)
 		# 무기 종류에 맞는 사거리 결정
 		distance = Table.get_weapon_bullet_distance(weapon)
-		
 		# next bobm 설정
 		next_bomb = Table.get_weapon_bullet_next_bomb(weapon)
+		# 관통공격인지?
+		penetrate = Table.get_weapon_bullet_penetrate(weapon)
+		# 마지막에 도달했을때의 scale
+		last_scale = Table.get_weapon_bullet_last_scale(weapon)
+		
+		
+		
+		
 
 	# 시작 위치 보관	
 	start_position = position
@@ -49,10 +59,18 @@ func _ready():
 	
 # bullet이 날아가도록 한다
 func _physics_process(delta):
+	# 이동
 	translate(Vector2.RIGHT.rotated(rotation) * speed * delta)
+	
 	# 사거리가 지정된 경우 사거리 이상 날아가면 폭파
-	if distance >= 0 and position.distance_to(start_position) >= distance:
+	var cur_dist = position.distance_to(start_position)
+	if distance >= 0 and cur_dist >= distance:
 		explosion()
+		
+		# scale 조정
+	if last_scale != 1.0:
+		scale.x = 1 + (last_scale-1) * cur_dist / distance
+		scale.y = scale.x
 
 
 func _on_Bullet_body_entered(body):
@@ -70,7 +88,7 @@ func _on_Bullet_body_entered(body):
 		return
 		
 	# player나 enemy이면 damage를 준다
-	# next_bomb인 경우에는 bomb가 damage를 주고, 직접 주지는 않는
+	# next_bomb인 경우에는 bomb가 damage를 주고, 직접 주지는 않는다
 	if !next_bomb:
 		if body is PlayerBody or body is EnemyBody:
 			body.get_parent().damage(power)
@@ -81,7 +99,9 @@ func _on_Bullet_body_entered(body):
 	push_body(body)
 	
 	# 어디든 부딪히면 총알은 터진다
-	explosion()
+	# 관통공격은 터지지 않는다.
+	if !penetrate:
+		explosion()
 	
 func push_body(body):
 	if body is EnemyBody:

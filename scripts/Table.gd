@@ -74,6 +74,51 @@ func get_weapon_bullet_next_bomb(weapon) -> bool:
 			return true
 	return false
 	
+# 관통공격인지?
+func get_weapon_bullet_penetrate(weapon) -> bool:
+	match weapon:
+		Define.Weapon.Pistol:
+			return false
+		Define.Weapon.SMG:
+			return false
+		Define.Weapon.MG:
+			return false
+		Define.Weapon.FlameThrower:
+			return true
+		Define.Weapon.RPG:
+			return false
+	return false	
+
+# 마지막에 도달했을때 스케일
+func get_weapon_bullet_last_scale(weapon) -> float:
+	match weapon:
+		Define.Weapon.Pistol:
+			return 1.0
+		Define.Weapon.SMG:
+			return 1.0
+		Define.Weapon.MG:
+			return 1.0
+		Define.Weapon.FlameThrower:
+			return 1.7
+		Define.Weapon.RPG:
+			return 1.0
+	return 1.0
+	
+# 무기별 총알 속도
+func get_weapon_bullet_speed(var weapon) -> int:
+	match weapon:
+		Define.Weapon.FlameThrower:
+			return 200
+		Define.Weapon.MG:
+			return 350
+		Define.Weapon.Pistol:
+			return 350
+		Define.Weapon.RPG:
+			return 300
+		Define.Weapon.SMG:
+			return 350
+	return 300
+		
 # 무기 사거리
 func get_weapon_bullet_distance(weapon) -> int:
 	match weapon:
