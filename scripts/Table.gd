@@ -119,6 +119,21 @@ func get_weapon_bullet_speed(var weapon) -> int:
 			return 350
 	return 300
 		
+# 무기 가격
+func get_weapon_price(weapon)->int:
+	match weapon:
+		Define.Weapon.Pistol:
+			return 0
+		Define.Weapon.SMG:
+			return 3000
+		Define.Weapon.MG:
+			return 7000
+		Define.Weapon.FlameThrower:
+			return 15000
+		Define.Weapon.RPG:
+			return 35000
+	return 100000
+	
 # 무기 사거리
 func get_weapon_bullet_distance(weapon) -> int:
 	match weapon:

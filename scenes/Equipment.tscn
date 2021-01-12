@@ -42,7 +42,7 @@ __meta__ = {
 [node name="WeaponList" type="ScrollContainer" parent="Control"]
 anchor_bottom = 1.0
 margin_top = 34.0
-margin_right = 251.0
+margin_right = 265.0
 margin_bottom = -85.3777
 rect_min_size = Vector2( 0, 340 )
 __meta__ = {
@@ -50,9 +50,9 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/WeaponList"]
-margin_right = 230.0
+margin_right = 250.0
 margin_bottom = 390.0
-rect_min_size = Vector2( 200, 390 )
+rect_min_size = Vector2( 250, 390 )
 custom_constants/separation = 10
 
 [node name="PistolPanel" parent="Control/WeaponList/VBoxContainer" instance=ExtResource( 1 )]

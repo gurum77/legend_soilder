@@ -26,82 +26,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PlayButton" type="TextureButton" parent="."]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -416.888
-margin_top = -282.092
-margin_right = -216.888
-margin_bottom = -234.092
-texture_normal = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="SettingsButton" type="TextureButton" parent="."]
-margin_left = 224.088
-margin_top = 310.78
-margin_right = 424.088
-margin_bottom = 357.78
-texture_normal = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Logo" type="TextureRect" parent="."]
 margin_left = 170.947
 margin_top = 50.5366
 margin_right = 470.947
 margin_bottom = 141.537
 texture = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ExitButton" type="TextureButton" parent="."]
-margin_left = 225.289
-margin_top = 367.143
-margin_right = 425.289
-margin_bottom = 415.143
-texture_normal = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="ExitButton"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 1, 0.227451, 0, 1 )
-text = "EXIT"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="EquipmentButton" type="TextureButton" parent="."]
-margin_left = 225.289
-margin_top = 254.143
-margin_right = 425.289
-margin_bottom = 302.143
-texture_normal = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="EquipmentButton"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -1.0
-margin_right = -1.0
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 0.662745, 0.490196, 0.164706, 1 )
-text = "EQUIPMENT	"
-align = 1
-valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -120,10 +50,108 @@ __meta__ = {
 [node name="MoneyPanel" parent="." instance=ExtResource( 8 )]
 
 [node name="AdMob" parent="." instance=ExtResource( 9 )]
-[connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]
-[connection signal="pressed" from="SettingsButton" to="." method="_on_SettingsButton_pressed"]
-[connection signal="pressed" from="ExitButton" to="." method="_on_ExitButton_pressed"]
-[connection signal="pressed" from="EquipmentButton" to="." method="_on_EquipmentButton_pressed"]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -100.0
+margin_top = -293.0
+margin_right = 100.0
+margin_bottom = -90.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayButton" type="TextureButton" parent="VBoxContainer"]
+margin_right = 200.0
+margin_bottom = 48.0
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EquipmentButton" type="TextureButton" parent="VBoxContainer"]
+margin_top = 52.0
+margin_right = 200.0
+margin_bottom = 100.0
+texture_normal = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer/EquipmentButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.0
+margin_right = -1.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.662745, 0.490196, 0.164706, 1 )
+text = "EQUIPMENT	"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShopButton" type="TextureButton" parent="VBoxContainer"]
+margin_top = 104.0
+margin_right = 200.0
+margin_bottom = 152.0
+texture_normal = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer/ShopButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.0
+margin_right = -1.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.662745, 0.490196, 0.164706, 1 )
+text = "SHOP"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingsButton" type="TextureButton" parent="VBoxContainer"]
+margin_top = 156.0
+margin_right = 200.0
+margin_bottom = 203.0
+texture_normal = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExitButton" type="TextureButton" parent="VBoxContainer"]
+margin_top = 207.0
+margin_right = 200.0
+margin_bottom = 255.0
+texture_normal = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer/ExitButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 0.227451, 0, 1 )
+text = "EXIT"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="ResetButton" to="." method="_on_ResetButton_pressed"]
 [connection signal="banner_loaded" from="AdMob" to="." method="_on_AdMob_banner_loaded"]
 [connection signal="ready" from="AdMob" to="." method="_on_AdMob_ready"]
+[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/EquipmentButton" to="." method="_on_EquipmentButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/ShopButton" to="." method="_on_ShopButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]

@@ -17,7 +17,7 @@ export (Texture) var RPG_texture = null
 export (Texture) var SMG_texture = null
 
 
-
+# 무기의 texture
 func get_weapon_texture(var weapon) -> Texture:
 	if weapon == Weapon.FlameThrower:
 		return FlameThrower_texture

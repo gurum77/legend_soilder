@@ -1,0 +1,91 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/ui/BTN BACK.png" type="Texture" id=1]
+[ext_resource path="res://Shop.gd" type="Script" id=2]
+[ext_resource path="res://scenes/MoneyPanel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/ui/GAME LOGO.png" type="Texture" id=4]
+[ext_resource path="res://scenes/ShopItem.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://assets/ui/money_pack_20000.png" type="Texture" id=7]
+[ext_resource path="res://assets/ui/money_pack_30000.png" type="Texture" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 6 )
+
+[node name="Shop" type="Panel"]
+self_modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="TextureButton" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoneyPanel" parent="." instance=ExtResource( 3 )]
+
+[node name="GAME LOGO" type="Sprite" parent="."]
+position = Vector2( 241.088, 122.408 )
+scale = Vector2( 0.952485, 0.862939 )
+texture = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="GAME LOGO"]
+margin_left = 160.0
+margin_top = -26.0
+margin_right = 320.0
+margin_bottom = 35.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.588235, 0.415686, 0.239216, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "SHOP"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = -250.0
+margin_right = -50.0
+margin_bottom = -120.0
+custom_constants/separation = 10
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShopItem_Money10000" parent="HBoxContainer" instance=ExtResource( 5 )]
+margin_left = 87.0
+margin_right = 202.0
+title = "10,000"
+price = 5.0
+
+[node name="ShopItem_Money20000" parent="HBoxContainer" instance=ExtResource( 5 )]
+margin_left = 212.0
+margin_right = 327.0
+icon = ExtResource( 7 )
+title = "20,000"
+price = 9.0
+
+[node name="ShopItem_Money30000" parent="HBoxContainer" instance=ExtResource( 5 )]
+margin_left = 337.0
+margin_right = 452.0
+icon = ExtResource( 8 )
+title = "30,000"
+price = 13.0
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]

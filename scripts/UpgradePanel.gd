@@ -50,9 +50,11 @@ func update():
 		if StaticData.total_money < upgrade_cost:
 			need_more_money_to_upgrade = true
 			$Button.set("custom_colors/font_color", Color(1, 0, 0, 1))
+			$Button.set("custom_colors/font_color_hover", Color(1, 0, 0, 1))
 		else:
 			need_more_money_to_upgrade = false
 			$Button.set("custom_colors/font_color", Color(1, 1, 1, 1))
+			$Button.set("custom_colors/font_color_hover", Color(1, 1, 1, 1))
 		
 
 func update_bar(level):
@@ -94,4 +96,4 @@ func _on_Button_pressed():
 	update()
 
 func on_GoToShopButton_pressed():
-	pass
+	get_tree().change_scene("res://scenes/Shop.tscn")

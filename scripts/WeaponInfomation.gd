@@ -1,5 +1,6 @@
 class_name WeaponInformation
 
+var enable = false	# 구매를 해야 true가 됨(pistol은 처음부터 enable을 한다)
 var power_level = 1
 var range_level = 1
 var interval_level = 1

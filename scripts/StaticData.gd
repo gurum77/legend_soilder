@@ -92,6 +92,9 @@ func init():
 	# 첫번째 인벤토리는 기본으로 권총을 넣어준다
 	inventory_item1.weapon = Define.Weapon.Pistol
 	
+	# pistol은 항상 enable
+	get_weapon_information(Define.Weapon.Pistol).enable = true
+	
 	# 이건 테스트용이다
 	inventory_item2.weapon = Define.Weapon.RPG
 	inventory_item3.weapon = Define.Weapon.SMG
@@ -119,4 +122,6 @@ func get_weapon_information(weapon)->WeaponInformation:
 		return weapon_informations[Define.get_weapon_name(weapon)]
 	else:
 		weapon_informations[Define.get_weapon_name(weapon)] = WeaponInformation.new()
+		
+			
 	return weapon_informations[Define.get_weapon_name(weapon)]		

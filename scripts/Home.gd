@@ -49,8 +49,13 @@ func on_ResetButton_ok_pressed():
 # admob이 ready되면 초기화를 한다
 func _on_AdMob_ready():
 	$AdMob.init()
-	$AdMob.load_banner()
+#	$AdMob.load_banner()
 
 # banner 가 로드되면 보여준다.
 func _on_AdMob_banner_loaded():
-	$AdMob.show_banner()
+#	$AdMob.show_banner()
+	pass
+
+# shop
+func _on_ShopButton_pressed():
+	get_tree().change_scene("res://scenes/Shop.tscn")
