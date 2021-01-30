@@ -97,6 +97,7 @@ StaticData="*res://scenes/StaticData.tscn"
 SoundManager="*res://scenes/SoundManager.tscn"
 Preloader="*res://scenes/Preloader.tscn"
 Table="*res://scenes/Table.tscn"
+Util="*res://scenes/Util.tscn"
 
 [display]
 

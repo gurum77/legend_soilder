@@ -41,16 +41,13 @@ func _ready():
 		# 마지막에 도달했을때의 scale
 		last_scale = Table.get_weapon_bullet_last_scale(weapon)
 		
-		
-		
-		
-
 	# 시작 위치 보관	
 	start_position = position
 	
 	# 무기 종류에 맞는 animation을 실행
 	var animation_name = Define.get_weapon_name(weapon)
-	$AnimatedSprite.play(animation_name)
+	Util.play_animation ($AnimatedSprite, animation_name)
+
 	
 	# 무기 종류에 맞는 소리 실행
 	$AudioStreamPlayer2D.stream = SoundManager.get_bullet_shot_audio_stream(weapon)
@@ -129,7 +126,7 @@ func explosion():
 		get_tree().root.call_deferred("add_child", ins)
 		ins.global_position = global_position
 		ins.power = power;
-		ins.player = true
+		ins.player = player
 		
 
 

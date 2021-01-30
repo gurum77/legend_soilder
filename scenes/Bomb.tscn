@@ -58,15 +58,15 @@ animations = [ {
 "name": "small_explosion",
 "speed": 23.0
 }, {
-"frames": [ ExtResource( 9 ), ExtResource( 15 ), ExtResource( 3 ), ExtResource( 11 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "middle_explosion",
-"speed": 18.0
-}, {
 "frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 12 ), ExtResource( 10 ), ExtResource( 2 ) ],
 "loop": true,
 "name": "big_explosion",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 15 ), ExtResource( 3 ), ExtResource( 11 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "middle_explosion",
+"speed": 18.0
 } ]
 
 [node name="Bomb" type="Area2D"]

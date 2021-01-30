@@ -20,7 +20,7 @@ func _ready():
 func die():
 	# 폭파 애니메이션
 	state = explosion
-	$AnimatedSprite.play("explosion")
+	Util.play_animation($AnimatedSprite, "explosion")
 	
 	# 충돌검사 해제
 	$CollisionShape2D.queue_free()

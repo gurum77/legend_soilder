@@ -56,10 +56,10 @@ func play_animation_by_velocity(velocity):
 	# leg animation
 	# walk
 	if velocity.length() > 0.5:
-		leg_animated_sprite.play("walk")
+		Util.play_animation(leg_animated_sprite, "walk")
 	# idle
 	else:
-		leg_animated_sprite.play("idle")	
+		Util.play_animation(leg_animated_sprite, "idle")	
 			
 # 목표 지점으로 이동
 func move_to_target():
@@ -160,15 +160,10 @@ func fire():
 			ins.rotation = rotation
 	
 	# body animation
-	if body_animated_sprite != null:
-		body_animated_sprite.frame = 0
-		body_animated_sprite.play("fire")
+	Util.play_animation(body_animated_sprite, "fire")
 	
 	# fire animation
-	if fire_animated_sprite != null:
-		fire_animated_sprite.frame = 0
-		fire_animated_sprite.visible = true
-		fire_animated_sprite.play("fire")
+	Util.play_animation(fire_animated_sprite, "fire", true)
 	
 # aim을 한다.
 # 발사 목표 점을 찾는다.
@@ -191,8 +186,8 @@ func die():
 	dead = true
 	
 	# dia animation 실행
-	body_animated_sprite.play("die")
-	leg_animated_sprite.play("die")
+	Util.play_animation(body_animated_sprite, "die")
+	Util.play_animation(leg_animated_sprite, "die")
 	stop_aim()
 	stop_fire()
 	
@@ -209,4 +204,4 @@ func _on_FireAnimatedSprite_animation_finished():
 # body animation은 죽지 않은 경우 animation finish 후에 항상 idle로 바꿔준다.
 func _on_BodyAnimatedSprite_animation_finished():
 	if not dead:
-		body_animated_sprite.play("idle")
+		Util.play_animation(body_animated_sprite, "idle")

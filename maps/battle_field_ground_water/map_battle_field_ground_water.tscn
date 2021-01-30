@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="layer_0_battle_field_ground_water.tscn" type="PackedScene" id=0]
+[ext_resource path="layer_1_battle_field_ground_water.tscn" type="PackedScene" id=1]
+
+[node name="map_battle_field_ground_water" type="Node2D"]
+[node name="0_ground" parent="." instance=ExtResource( 0 )]
+[node name="1_object" parent="." instance=ExtResource( 1 )]

@@ -109,6 +109,7 @@ margin_top = -18.0
 margin_bottom = -14.0
 
 [node name="EnemyAI" parent="." instance=ExtResource( 20 )]
+position = Vector2( -0.529739, 0 )
 
 [node name="ItemMaker" type="Node2D" parent="."]
 script = ExtResource( 21 )

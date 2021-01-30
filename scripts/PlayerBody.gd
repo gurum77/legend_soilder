@@ -127,13 +127,13 @@ func fire():
 	ins.rotation = rotation
 	
 	# body animation
-	$AnimatedSprites/BodyAnimatedSprite.play(get_body_animation_name_header()+ "_fire")
+	Util.play_animation($AnimatedSprites/BodyAnimatedSprite, get_body_animation_name_header()+ "_fire")
 	playing_body_animation_for_fire = true
 	
 	# fire animation
 	$AnimatedSprites/FireAnimatedSprite.position = get_fire_position_node().position
 	$AnimatedSprites/FireAnimatedSprite.visible = true
-	$AnimatedSprites/FireAnimatedSprite.play(get_body_animation_name_header())
+	Util.play_animation($AnimatedSprites/FireAnimatedSprite, get_body_animation_name_header())
 	
 	
 # 무기 종류 리턴
@@ -153,16 +153,16 @@ func play_animation_by_velocity(velocity):
 	# leg animation
 	# walk
 	if velocity.length() > 0.5:
-		$AnimatedSprites/LegAnimatedSprite.play("walk")
+		Util.play_animation ($AnimatedSprites/LegAnimatedSprite, "walk")
 		$AudioStreamPlayer2D.stream_paused = false
 	# idle
 	else:
-		$AnimatedSprites/LegAnimatedSprite.play("idle")	
+		Util.play_animation ($AnimatedSprites/LegAnimatedSprite, "idle")
 		$AudioStreamPlayer2D.stream_paused = true
 		
 	# body animation
 	if playing_body_animation_for_fire == false:
-		$AnimatedSprites/BodyAnimatedSprite.play(get_body_animation_name_header())
+		Util.play_animation($AnimatedSprites/BodyAnimatedSprite, get_body_animation_name_header())
 
 func get_fire_position_node() -> Node:
 	if StaticData.get_current_inventory_item().weapon == Define.Weapon.Pistol:
@@ -256,7 +256,7 @@ func die():
 	player_dead = true
 	
 	# die animation 실행
-	$AnimatedSprites/BodyAnimatedSprite.play("die")
+	Util.play_animation($AnimatedSprites/BodyAnimatedSprite, "die")
 	$AnimatedSprites/LegAnimatedSprite.visible = false
 	$AnimatedSprites/FireAnimatedSprite.visible = false
 	
@@ -270,6 +270,6 @@ func revival():
 	StaticData.game_state = Define.GameState.play
 	
 	# die animation 실행
-	$AnimatedSprites/BodyAnimatedSprite.play("idle")
+	Util.play_animation($AnimatedSprites/BodyAnimatedSprite, "idle")
 	$AnimatedSprites/LegAnimatedSprite.visible = true
 	$AnimatedSprites/FireAnimatedSprite.visible = true
