@@ -69,31 +69,6 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "MG_fire",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "SMG_fire",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 11 ), ExtResource( 1 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "Pistol_fire",
-"speed": 15.0
-}, {
-"frames": [ ExtResource( 16 ), ExtResource( 22 ), ExtResource( 21 ) ],
-"loop": true,
-"name": "FlameThrower_fire",
-"speed": 15.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 7 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "RPG_fire",
-"speed": 15.0
-}, {
 "frames": [ ExtResource( 14 ) ],
 "loop": true,
 "name": "FlameThrower",
@@ -102,11 +77,6 @@ animations = [ {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "RPG",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 8 ) ],
-"loop": true,
-"name": "SMG",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ) ],
@@ -119,10 +89,40 @@ animations = [ {
 "name": "Pistol",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "SMG",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 49 ), ExtResource( 50 ), ExtResource( 47 ), ExtResource( 48 ) ],
 "loop": false,
 "name": "die",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 1 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "Pistol_fire",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 7 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "RPG_fire",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "SMG_fire",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "MG_fire",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 22 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "FlameThrower_fire",
+"speed": 15.0
 } ]
 
 [sub_resource type="SpriteFrames" id=3]
@@ -137,11 +137,6 @@ animations = [ {
 "name": "RPG",
 "speed": 20.0
 }, {
-"frames": [ ExtResource( 35 ), ExtResource( 27 ), ExtResource( 33 ) ],
-"loop": true,
-"name": "SMG",
-"speed": 15.0
-}, {
 "frames": [ ExtResource( 34 ), ExtResource( 30 ), ExtResource( 24 ) ],
 "loop": true,
 "name": "MG",
@@ -150,6 +145,11 @@ animations = [ {
 "frames": [ ExtResource( 39 ), ExtResource( 41 ), ExtResource( 40 ) ],
 "loop": true,
 "name": "Pistol",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 35 ), ExtResource( 27 ), ExtResource( 33 ) ],
+"loop": true,
+"name": "SMG",
 "speed": 15.0
 } ]
 
@@ -197,7 +197,6 @@ bus = "sound"
 rotation = -1.5708
 frames = SubResource( 1 )
 animation = "walk"
-frame = 3
 playing = true
 
 [node name="BodyAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites"]
@@ -237,10 +236,10 @@ current = true
 limit_smoothed = true
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
-drag_margin_left = 0.5
-drag_margin_top = 0.5
-drag_margin_right = 0.5
-drag_margin_bottom = 0.5
+drag_margin_left = 0.1
+drag_margin_top = 0.1
+drag_margin_right = 0.1
+drag_margin_bottom = 0.1
 
 [node name="Shield" type="Sprite" parent="."]
 modulate = Color( 0.368627, 1, 0.0509804, 0.152941 )
