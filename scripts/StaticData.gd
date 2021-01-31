@@ -5,12 +5,19 @@ var initialized:bool = false
 var game_state = Define.GameState.ready
 var current_stage = 1
 var current_stage_path = "res://maps/BattleField_Focus.tscn"
+var current_level_on_stage = 1	# 현재 stage에서 진행중인 level(1~5)
 var current_score_for_stage = 0
 var requirement_score_for_stage = 10000
 var spawned_score_for_stage = 0	# 현재 spawn되어 있는 전체 점수(필요한 만큼만 스폰되어야 한다)
 var total_money = 0	
 var current_stage_money = 0	# 현재 stage에서 모은 돈
 
+# stage 정보
+var stage_informations:Dictionary={
+	"Focus" : StageInformation.new("res://maps/BattleField_Focus.tscn"),
+	"SideWater" : StageInformation.new("res://maps/BattleField_SideWater.tscn"),
+	"Surround" : StageInformation.new("res://maps/BattleField_Surround.tscn")
+}
 # weapon 정보
 var weapon_informations:Dictionary = {
 	Define.get_weapon_name(Define.Weapon.Pistol) : WeaponInformation.new(),
@@ -34,7 +41,7 @@ var current_weapon_index = 0
 var has_revival_chance = true
 
 # 게임 데이타 저장 / 읽기
-# game data를을 reset한
+# game data를을 reset한다
 func reset_game():
 	game_state = Define.GameState.ready
 	current_stage = 1
@@ -81,6 +88,8 @@ func get_gamedata(var dic:Dictionary, var key, var default_value):
 func _ready():
 	init()
 
+
+	
 func init():
 	if initialized == true:
 		return
@@ -116,6 +125,12 @@ func get_inventory_item(index) -> WeaponInventoryItem:
 	else:
 		return null
 
+# stage 정보 리턴
+func get_stage_information(stage_name)->StageInformation:
+	if stage_informations.has(stage_name):
+		return stage_informations[stage_name]
+	return null
+	
 # 무기 정보를 리턴한다
 # 없으면 만들어서 리턴한다
 func get_weapon_information(weapon)->WeaponInformation:
