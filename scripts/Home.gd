@@ -14,7 +14,7 @@ func _on_EquipmentButton_pressed():
 # play 버튼 클릭
 func _on_PlayButton_pressed():
 #	get_tree().change_scene("res://scenes/World.tscn")
-	get_tree().change_scene("res://scenes/Map.tscn")
+	get_tree().change_scene("res://scenes/StageSelector.tscn")
 
 
 func _on_SettingsButton_pressed():

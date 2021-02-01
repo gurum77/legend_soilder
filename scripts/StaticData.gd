@@ -14,9 +14,15 @@ var current_stage_money = 0	# 현재 stage에서 모은 돈
 
 # stage 정보
 var stage_informations:Dictionary={
-	"Focus" : StageInformation.new("res://maps/BattleField_Focus.tscn"),
-	"SideWater" : StageInformation.new("res://maps/BattleField_SideWater.tscn"),
-	"Surround" : StageInformation.new("res://maps/BattleField_Surround.tscn")
+	"Focus" : StageInformation.new("res://maps/BattleField_Focus.tscn", Vector2(1200, 450)),
+	"SideWater" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(1286, 425)),
+	"SideWater1" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(1130, 426)),
+	"SideWater2" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(1245, 692)),
+	"SideWater3" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(997, 678)),
+	"SideWater4" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(892, 675)),
+	"SideWater5" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(1027, 564)),
+	"SideWater6" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(974, 480)),
+	"Surround" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449))
 }
 # weapon 정보
 var weapon_informations:Dictionary = {

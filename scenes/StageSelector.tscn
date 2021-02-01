@@ -1,8 +1,37 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/StageButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/MoneyPanel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/StageSelector.gd" type="Script" id=3]
+[ext_resource path="res://assets/maps/earth_map.png" type="Texture" id=4]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="Theme" id=1]
+HScrollBar/icons/decrement = null
+HScrollBar/icons/decrement_highlight = null
+HScrollBar/icons/increment = null
+HScrollBar/icons/increment_highlight = null
+HScrollBar/styles/grabber = null
+HScrollBar/styles/grabber_highlight = null
+HScrollBar/styles/grabber_pressed = null
+HScrollBar/styles/scroll = SubResource( 2 )
+HScrollBar/styles/scroll_focus = null
+ScrollContainer/styles/bg = SubResource( 3 )
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/styles/grabber = null
+VScrollBar/styles/grabber_highlight = null
+VScrollBar/styles/grabber_pressed = null
+VScrollBar/styles/scroll = SubResource( 4 )
+VScrollBar/styles/scroll_focus = null
 
 [node name="StageSelector" type="Panel"]
 anchor_right = 1.0
@@ -12,18 +41,90 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="MapScrollContainer" type="ScrollContainer" parent="."]
 anchor_right = 1.0
-margin_left = 50.0
+anchor_bottom = 1.0
+margin_top = 107.0
+margin_bottom = -44.0
+theme = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Map" type="TextureRect" parent="MapScrollContainer"]
+modulate = Color( 1, 1, 1, 0.784314 )
+margin_right = 1500.0
+margin_bottom = 969.0
+rect_min_size = Vector2( 1500, 969 )
+texture = ExtResource( 4 )
+expand = true
+
+[node name="PathOutline" type="Line2D" parent="MapScrollContainer/Map"]
+points = PoolVector2Array( 405.749, 174.132, 294.505, 256.77, 171.608, 230.284, 221.402, 69.775 )
+width = 7.0
+default_color = Color( 0, 0, 0, 1 )
+texture_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Path" type="Line2D" parent="MapScrollContainer/Map"]
+points = PoolVector2Array( 405.749, 174.132, 294.505, 256.77, 171.608, 230.284, 221.402, 69.775 )
+width = 5.0
+default_color = Color( 1, 1, 1, 1 )
+texture_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="MoneyPanel" parent="." instance=ExtResource( 2 )]
+
+[node name="StageButtonScrollContainer" type="ScrollContainer" parent="."]
+anchor_right = 1.0
+margin_left = 20.0
 margin_top = 30.0
-margin_right = -50.0
-margin_bottom = 70.0
+margin_right = -20.0
+margin_bottom = 92.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StageButtonScrollContainer"]
+margin_right = 760.0
+margin_bottom = 35.0
 custom_constants/separation = 20
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button_BattleField_Focus" parent="HBoxContainer" instance=ExtResource( 1 )]
-margin_bottom = 40.0
+[node name="Button_BattleField_Focus" parent="StageButtonScrollContainer/HBoxContainer" instance=ExtResource( 1 )]
 
-[node name="MoneyPanel" parent="." instance=ExtResource( 2 )]
+[node name="Button_BattleField_Focus2" parent="StageButtonScrollContainer/HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 130.0
+margin_right = 240.0
+
+[node name="Button_BattleField_Focus3" parent="StageButtonScrollContainer/HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 260.0
+margin_right = 370.0
+
+[node name="Button_BattleField_Focus4" parent="StageButtonScrollContainer/HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 390.0
+margin_right = 500.0
+
+[node name="Button_BattleField_Focus5" parent="StageButtonScrollContainer/HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 520.0
+margin_right = 630.0
+
+[node name="Button_BattleField_Focus6" parent="StageButtonScrollContainer/HBoxContainer" instance=ExtResource( 1 )]
+margin_left = 650.0
+margin_right = 760.0
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+position = Vector2( 459.185, 332.375 )
+
+[node name="LegAnimatedSprite" parent="Player/Body/AnimatedSprites" index="0"]
+frame = 6
+
+[node name="Camera2D" parent="Player" index="2"]
+current = false
+[connection signal="gui_input" from="MapScrollContainer/Map" to="." method="_on_Map_gui_input"]
+
+[editable path="Player"]
