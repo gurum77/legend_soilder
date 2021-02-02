@@ -1,12 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/ui/radio_button.png" type="Texture" id=1]
 [ext_resource path="res://scenes/StagePosition.gd" type="Script" id=2]
+[ext_resource path="res://assets/ui/stone.png" type="Texture" id=3]
 
 [node name="StagePosition" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Circle" type="TextureRect" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -16,6 +17,21 @@ margin_top = -8.0
 margin_right = 8.0
 margin_bottom = 8.0
 texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stone" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -8.0
+margin_top = -8.0
+margin_right = 8.0
+margin_bottom = 8.0
+texture = ExtResource( 3 )
+stretch_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -13,7 +13,7 @@ func _ready():
 		map.queue_free()
 		
 	# stage path에서 읽어온다
-	var ins = load(StaticData.current_stage_path).instance()
+	var ins = load(StaticData.get_current_stage_path()).instance()
 	add_child(ins)
 	# 나눠서 남는거의 -1을 한다.
 	# -1이 되면 마지막 인덱스로 사용

@@ -23,5 +23,5 @@ func _ready():
 	
 
 func _on_Button_BattleField_Focus_pressed():
-	StaticData.current_stage_path = stage_scene_path
+	StaticData.current_stage_name = stage_name
 	#get_tree().change_scene("res://scenes/World.tscn")

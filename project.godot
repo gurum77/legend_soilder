@@ -64,6 +64,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/StageInformation.gd"
 }, {
+"base": "Node2D",
+"class": "StagePosition",
+"language": "GDScript",
+"path": "res://scenes/StagePosition.gd"
+}, {
 "base": "Reference",
 "class": "WeaponInformation",
 "language": "GDScript",
@@ -75,7 +80,7 @@ _global_script_classes=[ {
 "path": "res://scripts/WeaponInventoryItem.gd"
 } ]
 _global_script_class_icons={
-"AdMob": "",
+"AdMob": "res://admob-lib/icon.png",
 "Enemy": "",
 "EnemyAI": "",
 "EnemyBody": "",
@@ -86,6 +91,7 @@ _global_script_class_icons={
 "Player": "",
 "PlayerBody": "",
 "StageInformation": "",
+"StagePosition": "",
 "WeaponInformation": "",
 "WeaponInventoryItem": ""
 }

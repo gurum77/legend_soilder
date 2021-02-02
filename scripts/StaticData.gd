@@ -4,13 +4,19 @@ var initialized:bool = false
 # state clear에 필요한 내용들
 var game_state = Define.GameState.ready
 var current_stage = 1
-var current_stage_path = "res://maps/BattleField_Focus.tscn"
+var current_stage_name = "Focus"
 var current_level_on_stage = 1	# 현재 stage에서 진행중인 level(1~5)
 var current_score_for_stage = 0
 var requirement_score_for_stage = 10000
 var spawned_score_for_stage = 0	# 현재 spawn되어 있는 전체 점수(필요한 만큼만 스폰되어야 한다)
 var total_money = 0	
 var current_stage_money = 0	# 현재 stage에서 모은 돈
+
+func get_current_stage_path()->String:
+	var si = get_stage_information(current_stage_name)
+	if si == null:
+		return ""
+	return si.scene_path
 
 # stage 정보
 var stage_informations:Dictionary={
@@ -59,11 +65,13 @@ func save_game():
 	var save_dic={
 		"game_state" : game_state,
 		"current_stage" : current_stage,
+		"current_stage_nme" : current_stage_name,
 		"current_score_for_stage" : current_score_for_stage,
 		"requirement_score_for_stage" : requirement_score_for_stage,
 		"current_weapon_index" : current_weapon_index,
 		"total_money" : total_money,
 		"current_stage_money" : current_stage_money
+		#"stage_informations" : stage_informations
 	}
 	var save_file = File.new()
 	save_file.open("user://legend_soldier.save", File.WRITE)
@@ -79,12 +87,15 @@ func load_game():
 		var dic = parse_json(save_file.get_line())
 		game_state = get_gamedata(dic, "game_state", game_state)
 		current_stage = get_gamedata(dic, "current_stage", current_stage)
+		current_stage_name = get_gamedata(dic, "current_stage_nme", current_stage_name)
 		current_score_for_stage = get_gamedata(dic, "current_score_for_stage", current_score_for_stage)
 		requirement_score_for_stage = get_gamedata(dic, "requirement_score_for_stage", requirement_score_for_stage)
 		current_weapon_index = get_gamedata(dic, "current_weapon_index", current_weapon_index)
 		total_money = get_gamedata(dic, "total_money", total_money)
 		current_stage_money = get_gamedata(dic, "current_stage_money", current_stage_money)
+		#stage_informations = get_gamedata(dic, "stage_informations", stage_informations)
 	save_file.close()
+	
 	
 func get_gamedata(var dic:Dictionary, var key, var default_value):
 	if !dic.has(key):
@@ -107,6 +118,9 @@ func init():
 	
 	# 첫번째 인벤토리는 기본으로 권총을 넣어준다
 	inventory_item1.weapon = Define.Weapon.Pistol
+	
+	# 첫번째 stage를 current로 설정
+	current_stage_name = stage_informations.keys()[0]
 	
 	# pistol은 항상 enable
 	get_weapon_information(Define.Weapon.Pistol).enable = true
@@ -131,6 +145,9 @@ func get_inventory_item(index) -> WeaponInventoryItem:
 	else:
 		return null
 
+func get_current_stage_information()->StageInformation:
+	return get_stage_information(current_stage_name)
+	
 # stage 정보 리턴
 func get_stage_information(stage_name)->StageInformation:
 	if stage_informations.has(stage_name):

@@ -52,9 +52,10 @@ func game_over(var victory:bool):
 	
 	# 승리시 현재 stage 증가
 	# next 버튼을 안누르고 바로 home으로 갈수도 있기 때문에 여기서 미리 올려준다
-	if victory:
-		StaticData.current_stage += 1
-		
+	if victory == true:
+		var si = StaticData.get_current_stage_information()
+		if si != null:
+			si.current_step += 1
 	# game data 저장
 	StaticData.save_game()
 	
@@ -63,6 +64,7 @@ func game_over(var victory:bool):
 		$CanvasLayer.add_child(load("res://scenes/Victory.tscn").instance())
 	else:
 		$CanvasLayer.add_child(load("res://scenes/Failed.tscn").instance())	
+	
 		
 func _process(delta):
 	update_debug_information()
