@@ -6,6 +6,7 @@ export (Define.Weapon) var weapon = Define.Weapon.Pistol
 
 onready var weapon_information:WeaponInformation = StaticData.get_weapon_information(weapon)
 var need_more_money_to_upgrade = false	# upgrade하기 위해서 돈이 더 필요한지?
+var upgrade_cost = 100000000 # 혹시라도 오류가 발생하면 구매하지 못하게 하려고 초기값을 크게
 
 func _ready():
 	update()
@@ -15,6 +16,7 @@ func change_weapon(w):
 	weapon_information = StaticData.get_weapon_information(weapon)
 	update()
 	
+# 비용을 계산하고 button, bar, text를 갱신한다
 func update():
 	var title_text
 	var value_text
@@ -35,16 +37,23 @@ func update():
 			title_text = "RANGE"
 			level = weapon_information.range_level
 			is_max_level = weapon_information.is_max_range_level()
-			
+	
+	# 비용을 계산한다
+	upgrade_cost = Table.get_upgrade_cost(level+1)		
+	
+	# text 표시
 	$Title.text = title_text
 	$Value.text = value_text
+	
+	# bar 갱신
 	update_bar(level)
+	
+	# button text 표시
 	if is_max_level:
 		$Button.disabled = true
 		$Button.text = "MAX"
 	else:
 		$Button.disabled = false
-		var upgrade_cost = Table.get_upgrade_cost(level+1)
 		$Button.text = str(upgrade_cost)
 		# 돈이 부족하면 text를 붉은색으로
 		if StaticData.total_money < upgrade_cost:
@@ -69,7 +78,6 @@ func update_bar(level):
 			bars[i].modulate.r = 0.2
 			bars[i].modulate.g = 0.2
 			bars[i].modulate.b = 0.2
-		
 
 # UP 버튼
 # 돈이 부족하면 shop으로 이동할지 물어본다.
@@ -86,6 +94,10 @@ func _on_Button_pressed():
 	var wi:WeaponInformation = StaticData.get_weapon_information(weapon)
 	if wi == null:
 		return
+	# 비용만큼 가진 돈에서 뺀다
+	StaticData.total_money -= upgrade_cost
+	
+	# level을 올린다
 	match upgrade_item:
 		UpgradeItem.power:
 			wi.upgrade_power_level()
@@ -93,6 +105,7 @@ func _on_Button_pressed():
 			wi.upgrade_range_level()
 		UpgradeItem.interval:
 			wi.upgrade_interval_level()
+	# text, button, 비용을 갱신한다
 	update()
 
 func on_GoToShopButton_pressed():

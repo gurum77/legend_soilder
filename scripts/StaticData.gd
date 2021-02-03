@@ -61,6 +61,19 @@ func reset_game():
 	requirement_score_for_stage = 10000
 	current_weapon_index = 0
 
+# stage_informations game data save용 dic을 리턴
+func get_save_dic_stage_informations()->Dictionary:
+	var save_dic:Dictionary
+	for si_key in stage_informations.keys():
+		save_dic[si_key] = stage_informations[si_key].get_save_dic()
+	return save_dic
+	
+func get_save_dic_weapon_informations()->Dictionary:
+	var save_dic:Dictionary
+	for wi_key in weapon_informations.keys():
+		save_dic[wi_key] = weapon_informations[wi_key].get_save_dic()
+	return save_dic
+	
 func save_game():
 	var save_dic={
 		"game_state" : game_state,
@@ -70,8 +83,9 @@ func save_game():
 		"requirement_score_for_stage" : requirement_score_for_stage,
 		"current_weapon_index" : current_weapon_index,
 		"total_money" : total_money,
-		"current_stage_money" : current_stage_money
-		#"stage_informations" : stage_informations
+		"current_stage_money" : current_stage_money,
+		"stage_informations" : get_save_dic_stage_informations(),
+		"weapon_informations" : get_save_dic_weapon_informations()
 	}
 	var save_file = File.new()
 	save_file.open("user://legend_soldier.save", File.WRITE)
@@ -79,12 +93,12 @@ func save_game():
 	save_file.close()
 	
 func load_game():
-	var save_file = File.new()
-	if not save_file.file_exists("user://legend_soldier.save"):
+	var laod_file = File.new()
+	if not laod_file.file_exists("user://legend_soldier.save"):
 		return
-	save_file.open("user://legend_soldier.save", File.READ)
-	if save_file.get_position() < save_file.get_len():
-		var dic = parse_json(save_file.get_line())
+	laod_file.open("user://legend_soldier.save", File.READ)
+	if laod_file.get_position() < laod_file.get_len():
+		var dic = parse_json(laod_file.get_line())
 		game_state = get_gamedata(dic, "game_state", game_state)
 		current_stage = get_gamedata(dic, "current_stage", current_stage)
 		current_stage_name = get_gamedata(dic, "current_stage_nme", current_stage_name)
@@ -93,10 +107,39 @@ func load_game():
 		current_weapon_index = get_gamedata(dic, "current_weapon_index", current_weapon_index)
 		total_money = get_gamedata(dic, "total_money", total_money)
 		current_stage_money = get_gamedata(dic, "current_stage_money", current_stage_money)
-		#stage_informations = get_gamedata(dic, "stage_informations", stage_informations)
-	save_file.close()
+		load_gamedata_stage_informations(dic)
+		load_gamedata_weapon_informations(dic)
+	laod_file.close()
+	total_money = 100000
+
+# weapon_informations game data를 불러온다
+func load_gamedata_weapon_informations(var dic:Dictionary):
+	var dic_weapon_informations:Dictionary = dic["weapon_informations"]
+	if dic_weapon_informations == null:
+		return
 	
+	for wi_key in dic_weapon_informations.keys():
+		# 있는 것만 불러온다.(없는건 게임에서 지원하지 않는 stage이므로 제거대상)
+		var wi = weapon_informations[wi_key]
+		if wi == null:
+			continue
+		wi.load_gamedata(dic_weapon_informations[wi_key])
+		
+# stage_informations game data를 불러온다
+func load_gamedata_stage_informations(var dic:Dictionary):
+	var dic_stage_informations:Dictionary = dic["stage_informations"]
+	if dic_stage_informations == null:
+		return
 	
+	for si_key in dic_stage_informations.keys():
+		# 있는 것만 불러온다.(없는건 게임에서 지원하지 않는 stage이므로 제거대상)
+		var si = stage_informations[si_key]
+		if si == null:
+			continue
+		si.load_gamedata(dic_stage_informations[si_key])
+
+
+# dic에서 gamedata를 가져옴
 func get_gamedata(var dic:Dictionary, var key, var default_value):
 	if !dic.has(key):
 		return default_value
