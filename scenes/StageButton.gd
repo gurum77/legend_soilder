@@ -8,18 +8,13 @@ func _ready():
 	var si = StaticData.get_stage_information(stage_name)
 	if si == null:
 		return
-	var level_images = $HBoxContainer.get_children()
-	var level = 1
-	for li in level_images:
-		if si.current_step > level:
-			li.is_cleared = true
-		else:
-			li.is_cleared = false
-		li.update()
-		level += 1
-		
-		
-		
+	
+	var step_node = load("res://scenes/StepByStageImage.tscn")
+	for step in si.max_step:
+		var ins = step_node.instance()
+		ins.is_cleared = si.current_step > step + 1
+		ins.update()
+		$HBoxContainer.add_child(ins)
 	
 
 func _on_Button_BattleField_Focus_pressed():

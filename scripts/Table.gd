@@ -149,7 +149,8 @@ func get_weapon_bullet_distance(weapon) -> int:
 			return 400
 	return 100
 		
-# stage clear에 필요한 점수 ㄹ ㅣ턴
+# stage clear에 필요한 점수 리턴
+# stage 의 level과 step으로 계산해야 함
 func get_stage_clear_score(stage)->int:
 	var score = stage1_clear_store
 	for i in range(stage-1):

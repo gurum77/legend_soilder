@@ -91,6 +91,12 @@ func _on_Map_gui_input(event):
 func _on_TextureButton_pressed():
 	get_tree().change_scene("res://scenes/Home.tscn")
 
-
+# 게임 시작
+# go 버튼 클릭
 func _on_StartButton_pressed():
+	# current_step이 max_step보다 크면 안됨
+	var si = StaticData.get_current_stage_information()
+	if si != null:
+		si.current_step = min(si.current_step, si.max_step)
+		
 	get_tree().change_scene("res://scenes/World.tscn")

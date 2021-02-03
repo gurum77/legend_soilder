@@ -60,7 +60,6 @@ __meta__ = {
 }
 
 [node name="Map" type="TextureRect" parent="MapScrollContainer"]
-modulate = Color( 1, 1, 1, 0.784314 )
 margin_right = 1500.0
 margin_bottom = 969.0
 rect_min_size = Vector2( 1500, 969 )
@@ -83,9 +82,10 @@ antialiased = true
 
 [node name="Player" parent="MapScrollContainer/Map" instance=ExtResource( 5 )]
 position = Vector2( 396.85, 253.984 )
+z_index = 1
 
 [node name="LegAnimatedSprite" parent="MapScrollContainer/Map/Player/Body/AnimatedSprites" index="0"]
-frame = 4
+frame = 0
 
 [node name="Camera2D" parent="MapScrollContainer/Map/Player" index="2"]
 current = false
