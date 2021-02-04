@@ -33,6 +33,9 @@ var power_RPG = 2000
 
 # 무기별 interval
 func get_weapon_interval_by_level(weapon):
+	if weapon == null:
+		return 100
+		
 	match weapon:
 		Define.Weapon.Pistol:
 			return get_weapon_interval(interval_Pistol, StaticData.get_weapon_information(Define.Weapon.Pistol).interval_level)

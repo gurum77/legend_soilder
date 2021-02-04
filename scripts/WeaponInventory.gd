@@ -5,6 +5,10 @@ var initialized = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# 장착되지 않은 inventory가 선택되어 있다면 첫번째로 변경
+	var iv = StaticData.get_inventory_item(StaticData.current_weapon_index)
+	if iv == null || iv.weapon == Define.Weapon.None:
+		StaticData.current_weapon_index = 0
 	update()
 	
 func _process(delta):
