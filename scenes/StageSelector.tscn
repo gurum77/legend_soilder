@@ -85,7 +85,7 @@ position = Vector2( 396.85, 253.984 )
 z_index = 1
 
 [node name="LegAnimatedSprite" parent="MapScrollContainer/Map/Player/Body/AnimatedSprites" index="0"]
-frame = 0
+frame = 1
 
 [node name="Camera2D" parent="MapScrollContainer/Map/Player" index="2"]
 current = false
