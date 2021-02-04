@@ -20,12 +20,16 @@ func _ready():
 		connect("added", minimap, "on_Object_added")
 		connect("removed", minimap, "on_Object_removed")
 		emit_signal("added", self)
-	
-		
-	$HPBar.init(HP)
+	set_HP(HP)
 	add_to_group("enemy")
 	
-
+# hp를 설정한다.
+func set_HP(hp):
+	HP = hp
+	score = HP
+	max_HP = HP
+	$HPBar.init(HP)
+	
 # 이 적을 죽이면 받는 score
 func get_score()->int:
 	return score

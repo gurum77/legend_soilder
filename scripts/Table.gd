@@ -150,10 +150,11 @@ func get_weapon_bullet_distance(weapon) -> int:
 	return 100
 		
 # stage clear에 필요한 점수 리턴
-# stage 의 level과 step으로 계산해야 함
-func get_stage_clear_score(stage)->int:
+# stage 의 level과 step으로 계산한다.
+func get_stage_clear_score(si:StageInformation)->int:
+	var pos = get_stage_position(si)
 	var score = stage1_clear_store
-	for i in range(stage-1):
+	for i in range(pos):
 		score = score * stage_clear_score_factor
 	return score
 	
@@ -165,9 +166,15 @@ func get_upgrade_cost(to_level)->int:
 	return cost as int
 	
 
+# stage의 난이도 위치 
+# 이걸로 적HP와 clear score가 결정된다.
+func get_stage_position(si:StageInformation)->int:
+	return (si.level * 1.5) + si.current_step
+	
 # stage별 적 hp를 리턴
-func get_enemy_hp(hp, stage)->int:
-	for i in range(stage-1):
+func get_enemy_hp(hp, si:StageInformation)->int:
+	var pos = get_stage_position(si)
+	for i in range(pos):
 		hp = hp * enemy_hp_factor
 	return hp as int
 

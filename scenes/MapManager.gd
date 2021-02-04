@@ -15,12 +15,4 @@ func _ready():
 	# stage path에서 읽어온다
 	var ins = load(StaticData.get_current_stage_path()).instance()
 	add_child(ins)
-	# 나눠서 남는거의 -1을 한다.
-	# -1이 되면 마지막 인덱스로 사용
-#	var idx = StaticData.current_stage / maps.size() as int
-#	idx = StaticData.current_stage - (maps.size() * idx)
-#	if idx < 0:
-#		idx = maps.size() - 1
-#	var ins = load(maps[idx]).instance()
-#	add_child(ins)
 		

@@ -1,17 +1,13 @@
 extends Node2D
 
-export var specify_stage = -1
-
 var pausePanel = preload("res://scenes/Pause.tscn")
 
 func _ready():
-	if specify_stage > -1:
-		StaticData.current_stage = specify_stage
-		
+
 	# 게임을 시작하면 현재  stage에 대한 데이타를 초기화 한다
 	StaticData.current_score_for_stage = 0
 	StaticData.current_stage_money = 0
-	StaticData.requirement_score_for_stage = Table.get_stage_clear_score(StaticData.current_stage)
+	StaticData.requirement_score_for_stage = Table.get_stage_clear_score(StaticData.get_current_stage_information())
 	StaticData.spawned_score_for_stage = 0
 	$CanvasLayer/StageProgress.update()
 	
@@ -22,10 +18,13 @@ func _ready():
 	update_debug_information()
 	
 func update_debug_information():
-	var line1 = "Stage : " + str(StaticData.current_stage)
-	var line2 = "\nClear score : " + str(StaticData.requirement_score_for_stage as int)
-	var line3 = "\nSpawned score : " + str(StaticData.spawned_score_for_stage as int)
-	$CanvasLayer/DebugLabel.text = line1 + line2 + line3
+	var si = StaticData.get_current_stage_information()
+	var line1 = "Stage name : " + StaticData.current_stage_name
+	var line2 = "\nStage level - step : " + str(si.level) + "-" + str(si.current_step)
+	var line3 = "\nStage position : " + str(Table.get_stage_position(si))
+	var line4 = "\nClear score : " + str(StaticData.requirement_score_for_stage as int)
+	var line5 = "\nSpawned score : " + str(StaticData.spawned_score_for_stage as int)
+	$CanvasLayer/DebugLabel.text = line1 + line2 + line3 + line4 + line5
 	
 
 # pause

@@ -3,9 +3,7 @@ var initialized:bool = false
 
 # state clear에 필요한 내용들
 var game_state = Define.GameState.ready
-var current_stage = 1
 var current_stage_name = "Focus"
-var current_level_on_stage = 1	# 현재 stage에서 진행중인 level(1~5)
 var current_score_for_stage = 0
 var requirement_score_for_stage = 10000
 var spawned_score_for_stage = 0	# 현재 spawn되어 있는 전체 점수(필요한 만큼만 스폰되어야 한다)
@@ -56,7 +54,6 @@ var has_revival_chance = true
 # game data를을 reset한다
 func reset_game():
 	game_state = Define.GameState.ready
-	current_stage = 1
 	current_score_for_stage = 0
 	requirement_score_for_stage = 10000
 	current_weapon_index = 0
@@ -77,7 +74,6 @@ func get_save_dic_weapon_informations()->Dictionary:
 func save_game():
 	var save_dic={
 		"game_state" : game_state,
-		"current_stage" : current_stage,
 		"current_stage_nme" : current_stage_name,
 		"current_score_for_stage" : current_score_for_stage,
 		"requirement_score_for_stage" : requirement_score_for_stage,
@@ -100,7 +96,6 @@ func load_game():
 	if laod_file.get_position() < laod_file.get_len():
 		var dic = parse_json(laod_file.get_line())
 		game_state = get_gamedata(dic, "game_state", game_state)
-		current_stage = get_gamedata(dic, "current_stage", current_stage)
 		current_stage_name = get_gamedata(dic, "current_stage_nme", current_stage_name)
 		current_score_for_stage = get_gamedata(dic, "current_score_for_stage", current_score_for_stage)
 		requirement_score_for_stage = get_gamedata(dic, "requirement_score_for_stage", requirement_score_for_stage)
@@ -165,12 +160,18 @@ func init():
 	# 첫번째 stage를 current로 설정
 	current_stage_name = stage_informations.keys()[0]
 	
+	# stage level을 순서대로 결정한다.
+	var level = 1
+	for si_key in stage_informations.keys():
+		stage_informations[si_key].level = level
+		level += 1
+	
 	# pistol은 항상 enable
 	get_weapon_information(Define.Weapon.Pistol).enable = true
 	
-	# 이건 테스트용이다
-	inventory_item2.weapon = Define.Weapon.RPG
-	inventory_item3.weapon = Define.Weapon.SMG
+#	# 이건 테스트용이다
+#	inventory_item2.weapon = Define.Weapon.RPG
+#	inventory_item3.weapon = Define.Weapon.SMG
 	
 
 func get_current_inventory_item() -> WeaponInventoryItem:
