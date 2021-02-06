@@ -10,7 +10,7 @@
 [ext_resource path="res://scripts/World.gd" type="Script" id=8]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/MiniMap.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Joystick/joystick_circle.png" type="Texture" id=11]
+[ext_resource path="res://assets/ui/circle_yellow_button_64.png" type="Texture" id=11]
 [ext_resource path="res://scenes/StageProgress.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/ui/Run_icon.png" type="Texture" id=13]
 [ext_resource path="res://scenes/StartSign.tscn" type="PackedScene" id=14]
@@ -19,7 +19,6 @@
 
 [node name="World" type="Node2D"]
 script = ExtResource( 8 )
-specify_stage = 2
 
 [node name="MapManager" type="Node2D" parent="."]
 script = ExtResource( 3 )
@@ -91,12 +90,12 @@ __meta__ = {
 }
 
 [node name="DashButton" type="TextureButton" parent="CanvasLayer"]
-self_modulate = Color( 0.819608, 0.529412, 0.109804, 1 )
-margin_left = 449.825
-margin_top = 358.296
-margin_right = 577.825
-margin_bottom = 486.296
-rect_scale = Vector2( 0.3, 0.3 )
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 450.087
+margin_top = 341.575
+margin_right = 514.087
+margin_bottom = 405.575
+rect_scale = Vector2( 0.7, 0.7 )
 texture_normal = ExtResource( 11 )
 script = ExtResource( 16 )
 __meta__ = {
@@ -105,18 +104,36 @@ __meta__ = {
 }
 player = NodePath("../../Player")
 
+[node name="TextureProgress" type="TextureProgress" parent="CanvasLayer/DashButton"]
+margin_right = 64.0
+margin_bottom = 64.0
+value = 100.0
+texture_under = ExtResource( 11 )
+texture_progress = ExtResource( 11 )
+fill_mode = 4
+tint_under = Color( 0.270588, 0.270588, 0.270588, 1 )
+tint_progress = Color( 0.858824, 0.745098, 0.439216, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="CanvasLayer/DashButton"]
+
 [node name="Icon" type="TextureRect" parent="CanvasLayer/DashButton"]
-self_modulate = Color( 0.0117647, 0, 0, 0.345098 )
+self_modulate = Color( 0.054902, 0.054902, 0.054902, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 15.0
+margin_right = 16.0
+margin_bottom = 15.0
+rect_scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 13 )
 expand = true
 stretch_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Tween" type="Tween" parent="CanvasLayer/DashButton"]
 
 [node name="Player" parent="." instance=ExtResource( 9 )]
 position = Vector2( 183.964, 186.716 )
@@ -127,7 +144,7 @@ aim_joystick = NodePath("../../CanvasLayer/AimJoystick")
 
 [node name="LegAnimatedSprite" parent="Player/Body/AnimatedSprites" index="0"]
 position = Vector2( 0.28064, 0 )
-frame = 5
+frame = 0
 
 [node name="Money" parent="." instance=ExtResource( 15 )]
 position = Vector2( 149.913, 136.683 )

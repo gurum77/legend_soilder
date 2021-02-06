@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Pistol HUD_colored.png-63c8bb49d0e66dce66f9d0711725d84b.stex"
+path="res://.import/circle_yellow_button_64.png-5493a14e3ba285ed25eb97bf8c6cb287.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/Pistol HUD_colored.png"
-dest_files=[ "res://.import/Pistol HUD_colored.png-63c8bb49d0e66dce66f9d0711725d84b.stex" ]
+source_file="res://assets/ui/circle_yellow_button_64.png"
+dest_files=[ "res://.import/circle_yellow_button_64.png-5493a14e3ba285ed25eb97bf8c6cb287.stex" ]
 
 [params]
 

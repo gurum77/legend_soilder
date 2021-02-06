@@ -24,15 +24,21 @@ func update():
 
 
 func _on_WeaponButton1_pressed():
+	if StaticData.get_inventory_item(0).weapon == Define.Weapon.None:
+		return
 	StaticData.current_weapon_index = 0
 	update()
 
 
 func _on_WeaponButton2_pressed():
+	if StaticData.get_inventory_item(1).weapon == Define.Weapon.None:
+		return
 	StaticData.current_weapon_index = 1
 	update()
 
 
 func _on_WeaponButton3_pressed():
+	if StaticData.get_inventory_item(2).weapon == Define.Weapon.None:
+		return
 	StaticData.current_weapon_index = 2
 	update()
