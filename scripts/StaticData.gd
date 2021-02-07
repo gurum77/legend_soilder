@@ -55,6 +55,11 @@ func reset_game():
 	current_score_for_stage = 0
 	requirement_score_for_stage = 10000
 	current_weapon_index = 0
+	for wi_key in weapon_informations.keys():
+		weapon_informations[wi_key].power_level = 1
+		weapon_informations[wi_key].range_level = 1
+		weapon_informations[wi_key].interval_level = 1
+		
 
 # stage_informations game data save용 dic을 리턴
 func get_save_dic_stage_informations()->Dictionary:

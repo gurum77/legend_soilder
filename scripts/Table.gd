@@ -35,7 +35,6 @@ var power_RPG = 2000
 func get_weapon_interval_by_level(weapon):
 	if weapon == null:
 		return 100
-
 	var weapon_information = StaticData.get_weapon_information(weapon)
 	var interval_level = weapon_information.interval_level
 	var interval_basic = 1
@@ -50,6 +49,7 @@ func get_weapon_interval_by_level(weapon):
 	elif weapon == Define.Weapon.RPG:
 		interval_basic = interval_RPG
 	return get_weapon_interval(interval_basic, interval_level)	
+	
 # power level이 반영된 무기의 공격력 리턴
 func get_weapon_power_by_level(weapon):
 	if weapon == Define.Weapon.Pistol:

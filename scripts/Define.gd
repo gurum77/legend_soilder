@@ -2,6 +2,8 @@ extends Node
 enum Weapon{None, Pistol, SMG, RPG, FlameThrower, MG}
 enum GameState{ready, play, over}
 
+
+
 # 최대 upgrade 레벨
 var max_power_level = 20
 var max_range_level = 20

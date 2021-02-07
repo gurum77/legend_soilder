@@ -7,7 +7,7 @@ export (Define.Weapon) var weapon = Define.Weapon.Pistol
 onready var weapon_information:WeaponInformation = StaticData.get_weapon_information(weapon)
 var need_more_money_to_upgrade = false	# upgrade하기 위해서 돈이 더 필요한지?
 var upgrade_cost = 100000000 # 혹시라도 오류가 발생하면 구매하지 못하게 하려고 초기값을 크게
-
+var is_max_level = false
 func _ready():
 	update()
 	
@@ -21,7 +21,6 @@ func update():
 	var title_text
 	var value_text
 	var level
-	var is_max_level = false
 	match upgrade_item:
 		UpgradeItem.power:
 			title_text = "POWER"
@@ -47,8 +46,14 @@ func update():
 	
 	# bar 갱신
 	update_bar(level)
-	
+
 	# button text 표시
+	update_button()
+		
+func _process(delta):
+	update_button()
+	
+func update_button():
 	if is_max_level:
 		$Button.disabled = true
 		$Button.text = "MAX"
@@ -56,16 +61,19 @@ func update():
 		$Button.disabled = false
 		$Button.text = str(upgrade_cost)
 		# 돈이 부족하면 text를 붉은색으로
-		if StaticData.total_money < upgrade_cost:
-			need_more_money_to_upgrade = true
+		if is_need_more_money_to_upgrade():
 			$Button.set("custom_colors/font_color", Color(1, 0, 0, 1))
 			$Button.set("custom_colors/font_color_hover", Color(1, 0, 0, 1))
 		else:
-			need_more_money_to_upgrade = false
 			$Button.set("custom_colors/font_color", Color(1, 1, 1, 1))
 			$Button.set("custom_colors/font_color_hover", Color(1, 1, 1, 1))
+			
+func is_need_more_money_to_upgrade()->bool:
+	if StaticData.total_money < upgrade_cost:
+		return true
+	else:
+		return false
 		
-
 func update_bar(level):
 	var bars = $HBoxContainer.get_children()
 	for i in range(bars.size()):
@@ -82,7 +90,7 @@ func update_bar(level):
 # UP 버튼
 # 돈이 부족하면 shop으로 이동할지 물어본다.
 func _on_Button_pressed():
-	if need_more_money_to_upgrade:
+	if is_need_more_money_to_upgrade():
 		var dlg = AcceptDialog.new()
 		dlg.dialog_text = "You need more money.\nGo to shop?"
 		dlg.add_cancel("Cancel")

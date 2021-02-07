@@ -10,6 +10,15 @@ func _ready():
 	update()
 	$NameLabel.text = Define.get_weapon_name(weapon)
 
+func _process(delta):
+	update()
+	
+func is_need_more_money()->bool:
+	if StaticData.total_money < price:
+		return true
+	else:
+		return false
+		
 func update():
 	$WeaponButton/TextureRect.texture = Define.get_weapon_texture(weapon)
 	# enable이 아니면 검게
@@ -22,14 +31,14 @@ func update():
 		$WeaponButton/EquipmentButton.visible = wi.enable
 		$WeaponButton/BuyButton.visible = !wi.enable
 		# 돈이 부족하면 buy button의 글을 빨간색으로 한다
-		if StaticData.total_money < price:
+		if is_need_more_money():
 			$WeaponButton/BuyButton.set("custom_colors/font_color", Color(1, 0, 0, 1))
 			$WeaponButton/BuyButton.set("custom_colors/font_color_hover", Color(1, 0, 0, 1))
 		else:
 			$WeaponButton/BuyButton.set("custom_colors/font_color", Color(1, 1, 1, 1))
 			$WeaponButton/BuyButton.set("custom_colors/font_color_hover", Color(1, 1, 1, 1))
 	$WeaponButton/BuyButton.text = str(price)
-			
+
 			
 # 무기를 클릭하면 상세창이 있는 경우에 상세창에 정보를 뿌린다.
 func _on_WeaponButton_pressed():
