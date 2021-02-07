@@ -23,7 +23,7 @@ func get_velocity()->Vector2:
 func _ready():
 	# layer / mask
 	collision_layer = 0b1
-	collision_mask = 0b11110
+	collision_mask = 0b11100
 	
 	$AudioStreamPlayer2D.play()
 	target_position = self.global_position
@@ -111,7 +111,8 @@ func fire():
 	# 마지막 발사 이후로 지난 시간이 인터벌 보다 작으면 통과
 	# 수동 발사의 간격을 조절하기 위함(자동 발사는 timer로 하기 때문에 이 조건문이  필요없음)
 	# 단, 수동발사는 시간 간격을 80%로 혜택을 준다.
-	if time_from_last_fire < get_fire_interval() * 0.8:
+	var interval = get_fire_interval()
+	if time_from_last_fire < interval * 0.8:
 		return
 	time_from_last_fire = 0
 	

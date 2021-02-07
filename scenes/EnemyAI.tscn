@@ -29,7 +29,7 @@ curve = SubResource( 1 )
 script = ExtResource( 4 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="EnemyAI_Move/PatrolPath"]
-position = Vector2( 90.5676, 113.894 )
+position = Vector2( 90.5677, 113.894 )
 rotation = 2.90112
 offset = 282.513
 

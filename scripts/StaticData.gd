@@ -39,9 +39,7 @@ var weapon_informations:Dictionary = {
 
 
 # 인벤토리 정보(최대 3개)
-var inventory_item1 = null
-var inventory_item2 = null
-var inventory_item3 = null
+var inventory_items = [WeaponInventoryItem.new(), WeaponInventoryItem.new(), WeaponInventoryItem.new()]
 
 
 # 현재 무기
@@ -71,6 +69,12 @@ func get_save_dic_weapon_informations()->Dictionary:
 		save_dic[wi_key] = weapon_informations[wi_key].get_save_dic()
 	return save_dic
 	
+func get_save_dic_inventory_items()->Dictionary:
+	var save_dic:Dictionary
+	for i in inventory_items.size():
+		save_dic["inventory_item_"+str(i)] = inventory_items[i].get_save_dic()
+	return save_dic
+	
 func save_game():
 	var save_dic={
 		"game_state" : game_state,
@@ -81,7 +85,8 @@ func save_game():
 		"total_money" : total_money,
 		"current_stage_money" : current_stage_money,
 		"stage_informations" : get_save_dic_stage_informations(),
-		"weapon_informations" : get_save_dic_weapon_informations()
+		"weapon_informations" : get_save_dic_weapon_informations(),
+		"inventory_items" : get_save_dic_inventory_items()
 	}
 	var save_file = File.new()
 	save_file.open("user://legend_soldier.save", File.WRITE)
@@ -104,11 +109,27 @@ func load_game():
 		current_stage_money = get_gamedata(dic, "current_stage_money", current_stage_money)
 		load_gamedata_stage_informations(dic)
 		load_gamedata_weapon_informations(dic)
+		load_gamedata_inventory_items(dic)
 	laod_file.close()
 	total_money = 100000
 
+# inventory_items game data를 불러온다
+func load_gamedata_inventory_items(var dic:Dictionary):
+	if !dic.has("inventory_items"):
+		return
+	var dic_inventory_items:Dictionary = dic["inventory_items"]
+	if dic_inventory_items == null:
+		return
+	
+	var index = 0
+	for ii_key in dic_inventory_items.keys():
+		inventory_items[index].load_gamedata(dic_inventory_items[ii_key])
+		index+=1
+		
 # weapon_informations game data를 불러온다
 func load_gamedata_weapon_informations(var dic:Dictionary):
+	if !dic.has("weapon_informations"):
+		return
 	var dic_weapon_informations:Dictionary = dic["weapon_informations"]
 	if dic_weapon_informations == null:
 		return
@@ -122,6 +143,8 @@ func load_gamedata_weapon_informations(var dic:Dictionary):
 		
 # stage_informations game data를 불러온다
 func load_gamedata_stage_informations(var dic:Dictionary):
+	if !dic.has("stage_informations"):
+		return
 	var dic_stage_informations:Dictionary = dic["stage_informations"]
 	if dic_stage_informations == null:
 		return
@@ -149,13 +172,10 @@ func init():
 	if initialized == true:
 		return
 	
-	inventory_item1 = WeaponInventoryItem.new()
-	inventory_item2 = WeaponInventoryItem.new()
-	inventory_item3 = WeaponInventoryItem.new()
 	initialized = true
 	
 	# 첫번째 인벤토리는 기본으로 권총을 넣어준다
-	inventory_item1.weapon = Define.Weapon.Pistol
+	inventory_items[0].weapon = Define.Weapon.Pistol
 	
 	# 첫번째 stage를 current로 설정
 	current_stage_name = stage_informations.keys()[0]
@@ -180,14 +200,9 @@ func get_current_inventory_item() -> WeaponInventoryItem:
 # 
 func get_inventory_item(index) -> WeaponInventoryItem:
 	init()
-	if index == 0:
-		return inventory_item1
-	elif index == 1:
-		return inventory_item2
-	elif index == 2:
-		return inventory_item3
-	else:
+	if inventory_items.size() <= index:
 		return null
+	return inventory_items[index]
 
 func get_current_stage_information()->StageInformation:
 	return get_stage_information(current_stage_name)

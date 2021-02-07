@@ -35,121 +35,116 @@ var power_RPG = 2000
 func get_weapon_interval_by_level(weapon):
 	if weapon == null:
 		return 100
-		
-	match weapon:
-		Define.Weapon.Pistol:
-			return get_weapon_interval(interval_Pistol, StaticData.get_weapon_information(Define.Weapon.Pistol).interval_level)
-		Define.Weapon.SMG:
-			return get_weapon_interval(interval_SMG, StaticData.get_weapon_information(Define.Weapon.SMG).interval_level)
-		Define.Weapon.MG:
-			return get_weapon_interval(interval_MG, StaticData.get_weapon_information(Define.Weapon.MG).interval_level)
-		Define.Weapon.FlameThrower:
-			return get_weapon_interval(interval_FlameThrower, StaticData.get_weapon_information(Define.Weapon.FlameThrower).interval_level)
-		Define.Weapon.RPG:
-			return get_weapon_interval(interval_RPG, StaticData.get_weapon_information(Define.Weapon.RPG).interval_level)
-			
+
+	var weapon_information = StaticData.get_weapon_information(weapon)
+	var interval_level = weapon_information.interval_level
+	var interval_basic = 1
+	if weapon == Define.Weapon.Pistol:
+		interval_basic = interval_Pistol
+	elif weapon == Define.Weapon.SMG:
+		interval_basic = interval_SMG
+	elif weapon == Define.Weapon.MG:
+		interval_basic = interval_MG
+	elif weapon == Define.Weapon.FlameThrower:
+		interval_basic = interval_FlameThrower
+	elif weapon == Define.Weapon.RPG:
+		interval_basic = interval_RPG
+	return get_weapon_interval(interval_basic, interval_level)	
 # power level이 반영된 무기의 공격력 리턴
 func get_weapon_power_by_level(weapon):
-	match weapon:
-		Define.Weapon.Pistol:
-			return get_weapon_power(power_Pistol, StaticData.get_weapon_information(Define.Weapon.Pistol).power_level)
-		Define.Weapon.SMG:
-			return get_weapon_power(power_SMG, StaticData.get_weapon_information(Define.Weapon.SMG).power_level)
-		Define.Weapon.MG:
-			return get_weapon_power(power_MG, StaticData.get_weapon_information(Define.Weapon.MG).power_level)
-		Define.Weapon.FlameThrower:
-			return get_weapon_power(power_FlameThrower, StaticData.get_weapon_information(Define.Weapon.FlameThrower).power_level)
-		Define.Weapon.RPG:
-			return get_weapon_power(power_RPG, StaticData.get_weapon_information(Define.Weapon.RPG).power_level)
+	if weapon == Define.Weapon.Pistol:
+		return get_weapon_power(power_Pistol, StaticData.get_weapon_information(Define.Weapon.Pistol).power_level)
+	elif weapon == Define.Weapon.SMG:
+		return get_weapon_power(power_SMG, StaticData.get_weapon_information(Define.Weapon.SMG).power_level)
+	elif weapon == Define.Weapon.MG:
+		return get_weapon_power(power_MG, StaticData.get_weapon_information(Define.Weapon.MG).power_level)
+	elif weapon == Define.Weapon.FlameThrower:
+		return get_weapon_power(power_FlameThrower, StaticData.get_weapon_information(Define.Weapon.FlameThrower).power_level)
+	elif weapon == Define.Weapon.RPG:
+		return get_weapon_power(power_RPG, StaticData.get_weapon_information(Define.Weapon.RPG).power_level)
 	
 # 공격다음 폭파가 있는지?
 func get_weapon_bullet_next_bomb(weapon) -> bool:
-	match weapon:
-		Define.Weapon.Pistol:
-			return false
-		Define.Weapon.SMG:
-			return false
-		Define.Weapon.MG:
-			return false
-		Define.Weapon.FlameThrower:
-			return false
-		Define.Weapon.RPG:
-			return true
+	if weapon == Define.Weapon.Pistol:
+		return false
+	elif weapon == Define.Weapon.SMG:
+		return false
+	elif weapon == Define.Weapon.MG:
+		return false
+	elif weapon == Define.Weapon.FlameThrower:
+		return false
+	elif weapon == Define.Weapon.RPG:
+		return true
 	return false
 	
 # 관통공격인지?
 func get_weapon_bullet_penetrate(weapon) -> bool:
-	match weapon:
-		Define.Weapon.Pistol:
-			return false
-		Define.Weapon.SMG:
-			return false
-		Define.Weapon.MG:
-			return false
-		Define.Weapon.FlameThrower:
-			return true
-		Define.Weapon.RPG:
-			return false
+	if weapon == Define.Weapon.Pistol:
+		return false
+	elif weapon == Define.Weapon.SMG:
+		return false
+	elif weapon == Define.Weapon.MG:
+		return false
+	elif weapon == Define.Weapon.FlameThrower:
+		return true
+	elif weapon == Define.Weapon.RPG:
+		return false
 	return false	
 
 # 마지막에 도달했을때 스케일
 func get_weapon_bullet_last_scale(weapon) -> float:
-	match weapon:
-		Define.Weapon.Pistol:
-			return 1.0
-		Define.Weapon.SMG:
-			return 1.0
-		Define.Weapon.MG:
-			return 1.0
-		Define.Weapon.FlameThrower:
-			return 1.7
-		Define.Weapon.RPG:
-			return 1.0
+	if weapon == Define.Weapon.Pistol:
+		return 1.0
+	elif weapon == Define.Weapon.SMG:
+		return 1.0
+	elif weapon == Define.Weapon.MG:
+		return 1.0
+	elif weapon == Define.Weapon.FlameThrower:
+		return 1.7
+	elif weapon == Define.Weapon.RPG:
+		return 1.0
 	return 1.0
 	
 # 무기별 총알 속도
 func get_weapon_bullet_speed(var weapon) -> int:
-	match weapon:
-		Define.Weapon.FlameThrower:
-			return 200
-		Define.Weapon.MG:
-			return 350
-		Define.Weapon.Pistol:
-			return 350
-		Define.Weapon.RPG:
-			return 300
-		Define.Weapon.SMG:
-			return 350
+	if weapon == Define.Weapon.FlameThrower:
+		return 200
+	elif weapon == Define.Weapon.MG:
+		return 350
+	elif weapon == Define.Weapon.Pistol:
+		return 350
+	elif weapon == Define.Weapon.RPG:
+		return 300
+	elif weapon == Define.Weapon.SMG:
+		return 350
 	return 300
 		
 # 무기 가격
 func get_weapon_price(weapon)->int:
-	match weapon:
-		Define.Weapon.Pistol:
-			return 0
-		Define.Weapon.SMG:
-			return 3000
-		Define.Weapon.MG:
-			return 7000
-		Define.Weapon.FlameThrower:
-			return 15000
-		Define.Weapon.RPG:
-			return 35000
+	if weapon == Define.Weapon.Pistol:
+		return 0
+	elif weapon == Define.Weapon.SMG:
+		return 3000
+	elif weapon == Define.Weapon.MG:
+		return 7000
+	elif weapon == Define.Weapon.FlameThrower:
+		return 15000
+	elif weapon == Define.Weapon.RPG:
+		return 35000
 	return 100000
 	
 # 무기 사거리
 func get_weapon_bullet_distance(weapon) -> int:
-	match weapon:
-		Define.Weapon.Pistol:
-			return 250
-		Define.Weapon.SMG:
-			return 300
-		Define.Weapon.MG:
-			return 300
-		Define.Weapon.FlameThrower:
-			return 200
-		Define.Weapon.RPG:
-			return 400
+	if weapon == Define.Weapon.Pistol:
+		return 250
+	elif weapon == Define.Weapon.SMG:
+		return 300
+	elif weapon == Define.Weapon.MG:
+		return 300
+	elif weapon == Define.Weapon.FlameThrower:
+		return 200
+	elif weapon == Define.Weapon.RPG:
+		return 400
 	return 100
 		
 # stage clear에 필요한 점수 리턴

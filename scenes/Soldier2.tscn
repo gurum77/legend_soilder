@@ -42,14 +42,14 @@ animations = [ {
 "name": "idle",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 17 ), ExtResource( 6 ), ExtResource( 19 ), ExtResource( 3 ), ExtResource( 18 ) ],
-"loop": true,
-"name": "fire",
-"speed": 10.0
-}, {
 "frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 5 ), ExtResource( 20 ) ],
 "loop": false,
 "name": "die",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 6 ), ExtResource( 19 ), ExtResource( 3 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "fire",
 "speed": 10.0
 } ]
 
@@ -61,6 +61,7 @@ height = 4.63671
 script = ExtResource( 14 )
 
 [node name="Body" type="KinematicBody2D" parent="."]
+collision_mask = 2147483649
 script = ExtResource( 16 )
 weapon = 3
 
