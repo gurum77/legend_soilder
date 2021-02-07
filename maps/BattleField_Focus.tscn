@@ -343,19 +343,19 @@ position = Vector2( 400, 944 )
 position = Vector2( 233.62, 603.737 )
 
 [node name="Soldier" parent="Enemies/Spawner_Soldier" instance=ExtResource( 6 )]
-position = Vector2( 137.31, 146.041 )
+position = Vector2( -57.62, -331.737 )
 
 [node name="Spawner_Soldier12" parent="Enemies" instance=ExtResource( 7 )]
 position = Vector2( 233.62, 603.737 )
 
 [node name="Soldier" parent="Enemies/Spawner_Soldier12" instance=ExtResource( 6 )]
-position = Vector2( 147.628, 147.628 )
+position = Vector2( 166.38, -331.737 )
 
 [node name="Spawner_Soldier3" parent="Enemies" instance=ExtResource( 7 )]
 position = Vector2( 432, 112 )
 
 [node name="Soldier" parent="Enemies/Spawner_Soldier3" instance=ExtResource( 6 )]
-position = Vector2( -37.4872, 637.773 )
+position = Vector2( 192, 160 )
 
 [node name="Spawner_Soldier6" parent="Enemies" instance=ExtResource( 7 )]
 position = Vector2( 528, 240 )
@@ -382,4 +382,4 @@ position = Vector2( 265.62, 603.737 )
 requirement_step = 3
 
 [node name="Panzer" parent="Enemies/Spawner_Soldier5" instance=ExtResource( 9 )]
-position = Vector2( 252.112, 208.649 )
+position = Vector2( -57.62, -75.737 )

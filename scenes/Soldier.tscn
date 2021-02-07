@@ -55,6 +55,11 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 19 ), ExtResource( 18 ), ExtResource( 17 ) ],
 "loop": true,
 "name": "fire",
@@ -97,7 +102,7 @@ position = Vector2( 17, 3 )
 position = Vector2( 29, 3 )
 rotation = -1.5708
 frames = SubResource( 3 )
-animation = "fire"
+animation = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
 position = Vector2( -2.20486, 0.157492 )
@@ -109,7 +114,6 @@ margin_top = -18.0
 margin_bottom = -14.0
 
 [node name="EnemyAI" parent="." instance=ExtResource( 20 )]
-position = Vector2( -0.529739, 0 )
 
 [node name="ItemMaker" type="Node2D" parent="."]
 script = ExtResource( 21 )

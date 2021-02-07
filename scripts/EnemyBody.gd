@@ -21,7 +21,7 @@ onready var fire_position2 = get_node_or_null("AnimatedSprites/BodyPivot/FirePos
 onready var body_pivot = $AnimatedSprites/BodyPivot
 onready var fire_timer = $FireTimer
 onready var aim_timer = $AimTimer
-
+onready var enemy_ai = get_parent().get_node_or_null("EnemyAI")
 func _ready():
 	# layer/mask
 	collision_layer = 0b10
@@ -37,6 +37,10 @@ func _ready():
 	if not fire_animated_sprite == null:
 		fire_animated_sprite.connect("animation_finished", self, "_on_FireAnimatedSprite_animation_finished")
 
+	# 시작할땐 idle로 시작하도록 해야함
+	Util.play_animation(body_animated_sprite, "idle")
+	Util.play_animation(fire_animated_sprite, "idle")
+	
 	start_aim()
 	start_fire()
 
@@ -141,6 +145,10 @@ func stop_aim():
 func fire():
 	if StaticData.game_state != Define.GameState.play:
 		return
+	# enemy의 상태가 공격범위 상태가 아니라면 발사하지 않는다.
+	if enemy_ai != null && !enemy_ai.in_attack:
+		return
+	
 		
 	for i in range(bullet_nums):
 		var ins = Preloader.bullet.instance()
@@ -172,6 +180,12 @@ func aim():
 	var players = get_tree().get_nodes_in_group("player")
 	if players == null or players.size() == 0:
 		return
+	
+	# target이 없다면 진행방향으로 aim을 한다.
+	if enemy_ai == null || !enemy_ai.in_eye:
+		target_position_to_fire = global_position + velocity * 10
+		return
+		
 	target_position_to_fire = players[0].position
 
 

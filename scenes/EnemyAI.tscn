@@ -1,10 +1,20 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/EnemyAI.gd" type="Script" id=1]
 [ext_resource path="res://scripts/EnemyAI_Move.gd" type="Script" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://scenes/PatrolPath.gd" type="Script" id=4]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( -37.335, -3.44261, 37.335, 3.44261, 106.431, -90.5562, 9.21635, -78.1904, -9.21635, 78.1904, 174.964, 49.8735, 19.0273, 49.9467, -19.0273, -49.9467, -66.668, 94.316, 0, 0, 0, 0, -67.668, -36.184, -60.6678, -9.61995, 60.6678, 9.61995, -0.362553, -102.749, 0, 0, 0, 0, 98.8632, -91.8175 )
+}
 
 [node name="EnemyAI" type="Node2D"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="EnemyAI_Move" type="Node2D" parent="."]
 script = ExtResource( 2 )
@@ -13,7 +23,19 @@ script = ExtResource( 2 )
 wait_time = 0.5
 autostart = true
 
-[node name="EnemyAI_Attack" type="Node2D" parent="."]
+[node name="PatrolPath" type="Path2D" parent="EnemyAI_Move"]
+position = Vector2( -48.832, -8.81604 )
+curve = SubResource( 1 )
+script = ExtResource( 4 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="EnemyAI_Move/PatrolPath"]
+position = Vector2( 90.5676, 113.894 )
+rotation = 2.90112
+offset = 282.513
+
+[node name="icon" type="Sprite" parent="EnemyAI_Move/PatrolPath/PathFollow2D"]
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 3 )
 
 [node name="DrawTimer" type="Timer" parent="."]
 wait_time = 0.3
@@ -24,7 +46,6 @@ wait_time = 0.3
 autostart = true
 
 [node name="EyeLabel" type="Label" parent="."]
-visible = false
 margin_left = -36.4162
 margin_top = -84.9891
 margin_right = 29.5838
@@ -36,7 +57,6 @@ __meta__ = {
 }
 
 [node name="AttackLabel" type="Label" parent="."]
-visible = false
 margin_left = -35.9308
 margin_top = -51.0737
 margin_right = 36.0692
@@ -47,7 +67,6 @@ __meta__ = {
 }
 
 [node name="DangerousLabel" type="Label" parent="."]
-visible = false
 margin_left = -50.4354
 margin_top = -67.7088
 margin_right = 49.5646
@@ -58,7 +77,6 @@ __meta__ = {
 }
 
 [node name="MoveStateLabel" type="Label" parent="."]
-visible = false
 margin_left = -40.2596
 margin_top = -107.535
 margin_right = 40.7404

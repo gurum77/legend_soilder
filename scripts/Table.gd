@@ -172,7 +172,8 @@ func get_upgrade_cost(to_level)->int:
 # stage의 난이도 위치 
 # 이걸로 적HP와 clear score가 결정된다.
 func get_stage_position(si:StageInformation)->int:
-	return (si.level * 1.5) + si.current_step
+	#return (si.level * 1.5) + si.current_step
+	return (si.level * 3) + si.current_step
 	
 # stage별 적 hp를 리턴
 func get_enemy_hp(hp, si:StageInformation)->int:

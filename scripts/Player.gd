@@ -2,7 +2,7 @@ extends Node2D
 class_name Player
 signal dead
 
-var HP = 5000
+var HP = 30000
 onready var max_HP = HP
 
 func _ready():

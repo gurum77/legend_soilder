@@ -9,12 +9,13 @@ var enemy:Node2D
 
 export (Level) var level = Level.newbie
 export (float) var distance_in_eye = 250		# 시야 거리
-export (float) var distance_in_attack = 100	# 사정 거리
+export (float) var distance_in_attack = 100		# 사정 거리
 export (float) var distance_in_dangerous = 50	# 위험 감지 거리
 
 var in_eye = false
 var in_attack = false
 var in_dangerous = false
+var debugging = false
 
 func _ready():
 	var parent = get_parent()
@@ -25,11 +26,20 @@ func _ready():
 	if enemy == null:
 		return
 	
+	# 사정거리를 결정한다.
+	distance_in_attack = Table.get_weapon_bullet_distance(enemy.get_body().weapon)
+	distance_in_eye = distance_in_attack * 2
+	
+	# 디버깅중일때는 path를 표시하고 사거리 원을 표시한다
+	if !debugging:
+		$EnemyAI_Move/PatrolPath.visible = false
+		
 	#update()
 	
 
 func _draw():
-	return
+	if !debugging:
+		return
 	var eye_color:Color = Color.green
 	eye_color.a = 0.1
 	draw_circle(position, distance_in_eye, eye_color)
@@ -55,7 +65,7 @@ func _on_DrawTimer_timeout():
 	#update()
 
 
-# player 없음으로 기록
+# player 없음으로 설정한다.
 func set_no_player():
 	in_eye = false
 	in_attack = false

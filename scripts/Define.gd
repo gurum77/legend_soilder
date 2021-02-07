@@ -48,3 +48,16 @@ func get_weapon_name(var weapon) -> String:
 	else:
 		return "None"
 	
+func get_weapon_description(var weapon) -> String:
+	if weapon == Weapon.FlameThrower:
+		return "It is a terrifying weapon \nthat burns everything \naround it with a powerful flame. "
+	elif weapon == Weapon.MG:
+		return "Heavier than SMG, \nbut fires faster. \n\nFires a powerful bullet."
+	elif weapon == Weapon.Pistol:
+		return "A small gun that can be carried \nwith one hand. \n\nIt is convenient to carry \nand can be moved quickly."
+	elif weapon == Weapon.RPG:
+		return "It is heavy enough \nto carry on your shoulders, \nbut fires a powerful rocket cannon. \n\nInflicts damage to all nearby enemies."
+	elif weapon == Weapon.SMG:
+		return "It fires a pistol bullet quickly, \nand you have to hold it \nwith both hands."
+	else:
+		return "None"
