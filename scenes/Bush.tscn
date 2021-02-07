@@ -1,13 +1,18 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/tilesets/Trees Bushes/TDS04_0012_Bush-01.png" type="Texture" id=1]
+[ext_resource path="res://scripts/ObstacleBody.gd" type="Script" id=2]
+[ext_resource path="res://scripts/Obstacle.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
 
 [node name="Bush" type="Node2D"]
+script = ExtResource( 3 )
+HP = 30000000
 
 [node name="Body" type="StaticBody2D" parent="."]
+script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Body"]
 texture = ExtResource( 1 )

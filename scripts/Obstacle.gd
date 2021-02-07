@@ -3,17 +3,19 @@ extends Node2D
 class_name Obstacle
 
 export var HP = 3000
-
+onready var hp_bar = $HPBar
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$HPBar.init(HP)
+	if hp_bar != null:
+		hp_bar.init(HP)
 	
 # damage 를 준다.
 func damage(power):
 	HP = HP - power
 	on_take_damage()
-	$HPBar.set_hp(HP)
+	if hp_bar != null:
+		hp_bar.set_hp(HP)
 	if HP <= 0:
 		HP = 0
 		$Body.die()

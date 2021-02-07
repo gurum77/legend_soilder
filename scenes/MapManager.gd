@@ -15,4 +15,8 @@ func _ready():
 	# stage path에서 읽어온다
 	var ins = load(StaticData.get_current_stage_path()).instance()
 	add_child(ins)
+	
+	var path_finder = get_parent().get_node("AStarPathFinder")
+	if path_finder != null:
+		path_finder.init_tilemap(ins)
 		
