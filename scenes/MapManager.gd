@@ -16,7 +16,7 @@ func _ready():
 	var ins = load(StaticData.get_current_stage_path()).instance()
 	add_child(ins)
 	
-	var path_finder = get_parent().get_node("AStarPathFinder")
+	var path_finder = get_parent().get_node("PathFinder")
 	if path_finder != null:
 		path_finder.init_tilemap(ins)
 		

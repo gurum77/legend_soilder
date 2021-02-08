@@ -6,7 +6,7 @@ export var next_bomb_power = 2000
 
 enum {idle, explosion, die}
 var state = idle
-onready var animated_sprite = $AnimatedSprite
+onready var animated_sprite = get_node_or_null("AnimatedSprite")
 
 func _ready():
 	# layer / mask

@@ -10,6 +10,7 @@ export var speed = 50
 var weight = 0.3
 var target_position_to_fire:Vector2 # 발사 목표 지점
 var target_position_to_move:Vector2 # 이동 목표 지점
+var target_position_buffer_to_move:= PoolVector2Array() # 이동 지점에 도달하면 여기서 하나씩 꺼내서 이동 목표 지점을 설정한다
 var velocity:Vector2
 var dead = false # 죽었는지?
 
@@ -75,8 +76,19 @@ func move_to_target():
 	if dead:
 		return
 		
-	# 목표 지점 근처까지 오면 더이상 이동하지 않는다.
-	if target_position_to_move.distance_to(self.global_position) < 10:
+	# 목표 지점 근처까지 오면 buffer에서 target을 가져오거나 
+	# buffer가 없으면 더이상 이동 하지 않는다.
+	
+	var dist = target_position_to_move.distance_to(self.global_position)
+	if  dist < 0.5:
+		for i in target_position_buffer_to_move.size():
+			if target_position_buffer_to_move[i] == target_position_to_move:
+				target_position_buffer_to_move.remove(0)
+				i -= 1
+				continue
+			target_position_to_move = target_position_buffer_to_move[0]
+			target_position_buffer_to_move.remove(0)
+			break
 		return
 		
 	# velocity 결정

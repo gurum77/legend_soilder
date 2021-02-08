@@ -21,12 +21,14 @@
 [node name="World" type="Node2D"]
 script = ExtResource( 8 )
 
-[node name="AStarPathFinder" parent="." instance=ExtResource( 17 )]
-
 [node name="MapManager" type="Node2D" parent="."]
 script = ExtResource( 3 )
 
 [node name="BattleField_SideWater" parent="MapManager" instance=ExtResource( 2 )]
+
+[node name="PathFinder" parent="." instance=ExtResource( 17 )]
+
+[node name="Line2D" type="Line2D" parent="PathFinder"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -147,7 +149,7 @@ aim_joystick = NodePath("../../CanvasLayer/AimJoystick")
 
 [node name="LegAnimatedSprite" parent="Player/Body/AnimatedSprites" index="0"]
 position = Vector2( 0.28064, 0 )
-frame = 0
+frame = 2
 
 [node name="Money" parent="." instance=ExtResource( 15 )]
 position = Vector2( 149.913, 136.683 )

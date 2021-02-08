@@ -23,6 +23,12 @@ func _ready():
 	set_HP(HP)
 	add_to_group("enemy")
 	
+# path_finder를 설정한
+func set_path_finder(var path_finder):
+	var ai_move = get_node_or_null("EnemyAI/EnemyAI_Move")
+	if ai_move != null:
+		ai_move.path_finder = path_finder;
+	
 # hp를 설정한다.
 func set_HP(hp):
 	HP = hp

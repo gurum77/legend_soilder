@@ -46,7 +46,15 @@ func _on_Timer_timeout():
 	add_child(node)
 	if node is Enemy:
 		var enemy:Enemy = node
+		# path_finder 설정
+		var world_node = get_tree().root.get_node_or_null("World")
+		if world_node != null:
+			var path_finder = world_node.get_node_or_null("PathFinder")
+			enemy.set_path_finder(path_finder)
+			
+		# hp 를 stage에 맞게 설정
 		enemy.set_HP(Table.get_enemy_hp(enemy.HP, StaticData.get_current_stage_information()))
+		
 		StaticData.spawned_score_for_stage += enemy.get_score()
 		# 점점 커지게 만들어 준다.
 		$Tween.interpolate_property(enemy, "scale", Vector2(0.1, 0.1), Vector2(1, 1), 0.3, Tween.TRANS_LINEAR, Tween.EASE_OUT)

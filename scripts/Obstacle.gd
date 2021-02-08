@@ -3,7 +3,7 @@ extends Node2D
 class_name Obstacle
 
 export var HP = 3000
-onready var hp_bar = $HPBar
+onready var hp_bar = get_node_or_null("HPBar")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

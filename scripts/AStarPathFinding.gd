@@ -1,7 +1,8 @@
 extends Node2D
+class_name PathFinder
 
 # You can only create an AStar node from code, not from the Scene tab
-onready var astar_node = AStar.new()
+onready var astar_node
 # The Tilemap node doesn't have clear bounds so we're defining the map's limits here
 export(Vector2) var map_size = Vector2(16, 16)
 
@@ -20,12 +21,26 @@ var tilemap:TileMap
 # here the id 0 corresponds to the grey tile, the obstacles
 var obstacles
 var _half_cell_size
-
+var all_nodes_in_map:Array
 func _ready():
 	pass
 	
+func getallnodes(node):
+	for N in node.get_children():
+		all_nodes_in_map.append(N)
+		if N.get_child_count() > 0:
+			getallnodes(N)
+
 # 한번은 호출해야함
 func init_tilemap(var map):
+	# 모든 자식노드 찾기
+	all_nodes_in_map.clear()
+	getallnodes(map)
+	
+	# astar 노드 생성
+	astar_node = AStar.new()
+	
+	# map에서 tilemap 찾기
 	var nodes = map.get_children()
 	for node in nodes:
 		if not node is TileMap:
@@ -33,9 +48,21 @@ func init_tilemap(var map):
 		self.tilemap = node as TileMap
 		break
 		
+	# tilemap을 찾은 경
 	if tilemap != null:
 		_half_cell_size = tilemap.cell_size / 2
-		obstacles = [Vector2(0, 0)]#tilemap.get_used_cells_by_id(0)
+		
+		obstacles = []#tilemap.get_used_cells_by_id(0)
+		# map 안에 있는 모든 collider를 찾아서 장애물로 기록한다.
+		for node in all_nodes_in_map:
+			if not node is Node2D:
+				continue
+			if not node is CollisionShape2D:
+				continue
+			
+			var node2D = node as Node2D
+			obstacles.append(tilemap.world_to_map(node2D.global_position))
+		
 		
 		var walkable_cells_list = astar_add_walkable_cells(obstacles)
 		astar_connect_walkable_cells(walkable_cells_list)
@@ -153,24 +180,28 @@ func clear_previous_path_drawing():
 		return
 	var point_start = _point_path[0]
 	var point_end = _point_path[len(_point_path) - 1]
-	tilemap.set_cell(point_start.x, point_start.y, -1)
-	tilemap.set_cell(point_end.x, point_end.y, -1)
+	#tilemap.set_cell(point_start.x, point_start.y, -1)
+	#tilemap.set_cell(point_end.x, point_end.y, -1)
 
 
 func _draw():
 	if not _point_path:
-
 		return
 	var point_start = _point_path[0]
 	var point_end = _point_path[len(_point_path) - 1]
 
-	tilemap.set_cell(point_start.x, point_start.y, 1)
-	tilemap.set_cell(point_end.x, point_end.y, 2)
+	#tilemap.set_cell(point_start.x, point_start.y, 1)
+	#tilemap.set_cell(point_end.x, point_end.y, 2)
 
+	var line = $Line2D
+	line.clear_points()
 	var last_point = tilemap.map_to_world(Vector2(point_start.x, point_start.y)) + _half_cell_size
+	line.add_point(last_point)
 	for index in range(1, len(_point_path)):
 		var current_point = tilemap.map_to_world(Vector2(_point_path[index].x, _point_path[index].y)) + _half_cell_size
-		draw_line(last_point, current_point, DRAW_COLOR, BASE_LINE_WIDTH, true)
+		line.add_point(current_point)
+		#draw_line(last_point, current_point, DRAW_COLOR, BASE_LINE_WIDTH, true)
+		
 		#draw_circle(current_point, BASE_LINE_WIDTH * 2.0, DRAW_COLOR)
 		last_point = current_point
 
@@ -182,8 +213,8 @@ func _set_path_start_position(value):
 	if is_outside_map_bounds(value):
 		return
 
-	tilemap.set_cell(path_start_position.x, path_start_position.y, -1)
-	tilemap.set_cell(value.x, value.y, 1)
+	#tilemap.set_cell(path_start_position.x, path_start_position.y, -1)
+	#tilemap.set_cell(value.x, value.y, 1)
 	path_start_position = value
 	if path_end_position and path_end_position != path_start_position:
 		_recalculate_path()
@@ -195,8 +226,8 @@ func _set_path_end_position(value):
 	if is_outside_map_bounds(value):
 		return
 
-	tilemap.set_cell(path_start_position.x, path_start_position.y, -1)
-	tilemap.set_cell(value.x, value.y, 2)
+	#tilemap.set_cell(path_start_position.x, path_start_position.y, -1)
+	#tilemap.set_cell(value.x, value.y, 2)
 	path_end_position = value
 	if path_start_position != value:
 		_recalculate_path()
