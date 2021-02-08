@@ -59,6 +59,13 @@ func get_fire_interval():
 	
 # 발사를 시작한다
 func start_fire():
+	# test
+	var finder = get_parent().get_parent().get_node("AStarPathFinder")
+	finder.obstacles.clear()
+	var tm:TileMap = finder.tilemap as TileMap
+	var path = finder.find_path(Vector2(200, 40), global_position)
+	
+	# test
 	if $FireTimer.is_stopped() == true:
 		auto_aim()	# 시작은 항상 auto aim
 		rotate_by_velocity(get_velocity())	# 몸을 aim방향으로 회

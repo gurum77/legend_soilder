@@ -35,7 +35,8 @@ func init_tilemap(var map):
 		
 	if tilemap != null:
 		_half_cell_size = tilemap.cell_size / 2
-		obstacles = tilemap.get_used_cells_by_id(0)
+		obstacles = [Vector2(0, 0)]#tilemap.get_used_cells_by_id(0)
+		
 		var walkable_cells_list = astar_add_walkable_cells(obstacles)
 		astar_connect_walkable_cells(walkable_cells_list)
 
@@ -158,6 +159,7 @@ func clear_previous_path_drawing():
 
 func _draw():
 	if not _point_path:
+
 		return
 	var point_start = _point_path[0]
 	var point_end = _point_path[len(_point_path) - 1]
@@ -169,7 +171,7 @@ func _draw():
 	for index in range(1, len(_point_path)):
 		var current_point = tilemap.map_to_world(Vector2(_point_path[index].x, _point_path[index].y)) + _half_cell_size
 		draw_line(last_point, current_point, DRAW_COLOR, BASE_LINE_WIDTH, true)
-		draw_circle(current_point, BASE_LINE_WIDTH * 2.0, DRAW_COLOR)
+		#draw_circle(current_point, BASE_LINE_WIDTH * 2.0, DRAW_COLOR)
 		last_point = current_point
 
 
