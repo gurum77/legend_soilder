@@ -16,8 +16,10 @@ func get_item():
 	StaticData.total_money += money_amount
 	StaticData.current_stage_money += money_amount
 	# 더이상 선택되지 않게
-	$CollisionShape2D.queue_free()
-	$AnimationPlayer.play("bounce")
+	if $CollisionShape2D != null:
+		$CollisionShape2D.queue_free()
+	if $AnimationPlayer != null:
+		$AnimationPlayer.play("bounce")
 	
 func _on_Money_body_entered(body):
 	if body is PlayerBody:

@@ -19,7 +19,7 @@ func get_current_stage_path()->String:
 # stage 정보
 var stage_informations:Dictionary={
 	"Focus" : StageInformation.new("res://maps/BattleField_Focus.tscn", Vector2(1200, 450)),
-	"SideWater" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(1286, 425)),
+	"Sine" : StageInformation.new("res://maps/BattleField_Sine.tscn", Vector2(1286, 425)),
 	"SideWater1" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(1130, 426)),
 	"SideWater2" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(1245, 692)),
 	"SideWater3" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(997, 678)),
@@ -156,6 +156,8 @@ func load_gamedata_stage_informations(var dic:Dictionary):
 	
 	for si_key in dic_stage_informations.keys():
 		# 있는 것만 불러온다.(없는건 게임에서 지원하지 않는 stage이므로 제거대상)
+		if !stage_informations.has(si_key):
+			continue
 		var si = stage_informations[si_key]
 		if si == null:
 			continue
