@@ -20,8 +20,8 @@ func get_current_stage_path()->String:
 var stage_informations:Dictionary={
 	"Focus" : StageInformation.new("res://maps/BattleField_Focus.tscn", Vector2(1200, 450)),
 	"Sine" : StageInformation.new("res://maps/BattleField_Sine.tscn", Vector2(1286, 425)),
-	"SideWater1" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(1130, 426)),
-	"SideWater2" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(1245, 692)),
+	"SideWater" : StageInformation.new("res://ma이ps/BattleField_SideWater.tscn", Vector2(1130, 426)),
+	"소용돌이" : StageInformation.new("res://maps/BattleField_소용돌이.tscn", Vector2(1245, 692)),
 	"SideWater3" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(997, 678)),
 	"SideWater4" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(892, 675)),
 	"SideWater5" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(1027, 564)),
