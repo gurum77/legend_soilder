@@ -13,6 +13,7 @@ var target_position_to_move:Vector2 # 이동 목표 지점
 var target_position_buffer_to_move:= PoolVector2Array() # 이동 지점에 도달하면 여기서 하나씩 꺼내서 이동 목표 지점을 설정한다
 var velocity:Vector2
 var dead = false # 죽었는지?
+var rayCast
 
 onready var fire_animated_sprite = get_node_or_null("AnimatedSprites/BodyPivot/FireAnimatedSprite")
 onready var body_animated_sprite = $AnimatedSprites/BodyPivot/BodyAnimatedSprite
@@ -27,6 +28,8 @@ func _ready():
 	# layer/mask
 	collision_layer = 0b10
 	collision_mask	= 0b10100
+	
+	
 
 	# 이동 목표지점을 제자리로 한다.
 	target_position_to_move = self.global_position

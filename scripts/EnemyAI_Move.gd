@@ -76,10 +76,10 @@ func _on_FindTargetTimer_timeout():
 			# path finder가 있으면 path finder로 경로를 찾는다.
 			if path_finder != null:
 				var point_path = path_finder.find_path(self.global_position, player.global_position)
-				if point_path != null and point_path.size() > 6:
+				if point_path != null and point_path.size() > 3:
 					var current_point = path_finder.tilemap.world_to_map(global_position)
 					# 겹치지 않게 하기 위해서 3~6 사이의 위치에 랜덤하게 배치한다.
-					var index:int = rand_range(3, 6)
+					var index:int = rand_range(1, point_path.size())
 					for i in index-2:
 						target_position_buffer.append(point_path[i+2])
 					target_position = Vector2(point_path[1].x, point_path[1].y)

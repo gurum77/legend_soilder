@@ -59,6 +59,9 @@ func init_tilemap(var map):
 				continue
 			if not node is CollisionShape2D:
 				continue
+			# collisionshape이더라도 부모가 area2D라면 무시(통과 가능. 예) bush)
+			if node.get_parent() is Area2D:
+				continue
 			
 			var node2D = node as Node2D
 			obstacles.append(tilemap.world_to_map(node2D.global_position))

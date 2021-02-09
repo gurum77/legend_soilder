@@ -6,6 +6,7 @@ enum Level {newbie, intermediate, expert, crazy}
 
 # ai가 움직일 실제 노드
 var enemy:Node2D
+onready var raycast:RayCast2D = $GuideLine
 
 export (Level) var level = Level.newbie
 export (float) var distance_in_eye = 250		# 시야 거리
@@ -25,10 +26,14 @@ func _ready():
 	enemy = parent
 	if enemy == null:
 		return
+		
 	
 	# 사정거리를 결정한다.
 	distance_in_attack = Table.get_weapon_bullet_distance(enemy.get_body().weapon)
 	distance_in_eye = distance_in_attack * 2
+	
+	# rayCast를 하나 만든다.(길 찾을때 앞에 장애물이 있으면 앞으로 더 다가가야함)
+	raycast.cast_to = Vector2(distance_in_attack, 0)
 	
 	# 디버깅중일때는 path를 표시하고 사거리 원을 표시한다
 	if !debugging:
@@ -36,7 +41,8 @@ func _ready():
 		
 	#update()
 	
-
+func _process(delta):
+	raycast.rotation = enemy.get_body().rotation
 func _draw():
 	if !debugging:
 		return
@@ -92,7 +98,9 @@ func _on_PlayerDetectionTimer_timeout():
 	# player 까지 거리
 	var distance = player.global_position.distance_to(self.global_position)
 	if distance < distance_in_attack:
-		in_attack = true
+		# raycast가 장애물에 걸리면 공격을 하지않고 계속 이동한다.
+		if !raycast.is_colliding():
+			in_attack = true
 	if distance < distance_in_dangerous:
 		in_dangerous = true
 	if distance < distance_in_eye:

@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/EnemyAI.gd" type="Script" id=1]
 [ext_resource path="res://scripts/EnemyAI_Move.gd" type="Script" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://scenes/PatrolPath.gd" type="Script" id=4]
+[ext_resource path="res://scenes/GuideLine.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -87,6 +88,11 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="GuideLine" parent="." instance=ExtResource( 5 )]
+modulate = Color( 1, 0.960784, 0, 1 )
+collision_mask = 16
+is_draw_line = false
 [connection signal="timeout" from="EnemyAI_Move/FindTargetTimer" to="EnemyAI_Move" method="_on_FindTargetTimer_timeout"]
 [connection signal="timeout" from="DrawTimer" to="." method="_on_DrawTimer_timeout"]
 [connection signal="timeout" from="PlayerDetectionTimer" to="." method="_on_PlayerDetectionTimer_timeout"]
