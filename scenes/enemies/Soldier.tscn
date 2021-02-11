@@ -20,7 +20,8 @@
 [ext_resource path="res://assets/enemies/sniper/Shot/2.png" type="Texture" id=18]
 [ext_resource path="res://assets/enemies/sniper/Shot/1.png" type="Texture" id=19]
 [ext_resource path="res://scenes/EnemyAI.tscn" type="PackedScene" id=20]
-[ext_resource path="res://scenes/ItemMaker.gd" type="Script" id=21]
+[ext_resource path="res://scripts/ItemMaker.gd" type="Script" id=21]
+
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {

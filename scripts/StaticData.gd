@@ -22,7 +22,7 @@ var stage_informations:Dictionary={
 	"Sine" : StageInformation.new("res://maps/BattleField_Sine.tscn", Vector2(1286, 425)),
 	"SideWater" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(1130, 426)),
 	"소용돌이" : StageInformation.new("res://maps/BattleField_소용돌이.tscn", Vector2(1245, 692)),
-	"SideWater3" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(997, 678)),
+	"흔들광산" : StageInformation.new("res://maps/BattleField_흔들광산.tscn", Vector2(997, 678)),
 	"SideWater4" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(892, 675)),
 	"SideWater5" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(1027, 564)),
 	"SideWater6" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(974, 480)),

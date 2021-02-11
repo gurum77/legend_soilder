@@ -52,7 +52,8 @@
 [ext_resource path="res://assets/player/die/2.png" type="Texture" id=50]
 [ext_resource path="res://scenes/GuideLine.tscn" type="PackedScene" id=51]
 [ext_resource path="res://Joystick/joystick_circle.png" type="Texture" id=52]
-[ext_resource path="res://scenes/Shield.gd" type="Script" id=53]
+[ext_resource path="res://scripts/Shield.gd" type="Script" id=53]
+
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {

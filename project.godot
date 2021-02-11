@@ -77,7 +77,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "StagePosition",
 "language": "GDScript",
-"path": "res://scenes/StagePosition.gd"
+"path": "res://scripts/StagePosition.gd"
 }, {
 "base": "Reference",
 "class": "WeaponInformation",

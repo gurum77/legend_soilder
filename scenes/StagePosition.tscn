@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/ui/radio_button.png" type="Texture" id=1]
-[ext_resource path="res://scenes/StagePosition.gd" type="Script" id=2]
+[ext_resource path="res://scripts/StagePosition.gd" type="Script" id=2]
 [ext_resource path="res://assets/ui/stone.png" type="Texture" id=3]
+
 
 [node name="StagePosition" type="Node2D"]
 script = ExtResource( 2 )

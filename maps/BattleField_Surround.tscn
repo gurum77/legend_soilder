@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://maps/battle_field_ground_basic/layer_0_battle_field_ground_basic.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/Box1.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/Bush.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/Rock1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/obstacles/Box1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/obstacles/Bush.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/obstacles/Rock1.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/PlayerSpawner.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/Soldier.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/enemies/Soldier.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/Spawner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://maps/Stage.gd" type="Script" id=8]
 

@@ -1,7 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://maps/battle_field_ground_basic/tileset_battle_field_ground_basic.tres" type="TileSet" id=1]
-[ext_resource path="res://scenes/Walls_25x33.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/obstacles/Walls_25x33.tscn" type="PackedScene" id=2]
+
+
 
 [node name="GroundBasic" type="TileMap"]
 tile_set = ExtResource( 1 )
