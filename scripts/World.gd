@@ -65,7 +65,7 @@ func game_over(var victory:bool):
 		$CanvasLayer.add_child(load("res://scenes/Failed.tscn").instance())	
 	
 		
-func _process(delta):
+func _process(_delta):
 	update_debug_information()
 		
 # enemy가 죽을때마다 게임 오버인지 체크한다.

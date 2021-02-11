@@ -50,7 +50,7 @@ func update():
 	# button text 표시
 	update_button()
 		
-func _process(delta):
+func _process(_delta):
 	update_button()
 	
 func update_button():
@@ -117,4 +117,6 @@ func _on_Button_pressed():
 	update()
 
 func on_GoToShopButton_pressed():
-	get_tree().change_scene("res://scenes/Shop.tscn")
+	var err = get_tree().change_scene("res://scenes/Shop.tscn")
+	if err != OK:
+		push_error("change_scene failed")

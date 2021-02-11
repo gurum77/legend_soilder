@@ -1,7 +1,6 @@
 extends Control
 
 func _ready():
-	$Label.rect_size
 	$Tween.interpolate_property($Label, "rect_scale", Vector2(0.1, 0.1), Vector2(1, 1), 1, Tween.TRANS_ELASTIC)
 	$Tween.interpolate_property($Label, "rect_scale", Vector2(1, 1), Vector2(0.01, 0.01), 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN, 1)
 	$Tween.interpolate_property($Label, "visible", true, false, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN, 1.5)

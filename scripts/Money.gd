@@ -25,5 +25,5 @@ func _on_Money_body_entered(body):
 	if body is PlayerBody:
 		get_item()
 
-func _on_AnimationPlayer_animation_finished(anim_name):
+func _on_AnimationPlayer_animation_finished(_anim_name):
 	self.call_deferred("queue_free")

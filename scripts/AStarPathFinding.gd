@@ -3,8 +3,13 @@ class_name PathFinder
 
 # You can only create an AStar node from code, not from the Scene tab
 onready var astar_node
+
 # The Tilemap node doesn't have clear bounds so we're defining the map's limits here
 export(Vector2) var map_size = Vector2(16, 16)
+
+# big size obstacle로 적용하는지?
+export(bool) var big_size_obstacle = false
+
 
 # The path start and end variables use setter methods
 # You can find them at the bottom of the script
@@ -14,7 +19,7 @@ var path_end_position = Vector2() setget _set_path_end_position
 var _point_path = []
 
 const BASE_LINE_WIDTH = 3.0
-const DRAW_COLOR = Color('#fff')
+var DRAW_COLOR = Color('#fff')
 
 var tilemap:TileMap
 # get_used_cells_by_id is a method from the TileMap node
@@ -31,6 +36,24 @@ func getallnodes(node):
 		if N.get_child_count() > 0:
 			getallnodes(N)
 
+func get_around_position(var pos)->PoolVector2Array:
+	var _pos_arr:PoolVector2Array
+	_pos_arr.append(Vector2(pos.x-1, pos.y))
+	_pos_arr.append(Vector2(pos.x-1, pos.y-1))
+	_pos_arr.append(Vector2(pos.x-1, pos.y+1))
+	_pos_arr.append(Vector2(pos.x, pos.y-1))
+	_pos_arr.append(Vector2(pos.x, pos.y+1))
+	_pos_arr.append(Vector2(pos.x+1, pos.y))
+	_pos_arr.append(Vector2(pos.x+1, pos.y-1))
+	_pos_arr.append(Vector2(pos.x+1, pos.y+1))
+	
+	var _inside_pos_arr:PoolVector2Array
+	for pos in _pos_arr:
+		if is_outside_map_bounds(pos):
+			continue
+		_inside_pos_arr.append(pos)
+	
+	return _inside_pos_arr
 # 한번은 호출해야함
 func init_tilemap(var map):
 	
@@ -39,7 +62,7 @@ func init_tilemap(var map):
 	getallnodes(map)
 	
 	# astar 노드 생성
-	astar_node = AStar.new()
+	astar_node = AStar2D.new()
 	
 	# map에서 tilemap 찾기
 	var nodes = map.get_children()
@@ -55,10 +78,10 @@ func init_tilemap(var map):
 		
 		obstacles = []#tilemap.get_used_cells_by_id(0)
 		# tile map중에서 collisionshape을 찾는다.
-		for y in range(map_size.y):
-			for x in range(map_size.x):
-				pass
-			pass
+#		for y in range(map_size.y):
+#			for x in range(map_size.x):
+#				pass
+#			pass
 		# map 안에 있는 모든 collider를 찾아서 장애물로 기록한다.
 		for node in all_nodes_in_map:
 			if not node is Node2D:
@@ -70,7 +93,17 @@ func init_tilemap(var map):
 				continue
 			
 			var node2D = node as Node2D
-			obstacles.append(tilemap.world_to_map(node2D.global_position))
+			var map_position = tilemap.world_to_map(node2D.global_position)
+			if not map_position in obstacles:
+				obstacles.append(map_position)
+			# big size이면 상하 좌우를 모두 포함시킨다.
+#			if big_size_obstacle:
+#				var around_positions = get_around_position(map_position)
+#				for pos in around_positions:
+#					if pos in obstacles:
+#						continue
+#					obstacles.append(pos)
+				
 		
 		
 		var walkable_cells_list = astar_add_walkable_cells(obstacles)
@@ -88,12 +121,12 @@ func init_tilemap(var map):
 
 # Loops through all cells within the map's bounds and
 # adds all points to the astar_node, except the obstacles
-func astar_add_walkable_cells(obstacles = []):
+func astar_add_walkable_cells(_obstacles = []):
 	var points_array = []
 	for y in range(map_size.y):
 		for x in range(map_size.x):
 			var point = Vector2(x, y)
-			if point in obstacles:
+			if point in _obstacles:
 				continue
 
 			points_array.append(point)
@@ -103,7 +136,7 @@ func astar_add_walkable_cells(obstacles = []):
 			var point_index = calculate_point_index(point)
 			# AStar works for both 2d and 3d, so we have to convert the point
 			# coordinates from and to Vector3s
-			astar_node.add_point(point_index, Vector3(point.x, point.y, 0.0))
+			astar_node.add_point(point_index, Vector2(point.x, point.y))
 	return points_array
 
 
@@ -163,13 +196,30 @@ func calculate_point_index(point):
 
 
 func find_path(world_start, world_end):
+	# 시종점 설정
 	self.path_start_position = tilemap.world_to_map(world_start)
 	self.path_end_position = tilemap.world_to_map(world_end)
+	
+	# path 계산
 	_recalculate_path()
+		
+	# 찾았으면 world 좌표로 바꿔서 리턴
 	var path_world = []
 	for point in _point_path:
 		var point_world = tilemap.map_to_world(Vector2(point.x, point.y)) + _half_cell_size
 		path_world.append(point_world)
+	
+	# big size인 경우 시작점부터 하나씩 건너띄면서 점을 없앤다
+	if big_size_obstacle:
+		var path_world_for_big_size = []
+		var valid = false
+		for point in path_world:
+			if !valid:
+				valid = !valid
+				continue
+			path_world_for_big_size.append(point)
+			valid = !valid
+		path_world = path_world_for_big_size
 	return path_world
 
 
@@ -177,6 +227,18 @@ func _recalculate_path():
 	clear_previous_path_drawing()
 	var start_point_index = calculate_point_index(path_start_position)
 	var end_point_index = calculate_point_index(path_end_position)
+	
+	# 장애물에서 시작하거나 끝나면 찾지 말자.
+	if path_start_position in obstacles or path_end_position in obstacles:
+		_point_path = []
+		update()
+		return
+	# 시작과 끝이 같으면 찾지 말자.	
+	if start_point_index == end_point_index:
+		_point_path = []
+		update()
+		return
+		
 	# This method gives us an array of points. Note you need the start and end
 	# points' indices as input
 	_point_path = astar_node.get_point_path(start_point_index, end_point_index)
@@ -187,8 +249,8 @@ func _recalculate_path():
 func clear_previous_path_drawing():
 	if not _point_path:
 		return
-	var point_start = _point_path[0]
-	var point_end = _point_path[len(_point_path) - 1]
+#	var point_start = _point_path[0]
+#	var point_end = _point_path[len(_point_path) - 1]
 	#tilemap.set_cell(point_start.x, point_start.y, -1)
 	#tilemap.set_cell(point_end.x, point_end.y, -1)
 
@@ -197,7 +259,7 @@ func _draw():
 	if not _point_path:
 		return
 	var point_start = _point_path[0]
-	var point_end = _point_path[len(_point_path) - 1]
+#	var point_end = _point_path[len(_point_path) - 1]
 
 	#tilemap.set_cell(point_start.x, point_start.y, 1)
 	#tilemap.set_cell(point_end.x, point_end.y, 2)
@@ -225,8 +287,9 @@ func _set_path_start_position(value):
 	#tilemap.set_cell(path_start_position.x, path_start_position.y, -1)
 	#tilemap.set_cell(value.x, value.y, 1)
 	path_start_position = value
-	if path_end_position and path_end_position != path_start_position:
-		_recalculate_path()
+	# 계산하는 함수는 별도로 호출한다
+#	if path_end_position and path_end_position != path_start_position:
+#		_recalculate_path()
 
 
 func _set_path_end_position(value):
@@ -238,5 +301,6 @@ func _set_path_end_position(value):
 	#tilemap.set_cell(path_start_position.x, path_start_position.y, -1)
 	#tilemap.set_cell(value.x, value.y, 2)
 	path_end_position = value
-	if path_start_position != value:
-		_recalculate_path()
+	# 계산하는 함수는 별도로 호출한다.
+#	if path_start_position != value:
+#		_recalculate_path()

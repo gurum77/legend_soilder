@@ -152,14 +152,14 @@ func get_weapon_bullet_distance(weapon) -> int:
 func get_stage_clear_score(si:StageInformation)->int:
 	var pos = get_stage_position(si)
 	var score = stage1_clear_store
-	for i in range(pos):
+	for _i in range(pos):
 		score = score * stage_clear_score_factor
 	return score
 	
 # to_level로 업그레이드 하는데 필요한 비용 리턴
 func get_upgrade_cost(to_level)->int:
 	var cost = upgrade1_cost
-	for i in range(to_level-1):
+	for _i in range(to_level-1):
 		cost = cost * upgrade_cost_factor
 	return cost as int
 	
@@ -173,19 +173,19 @@ func get_stage_position(si:StageInformation)->int:
 # stage별 적 hp를 리턴
 func get_enemy_hp(hp, si:StageInformation)->int:
 	var pos = get_stage_position(si)
-	for i in range(pos):
+	for _i in range(pos):
 		hp = hp * enemy_hp_factor
 	return hp as int
 
 # power level별 무기 공격력 리턴
 func get_weapon_power(power, power_level)->int:
-	for i in range(power_level-1):
+	for _i in range(power_level-1):
 		power = power * weapon_power_factor
 	return power as int
 	
 # interval level별 무기 inerval 리턴
 func get_weapon_interval(interval, interval_level)->int:
-	for i in range(interval_level-1):
+	for _i in range(interval_level-1):
 		interval = interval * weapon_interval_factor
 	return interval	
 	

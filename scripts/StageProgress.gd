@@ -18,7 +18,7 @@ func update():
 			$NextStage/Label.visible = false
 			$NextStage/Stone.visible = true
 	
-func _process(delta):
+func _process(_delta):
 	if abs(value - StaticData.current_score_for_stage) <= 1:
 		value = StaticData.current_score_for_stage
 	else:

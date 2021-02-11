@@ -13,12 +13,18 @@ func _ready():
 	# signal 연결
 	var world = get_tree().root.get_node_or_null("World")
 	if world != null:
-		connect("dead", world, "on_Enemy_dead")
+		var err = connect("dead", world, "on_Enemy_dead")
+		if err != OK:
+			push_error("connect failed")
 		
 	var minimap = get_tree().root.get_node_or_null("World/CanvasLayer/MiniMap")
 	if minimap != null:
-		connect("added", minimap, "on_Object_added")
-		connect("removed", minimap, "on_Object_removed")
+		var err = connect("added", minimap, "on_Object_added")
+		if err != OK:
+			push_error("connect failed")
+		err = connect("removed", minimap, "on_Object_removed")
+		if err != OK:
+			push_error("connect failed")
 		emit_signal("added", self)
 	set_HP(HP)
 	add_to_group("enemy")
@@ -52,8 +58,9 @@ func damage(power):
 		
 	
 func make_item():
-	if $ItemMaker:
-		$ItemMaker.make_item(max_HP)
+	var item_maker = get_node_or_null("ItemMaker")
+	if item_maker != null:
+		item_maker.make_item(max_HP)
 	
 func on_take_damage(power):
 	var ins = Preloader.hud.instance()

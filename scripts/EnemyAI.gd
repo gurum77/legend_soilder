@@ -41,8 +41,9 @@ func _ready():
 		
 	#update()
 	
-func _process(delta):
+func _process(_delta):
 	raycast.rotation = enemy.get_body().rotation
+	
 func _draw():
 	if !debugging:
 		return

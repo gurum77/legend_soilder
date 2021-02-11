@@ -14,12 +14,17 @@ func is_cleared()->bool:
 	return false
 	
 func _on_HomeButton_pressed():
-	get_tree().change_scene("res://scenes/Home.tscn")
+	var err = get_tree().change_scene("res://scenes/Home.tscn")
+	if err != OK:
+		push_error("change_scene failed")
 
 
 func _on_NextButton_pressed():
 	# 모든 step을 완료 했다면 stage selector로 가서 결과를 본다
+	var err = OK
 	if si != null and si.is_cleard():
-		get_tree().change_scene("res://scenes/StageSelector.tscn")
+		err = get_tree().change_scene("res://scenes/StageSelector.tscn")
 	else:
-		get_tree().change_scene("res://scenes/World.tscn")
+		err = get_tree().change_scene("res://scenes/World.tscn")
+	if err != OK:
+		push_error("change_scene failed")

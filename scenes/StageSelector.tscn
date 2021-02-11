@@ -84,9 +84,6 @@ antialiased = true
 position = Vector2( 396.85, 253.984 )
 z_index = 1
 
-[node name="LegAnimatedSprite" parent="MapScrollContainer/Map/Player/Body/AnimatedSprites" index="0"]
-frame = 1
-
 [node name="Camera2D" parent="MapScrollContainer/Map/Player" index="2"]
 current = false
 
@@ -166,7 +163,6 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="gui_input" from="MapScrollContainer/Map" to="." method="_on_Map_gui_input"]
 [connection signal="pressed" from="BackButton" to="." method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
 

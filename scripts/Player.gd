@@ -9,7 +9,9 @@ func _ready():
 	# signal 연결
 	var world = get_tree().root.get_node_or_null("World")
 	if world != null:
-		connect("dead", world, "on_Player_dead")
+		var err = connect("dead", world, "on_Player_dead")
+		if err != OK:
+			push_error("connect failed")
 		
 	$HPBar.init(HP)
 	add_to_group("player")

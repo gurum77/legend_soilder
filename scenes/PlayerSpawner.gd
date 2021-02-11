@@ -1,7 +1,7 @@
 extends Node2D
 
 
-func _process(delta):
+func _process(_delta):
 	# player를 찾아서 여기로 이동시킨다.
 	var players = get_tree().get_nodes_in_group("player")
 	if players.size() == 0:

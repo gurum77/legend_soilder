@@ -17,6 +17,6 @@ func _on_DashButton_pressed():
 		
 
 # tween이 끝나면 다시 클릭할수 있게 한다.
-func _on_Tween_tween_completed(object, key):
+func _on_Tween_tween_completed(_object, _key):
 	disabled = false
 	$Icon.self_modulate.a = 1

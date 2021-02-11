@@ -11,7 +11,7 @@ func _ready():
 		StaticData.current_weapon_index = 0
 	update()
 	
-func _process(delta):
+func _process(_delta):
 	if !initialized and StaticData.game_state == Define.GameState.play:
 		update()
 		initialized = true

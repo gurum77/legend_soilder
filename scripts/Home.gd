@@ -10,12 +10,16 @@ func _ready():
 
 # equipment 버튼 클릭
 func _on_EquipmentButton_pressed():
-	get_tree().change_scene("res://scenes/Equipment.tscn")
+	var err = get_tree().change_scene("res://scenes/Equipment.tscn")
+	if err != OK:
+		push_error("change_scene failed!")
 
 # play 버튼 클릭
 func _on_PlayButton_pressed():
 #	get_tree().change_scene("res://scenes/World.tscn")
-	get_tree().change_scene("res://scenes/StageSelector.tscn")
+	var err = get_tree().change_scene("res://scenes/StageSelector.tscn")
+	if err != OK:
+		push_error("change_scene failed!")
 
 
 func _on_SettingsButton_pressed():
@@ -60,4 +64,6 @@ func _on_AdMob_banner_loaded():
 
 # shop
 func _on_ShopButton_pressed():
-	get_tree().change_scene("res://scenes/Shop.tscn")
+	var err = get_tree().change_scene("res://scenes/Shop.tscn")
+	if err != OK:
+		push_error("change_scene failed")

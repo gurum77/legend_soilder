@@ -10,7 +10,7 @@ func _ready():
 	update()
 	$NameLabel.text = Define.get_weapon_name(weapon)
 
-func _process(delta):
+func _process(_delta):
 	update()
 	
 func is_need_more_money()->bool:
@@ -78,4 +78,6 @@ func _on_BuyButton_pressed():
 		update()
 	
 func on_GoToShopButton_pressed():
-	get_tree().change_scene("res://scenes/Shop.tscn")
+	var err = get_tree().change_scene("res://scenes/Shop.tscn")
+	if err != OK:
+		push_error("change_scene failed")

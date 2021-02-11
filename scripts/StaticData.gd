@@ -20,7 +20,7 @@ func get_current_stage_path()->String:
 var stage_informations:Dictionary={
 	"Focus" : StageInformation.new("res://maps/BattleField_Focus.tscn", Vector2(1200, 450)),
 	"Sine" : StageInformation.new("res://maps/BattleField_Sine.tscn", Vector2(1286, 425)),
-	"SideWater" : StageInformation.new("res://ma이ps/BattleField_SideWater.tscn", Vector2(1130, 426)),
+	"SideWater" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(1130, 426)),
 	"소용돌이" : StageInformation.new("res://maps/BattleField_소용돌이.tscn", Vector2(1245, 692)),
 	"SideWater3" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(997, 678)),
 	"SideWater4" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(892, 675)),
@@ -63,22 +63,22 @@ func reset_game():
 
 # stage_informations game data save용 dic을 리턴
 func get_save_dic_stage_informations()->Dictionary:
-	var save_dic:Dictionary
+	var _save_dic:Dictionary
 	for si_key in stage_informations.keys():
-		save_dic[si_key] = stage_informations[si_key].get_save_dic()
-	return save_dic
+		_save_dic[si_key] = stage_informations[si_key].get_save_dic()
+	return _save_dic
 	
 func get_save_dic_weapon_informations()->Dictionary:
-	var save_dic:Dictionary
+	var _save_dic:Dictionary
 	for wi_key in weapon_informations.keys():
-		save_dic[wi_key] = weapon_informations[wi_key].get_save_dic()
-	return save_dic
+		_save_dic[wi_key] = weapon_informations[wi_key].get_save_dic()
+	return _save_dic
 	
 func get_save_dic_inventory_items()->Dictionary:
-	var save_dic:Dictionary
+	var _save_dic:Dictionary
 	for i in inventory_items.size():
-		save_dic["inventory_item_"+str(i)] = inventory_items[i].get_save_dic()
-	return save_dic
+		_save_dic["inventory_item_"+str(i)] = inventory_items[i].get_save_dic()
+	return _save_dic
 	
 func save_game():
 	var save_dic={

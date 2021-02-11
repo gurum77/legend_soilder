@@ -1,8 +1,8 @@
 class_name StageInformation
 
-func _init(var scene_path, var position):
-	self.scene_path = scene_path
-	self.position = position
+func _init(var scene_path_param, var position_param):
+	self.scene_path = scene_path_param
+	self.position = position_param
 	
 # clear 했는지?
 func is_cleard()->bool:

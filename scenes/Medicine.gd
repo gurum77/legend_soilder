@@ -22,7 +22,7 @@ func get_item():
 	$CollisionShape2D.queue_free()
 	$AnimationPlayer.play("bounce")
 		
-func _on_AnimationPlayer_animation_finished(anim_name):
+func _on_AnimationPlayer_animation_finished(_anim_name):
 	self.call_deferred("queue_free")
 
 

@@ -1,5 +1,5 @@
 extends TextureRect
 
 
-func _process(delta):
+func _process(_delta):
 	$MoneyLabel.text = String(StaticData.total_money)

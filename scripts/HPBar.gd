@@ -11,8 +11,9 @@ func init(max_hp):
 	
 	
 func set_hp(hp):
-	var cur_val = value
-	$Tween.interpolate_property(self, "value", cur_val, hp, rect_scale.x / 3, Tween.EASE_OUT)
-	$Tween.start()
+#	var cur_val = value
+#	$Tween.interpolate_property(self, "value", cur_val, hp, 0.1, Tween.EASE_OUT)
+#	$Tween.start()
+	value = hp
 	$Label.text = str(hp)
 	

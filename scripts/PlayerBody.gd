@@ -8,7 +8,7 @@ export (NodePath) var move_joystick
 onready var move_joystick_node : Joystick = get_node_or_null(move_joystick)
 
 export (NodePath) var aim_joystick
-onready var aim_joystick_node : Joystick = get_node(aim_joystick)
+onready var aim_joystick_node : Joystick = get_node_or_null(aim_joystick)
 
 var fire_position_node
 var playing_body_animation_for_fire = false
@@ -75,7 +75,7 @@ func stop_fire():
 # aim이 없고 터치도 없으면 이동 방향에 따라 회전하고,
 # aim이 없고 터치만 있으면 지정된 목표위치를 향해서 회전한다
 # aim이 있으면 aim 방향으로 회전한다.
-func rotate_by_velocity(velocity):
+func rotate_by_velocity(_velocity):
 	# aim joystick을 터치중인 경우
 	if not aim_joystick_node == null and aim_joystick_node._touch_index > -1:
 		# aim joystick을 drag중인 경우 joystick 방향으로 바라 본다.
@@ -86,8 +86,8 @@ func rotate_by_velocity(velocity):
 			self.look_at(target_position)
 	# aim joystick을 터치하지 않고 있는 경우
 	else:
-		if not velocity == Vector2.ZERO:
-			self.look_at(global_position + velocity * 10)
+		if not _velocity == Vector2.ZERO:
+			self.look_at(global_position + _velocity * 10)
 		
 	# guide line
 	$GuideLine.cast_to = Vector2(Table.get_weapon_bullet_distance(get_weapon()), 0)
@@ -150,10 +150,10 @@ func get_body_animation_name_header() -> String:
 		
 
 # veloity에 따라 player의 animation을 한다.
-func play_animation_by_velocity(velocity):
+func play_animation_by_velocity(_velocity):
 	# leg animation
 	# walk
-	if velocity.length() > 0.5:
+	if _velocity.length() > 0.5:
 		Util.play_animation ($AnimatedSprites/LegAnimatedSprite, "walk")
 		$AudioStreamPlayer2D.stream_paused = false
 	# idle
@@ -219,7 +219,7 @@ func find_nearest_enemy()->Node2D:
 	
 	
 # 이동 처리를 하고 velocity를 계산한
-func move(delta):
+func move(_delta):
 	# velocity를 받아 온다.
 	input_velocity_player()
 	

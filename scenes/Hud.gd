@@ -8,7 +8,6 @@ func _ready():
 	$Label.text = message
 	modulate = color
 	
-	var dist = 30
 	var new_position = position + Vector2(0, -30)
 	var new_modulate = modulate
 	new_modulate.a = 0
@@ -22,7 +21,9 @@ func _ready():
 	$Tween.interpolate_property(self, "modulate", modulate, new_modulate, 0.5, Tween.TRANS_LINEAR, Tween.EASE_OUT, 1)
 	
 	$Tween.start()
-	$Tween.connect("tween_all_completed", self, "on_Tween_all_completed")
+	var err = $Tween.connect("tween_all_completed", self, "on_Tween_all_completed")
+	if err != OK:
+		push_error("connect failed")
 
 func on_Tween_all_completed():
 	call_deferred("queue_free")

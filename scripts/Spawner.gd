@@ -48,10 +48,14 @@ func _on_Timer_timeout():
 	if node is Enemy:
 		var enemy:Enemy = node
 		
+		var size = enemy.get_body_collision_size()
+		
 		# path_finder 설정
 		var world_node = get_tree().root.get_node_or_null("World")
 		if world_node != null:
 			var path_finder_name = "PathFinder"
+			if size > 32:
+				path_finder_name = "PathFinder64x64"
 			var path_finder = world_node.get_node_or_null(path_finder_name)
 			enemy.set_path_finder(path_finder)
 			

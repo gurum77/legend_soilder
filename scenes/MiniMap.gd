@@ -31,7 +31,7 @@ func on_Object_added(object):
 	new_marker.show()
 	markers[object] = new_marker
 
-func _process(delta):
+func _process(_delta):
 	if !player:
 		return
 	# player의 회전

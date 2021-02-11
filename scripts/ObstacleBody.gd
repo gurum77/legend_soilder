@@ -4,7 +4,7 @@ class_name ObstacleBody
 export var next_bomb = false
 export var next_bomb_power = 2000
 
-enum {idle, explosion, die}
+enum {idle, explosion, death}
 var state = idle
 onready var animated_sprite = get_node_or_null("AnimatedSprite")
 
@@ -42,6 +42,6 @@ func die():
 	
 func _on_AnimatedSprite_animation_finished():
 	if state == explosion:
-		state = die
+		state = death
 		Util.play_animation(animated_sprite, "die")
 		

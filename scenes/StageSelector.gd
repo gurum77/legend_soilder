@@ -58,15 +58,7 @@ func update_stage_buttons():
 
 # 버튼을 누르면 해당 position을 찾아서 스크롤을 한다
 func on_stage_button_pressed(button):
-	StaticData.get_stage_information(button.stage_name)
-	for si_key in StaticData.stage_informations.keys():
-		if si_key != button.stage_name:
-			continue
-		var si = StaticData.get_stage_information(si_key)
-		if si == null:
-			continue
-		move_to_stage_position(si_key)	
-		break
+	move_to_stage_position(button.stage_name)
 		
 # 지정한 station position으로 이동
 func move_to_stage_position(stage_name):
@@ -77,19 +69,15 @@ func move_to_stage_position(stage_name):
 	$Tween.interpolate_property($MapScrollContainer, "scroll_vertical", $MapScrollContainer.scroll_vertical, si.position.y - $MapScrollContainer.rect_size.y / 2, 0.5, Tween.TRANS_SINE, Tween.EASE_OUT)
 	
 	# player 를 해당 위치로 이동
-	var stage_position = find_stage_position(stage_name)
-	if not stage_position == null:
-		$Tween.interpolate_property($MapScrollContainer/Map/Player, "position", $MapScrollContainer/Map/Player.position, stage_position.position, 0.3, Tween.TRANS_SINE, Tween.EASE_OUT)	
+	var _stage_position = find_stage_position(stage_name)
+	if not _stage_position == null:
+		$Tween.interpolate_property($MapScrollContainer/Map/Player, "position", $MapScrollContainer/Map/Player.position, _stage_position.position, 0.3, Tween.TRANS_SINE, Tween.EASE_OUT)	
 	$Tween.start()
-	
-func _on_Map_gui_input(event):
-	#print(event.as_text())
-	
-	pass # Replace with function body.
-
 
 func _on_TextureButton_pressed():
-	get_tree().change_scene("res://scenes/Home.tscn")
+	var err = get_tree().change_scene("res://scenes/Home.tscn")
+	if err != OK:
+		push_error("change_scene failed")
 
 # 게임 시작
 # go 버튼 클릭
@@ -99,4 +87,6 @@ func _on_StartButton_pressed():
 	if si != null:
 		si.current_step = min(si.current_step, si.max_step)
 		
-	get_tree().change_scene("res://scenes/World.tscn")
+	var err = get_tree().change_scene("res://scenes/World.tscn")
+	if err != OK:
+		push_error("change_scene failed")

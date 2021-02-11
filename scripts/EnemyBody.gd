@@ -48,7 +48,7 @@ func _ready():
 	start_fire()
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	move_to_target()
 	play_animation_by_velocity(velocity)
 	turn_to_target()
@@ -56,13 +56,13 @@ func _physics_process(delta):
 	
 
 # veloity에 따라 player의 animation을 한다.
-func play_animation_by_velocity(velocity):
+func play_animation_by_velocity(_velocity):
 	if dead:
 		return
 		
 	# leg animation
 	# walk
-	if velocity.length() > 0.5:
+	if _velocity.length() > 0.5:
 		Util.play_animation(leg_animated_sprite, "walk")
 	# idle
 	else:

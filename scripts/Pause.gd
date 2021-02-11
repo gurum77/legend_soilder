@@ -11,7 +11,9 @@ func _on_SettingButton_pressed():
 
 func _on_HomeButton_pressed():
 	get_tree().paused = false
-	get_tree().change_scene("res://scenes/Home.tscn")
+	var err = get_tree().change_scene("res://scenes/Home.tscn")
+	if err != OK:
+		push_error("change_scene failed")
 
 
 func _on_ResumeButton_pressed():

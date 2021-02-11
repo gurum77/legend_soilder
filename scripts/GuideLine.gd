@@ -7,7 +7,7 @@ func _ready():
 	
 #func _ready():
 #	collision_mask = 0b10010
-func _process(delta):
+func _process(_delta):
 	if !is_draw_line:
 		return
 	$Line2D.points[0] = Vector2(0, 0)

@@ -13,10 +13,10 @@ var footstep_audio = preload("res://assets/sounds/footstep.ogg")
 func set_music_volume(volume):
 	var bus_index = AudioServer.get_bus_index("music")
 	if volume == 0:
-		AudioServer.set_bus_mute(AudioServer.get_bus_index("music"), true) 
+		AudioServer.set_bus_mute(bus_index, true) 
 	else:
-		AudioServer.set_bus_mute(AudioServer.get_bus_index("music"), false) 
-		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("music"), volume) 
+		AudioServer.set_bus_mute(bus_index, false) 
+		AudioServer.set_bus_volume_db(bus_index, volume) 
 	
 
 func set_sound_volume(volume):	
