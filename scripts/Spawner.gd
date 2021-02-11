@@ -22,6 +22,7 @@ func _ready():
 		break
 	$Timer.start(interval)
 	
+
 func _on_Timer_timeout():
 	if spawn_node == null:
 		return
@@ -46,24 +47,20 @@ func _on_Timer_timeout():
 	add_child(node)
 	if node is Enemy:
 		var enemy:Enemy = node
+		
 		# path_finder 설정
 		var world_node = get_tree().root.get_node_or_null("World")
 		if world_node != null:
-			var path_finder = world_node.get_node_or_null("PathFinder")
+			var path_finder_name = "PathFinder"
+			var path_finder = world_node.get_node_or_null(path_finder_name)
 			enemy.set_path_finder(path_finder)
 			
 		# hp 를 stage에 맞게 설정
 		enemy.set_HP(Table.get_enemy_hp(enemy.HP, StaticData.get_current_stage_information()))
 		
+		# 지금까지 spawn 된 점수를 기록
 		StaticData.spawned_score_for_stage += enemy.get_score()
+		
 		# 점점 커지게 만들어 준다.
 		$Tween.interpolate_property(enemy, "scale", Vector2(0.1, 0.1), Vector2(1, 1), 0.3, Tween.TRANS_LINEAR, Tween.EASE_OUT)
-		$Tween.start()
-		# 앞으로 조금 밀어준다.
-		enemy.get_body().target_position_to_move = global_position + Vector2(50, 50)
-		
-		
-	
-	
-	
-	
+		$Tween.start()		

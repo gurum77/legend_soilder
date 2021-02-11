@@ -15,8 +15,15 @@ func _ready():
 	# stage path에서 읽어온다
 	var ins = load(StaticData.get_current_stage_path()).instance()
 	add_child(ins)
+	init_path_finders(ins)
 	
+# path finder를 초기화 한다.
+func init_path_finders(tilemap):
 	var path_finder = get_parent().get_node("PathFinder")
 	if path_finder != null:
-		path_finder.init_tilemap(ins)
+		path_finder.init_tilemap(tilemap)
+		
+	var path_finder64x64 = get_parent().get_node("PathFinder64x64")
+	if path_finder64x64 != null:
+		path_finder64x64.init_tilemap(tilemap)
 		

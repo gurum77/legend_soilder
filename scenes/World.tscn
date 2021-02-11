@@ -27,6 +27,7 @@ script = ExtResource( 3 )
 [node name="BattleField_SideWater" parent="MapManager" instance=ExtResource( 2 )]
 
 [node name="PathFinder" parent="." instance=ExtResource( 17 )]
+map_size = Vector2( 30, 32 )
 
 [node name="Line2D" type="Line2D" parent="PathFinder"]
 width = 3.0
@@ -151,7 +152,7 @@ aim_joystick = NodePath("../../CanvasLayer/AimJoystick")
 
 [node name="LegAnimatedSprite" parent="Player/Body/AnimatedSprites" index="0"]
 position = Vector2( 0.28064, 0 )
-frame = 2
+frame = 1
 
 [node name="Money" parent="." instance=ExtResource( 15 )]
 position = Vector2( 149.913, 136.683 )

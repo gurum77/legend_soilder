@@ -1,7 +1,7 @@
 extends TextureButton
 
 var stage_scene_path = "res://maps/BattleField_Focus.tscn"
-var stage_name = "name"
+var stage_name = "한국"
 
 func _ready():
 	$Label.text = stage_name

@@ -67,8 +67,7 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=4]
-radius = 10.1944
-height = 4.63671
+height = 5.10226
 
 [node name="Soldier" type="Node2D"]
 script = ExtResource( 14 )
@@ -91,6 +90,7 @@ animation = "idle"
 [node name="BodyPivot" type="Node2D" parent="Body/AnimatedSprites"]
 
 [node name="BodyAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites/BodyPivot"]
+position = Vector2( 0.198425, 0 )
 rotation = -1.5708
 frames = SubResource( 2 )
 animation = "idle"
@@ -105,7 +105,6 @@ frames = SubResource( 3 )
 animation = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
-visible = false
 position = Vector2( -2.20486, 0.157492 )
 rotation = 1.5708
 shape = SubResource( 4 )

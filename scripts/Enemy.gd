@@ -91,4 +91,38 @@ func die():
 func get_body()->Node:
 	return $Body
 	
+# body의 collision의 크기를 가져온다.
+func get_body_collision_size()->float:
+	var size:float = 1
+	var nodes = get_body().get_children()
+	for node in nodes:
+		if not node is CollisionShape2D:
+			continue;
+		var cs:CollisionShape2D = node
+		
+		var s = get_collision_size(cs.shape)
+		if size < s:
+			size = s
+			
+	return size
+	
+# collision의 크기를 리턴한다.
+# 가로 세로 중 큰 값을 리턴한다.
+# rectangle, circle, capsule 만 계산 가능
+# 다른거를 사용하면 추가 코딩해야
+func get_collision_size(shape)->float:
+	var size:float = 1.0
+	if shape is CapsuleShape2D:
+		size = shape.height + shape.radius*2
+	elif shape is CircleShape2D:
+		size = shape.radius * 2
+	elif shape is RectangleShape2D:
+		size = max(shape.extents.x, shape.extents.y) * 2
+	else:
+		push_error("정의 되지 않은 shape type입니다.")
+	
+	return size
+	
+	
+	
 

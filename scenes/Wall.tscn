@@ -1,0 +1,63 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://assets/tilesets/Walls/wall.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Obstacle.gd" type="Script" id=2]
+[ext_resource path="res://scenes/HPBar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/effects/big_explosion/Explode Source.png" type="Texture" id=4]
+[ext_resource path="res://assets/effects/big_explosion/2.png" type="Texture" id=5]
+[ext_resource path="res://assets/effects/big_explosion/1.png" type="Texture" id=6]
+[ext_resource path="res://assets/effects/big_explosion/4.png" type="Texture" id=7]
+[ext_resource path="res://assets/effects/big_explosion/3.png" type="Texture" id=8]
+[ext_resource path="res://assets/effects/light_smoke/Light-Smoke_0000s_0002_5.png" type="Texture" id=9]
+[ext_resource path="res://assets/effects/light_smoke/Light-Smoke_0000s_0003_4.png" type="Texture" id=10]
+[ext_resource path="res://assets/effects/light_smoke/Light-Smoke_0000s_0000_7.png" type="Texture" id=11]
+[ext_resource path="res://assets/effects/light_smoke/Light-Smoke_0000s_0001_6.png" type="Texture" id=12]
+[ext_resource path="res://assets/effects/light_smoke/Light-Smoke_0000s_0004_3.png" type="Texture" id=13]
+[ext_resource path="res://assets/effects/light_smoke/Light-Smoke_0000s_0006_1.png" type="Texture" id=14]
+[ext_resource path="res://assets/effects/light_smoke/Light-Smoke_0000s_0005_2.png" type="Texture" id=15]
+[ext_resource path="res://scripts/ObstacleBody.gd" type="Script" id=16]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 16, 16 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 5 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 4 ) ],
+"loop": false,
+"name": "explosion",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 13 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 12 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "die",
+"speed": 3.0
+} ]
+
+[node name="Wall" type="Node2D"]
+script = ExtResource( 2 )
+HP = 99999999
+
+[node name="HPBar" parent="." instance=ExtResource( 3 )]
+visible = false
+margin_top = -26.0
+margin_bottom = -22.0
+
+[node name="Body" type="StaticBody2D" parent="."]
+script = ExtResource( 16 )
+
+[node name="Sprite" type="Sprite" parent="Body"]
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+visible = false
+shape = SubResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Body"]
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 2 )
+animation = "idle"

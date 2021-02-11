@@ -48,6 +48,7 @@ wait_time = 0.3
 autostart = true
 
 [node name="EyeLabel" type="Label" parent="."]
+visible = false
 margin_left = -36.4162
 margin_top = -84.9891
 margin_right = 29.5838
@@ -59,6 +60,7 @@ __meta__ = {
 }
 
 [node name="AttackLabel" type="Label" parent="."]
+visible = false
 margin_left = -35.9308
 margin_top = -51.0737
 margin_right = 36.0692
@@ -69,6 +71,7 @@ __meta__ = {
 }
 
 [node name="DangerousLabel" type="Label" parent="."]
+visible = false
 margin_left = -50.4354
 margin_top = -67.7088
 margin_right = 49.5646
@@ -79,6 +82,7 @@ __meta__ = {
 }
 
 [node name="MoveStateLabel" type="Label" parent="."]
+visible = false
 margin_left = -40.2596
 margin_top = -107.535
 margin_right = 40.7404

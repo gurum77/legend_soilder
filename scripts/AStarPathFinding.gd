@@ -33,6 +33,7 @@ func getallnodes(node):
 
 # 한번은 호출해야함
 func init_tilemap(var map):
+	
 	# 모든 자식노드 찾기
 	all_nodes_in_map.clear()
 	getallnodes(map)
@@ -53,6 +54,11 @@ func init_tilemap(var map):
 		_half_cell_size = tilemap.cell_size / 2
 		
 		obstacles = []#tilemap.get_used_cells_by_id(0)
+		# tile map중에서 collisionshape을 찾는다.
+		for y in range(map_size.y):
+			for x in range(map_size.x):
+				pass
+			pass
 		# map 안에 있는 모든 collider를 찾아서 장애물로 기록한다.
 		for node in all_nodes_in_map:
 			if not node is Node2D:
