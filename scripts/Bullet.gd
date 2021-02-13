@@ -30,6 +30,9 @@ func _ready():
 	if weapon != Define.Weapon.None:
 		# power
 		power = Table.get_weapon_power_by_level(weapon)
+		if player:
+			power = power + Table.get_player_power_by_level()
+		
 		# speed
 		speed = Table.get_weapon_bullet_speed(weapon)
 		# 무기 종류에 맞는 사거리 결정

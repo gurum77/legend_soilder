@@ -84,6 +84,9 @@ func die():
 	# enemy가 죽을때 마다 player의 점수를 올린다
 	StaticData.current_score_for_stage += get_score()
 	
+	# enemy가 죽을때 올리는 점수를 경험치에 반영한다.
+	StaticData.total_exp += get_score()
+	
 	# dead signal(world에서 제거)
 	emit_signal("dead")
 	# removed signal(미니맵에서 제거)

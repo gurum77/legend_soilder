@@ -2,6 +2,9 @@ extends Panel
 
 onready var si  = StaticData.get_current_stage_information()
 func _ready():
+	# 총 별의 개수를 계산한다.
+	StaticData.calc_total_star_nums()
+	
 	$TextureRect/Coins.text = String(StaticData.current_stage_money)
 	if is_cleared():
 		$TextureRect/NextButton/Label.text = "CLEAR"

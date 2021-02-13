@@ -3,9 +3,7 @@
 [ext_resource path="res://maps/battle_field_ground_water/tileset_battle_field_ground_water.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/obstacles/Walls_25x33.tscn" type="PackedScene" id=2]
 
-
-
-[node name="0_ground" type="TileMap"]
+[node name="BattleField_GroundWater" type="TileMap"]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 format = 1

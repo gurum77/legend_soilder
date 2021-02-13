@@ -8,7 +8,16 @@ var current_score_for_stage = 0
 var requirement_score_for_stage = 10000
 var spawned_score_for_stage = 0	# 현재 spawn되어 있는 전체 점수(필요한 만큼만 스폰되어야 한다)
 var total_money = 0	
+var total_exp = 0
+var total_star = 0	# serialize하지 않
 var current_stage_money = 0	# 현재 stage에서 모은 돈
+
+# 획득한 별의 갯수를 계산한다.(표시할때 마다 계산하면 부하가 걸리므로 미리 계산해둔다)
+func calc_total_star_nums():
+	total_star = 0
+	for si in StaticData.stage_informations.values():
+		total_star += si.get_star_nums()
+	
 
 func get_current_stage_path()->String:
 	var si = get_stage_information(current_stage_name)
@@ -23,11 +32,12 @@ var stage_informations:Dictionary={
 	"SideWater" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(1130, 426)),
 	"소용돌이" : StageInformation.new("res://maps/BattleField_소용돌이.tscn", Vector2(1245, 692)),
 	"흔들광산" : StageInformation.new("res://maps/BattleField_흔들광산.tscn", Vector2(997, 678)),
-	"SideWater4" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(892, 675)),
-	"SideWater5" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(1027, 564)),
+	"으스스동굴" : StageInformation.new("res://maps/BattleField_으스스동굴.tscn", Vector2(892, 675)),
+	"무인도" : StageInformation.new("res://maps/BattleField_무인도.tscn", Vector2(1027, 564)),
 	"SideWater6" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(974, 480)),
 	"Surround" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449))
 }
+
 # weapon 정보
 var weapon_informations:Dictionary = {
 	Define.get_weapon_name(Define.Weapon.Pistol) : WeaponInformation.new(),
@@ -35,6 +45,11 @@ var weapon_informations:Dictionary = {
 	Define.get_weapon_name(Define.Weapon.RPG) : WeaponInformation.new(),
 	Define.get_weapon_name(Define.Weapon.FlameThrower) : WeaponInformation.new(),
 	Define.get_weapon_name(Define.Weapon.MG) : WeaponInformation.new()
+}
+
+# player 정보
+var player_informations:Dictionary={
+	Define.get_player_name() : PlayerInformation.new()
 }
 
 
@@ -59,6 +74,9 @@ func reset_game():
 		weapon_informations[wi_key].power_level = 1
 		weapon_informations[wi_key].range_level = 1
 		weapon_informations[wi_key].interval_level = 1
+	for pi_key in player_informations.keys():
+		player_informations[pi_key].power_level = 1
+		player_informations[pi_key].hp_level = 1
 		
 
 # stage_informations game data save용 dic을 리턴
@@ -68,12 +86,19 @@ func get_save_dic_stage_informations()->Dictionary:
 		_save_dic[si_key] = stage_informations[si_key].get_save_dic()
 	return _save_dic
 	
+func get_save_dic_player_informations()->Dictionary:
+	var _save_dic:Dictionary
+	for wi_key in player_informations.keys():
+		_save_dic[wi_key] = player_informations[wi_key].get_save_dic()
+	return _save_dic
+	
 func get_save_dic_weapon_informations()->Dictionary:
 	var _save_dic:Dictionary
 	for wi_key in weapon_informations.keys():
 		_save_dic[wi_key] = weapon_informations[wi_key].get_save_dic()
 	return _save_dic
 	
+
 func get_save_dic_inventory_items()->Dictionary:
 	var _save_dic:Dictionary
 	for i in inventory_items.size():
@@ -88,9 +113,11 @@ func save_game():
 		"requirement_score_for_stage" : requirement_score_for_stage,
 		"current_weapon_index" : current_weapon_index,
 		"total_money" : total_money,
-		"current_stage_money" : current_stage_money,
+		"total_exp" : total_exp,
+		"current음_stage_money" : current_stage_money,
 		"stage_informations" : get_save_dic_stage_informations(),
 		"weapon_informations" : get_save_dic_weapon_informations(),
+		"player_informations" : get_save_dic_player_informations(),
 		"inventory_items" : get_save_dic_inventory_items()
 	}
 	var save_file = File.new()
@@ -111,12 +138,18 @@ func load_game():
 		requirement_score_for_stage = get_gamedata(dic, "requirement_score_for_stage", requirement_score_for_stage)
 		current_weapon_index = get_gamedata(dic, "current_weapon_index", current_weapon_index)
 		total_money = get_gamedata(dic, "total_money", total_money)
+		total_exp = get_gamedata(dic, "total_exp", total_exp)
 		current_stage_money = get_gamedata(dic, "current_stage_money", current_stage_money)
 		load_gamedata_stage_informations(dic)
 		load_gamedata_weapon_informations(dic)
+		load_gamedata_player_informations(dic)
 		load_gamedata_inventory_items(dic)
 	laod_file.close()
+	# 별의 갯수를 계산한다
+	StaticData.calc_total_star_nums()
+	# 테스트
 	total_money = 100000
+	
 
 # inventory_items game data를 불러온다
 func load_gamedata_inventory_items(var dic:Dictionary):
@@ -130,6 +163,21 @@ func load_gamedata_inventory_items(var dic:Dictionary):
 	for ii_key in dic_inventory_items.keys():
 		inventory_items[index].load_gamedata(dic_inventory_items[ii_key])
 		index+=1
+	
+# player_informations game data를 불러온	
+func load_gamedata_player_informations(var dic:Dictionary):
+	if !dic.has("player_informations"):
+		return
+	var dic_player_informations:Dictionary = dic["player_informations"]
+	if dic_player_informations == null:
+		return
+	
+	for pi_key in dic_player_informations.keys():
+		# 있는 것만 불러온다.
+		var pi = player_informations[pi_key]
+		if pi == null:
+			continue
+		pi.load_gamedata(dic_player_informations[pi_key])
 		
 # weapon_informations game data를 불러온다
 func load_gamedata_weapon_informations(var dic:Dictionary):
@@ -219,6 +267,9 @@ func get_stage_information(stage_name)->StageInformation:
 	if stage_informations.has(stage_name):
 		return stage_informations[stage_name]
 	return null
+	
+func get_player_information()->PlayerInformation:
+	return player_informations[player_informations.keys()[0]]
 	
 # 무기 정보를 리턴한다
 # 없으면 만들어서 리턴한다

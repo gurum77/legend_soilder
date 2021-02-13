@@ -1,15 +1,23 @@
 extends Panel
+class_name UpgradePanel
 
-enum UpgradeItem{power, interval, fire_range}
+enum UpgradeItem{power, interval, fire_range, player_power, player_hp}
 export (UpgradeItem) var upgrade_item = UpgradeItem.power
 export (Define.Weapon) var weapon = Define.Weapon.Pistol
 
 onready var weapon_information:WeaponInformation = StaticData.get_weapon_information(weapon)
+onready var player_information:PlayerInformation = StaticData.get_player_information()
+
 var need_more_money_to_upgrade = false	# upgrade하기 위해서 돈이 더 필요한지?
 var upgrade_cost = 100000000 # 혹시라도 오류가 발생하면 구매하지 못하게 하려고 초기값을 크게
 var is_max_level = false
 func _ready():
 	update()
+	
+func set_upgrade_item(_upgrade_item):
+	upgrade_item = _upgrade_item
+	update()
+
 	
 func change_weapon(w):
 	weapon = w
@@ -36,6 +44,16 @@ func update():
 			title_text = "RANGE"
 			level = weapon_information.range_level
 			is_max_level = weapon_information.is_max_range_level()
+		UpgradeItem.player_power:
+			title_text = "POWER"
+			value_text = str(stepify(Table.get_player_power_by_level(), 1))
+			level = player_information.power_level
+			is_max_level = player_information.is_max_power_level()
+		UpgradeItem.player_hp:
+			title_text = "HP"
+			value_text = str(stepify(Table.get_player_hp_by_level(), 1))
+			level = player_information.hp_level
+			is_max_level = player_information.is_max_hp_level()			
 	
 	# 비용을 계산한다
 	upgrade_cost = Table.get_upgrade_cost(level+1)		
@@ -99,20 +117,21 @@ func _on_Button_pressed():
 		dlg.popup_centered()
 		return
 		
-	var wi:WeaponInformation = StaticData.get_weapon_information(weapon)
-	if wi == null:
-		return
 	# 비용만큼 가진 돈에서 뺀다
 	StaticData.total_money -= upgrade_cost
 	
 	# level을 올린다
 	match upgrade_item:
 		UpgradeItem.power:
-			wi.upgrade_power_level()
+			weapon_information.upgrade_power_level()
 		UpgradeItem.fire_range:			
-			wi.upgrade_range_level()
+			weapon_information.upgrade_range_level()
 		UpgradeItem.interval:
-			wi.upgrade_interval_level()
+			weapon_information.upgrade_interval_level()
+		UpgradeItem.player_power:
+			player_information.upgrade_power_level()
+		UpgradeItem.player_hp:
+			player_information.upgrade_hp_level()			
 	# text, button, 비용을 갱신한다
 	update()
 

@@ -45,10 +45,14 @@ func _on_WeaponButton_pressed():
 	var desc_panel = get_tree().root.get_node("Equipment/Control/WeaponDescriptionPanel")
 	if desc_panel == null:
 		return
+	desc_panel.get_node("WeaponTexture").visible = true
 	desc_panel.get_node("WeaponTexture").texture = Define.get_weapon_texture(weapon)
 	desc_panel.get_node("WeaponNameLabel").text = Define.get_weapon_name(weapon)
 	desc_panel.get_node("Information").text = Define.get_weapon_description(weapon)
+	desc_panel.get_node("PowerPanel").set_upgrade_item(UpgradePanel.UpgradeItem.power)
 	desc_panel.get_node("PowerPanel").change_weapon(weapon)
+	
+	desc_panel.get_node("IntervalPanel").set_upgrade_item(UpgradePanel.UpgradeItem.interval)
 	desc_panel.get_node("IntervalPanel").change_weapon(weapon)
 	
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/StageButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/MoneyPanel.tscn" type="PackedScene" id=2]
@@ -8,7 +8,7 @@
 [ext_resource path="res://assets/ui/BTN BACK.png" type="Texture" id=6]
 [ext_resource path="res://assets/ui/BTN SETTINGS_EMPTY.png" type="Texture" id=7]
 [ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=8]
-
+[ext_resource path="res://scenes/StarPanel.tscn" type="PackedScene" id=9]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -84,6 +84,9 @@ antialiased = true
 [node name="Player" parent="MapScrollContainer/Map" instance=ExtResource( 5 )]
 position = Vector2( 396.85, 253.984 )
 z_index = 1
+
+[node name="LegAnimatedSprite" parent="MapScrollContainer/Map/Player/Body/AnimatedSprites" index="0"]
+frame = 1
 
 [node name="Camera2D" parent="MapScrollContainer/Map/Player" index="2"]
 current = false
@@ -164,6 +167,12 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="StarPanel" parent="." instance=ExtResource( 9 )]
+margin_left = -158.894
+margin_top = 0.396847
+margin_right = -78.8944
+margin_bottom = 26.3968
 [connection signal="pressed" from="BackButton" to="." method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
 

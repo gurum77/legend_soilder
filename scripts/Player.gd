@@ -2,8 +2,8 @@ extends Node2D
 class_name Player
 signal dead
 
-var HP = 30000
-onready var max_HP = HP
+var HP = Table.player_hp
+var max_HP = Table.player_hp
 
 func _ready():
 	# signal 연결
@@ -13,6 +13,10 @@ func _ready():
 		if err != OK:
 			push_error("connect failed")
 		
+	# level에 맞게 hp를 재계산
+	HP = Table.get_player_hp_by_level()
+	max_HP = HP
+	
 	$HPBar.init(HP)
 	add_to_group("player")
 	

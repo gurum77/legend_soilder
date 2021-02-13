@@ -34,11 +34,6 @@ animations = [ {
 "name": "RPG",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 16 ), ExtResource( 1 ) ],
-"loop": true,
-"name": "FlameThrower",
-"speed": 15.0
-}, {
 "frames": [ ExtResource( 22 ) ],
 "loop": true,
 "name": "Pistol",
@@ -48,6 +43,11 @@ animations = [ {
 "loop": true,
 "name": "SMG",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "FlameThrower",
+"speed": 15.0
 }, {
 "frames": [ ExtResource( 23 ) ],
 "loop": true,

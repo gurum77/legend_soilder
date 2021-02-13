@@ -9,15 +9,22 @@ var max_power_level = 20
 var max_range_level = 20
 var max_interval_level = 20
 
+var max_player_power_level = 20
+var max_player_hp_level = 20
+
 # 기본 money 
 var default_money_amount = 10
 
+export (Texture) var Player_texture = null
 export (Texture) var FlameThrower_texture = null
 export (Texture) var MG_texture = null
 export (Texture) var Pistol_texture = null
 export (Texture) var RPG_texture = null
 export (Texture) var SMG_texture = null
 
+# player의 texture
+func get_player_texture()->Texture:
+	return Player_texture
 
 # 무기의 texture
 func get_weapon_texture(var weapon) -> Texture:
@@ -34,8 +41,10 @@ func get_weapon_texture(var weapon) -> Texture:
 	else:
 		return null
 		
-
 		
+func get_player_name()->String:
+	return "Evan"
+	
 func get_weapon_name(var weapon) -> String:
 	if weapon == Weapon.FlameThrower:
 		return "FlameThrower"
@@ -49,6 +58,9 @@ func get_weapon_name(var weapon) -> String:
 		return "SMG"
 	else:
 		return "None"
+	
+func get_player_description()->String:
+	return "He is legend soldier\n Nobody can block him."
 	
 func get_weapon_description(var weapon) -> String:
 	if weapon == Weapon.FlameThrower:

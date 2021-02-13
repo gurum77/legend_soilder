@@ -18,6 +18,15 @@ func get_save_dic()->Dictionary:
 		"current_step" : current_step
 	}
 	return save_dic
+
+# 이번 stage에서 획득한 별의 개수	
+func get_star_nums()->int:
+	var nums = current_step-1
+	if nums > max_step:
+		nums = max_step;
+		
+	return nums
+	
 	
 # game data를 불러온다.
 func load_gamedata(var dic):

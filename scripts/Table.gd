@@ -7,6 +7,9 @@ var stage_clear_score_factor = 1.12
 # 적 체력 증가 펙터
 var enemy_hp_factor = 1.05
 
+# player hp factor
+var player_hp_factor = 1.07
+
 # weapon power factor
 var weapon_power_factor = 1.2
 
@@ -23,6 +26,11 @@ var interval_SMG = 0.25
 var interval_MG = 0.2
 var interval_FlameThrower = 0.15
 var interval_RPG = 1
+
+# player의 기본 공격력
+var player_power = 300
+# player의 기본 체력
+var player_hp = 3000
 
 # 무기별 기본 파워
 var power_Pistol = 700
@@ -49,6 +57,19 @@ func get_weapon_interval_by_level(weapon):
 	elif weapon == Define.Weapon.RPG:
 		interval_basic = interval_RPG
 	return get_weapon_interval(interval_basic, interval_level)	
+	
+# hp level이 반영된 player의 hp 리턴
+func get_player_hp_by_level()->int:
+	var hp_level =  StaticData.get_player_information().hp_level
+	var hp = player_hp
+	for _i in range(hp_level):
+		hp = hp * player_hp_factor
+		
+	return hp as int
+	
+# power level이 반영된 palyer의 공격력 리턴
+func get_player_power_by_level():
+	return get_player_power(Table.player_power, StaticData.get_player_information().power_level)
 	
 # power level이 반영된 무기의 공격력 리턴
 func get_weapon_power_by_level(weapon):
@@ -176,7 +197,11 @@ func get_enemy_hp(hp, si:StageInformation)->int:
 	for _i in range(pos):
 		hp = hp * enemy_hp_factor
 	return hp as int
-
+	
+# player의 level별 기본 공격력 리턴
+func get_player_power(power, power_level)->int:
+	return get_weapon_power(power, power_level)
+	
 # power level별 무기 공격력 리턴
 func get_weapon_power(power, power_level)->int:
 	for _i in range(power_level-1):

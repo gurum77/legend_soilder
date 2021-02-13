@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/WeaponPanel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/ui/Pistol HUD.png" type="Texture" id=2]
@@ -6,9 +6,13 @@
 [ext_resource path="res://scripts/Equipment.gd" type="Script" id=4]
 [ext_resource path="res://assets/ui/BTN BACK.png" type="Texture" id=5]
 [ext_resource path="res://scenes/MoneyPanel.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/StarPanel.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/fonts/neodgm_pro.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://assets/ui/BG.png" type="Texture" id=9]
 [ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://scenes/WeaponInventory.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/ui/man icon_no_bg.png" type="Texture" id=12]
+[ext_resource path="res://assets/ui/man icon.png" type="Texture" id=13]
 
 [sub_resource type="DynamicFont" id=1]
 size = 18
@@ -17,8 +21,8 @@ outline_color = Color( 0.831373, 0.745098, 0.184314, 1 )
 font_data = ExtResource( 10 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 13
-font_data = ExtResource( 10 )
+size = 15
+font_data = ExtResource( 8 )
 
 [node name="Equipment" type="Panel"]
 self_modulate = Color( 0, 0, 0, 1 )
@@ -39,15 +43,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="PlayerButton" type="TextureButton" parent="Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -20.0
+margin_top = -8.0
+margin_right = 44.0
+margin_bottom = 56.0
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="WeaponList" type="ScrollContainer" parent="Control"]
 anchor_left = 0.00187073
 anchor_top = -0.00244338
 anchor_right = 0.00187073
 anchor_bottom = 0.997557
-margin_top = 34.0
+margin_top = 63.0
 margin_right = 265.0
-margin_bottom = -85.3777
-rect_min_size = Vector2( 0, 340 )
+margin_bottom = -76.3779
+rect_min_size = Vector2( 0, 320 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -55,7 +72,7 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/WeaponList"]
 margin_right = 250.0
 margin_bottom = 390.0
-rect_min_size = Vector2( 250, 390 )
+rect_min_size = Vector2( 250, 350 )
 custom_constants/separation = 10
 
 [node name="PistolPanel" parent="Control/WeaponList/VBoxContainer" instance=ExtResource( 1 )]
@@ -85,9 +102,9 @@ anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -323.0
-margin_top = 34.0
-margin_right = 1.00012
-margin_bottom = -83.3777
+margin_top = 61.0
+margin_right = 1.0
+margin_bottom = -78.3777
 texture = ExtResource( 9 )
 expand = true
 __meta__ = {
@@ -124,28 +141,24 @@ __meta__ = {
 }
 
 [node name="PowerPanel" parent="Control/WeaponDescriptionPanel" instance=ExtResource( 3 )]
-margin_top = 223.0
-margin_bottom = 266.0
+margin_top = 204.0
+margin_bottom = 247.0
 
 [node name="IntervalPanel" parent="Control/WeaponDescriptionPanel" instance=ExtResource( 3 )]
-margin_top = 275.0
-margin_bottom = 318.0
+margin_top = 256.0
+margin_bottom = 299.0
 upgrade_item = 1
 
 [node name="Information" type="Label" parent="Control/WeaponDescriptionPanel"]
-margin_left = 31.0
-margin_top = 72.0
-margin_right = 287.0
-margin_bottom = 249.0
+margin_left = 31.8409
+margin_top = 71.0
+margin_right = 287.841
+margin_bottom = 201.0
 custom_fonts/font = SubResource( 2 )
-text = "Basic gun
+text = "기본총
 
 Interval : 0.2 sec
 All of soldiers can get this gun.
-
-It is a handgun, more
- specifically one with the chamfer.
-
 "
 __meta__ = {
 "_edit_use_anchors_": false
@@ -164,4 +177,11 @@ __meta__ = {
 }
 
 [node name="MoneyPanel" parent="." instance=ExtResource( 6 )]
+
+[node name="StarPanel" parent="." instance=ExtResource( 7 )]
+margin_left = -159.423
+margin_top = -0.0248566
+margin_right = -79.423
+margin_bottom = 25.9751
+[connection signal="pressed" from="Control/PlayerButton" to="." method="_on_PlayerButton_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]

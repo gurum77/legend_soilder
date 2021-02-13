@@ -54,7 +54,9 @@ func game_over(var victory:bool):
 	if victory == true:
 		var si = StaticData.get_current_stage_information()
 		if si != null:
+			
 			si.current_step += 1
+			
 	# game data 저장
 	StaticData.save_game()
 	
