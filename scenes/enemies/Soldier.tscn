@@ -22,7 +22,6 @@
 [ext_resource path="res://scenes/EnemyAI.tscn" type="PackedScene" id=20]
 [ext_resource path="res://scripts/ItemMaker.gd" type="Script" id=21]
 
-
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 10 ) ],

@@ -81,27 +81,33 @@ func init_tilemap(var map):
 #			for x in range(map_size.x):
 #				pass
 #			pass
+		# map child중에서 tilemap이 있다면 모두 장애물로 기록한다.
+		# 물을 그리기 위한 tilemap 이다.
+		var _nodes = map.get_children()
+		for node in _nodes:
+			if node is TileMap:
+				var tm:TileMap = node as TileMap
+				var cells = tm.get_used_cells()
+				for cell in cells:
+					if not cell in obstacles:
+						obstacles.append(cell)
+						
 		# map 안에 있는 모든 collider를 찾아서 장애물로 기록한다.
 		for node in all_nodes_in_map:
 			if not node is Node2D:
 				continue
-			if not node is CollisionShape2D:
-				continue
-			# collisionshape이더라도 부모가 area2D라면 무시(통과 가능. 예) bush)
-			if node.get_parent() is Area2D:
-				continue
-			
-			var node2D = node as Node2D
-			var map_position = tilemap.world_to_map(node2D.global_position)
-			if not map_position in obstacles:
-				obstacles.append(map_position)
-			# big size이면 상하 좌우를 모두 포함시킨다.
-#			if big_size_obstacle:
-#				var around_positions = get_around_position(map_position)
-#				for pos in around_positions:
-#					if pos in obstacles:
-#						continue
-#					obstacles.append(pos)
+
+			# collision shape은 area2d를 제외 하고 모두 추가한다.
+			if node is CollisionShape2D:
+				# collisionshape이더라도 부모가 area2D라면 무시(통과 가능. 예) bush)
+				if node.get_parent() is Area2D:
+					continue
+				
+				var node2D = node as Node2D
+				var map_position = tilemap.world_to_map(node2D.global_position)
+				if not map_position in obstacles:
+					obstacles.append(map_position)
+
 				
 		
 		
