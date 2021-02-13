@@ -65,8 +65,7 @@ func init_tilemap(var map):
 	astar_node = AStar2D.new()
 	
 	# map에서 tilemap 찾기
-	var nodes = map.get_children()
-	for node in nodes:
+	for node in all_nodes_in_map:
 		if not node is TileMap:
 			continue;
 		self.tilemap = node as TileMap

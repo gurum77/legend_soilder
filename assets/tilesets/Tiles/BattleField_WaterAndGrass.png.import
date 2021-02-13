@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tileset_battle_field_ground_water.png-24e4626cb475ac6a59e78d8f7fa077fb.stex"
+path="res://.import/BattleField_WaterAndGrass.png-d8b0b57f6eef8308a24e4dd6e7d7105d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://maps/battle_field_ground_water/tileset_battle_field_ground_water.png"
-dest_files=[ "res://.import/tileset_battle_field_ground_water.png-24e4626cb475ac6a59e78d8f7fa077fb.stex" ]
+source_file="res://assets/tilesets/Tiles/BattleField_WaterAndGrass.png"
+dest_files=[ "res://.import/BattleField_WaterAndGrass.png-d8b0b57f6eef8308a24e4dd6e7d7105d.stex" ]
 
 [params]
 
@@ -30,5 +30,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

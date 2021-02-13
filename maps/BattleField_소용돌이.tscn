@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://maps/Stage.gd" type="Script" id=1]
-[ext_resource path="res://maps/battle_field_ground_basic/BattleField_GroundBasic.tscn" type="PackedScene" id=2]
+[ext_resource path="res://maps/BattleField_Ground.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/enemies/Panzer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/obstacles/Rock1.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/obstacles/Box1.tscn" type="PackedScene" id=5]
@@ -17,7 +17,7 @@ __meta__ = {
 }
 map_name = "Focus"
 
-[node name="BattleField_Ground_Basic" parent="." instance=ExtResource( 2 )]
+[node name="BattleField_Ground" parent="." instance=ExtResource( 2 )]
 
 [node name="Bush" type="Node" parent="."]
 
