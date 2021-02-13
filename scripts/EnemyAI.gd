@@ -16,7 +16,7 @@ export (float) var distance_in_dangerous = 50	# 위험 감지 거리
 var in_eye = false
 var in_attack = false
 var in_dangerous = false
-var debugging = false
+export var debugging = false
 
 func _ready():
 	var parent = get_parent()
@@ -42,7 +42,11 @@ func _ready():
 	#update()
 	
 func _process(_delta):
-	raycast.rotation = enemy.get_body().rotation
+	# target이 정해 졌다면 target 방향으로 본다.
+	if enemy.get_body().target_position_to_fire != null:
+		raycast.look_at(enemy.get_body().target_position_to_fire)
+	else:
+		raycast.rotation = enemy.get_body().rotation
 	
 func _draw():
 	if !debugging:
@@ -99,8 +103,9 @@ func _on_PlayerDetectionTimer_timeout():
 	# player 까지 거리
 	var distance = player.global_position.distance_to(self.global_position)
 	if distance < distance_in_attack:
-		# raycast가 장애물에 걸리면 공격을 하지않고 계속 이동한다.
-		if !raycast.is_colliding():
+		# raycast가 장애물에 걸리면 공격하지 않는다.
+		# player보다 가까이에 있는 장애물에 걸리면 공격하지 않는다.
+		if !raycast.is_colliding() or raycast.get_collision_point().distance_to(self.global_position) >= distance:
 			in_attack = true
 	if distance < distance_in_dangerous:
 		in_dangerous = true
