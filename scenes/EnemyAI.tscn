@@ -16,7 +16,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-debugging = true
 
 [node name="EnemyAI_Move" type="Node2D" parent="."]
 script = ExtResource( 2 )
@@ -96,8 +95,10 @@ __meta__ = {
 }
 
 [node name="GuideLine" parent="." instance=ExtResource( 5 )]
+visible = false
 modulate = Color( 1, 0.960784, 0, 1 )
 collision_mask = 16
+is_draw_line = false
 [connection signal="timeout" from="EnemyAI_Move/FindTargetTimer" to="EnemyAI_Move" method="_on_FindTargetTimer_timeout"]
 [connection signal="timeout" from="DrawTimer" to="." method="_on_DrawTimer_timeout"]
 [connection signal="timeout" from="PlayerDetectionTimer" to="." method="_on_PlayerDetectionTimer_timeout"]
