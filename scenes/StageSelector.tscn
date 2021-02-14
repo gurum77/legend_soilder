@@ -37,7 +37,7 @@ VScrollBar/styles/grabber_pressed = null
 VScrollBar/styles/scroll = SubResource( 3 )
 VScrollBar/styles/scroll_focus = null
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=6]
 font_data = ExtResource( 8 )
 
 [node name="StageSelector" type="Panel"]
@@ -68,16 +68,17 @@ texture = ExtResource( 4 )
 expand = true
 
 [node name="PathOutline" type="Line2D" parent="MapScrollContainer/Map"]
-points = PoolVector2Array( 405.749, 174.132, 294.505, 256.77, 171.608, 230.284, 221.402, 69.775 )
+visible = false
+points = PoolVector2Array( 405.749, 174.132, 294.505, 256.77, 171.608, 230.284, 221.402, 69.775, 234.981, 80.3431 )
 width = 4.0
-default_color = Color( 0, 0, 0, 1 )
+default_color = Color( 1, 1, 1, 1 )
 texture_mode = 1
 antialiased = true
 
 [node name="Path" type="Line2D" parent="MapScrollContainer/Map"]
-points = PoolVector2Array( 405.749, 174.132, 294.505, 256.77, 171.608, 230.284, 221.402, 69.775 )
+points = PoolVector2Array( 405.749, 174.132, 294.505, 256.77, 194.222, 256.504, 171.608, 230.284 )
 width = 3.0
-default_color = Color( 1, 1, 1, 1 )
+default_color = Color( 0.647059, 0.223529, 0.223529, 0.776471 )
 texture_mode = 1
 antialiased = true
 
@@ -86,7 +87,7 @@ position = Vector2( 396.85, 253.984 )
 z_index = 1
 
 [node name="LegAnimatedSprite" parent="MapScrollContainer/Map/Player/Body/AnimatedSprites" index="0"]
-frame = 1
+frame = 2
 
 [node name="Camera2D" parent="MapScrollContainer/Map/Player" index="2"]
 current = false
@@ -160,7 +161,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="StartButton"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 text = "GO!"
 align = 1
 valign = 1
