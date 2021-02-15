@@ -3,7 +3,7 @@ extends Node2D
 export (float) var interval = 5.0
 # stage별 step이 requirement_step보다 작거나 같을때만 spawn된다.
 export (int) var requirement_step = 1
-
+export (bool) var disabled = false
 var spawn_position
 var spawn_node
 onready var si:StageInformation = StaticData.get_current_stage_information()
@@ -25,6 +25,8 @@ func _ready():
 
 func _on_Timer_timeout():
 	if spawn_node == null:
+		return
+	if disabled:
 		return
 		
 	# 게임중이 아니라면 spawn하지 않는

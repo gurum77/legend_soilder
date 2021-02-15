@@ -28,11 +28,6 @@ radius = 30.0
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 25 ) ],
-"loop": true,
-"name": "RPG",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 16 ), ExtResource( 1 ) ],
 "loop": true,
 "name": "FlameThrower",
@@ -43,14 +38,19 @@ animations = [ {
 "name": "SMG",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 22 ) ],
-"loop": true,
-"name": "Pistol",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 23 ) ],
 "loop": true,
 "name": "MG",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 25 ) ],
+"loop": true,
+"name": "RPG",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ) ],
+"loop": true,
+"name": "Pistol",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 17 ), ExtResource( 5 ), ExtResource( 18 ) ],

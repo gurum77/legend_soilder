@@ -1,0 +1,548 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/tilesets/BattleField.tres" type="TileSet" id=1]
+[ext_resource path="res://scenes/obstacles/Box1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/obstacles/Bush.tscn" type="PackedScene" id=3]
+[ext_resource path="res://maps/Stage.gd" type="Script" id=4]
+[ext_resource path="res://scenes/PlayerSpawner.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Spawner.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/enemies/Soldier2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/enemies/Panzer.tscn" type="PackedScene" id=8]
+[ext_resource path="res://maps/BattleField_Ground.tscn" type="PackedScene" id=9]
+
+[node name="BattleField_호수" type="Node2D"]
+script = ExtResource( 4 )
+map_name = "Side Water"
+
+[node name="BattleField_Ground" parent="." instance=ExtResource( 9 )]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 128
+format = 1
+tile_data = PoolIntArray( 393221, 1, 65537, 393222, 1, 65538, 393223, 1, 65538, 393224, 1, 65538, 393225, 1, 65538, 393226, 1, 65539, 393230, 1, 65537, 393231, 1, 65538, 393232, 1, 65538, 393233, 1, 65538, 393234, 1, 65538, 393235, 1, 65539, 458757, 1, 131073, 458758, 0, 65540, 458759, 0, 2, 458760, 0, 196610, 458761, 0, 65541, 458762, 1, 131075, 458766, 1, 131073, 458767, 0, 65540, 458768, 0, 2, 458769, 0, 196610, 458770, 0, 65541, 458771, 1, 131075, 524293, 1, 131073, 524294, 0, 131075, 524295, 0, 131072, 524296, 0, 131072, 524297, 0, 131073, 524298, 1, 131075, 524302, 1, 131073, 524303, 0, 131075, 524304, 0, 131072, 524305, 0, 131072, 524306, 0, 131073, 524307, 1, 131075, 589829, 1, 131073, 589830, 0, 131075, 589831, 0, 131072, 589832, 0, 131072, 589833, 0, 131073, 589834, 1, 131075, 589838, 1, 131073, 589839, 0, 131075, 589840, 0, 131072, 589841, 0, 131072, 589842, 0, 131073, 589843, 1, 131075, 655365, 1, 131073, 655366, 0, 131075, 655367, 0, 131072, 655368, 0, 131072, 655369, 0, 131073, 655370, 1, 131075, 655374, 1, 131073, 655375, 0, 131075, 655376, 0, 131072, 655377, 0, 131072, 655378, 0, 131073, 655379, 1, 131075, 720901, 1, 131073, 720902, 0, 131075, 720903, 0, 131072, 720904, 0, 131072, 720905, 0, 131073, 720906, 1, 131075, 720910, 1, 131073, 720911, 0, 131075, 720912, 0, 131072, 720913, 0, 131072, 720914, 0, 131073, 720915, 1, 131075, 786437, 1, 131073, 786438, 0, 131075, 786439, 0, 131072, 786440, 0, 131072, 786441, 0, 131073, 786442, 1, 131075, 786446, 1, 131073, 786447, 0, 131075, 786448, 0, 131072, 786449, 0, 131072, 786450, 0, 131073, 786451, 1, 131075, 851973, 1, 131073, 851974, 0, 131076, 851975, 0, 65538, 851976, 0, 65538, 851977, 0, 1, 851978, 1, 131075, 851982, 1, 131073, 851983, 0, 131076, 851984, 0, 65538, 851985, 0, 65538, 851986, 0, 131077, 851987, 1, 131075, 917509, 1, 196609, 917510, 1, 2, 917511, 1, 2, 917512, 1, 196610, 917513, 1, 196610, 917514, 1, 4, 917518, 1, 196609, 917519, 1, 2, 917520, 1, 196610, 917521, 1, 196610, 917522, 1, 2, 917523, 1, 196611, 1179653, 1, 65537, 1179654, 1, 65538, 1179655, 1, 65538, 1179656, 1, 65538, 1179657, 1, 65538, 1179658, 1, 65539, 1179662, 1, 65537, 1179663, 1, 65538, 1179664, 1, 65538, 1179665, 1, 65538, 1179666, 1, 65538, 1179667, 1, 65539, 1245189, 1, 131073, 1245190, 0, 65540, 1245191, 0, 196610, 1245192, 0, 2, 1245193, 0, 65541, 1245194, 1, 131075, 1245198, 1, 131073, 1245199, 0, 65540, 1245200, 0, 196610, 1245201, 0, 196610, 1245202, 0, 65541, 1245203, 1, 131075, 1310725, 1, 131073, 1310726, 0, 131075, 1310727, 0, 131072, 1310728, 0, 131072, 1310729, 0, 131073, 1310730, 1, 131075, 1310734, 1, 131073, 1310735, 0, 131075, 1310736, 0, 131072, 1310737, 0, 131072, 1310738, 0, 131073, 1310739, 1, 131075, 1376261, 1, 131073, 1376262, 0, 131075, 1376263, 0, 131072, 1376264, 0, 131072, 1376265, 0, 131073, 1376266, 1, 131075, 1376270, 1, 131073, 1376271, 0, 131075, 1376272, 0, 131072, 1376273, 0, 131072, 1376274, 0, 131073, 1376275, 1, 131075, 1441797, 1, 131073, 1441798, 0, 131075, 1441799, 0, 131072, 1441800, 0, 131072, 1441801, 0, 131073, 1441802, 1, 131075, 1441806, 1, 131073, 1441807, 0, 131075, 1441808, 0, 131072, 1441809, 0, 131072, 1441810, 0, 131073, 1441811, 1, 131075, 1507333, 1, 131073, 1507334, 0, 131075, 1507335, 0, 131072, 1507336, 0, 131072, 1507337, 0, 131073, 1507338, 1, 131075, 1507342, 1, 131073, 1507343, 0, 131075, 1507344, 0, 131072, 1507345, 0, 131072, 1507346, 0, 131073, 1507347, 1, 131075, 1572869, 1, 131073, 1572870, 0, 131075, 1572871, 0, 131072, 1572872, 0, 131072, 1572873, 0, 131073, 1572874, 1, 131075, 1572878, 1, 131073, 1572879, 0, 131075, 1572880, 0, 131072, 1572881, 0, 131072, 1572882, 0, 131073, 1572883, 1, 131075, 1638405, 1, 131073, 1638406, 0, 131076, 1638407, 0, 65538, 1638408, 0, 65538, 1638409, 0, 131077, 1638410, 1, 131075, 1638414, 1, 131073, 1638415, 0, 131076, 1638416, 0, 65538, 1638417, 0, 65538, 1638418, 0, 131077, 1638419, 1, 131075, 1703941, 1, 196609, 1703942, 1, 196610, 1703943, 1, 196610, 1703944, 1, 196610, 1703945, 1, 2, 1703946, 1, 196611, 1703950, 1, 196609, 1703951, 1, 2, 1703952, 1, 2, 1703953, 1, 196610, 1703954, 1, 2, 1703955, 1, 196611 )
+
+[node name="Box" type="Node2D" parent="."]
+
+[node name="Box31" parent="Box" instance=ExtResource( 2 )]
+position = Vector2( 400, 400 )
+
+[node name="Box32" parent="Box" instance=ExtResource( 2 )]
+position = Vector2( 368, 400 )
+
+[node name="Box33" parent="Box" instance=ExtResource( 2 )]
+position = Vector2( 368, 432 )
+
+[node name="Box34" parent="Box" instance=ExtResource( 2 )]
+position = Vector2( 400, 432 )
+
+[node name="Box37" parent="Box" instance=ExtResource( 2 )]
+position = Vector2( 432, 400 )
+
+[node name="Box38" parent="Box" instance=ExtResource( 2 )]
+position = Vector2( 432, 432 )
+
+[node name="Box35" parent="Box" instance=ExtResource( 2 )]
+position = Vector2( 400, 656 )
+
+[node name="Box36" parent="Box" instance=ExtResource( 2 )]
+position = Vector2( 368, 656 )
+
+[node name="Box39" parent="Box" instance=ExtResource( 2 )]
+position = Vector2( 368, 464 )
+
+[node name="Box40" parent="Box" instance=ExtResource( 2 )]
+position = Vector2( 400, 464 )
+
+[node name="Box41" parent="Box" instance=ExtResource( 2 )]
+position = Vector2( 432, 656 )
+
+[node name="Box42" parent="Box" instance=ExtResource( 2 )]
+position = Vector2( 432, 464 )
+
+[node name="Box43" parent="Box" instance=ExtResource( 2 )]
+position = Vector2( 400, 592 )
+
+[node name="Box44" parent="Box" instance=ExtResource( 2 )]
+position = Vector2( 368, 592 )
+
+[node name="Box45" parent="Box" instance=ExtResource( 2 )]
+position = Vector2( 368, 624 )
+
+[node name="Box46" parent="Box" instance=ExtResource( 2 )]
+position = Vector2( 400, 624 )
+
+[node name="Box47" parent="Box" instance=ExtResource( 2 )]
+position = Vector2( 432, 592 )
+
+[node name="Box48" parent="Box" instance=ExtResource( 2 )]
+position = Vector2( 432, 624 )
+
+[node name="Bush" type="Node2D" parent="."]
+
+[node name="Bush15" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 176, 560 )
+
+[node name="Bush16" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 176, 528 )
+
+[node name="Bush17" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 112, 560 )
+
+[node name="Bush50" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 112, 528 )
+
+[node name="Bush51" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 112, 496 )
+
+[node name="Bush18" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 176, 496 )
+
+[node name="Bush37" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 144, 560 )
+
+[node name="Bush38" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 144, 496 )
+
+[node name="Bush39" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 144, 528 )
+
+[node name="Bush19" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 688, 560 )
+
+[node name="Bush20" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 688, 528 )
+
+[node name="Bush21" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 624, 560 )
+
+[node name="Bush103" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 624, 528 )
+
+[node name="Bush104" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 624, 496 )
+
+[node name="Bush22" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 688, 496 )
+
+[node name="Bush40" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 656, 560 )
+
+[node name="Bush105" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 656, 496 )
+
+[node name="Bush106" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 656, 528 )
+
+[node name="Bush133" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 432, 752 )
+
+[node name="Bush134" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 432, 720 )
+
+[node name="Bush135" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 368, 752 )
+
+[node name="Bush136" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 368, 720 )
+
+[node name="Bush137" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 368, 688 )
+
+[node name="Bush138" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 432, 688 )
+
+[node name="Bush139" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 400, 752 )
+
+[node name="Bush140" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 400, 688 )
+
+[node name="Bush141" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 400, 720 )
+
+[node name="Bush142" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 432, 368 )
+
+[node name="Bush143" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 432, 336 )
+
+[node name="Bush144" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 368, 368 )
+
+[node name="Bush145" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 368, 336 )
+
+[node name="Bush146" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 368, 304 )
+
+[node name="Bush147" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 432, 304 )
+
+[node name="Bush148" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 400, 368 )
+
+[node name="Bush149" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 400, 304 )
+
+[node name="Bush150" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 400, 336 )
+
+[node name="Bush26" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 592, 560 )
+
+[node name="Bush27" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 592, 528 )
+
+[node name="Bush28" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 528, 560 )
+
+[node name="Bush107" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 528, 528 )
+
+[node name="Bush108" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 528, 496 )
+
+[node name="Bush29" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 592, 496 )
+
+[node name="Bush109" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 560, 560 )
+
+[node name="Bush110" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 560, 496 )
+
+[node name="Bush111" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 560, 528 )
+
+[node name="Bush30" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 272, 560 )
+
+[node name="Bush31" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 272, 528 )
+
+[node name="Bush112" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 208, 560 )
+
+[node name="Bush113" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 208, 528 )
+
+[node name="Bush114" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 208, 496 )
+
+[node name="Bush115" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 272, 496 )
+
+[node name="Bush116" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 240, 560 )
+
+[node name="Bush117" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 240, 496 )
+
+[node name="Bush118" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 240, 528 )
+
+[node name="Bush23" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 176, 784 )
+
+[node name="Bush24" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 176, 656 )
+
+[node name="Bush25" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 176, 752 )
+
+[node name="Bush52" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 176, 720 )
+
+[node name="Bush53" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 176, 688 )
+
+[node name="Bush32" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 176, 624 )
+
+[node name="Bush54" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 624, 752 )
+
+[node name="Bush55" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 624, 688 )
+
+[node name="Bush56" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 624, 720 )
+
+[node name="Bush57" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 624, 656 )
+
+[node name="Bush33" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 240, 848 )
+
+[node name="Bush34" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 272, 848 )
+
+[node name="Bush35" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 304, 848 )
+
+[node name="Bush36" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 336, 848 )
+
+[node name="Bush14" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 624, 624 )
+
+[node name="Bush58" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 176, 816 )
+
+[node name="Bush74" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 176, 848 )
+
+[node name="Bush59" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 624, 816 )
+
+[node name="Bush73" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 624, 848 )
+
+[node name="Bush60" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 624, 784 )
+
+[node name="Bush61" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 208, 848 )
+
+[node name="Bush62" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 368, 848 )
+
+[node name="Bush63" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 400, 848 )
+
+[node name="Bush41" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 496, 848 )
+
+[node name="Bush42" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 528, 848 )
+
+[node name="Bush43" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 432, 848 )
+
+[node name="Bush44" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 464, 848 )
+
+[node name="Bush75" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 560, 848 )
+
+[node name="Bush76" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 592, 848 )
+
+[node name="Bush45" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 240, 880 )
+
+[node name="Bush46" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 272, 880 )
+
+[node name="Bush47" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 304, 880 )
+
+[node name="Bush48" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 336, 880 )
+
+[node name="Bush77" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 176, 880 )
+
+[node name="Bush78" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 624, 880 )
+
+[node name="Bush79" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 208, 880 )
+
+[node name="Bush80" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 368, 880 )
+
+[node name="Bush81" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 400, 880 )
+
+[node name="Bush49" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 496, 880 )
+
+[node name="Bush82" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 528, 880 )
+
+[node name="Bush83" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 432, 880 )
+
+[node name="Bush84" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 464, 880 )
+
+[node name="Bush85" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 560, 880 )
+
+[node name="Bush86" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 592, 880 )
+
+[node name="Bush87" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 240, 176 )
+
+[node name="Bush88" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 272, 176 )
+
+[node name="Bush89" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 304, 176 )
+
+[node name="Bush90" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 336, 176 )
+
+[node name="Bush91" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 176, 176 )
+
+[node name="Bush92" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 624, 176 )
+
+[node name="Bush93" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 208, 176 )
+
+[node name="Bush94" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 368, 176 )
+
+[node name="Bush95" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 400, 176 )
+
+[node name="Bush96" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 496, 176 )
+
+[node name="Bush97" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 528, 176 )
+
+[node name="Bush98" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 432, 176 )
+
+[node name="Bush99" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 464, 176 )
+
+[node name="Bush100" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 560, 176 )
+
+[node name="Bush101" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 592, 176 )
+
+[node name="Bush102" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 240, 208 )
+
+[node name="Bush119" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 272, 208 )
+
+[node name="Bush120" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 304, 208 )
+
+[node name="Bush121" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 336, 208 )
+
+[node name="Bush122" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 176, 208 )
+
+[node name="Bush123" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 624, 208 )
+
+[node name="Bush124" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 208, 208 )
+
+[node name="Bush125" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 368, 208 )
+
+[node name="Bush126" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 400, 208 )
+
+[node name="Bush127" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 496, 208 )
+
+[node name="Bush128" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 528, 208 )
+
+[node name="Bush129" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 432, 208 )
+
+[node name="Bush130" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 464, 208 )
+
+[node name="Bush131" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 560, 208 )
+
+[node name="Bush132" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 592, 208 )
+
+[node name="Bush64" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 336, 80 )
+
+[node name="Bush65" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 368, 80 )
+
+[node name="Bush66" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 400, 80 )
+
+[node name="Bush67" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 432, 80 )
+
+[node name="Bush68" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 176, 592 )
+
+[node name="Bush69" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 624, 592 )
+
+[node name="Bush70" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 304, 80 )
+
+[node name="Bush71" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 464, 80 )
+
+[node name="Bush72" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 496, 80 )
+
+[node name="PlayerSpawner" parent="." instance=ExtResource( 5 )]
+position = Vector2( 400, 528 )
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Spawner_Soldier2" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 400, 144 )
+
+[node name="Soldier2" parent="Enemies/Spawner_Soldier2" instance=ExtResource( 7 )]
+
+[node name="Spawner_Soldier11" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 400, 912 )
+
+[node name="Soldier2" parent="Enemies/Spawner_Soldier11" instance=ExtResource( 7 )]
+
+[node name="Spawner_Soldier5" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 432, 784 )
+
+[node name="Soldier2" parent="Enemies/Spawner_Soldier5" instance=ExtResource( 7 )]
+
+[node name="Spawner_Soldier3" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 368, 784 )
+
+[node name="Soldier2" parent="Enemies/Spawner_Soldier3" instance=ExtResource( 7 )]
+
+[node name="Spawner_Soldier7" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 432, 240 )
+
+[node name="Soldier2" parent="Enemies/Spawner_Soldier7" instance=ExtResource( 7 )]
+
+[node name="Spawner_Soldier8" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 368, 240 )
+
+[node name="Soldier2" parent="Enemies/Spawner_Soldier8" instance=ExtResource( 7 )]
+
+[node name="Spawner_Soldier4" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 688, 272 )
+
+[node name="Panzer" parent="Enemies/Spawner_Soldier4" instance=ExtResource( 8 )]
+
+[node name="Spawner_Soldier10" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 688, 944 )
+
+[node name="Panzer" parent="Enemies/Spawner_Soldier10" instance=ExtResource( 8 )]
+
+[node name="Spawner_Soldier6" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 112, 272 )
+
+[node name="Panzer" parent="Enemies/Spawner_Soldier6" instance=ExtResource( 8 )]
+
+[node name="Spawner_Soldier9" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 112, 944 )
+
+[node name="Panzer" parent="Enemies/Spawner_Soldier9" instance=ExtResource( 8 )]

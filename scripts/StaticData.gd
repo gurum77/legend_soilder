@@ -34,7 +34,7 @@ var stage_informations:Dictionary={
 	"흔들광산" : StageInformation.new("res://maps/BattleField_흔들광산.tscn", Vector2(997, 678)),
 	"으스스동굴" : StageInformation.new("res://maps/BattleField_으스스동굴.tscn", Vector2(892, 675)),
 	"무인도" : StageInformation.new("res://maps/BattleField_무인도.tscn", Vector2(1027, 564)),
-	"SideWater6" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(974, 480)),
+	"호수" : StageInformation.new("res://maps/BattleField_호수.tscn", Vector2(974, 480)),
 	"Surround" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449))
 }
 

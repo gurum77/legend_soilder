@@ -59,6 +59,9 @@ func _ready():
 	
 # bullet이 날아가도록 한다
 func _physics_process(delta):
+	if is_disabled():
+		return
+		
 	# 이동
 	translate(Vector2.RIGHT.rotated(rotation) * speed * delta)
 	
@@ -74,10 +77,17 @@ func _physics_process(delta):
 
 
 func _on_Bullet_body_entered(body):
+	if is_disabled():
+		return
+		
 	# 한번 맞으면 더이상 맞지 않도록 한다.
-	if hit_object.has(body) == true:
+	if hit_object.has(body):
 		return
 	
+	if !next_bomb:
+		var  l = 0
+		l = 1
+		
 	hit_object[body] = true
 	
 	# 같은 편이면 리턴
@@ -102,6 +112,10 @@ func _on_Bullet_body_entered(body):
 	# 관통공격은 터지지 않는다.
 	if !penetrate:
 		explosion()
+		
+# bullet이 비활성화 상태인지?
+func is_disabled():
+	return free_after_animation
 	
 func push_body(body):
 	if body is EnemyBody:
@@ -113,6 +127,9 @@ func push_body(body):
 		
 # bullet을 폭파 시킨다.
 func explosion():
+	# animation후 제거대상이면 더이상 폭파 시키지 않는다
+	if is_disabled():
+		return
 	# animation이 끝나면 제거한다.
 	free_after_animation = true
 	
