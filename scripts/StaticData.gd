@@ -30,11 +30,11 @@ var stage_informations:Dictionary={
 	"Focus" : StageInformation.new("res://maps/BattleField_Focus.tscn", Vector2(1200, 450)),
 	"Sine" : StageInformation.new("res://maps/BattleField_Sine.tscn", Vector2(1286, 425)),
 	"SideWater" : StageInformation.new("res://maps/BattleField_SideWater.tscn", Vector2(1130, 426)),
-	"소용돌이" : StageInformation.new("res://maps/BattleField_소용돌이.tscn", Vector2(1245, 692)),
-	"흔들광산" : StageInformation.new("res://maps/BattleField_흔들광산.tscn", Vector2(997, 678)),
-	"으스스동굴" : StageInformation.new("res://maps/BattleField_으스스동굴.tscn", Vector2(892, 675)),
-	"무인도" : StageInformation.new("res://maps/BattleField_무인도.tscn", Vector2(1027, 564)),
-	"호수" : StageInformation.new("res://maps/BattleField_호수.tscn", Vector2(974, 480)),
+	"소용돌이" : StageInformation.new("res://maps/BattleField_Swirl.tscn", Vector2(1245, 692)),
+	"흔들광산" : StageInformation.new("res://maps/BattleField_Shake.tscn", Vector2(997, 678)),
+	"으스스동굴" : StageInformation.new("res://maps/BattleField_Cave.tscn", Vector2(892, 675)),
+	"무인도" : StageInformation.new("res://maps/BattleField_NoinhabitedIsland.tscn", Vector2(1027, 564)),
+	"호수" : StageInformation.new("res://maps/BattleField_Lake.tscn", Vector2(974, 480)),
 	"Surround" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449))
 }
 
