@@ -11,3 +11,8 @@ func play_animation(animated_sprite, anim, from_start_frame=false):
 	animated_sprite.visible = true
 	animated_sprite.play(anim)
 	
+func show_message(scene, msg):
+	var dlg = AcceptDialog.new()
+	dlg.dialog_text = msg
+	scene.add_child(dlg)
+	dlg.popup_centered()

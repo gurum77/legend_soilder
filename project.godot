@@ -134,7 +134,7 @@ SoundManager="*res://scenes/SoundManager.tscn"
 Preloader="*res://scenes/Preloader.tscn"
 Table="*res://scenes/Table.tscn"
 Util="*res://scenes/Util.tscn"
-GooglePlay="*res://integrations/GooglePlay.gd"
+GooglePlay="res://integrations/GooglePlay.gd"
 
 [display]
 
