@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/ui/BTN PLAY.png" type="Texture" id=1]
 [ext_resource path="res://assets/ui/BTN SETTINGS.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://scenes/MoneyPanel.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/AdMob.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/StarPanel.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/GemPanel.tscn" type="PackedScene" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 5 )
@@ -49,6 +50,22 @@ __meta__ = {
 }
 
 [node name="MoneyPanel" parent="." instance=ExtResource( 8 )]
+
+[node name="StarPanel" parent="." instance=ExtResource( 10 )]
+anchor_left = 1.00041
+anchor_top = -0.000551812
+anchor_right = 1.00041
+anchor_bottom = -0.000551812
+margin_left = -237.783
+margin_top = 0.0913086
+margin_right = -157.783
+margin_bottom = 26.0913
+
+[node name="GemPanel" parent="." instance=ExtResource( 11 )]
+margin_left = -158.521
+margin_top = -0.173561
+margin_right = -78.5206
+margin_bottom = 25.8264
 
 [node name="AdMob" parent="." instance=ExtResource( 9 )]
 
@@ -148,16 +165,6 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="StarPanel" parent="." instance=ExtResource( 10 )]
-anchor_left = 1.00041
-anchor_top = -0.000551812
-anchor_right = 1.00041
-anchor_bottom = -0.000551812
-margin_left = -158.783
-margin_top = 0.0913086
-margin_right = -78.783
-margin_bottom = 26.0913
 [connection signal="pressed" from="ResetButton" to="." method="_on_ResetButton_pressed"]
 [connection signal="banner_loaded" from="AdMob" to="." method="_on_AdMob_banner_loaded"]
 [connection signal="ready" from="AdMob" to="." method="_on_AdMob_ready"]

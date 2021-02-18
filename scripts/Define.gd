@@ -14,6 +14,7 @@ var max_player_hp_level = 20
 
 # 기본 money 
 var default_money_amount = 10
+var default_gem_amount = 1
 
 export (Texture) var Player_texture = null
 export (Texture) var FlameThrower_texture = null

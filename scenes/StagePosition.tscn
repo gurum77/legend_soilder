@@ -4,7 +4,6 @@
 [ext_resource path="res://scripts/StagePosition.gd" type="Script" id=2]
 [ext_resource path="res://assets/ui/stone.png" type="Texture" id=3]
 
-
 [node name="StagePosition" type="Node2D"]
 script = ExtResource( 2 )
 
@@ -27,10 +26,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -8.0
-margin_top = -8.0
-margin_right = 8.0
-margin_bottom = 8.0
+margin_left = -16.0756
+margin_top = -20.1793
+margin_right = 15.9244
+margin_bottom = 11.8207
 texture = ExtResource( 3 )
 stretch_mode = 4
 __meta__ = {

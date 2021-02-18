@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scripts/EnemyBody.gd" type="Script" id=1]
 [ext_resource path="res://scenes/HPBar.tscn" type="PackedScene" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://assets/vehicles/panzer/fire/Panzer_fire3.png" type="Texture" id=16]
 [ext_resource path="res://assets/vehicles/panzer/fire/Panzer_fire1.png" type="Texture" id=17]
 [ext_resource path="res://scenes/EnemyAI.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/ItemMaker.tscn" type="PackedScene" id=19]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -119,3 +120,5 @@ margin_top = -49.0
 margin_bottom = -45.0
 
 [node name="EnemyAI" parent="." instance=ExtResource( 18 )]
+
+[node name="ItemMaker" parent="." instance=ExtResource( 19 )]

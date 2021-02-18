@@ -1,7 +1,10 @@
 extends Panel
 
 var payment
-func _ready():
+# payment 초기화
+# 제대로 동작하지 않아서 호출하지 않음
+# 나중에 제대로 동작하도록 수정해야함(출시후)
+func init_payment():
 	if Engine.has_singleton("GodotGooglePlayBilling"):
 		payment = Engine.get_singleton("GodotGooglePlayBilling")
 
@@ -23,7 +26,11 @@ func _ready():
 	else:
 		Util.show_message(self, "Android IAP support is not enabled. Make sure you have enabled 'Custom Build' and the GodotGooglePlayBilling plugin in your Android export settings! IAP will not work.")
 		print("Android IAP support is not enabled. Make sure you have enabled 'Custom Build' and the GodotGooglePlayBilling plugin in your Android export settings! IAP will not work.")
-
+	
+func _ready():
+	# 제대로 동작하지 않아서 막아둠
+	#init_payment()
+	pass
 		
 func _on_BackButton_pressed():
 	var err = get_tree().change_scene("res://scenes/Home.tscn")
@@ -32,5 +39,5 @@ func _on_BackButton_pressed():
 
 func _on_connected():
 	print("connected")
-	Util.show_message(self, "connected")
+#	Util.show_message(self, "connected")
 #	payment.querySkuDetails(["my_iap_item"], "inapp") # "subs" for subscriptions

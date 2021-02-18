@@ -8,9 +8,11 @@ var current_score_for_stage = 0
 var requirement_score_for_stage = 10000
 var spawned_score_for_stage = 0	# 현재 spawn되어 있는 전체 점수(필요한 만큼만 스폰되어야 한다)
 var total_money = 0	
+var total_gem = 0
 var total_exp = 0
 var total_star = 0	# serialize하지 않
 var current_stage_money = 0	# 현재 stage에서 모은 돈
+var current_stage_gem = 0	# 현재 stage에서 모은 gem
 
 # 획득한 별의 갯수를 계산한다.(표시할때 마다 계산하면 부하가 걸리므로 미리 계산해둔다)
 func calc_total_star_nums():
@@ -113,6 +115,7 @@ func save_game():
 		"requirement_score_for_stage" : requirement_score_for_stage,
 		"current_weapon_index" : current_weapon_index,
 		"total_money" : total_money,
+		"total_gem" : total_gem,
 		"total_exp" : total_exp,
 		"current음_stage_money" : current_stage_money,
 		"stage_informations" : get_save_dic_stage_informations(),
@@ -138,6 +141,7 @@ func load_game():
 		requirement_score_for_stage = get_gamedata(dic, "requirement_score_for_stage", requirement_score_for_stage)
 		current_weapon_index = get_gamedata(dic, "current_weapon_index", current_weapon_index)
 		total_money = get_gamedata(dic, "total_money", total_money)
+		total_gem = get_gamedata(dic, "total_gem", total_gem)
 		total_exp = get_gamedata(dic, "total_exp", total_exp)
 		current_stage_money = get_gamedata(dic, "current_stage_money", current_stage_money)
 		load_gamedata_stage_informations(dic)
@@ -149,6 +153,7 @@ func load_game():
 	StaticData.calc_total_star_nums()
 	# 테스트
 	total_money = 100000
+	total_gem = 10000
 	
 
 # inventory_items game data를 불러온다
