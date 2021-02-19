@@ -38,7 +38,7 @@ var stage_informations:Dictionary={
 	"무인도" : StageInformation.new("res://maps/BattleField_NoinhabitedIsland.tscn", Vector2(1027, 564)),
 	"호수" : StageInformation.new("res://maps/BattleField_Lake.tscn", Vector2(974, 480)),
 	"Surround" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449)),
-	"Surround1" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449)),
+	"외나무다리" : StageInformation.new("res://maps/BattleField_Bridge.tscn", Vector2(918, 449)),
 	"Surround2" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449)),
 	"Surround3" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449)),
 	"Surround4" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449)),
