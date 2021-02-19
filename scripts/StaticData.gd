@@ -37,7 +37,23 @@ var stage_informations:Dictionary={
 	"으스스동굴" : StageInformation.new("res://maps/BattleField_Cave.tscn", Vector2(892, 675)),
 	"무인도" : StageInformation.new("res://maps/BattleField_NoinhabitedIsland.tscn", Vector2(1027, 564)),
 	"호수" : StageInformation.new("res://maps/BattleField_Lake.tscn", Vector2(974, 480)),
-	"Surround" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449))
+	"Surround" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449)),
+	"Surround1" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449)),
+	"Surround2" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449)),
+	"Surround3" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449)),
+	"Surround4" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449)),
+	"Surround5" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449)),
+	"Surround6" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449)),
+	"Surround7" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449)),
+	"Surround8" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449)),
+	"Surround9" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449)),
+	"Surround10" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449)),
+	"Surround11" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449)),
+	"Surround12" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449)),
+	"Surround13" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449)),
+	"Surround14" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449)),
+	"Surround15" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449)),
+	"Surround16" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449))
 }
 
 # weapon 정보
@@ -225,14 +241,33 @@ func get_gamedata(var dic:Dictionary, var key, var default_value):
 	
 func _ready():
 	init()
-
-
 	
+# stage information 위치를 정렬한다.
+func align_stage_informations():
+	var offset_x = 100
+	var offset_y = 100
+	var start_x = 50
+	var start_y = 50
+	
+	var max_index_x = 5
+	var index_x = 0
+	var index_y = 0
+	for si_key in stage_informations.keys():
+		stage_informations[si_key].position.x = start_x + (index_x * offset_x)
+		stage_informations[si_key].position.y = start_y + (index_y * offset_y)
+		if index_x < max_index_x:
+			index_x += 1
+		else:
+			index_x = 0
+			index_y += 1
+		
 func init():
 	if initialized == true:
 		return
 	
 	initialized = true
+	
+	align_stage_informations()
 	
 	# 첫번째 인벤토리는 기본으로 권총을 넣어준다
 	inventory_items[0].weapon = Define.Weapon.Pistol

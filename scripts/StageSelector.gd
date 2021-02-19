@@ -9,6 +9,26 @@ func _ready():
 	update_stage_buttons()
 	draw_positions()
 	move_to_stage_position(StaticData.current_stage_name)
+	resize_map()
+	
+# map이 stage position전체의 범위 보다 작으면 늘려준다.
+func resize_map():
+	var max_x = 0.0
+	var max_y = 0.0
+	for si_key in StaticData.stage_informations.keys():
+		var si = StaticData.get_stage_information(si_key)
+		if si == null:
+			continue
+		max_x = max(si.position.x, max_x)
+		max_y = max(si.position.y, max_y)
+		
+	var margin  = 50
+	max_x += margin
+	max_y += margin
+	if $MapScrollContainer/Map.rect_min_size.x < max_x:
+		$MapScrollContainer/Map.rect_min_size.x = max_x
+	if $MapScrollContainer/Map.rect_min_size.y < max_y:
+		$MapScrollContainer/Map.rect_min_size.y = max_y
 	
 func draw_positions():
 	var path:Line2D = $MapScrollContainer/Map/Path

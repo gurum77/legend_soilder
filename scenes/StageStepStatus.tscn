@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/StageStepStatus.gd" type="Script" id=1]
+[ext_resource path="res://scenes/StepByStageImage.tscn" type="PackedScene" id=2]
+
+[node name="StageStepStatus" type="HBoxContainer"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = -8.0
+margin_right = -9.99999
+margin_bottom = 4.0
+alignment = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StepByStage" parent="." instance=ExtResource( 2 )]
+margin_left = 272.0
+margin_right = 284.0
+margin_bottom = 12.0
+
+[node name="StepByStage2" parent="." instance=ExtResource( 2 )]
+margin_left = 288.0
+margin_right = 300.0
+margin_bottom = 12.0
+
+[node name="StepByStage3" parent="." instance=ExtResource( 2 )]
+margin_left = 304.0
+margin_right = 316.0
+margin_bottom = 12.0
+
+[node name="StepByStage4" parent="." instance=ExtResource( 2 )]
+margin_left = 320.0
+margin_right = 332.0
+margin_bottom = 12.0
+
+[node name="StepByStage5" parent="." instance=ExtResource( 2 )]
+margin_left = 336.0
+margin_right = 348.0
+margin_bottom = 12.0

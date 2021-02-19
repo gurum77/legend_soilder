@@ -16,3 +16,10 @@ func show_message(scene, msg):
 	dlg.dialog_text = msg
 	scene.add_child(dlg)
 	dlg.popup_centered()
+
+func is_equal_vector2(vec1, vec2, tol)->bool:
+	if abs(vec1.x - vec2.x) > tol:
+		return false
+	if abs(vec1.y - vec2.y) > tol:
+		return false
+	return true

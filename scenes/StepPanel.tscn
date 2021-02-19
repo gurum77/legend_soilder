@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/StepPanel.gd" type="Script" id=1]
+[ext_resource path="res://assets/ui/Money Panel EMPTY HUD.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/radio_button.png" type="Texture" id=3]
+[ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/ui/Mark.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 12
+font_data = ExtResource( 4 )
+
+[node name="StepPanel" type="TextureRect"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -80.0
+margin_bottom = 26.0
+texture = ExtResource( 2 )
+expand = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StepTexture" type="TextureRect" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 5.0
+margin_top = -5.0
+margin_right = 20.0
+margin_bottom = 9.0
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="StepTexture"]
+margin_left = 4.20447
+margin_top = 2.94314
+margin_right = 10.2045
+margin_bottom = 9.94314
+texture = ExtResource( 5 )
+
+[node name="StepLabel" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 5.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.917647, 0.807843, 0.552941, 1 )
+text = "00000"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

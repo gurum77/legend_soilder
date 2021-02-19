@@ -2,6 +2,5 @@
 
 [ext_resource path="res://scripts/Util.gd" type="Script" id=1]
 
-
 [node name="Util" type="Node"]
 script = ExtResource( 1 )

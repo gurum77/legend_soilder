@@ -32,6 +32,10 @@ func get_star_nums()->int:
 func load_gamedata(var dic):
 	current_step = StaticData.get_gamedata(dic, "current_step", current_step)
 	
+func is_cleared()->bool:
+	if current_step > max_step:
+		return true
+	return false
 	
 var level = 1	# stage의 등(난이도에 해당함. 높을수록 어렵다)
 var current_step = 1	# 현재 플레이어가 진행중인 step이다.(current_step 보다 크면 클리어 한 것이다)

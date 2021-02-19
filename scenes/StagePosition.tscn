@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://assets/ui/radio_button.png" type="Texture" id=1]
+[ext_resource path="res://assets/ui/Inventory Cell.png" type="Texture" id=1]
 [ext_resource path="res://scripts/StagePosition.gd" type="Script" id=2]
 [ext_resource path="res://assets/ui/stone.png" type="Texture" id=3]
+[ext_resource path="res://scenes/Stone.gd" type="Script" id=4]
+[ext_resource path="res://assets/fonts/neodgm_pro.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://scenes/StageStepStatus.tscn" type="PackedScene" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 5 )
 
 [node name="StagePosition" type="Node2D"]
 script = ExtResource( 2 )
@@ -12,26 +18,55 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -8.0
-margin_top = -8.0
-margin_right = 8.0
-margin_bottom = 8.0
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource( 1 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Stone" type="TextureRect" parent="."]
+[node name="Stone" type="TextureRect" parent="Circle"]
+modulate = Color( 2.89, 11.63, 1, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -16.0756
-margin_top = -20.1793
-margin_right = 15.9244
-margin_bottom = 11.8207
+margin_left = -15.9506
+margin_top = -16.6793
+margin_right = 16.0494
+margin_bottom = 15.3207
 texture = ExtResource( 3 )
 stretch_mode = 4
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Label" type="Label" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -32.0
+margin_top = 25.0
+margin_right = 29.0
+margin_bottom = 41.0
+rect_pivot_offset = Vector2( 32, 0 )
+custom_fonts/font = SubResource( 1 )
+text = "Sine"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StageStepStatus" parent="." instance=ExtResource( 6 )]
+margin_left = -38.177
+margin_top = -37.0023
+margin_right = 37.823
+margin_bottom = -25.0023
+[connection signal="gui_input" from="Circle" to="." method="_on_Circle_gui_input"]
