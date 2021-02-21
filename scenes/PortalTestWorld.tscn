@@ -257,11 +257,6 @@ position = Vector2( 208.794, 879.206 )
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 324.654, 429.304 )
 
-[node name="Player2" parent="." instance=ExtResource( 1 )]
-self_modulate = Color( 1, 0, 0, 1 )
-position = Vector2( 324.654, 429.304 )
-second_player = true
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
 

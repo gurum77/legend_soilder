@@ -32,7 +32,7 @@ func die():
 		var ins = Preloader.bomb.instance()
 		get_tree().root.call_deferred("add_child", ins)
 		ins.global_position = global_position
-		ins.power = Table.get_enemy_hp(next_bomb_power, StaticData.current_stage)
+		ins.power = Table.get_enemy_hp(next_bomb_power, StaticData.get_current_stage_information())
 		ins.scale = Vector2(1.5, 1.5)
 		ins.player = true
 		

@@ -29,15 +29,15 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ), ExtResource( 1 ), ExtResource( 8 ), ExtResource( 2 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "walk",
-"speed": 15.0
-}, {
 "frames": [  ],
 "loop": false,
 "name": "die",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 1 ), ExtResource( 8 ), ExtResource( 2 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "walk",
+"speed": 15.0
 } ]
 
 [sub_resource type="SpriteFrames" id=2]
@@ -47,19 +47,24 @@ animations = [ {
 "name": "idle",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 3 ), ExtResource( 12 ), ExtResource( 10 ), ExtResource( 17 ) ],
-"loop": false,
-"name": "die",
-"speed": 10.0
-}, {
 "frames": [ ExtResource( 11 ) ],
 "loop": false,
 "name": "fire",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 3 ), ExtResource( 12 ), ExtResource( 10 ), ExtResource( 17 ) ],
+"loop": false,
+"name": "die",
 "speed": 10.0
 } ]
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 20 ), ExtResource( 19 ), ExtResource( 18 ) ],
 "loop": false,
 "name": "fire",
@@ -108,9 +113,10 @@ position = Vector2( 24, 3 )
 position = Vector2( 34, 3 )
 rotation = -1.5708
 frames = SubResource( 3 )
-animation = "fire"
+animation = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+visible = false
 position = Vector2( -2.20486, 0.157492 )
 rotation = 1.5708
 shape = SubResource( 4 )
@@ -120,5 +126,8 @@ margin_top = -18.0
 margin_bottom = -14.0
 
 [node name="EnemyAI" parent="." instance=ExtResource( 21 )]
+
+[node name="PathFollow2D" parent="EnemyAI/EnemyAI_Move/PatrolPath" index="0"]
+position = Vector2( 90.5677, 113.894 )
 
 [editable path="EnemyAI"]

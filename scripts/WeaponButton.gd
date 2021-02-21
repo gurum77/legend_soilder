@@ -23,7 +23,14 @@ func update():
 		$Label.visible = false
 		
 	if StaticData.game_state == Define.GameState.play:
+		var m = 3.0
 		if StaticData.current_weapon_index == weapon_index:
-			$TextureRect/Light2D.visible = true
+			m = 3
+#			$TextureRect/Light2D.visible = true
 		else:
-			$TextureRect/Light2D.visible = false		
+			m = 1
+#			$TextureRect/Light2D.visible = false		
+		modulate.r = m
+		modulate.g = m
+		modulate.b = m
+		

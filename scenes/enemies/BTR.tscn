@@ -22,15 +22,15 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 6 ) ],
-"loop": true,
-"name": "walk",
-"speed": 10.0
-}, {
 "frames": [ ExtResource( 5 ) ],
 "loop": false,
 "name": "die",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "walk",
+"speed": 10.0
 } ]
 
 [sub_resource type="SpriteFrames" id=2]
@@ -59,8 +59,8 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 44.4687, 31.4294 )
+[sub_resource type="CircleShape2D" id=4]
+radius = 25.0
 
 [node name="BTR" type="Node2D"]
 script = ExtResource( 14 )
@@ -107,6 +107,7 @@ position = Vector2( 60.3173, 4.52957 )
 [node name="FireTimer" type="Timer" parent="Body"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+visible = false
 shape = SubResource( 4 )
 
 [node name="HPBar" parent="." instance=ExtResource( 2 )]

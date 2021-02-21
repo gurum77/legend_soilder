@@ -7,12 +7,14 @@
 script = ExtResource( 2 )
 
 [node name="Portal1" parent="." instance=ExtResource( 1 )]
+z_index = 0
 
 [node name="Sprite" parent="Portal1" index="2"]
 modulate = Color( 0, 1, 0, 1 )
 
 [node name="Portal2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 240, 144 )
+z_index = 0
 
 [node name="Sprite" parent="Portal2" index="2"]
 modulate = Color( 0, 1, 0, 1 )

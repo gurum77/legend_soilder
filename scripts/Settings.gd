@@ -12,6 +12,7 @@ func _ready():
 		$Background/SoundButton.pressed = false
 
 func _on_OkButton_pressed():
+	SettingsStaticData.save_settings()
 	self.queue_free()
 
 

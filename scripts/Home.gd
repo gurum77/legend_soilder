@@ -6,6 +6,7 @@ var settings = preload("res://scenes/Settings.tscn")
 func _ready():
 	# home이 시작되면 game을 loading한다
 	StaticData.load_game()
+	SettingsStaticData.load_settings()
 	
 
 # equipment 버튼 클릭

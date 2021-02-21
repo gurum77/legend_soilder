@@ -10,8 +10,6 @@
 [ext_resource path="res://scenes/PlayerSpawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/enemies/Soldier.tscn" type="PackedScene" id=9]
 
-
-
 [node name="BattleField_으스스동굴" type="Node2D"]
 script = ExtResource( 1 )
 __meta__ = {

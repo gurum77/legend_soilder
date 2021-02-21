@@ -1,0 +1,481 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://assets/tilesets/BattleField.tres" type="TileSet" id=1]
+[ext_resource path="res://scenes/obstacles/Box1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/obstacles/Bush.tscn" type="PackedScene" id=3]
+[ext_resource path="res://maps/Stage.gd" type="Script" id=4]
+[ext_resource path="res://scenes/PlayerSpawner.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Spawner.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/enemies/Sniper.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/enemies/Panzer.tscn" type="PackedScene" id=8]
+[ext_resource path="res://maps/BattleField_Ground.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/obstacles/Barrel_Oil.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/obstacles/Rock1.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/enemies/BTR.tscn" type="PackedScene" id=12]
+
+[node name="BattleField_곤충싸움" type="Node2D"]
+script = ExtResource( 4 )
+map_name = "Side Water"
+
+[node name="BattleField_Ground" parent="." instance=ExtResource( 9 )]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 128
+format = 1
+tile_data = PoolIntArray( 65537, 0, 65540, 65538, 0, 196610, 65539, 0, 65541, 131073, 0, 131075, 131074, 0, 131072, 131075, 0, 131073, 131076, 1, 65540, 196609, 0, 131075, 196610, 0, 131072, 196611, 0, 131073, 196612, 1, 131075, 262145, 0, 131075, 262146, 0, 131072, 262147, 0, 131073, 262148, 1, 131075, 327681, 0, 131075, 327682, 0, 131072, 327683, 0, 131073, 327684, 1, 131075, 393217, 0, 131075, 393218, 0, 131072, 393219, 0, 131073, 393220, 1, 131075, 458753, 0, 131075, 458754, 0, 131072, 458755, 0, 131073, 458756, 1, 131075, 524289, 0, 131076, 524290, 0, 65538, 524291, 0, 1, 524292, 1, 131075, 589826, 1, 65540, 589827, 1, 196610, 589828, 1, 4, 851970, 1, 131076, 851971, 1, 65538, 851972, 1, 65539, 851988, 1, 65537, 851989, 1, 65538, 851990, 1, 3, 917505, 0, 65540, 917506, 0, 196610, 917507, 0, 65541, 917508, 1, 131075, 917524, 1, 131073, 917525, 0, 65540, 917526, 0, 2, 917527, 0, 65541, 983041, 0, 131075, 983042, 0, 131072, 983043, 0, 131073, 983044, 1, 131075, 983060, 1, 131073, 983061, 0, 131075, 983062, 0, 131072, 983063, 0, 131073, 1048577, 0, 131075, 1048578, 0, 131072, 1048579, 0, 131073, 1048580, 1, 131075, 1048596, 1, 131073, 1048597, 0, 131075, 1048598, 0, 131072, 1048599, 0, 131073, 1114113, 0, 131075, 1114114, 0, 131072, 1114115, 0, 131073, 1114116, 1, 131075, 1114132, 1, 131073, 1114133, 0, 131075, 1114134, 0, 131072, 1114135, 0, 131073, 1179649, 0, 131076, 1179650, 0, 65538, 1179651, 0, 131077, 1179652, 1, 131075, 1179668, 1, 131073, 1179669, 0, 131076, 1179670, 0, 65538, 1179671, 0, 1, 1245186, 1, 65540, 1245187, 1, 2, 1245188, 1, 196611, 1245204, 1, 196609, 1245205, 1, 2, 1245206, 1, 65541, 1507348, 1, 65537, 1507349, 1, 65538, 1507350, 1, 3, 1572884, 1, 131073, 1572885, 0, 65540, 1572886, 0, 2, 1572887, 0, 65541, 1638420, 1, 131073, 1638421, 0, 131075, 1638422, 0, 131072, 1638423, 0, 131073, 1703956, 1, 131073, 1703957, 0, 131075, 1703958, 0, 131072, 1703959, 0, 131073, 1769492, 1, 131073, 1769493, 0, 131075, 1769494, 0, 131072, 1769495, 0, 131073, 1835028, 1, 131073, 1835029, 0, 131075, 1835030, 0, 131072, 1835031, 0, 131073, 1900564, 1, 131073, 1900565, 0, 131075, 1900566, 0, 131072, 1900567, 0, 131073, 1966100, 1, 3, 1966101, 0, 131075, 1966102, 0, 131072, 1966103, 0, 131073, 2031637, 0, 131076, 2031638, 0, 65538, 2031639, 0, 1 )
+
+[node name="Box" type="Node2D" parent="."]
+
+[node name="Box35" parent="Box" instance=ExtResource( 2 )]
+position = Vector2( 48, 976 )
+
+[node name="Box36" parent="Box" instance=ExtResource( 2 )]
+position = Vector2( 80, 1008 )
+
+[node name="Box43" parent="Box" instance=ExtResource( 2 )]
+position = Vector2( 752, 80 )
+
+[node name="Box44" parent="Box" instance=ExtResource( 2 )]
+position = Vector2( 48, 1008 )
+
+[node name="Box46" parent="Box" instance=ExtResource( 2 )]
+position = Vector2( 752, 48 )
+
+[node name="Box47" parent="Box" instance=ExtResource( 2 )]
+position = Vector2( 720, 48 )
+
+[node name="Bush" type="Node2D" parent="."]
+visible = false
+
+[node name="Bush133" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 432, 752 )
+
+[node name="Bush134" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 432, 720 )
+
+[node name="Bush135" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 368, 752 )
+
+[node name="Bush136" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 368, 720 )
+
+[node name="Bush137" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 368, 688 )
+
+[node name="Bush164" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 336, 688 )
+
+[node name="Bush138" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 432, 688 )
+
+[node name="Bush163" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 464, 688 )
+
+[node name="Bush139" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 400, 752 )
+
+[node name="Bush140" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 400, 688 )
+
+[node name="Bush141" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 400, 720 )
+
+[node name="Bush151" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 336, 752 )
+
+[node name="Bush152" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 336, 720 )
+
+[node name="Bush153" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 272, 752 )
+
+[node name="Bush154" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 272, 720 )
+
+[node name="Bush155" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 304, 752 )
+
+[node name="Bush156" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 304, 720 )
+
+[node name="Bush157" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 528, 752 )
+
+[node name="Bush158" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 528, 720 )
+
+[node name="Bush159" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 464, 752 )
+
+[node name="Bush160" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 464, 720 )
+
+[node name="Bush161" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 496, 752 )
+
+[node name="Bush162" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 496, 720 )
+
+[node name="Bush142" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 432, 368 )
+
+[node name="Bush177" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 464, 368 )
+
+[node name="Bush143" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 432, 336 )
+
+[node name="Bush144" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 368, 368 )
+
+[node name="Bush178" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 336, 368 )
+
+[node name="Bush145" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 368, 336 )
+
+[node name="Bush146" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 368, 304 )
+
+[node name="Bush147" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 432, 304 )
+
+[node name="Bush148" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 400, 368 )
+
+[node name="Bush149" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 400, 304 )
+
+[node name="Bush150" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 400, 336 )
+
+[node name="Bush165" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 336, 336 )
+
+[node name="Bush166" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 272, 336 )
+
+[node name="Bush167" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 272, 304 )
+
+[node name="Bush168" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 336, 304 )
+
+[node name="Bush169" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 304, 304 )
+
+[node name="Bush170" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 304, 336 )
+
+[node name="Bush171" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 528, 336 )
+
+[node name="Bush172" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 464, 336 )
+
+[node name="Bush173" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 464, 304 )
+
+[node name="Bush174" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 528, 304 )
+
+[node name="Bush175" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 496, 304 )
+
+[node name="Bush176" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 496, 336 )
+
+[node name="Bush33" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 336, 880 )
+
+[node name="Bush34" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 368, 880 )
+
+[node name="Bush35" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 400, 880 )
+
+[node name="Bush36" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 432, 880 )
+
+[node name="Bush62" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 464, 880 )
+
+[node name="Bush45" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 336, 912 )
+
+[node name="Bush46" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 368, 912 )
+
+[node name="Bush47" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 400, 912 )
+
+[node name="Bush48" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 432, 912 )
+
+[node name="Bush80" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 464, 912 )
+
+[node name="Bush90" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 336, 144 )
+
+[node name="Bush94" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 368, 144 )
+
+[node name="Bush95" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 400, 144 )
+
+[node name="Bush98" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 432, 144 )
+
+[node name="Bush99" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 464, 144 )
+
+[node name="Bush121" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 336, 176 )
+
+[node name="Bush125" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 368, 176 )
+
+[node name="Bush126" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 400, 176 )
+
+[node name="Bush129" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 432, 176 )
+
+[node name="Bush130" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 464, 176 )
+
+[node name="PlayerSpawner" parent="." instance=ExtResource( 5 )]
+position = Vector2( 400, 528 )
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Spawner_Soldier4" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 688, 144 )
+requirement_step = 3
+
+[node name="Panzer" parent="Enemies/Spawner_Soldier4" instance=ExtResource( 8 )]
+
+[node name="Spawner_Soldier6" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 176, 144 )
+requirement_step = 3
+
+[node name="Panzer" parent="Enemies/Spawner_Soldier6" instance=ExtResource( 8 )]
+
+[node name="Spawner" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 272, 272 )
+
+[node name="Sniper" parent="Enemies/Spawner" instance=ExtResource( 7 )]
+
+[node name="Spawner2" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 528, 272 )
+
+[node name="Sniper" parent="Enemies/Spawner2" instance=ExtResource( 7 )]
+
+[node name="Spawner3" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 272, 784 )
+
+[node name="Sniper" parent="Enemies/Spawner3" instance=ExtResource( 7 )]
+
+[node name="Spawner4" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 528, 784 )
+
+[node name="Sniper" parent="Enemies/Spawner4" instance=ExtResource( 7 )]
+
+[node name="Spawner5" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 144, 944 )
+requirement_step = 3
+
+[node name="BTR" parent="Enemies/Spawner5" instance=ExtResource( 12 )]
+
+[node name="Spawner6" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 624, 944 )
+requirement_step = 3
+
+[node name="BTR" parent="Enemies/Spawner6" instance=ExtResource( 12 )]
+
+[node name="Rocks" type="Node2D" parent="."]
+
+[node name="Rock1" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 48, 432 )
+
+[node name="Rock2" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 80, 432 )
+
+[node name="Rock3" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 112, 432 )
+
+[node name="Rock26" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 240, 368 )
+
+[node name="Rock27" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 272, 368 )
+
+[node name="Rock28" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 304, 368 )
+
+[node name="Rock29" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 496, 368 )
+
+[node name="Rock30" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 528, 368 )
+
+[node name="Rock31" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 560, 368 )
+
+[node name="Rock32" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 240, 688 )
+
+[node name="Rock33" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 272, 688 )
+
+[node name="Rock34" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 304, 688 )
+
+[node name="Rock42" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 336, 848 )
+
+[node name="Rock43" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 368, 848 )
+
+[node name="Rock45" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 432, 848 )
+
+[node name="Rock46" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 464, 848 )
+
+[node name="Rock44" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 400, 848 )
+
+[node name="Rock47" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 336, 208 )
+
+[node name="Rock48" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 368, 208 )
+
+[node name="Rock49" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 432, 208 )
+
+[node name="Rock50" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 464, 208 )
+
+[node name="Rock51" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 400, 208 )
+
+[node name="Rock35" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 496, 688 )
+
+[node name="Rock36" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 528, 688 )
+
+[node name="Rock37" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 560, 688 )
+
+[node name="Rock14" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 688, 432 )
+
+[node name="Rock15" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 720, 432 )
+
+[node name="Rock16" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 752, 432 )
+
+[node name="Rock55" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 688, 208 )
+
+[node name="Rock56" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 720, 208 )
+
+[node name="Rock57" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 752, 208 )
+
+[node name="Rock7" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 48, 624 )
+
+[node name="Rock8" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 80, 624 )
+
+[node name="Rock9" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 112, 624 )
+
+[node name="Rock52" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 48, 848 )
+
+[node name="Rock53" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 80, 848 )
+
+[node name="Rock54" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 112, 848 )
+
+[node name="Rock20" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 688, 624 )
+
+[node name="Rock21" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 720, 624 )
+
+[node name="Rock22" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 752, 624 )
+
+[node name="Rock5" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 112, 400 )
+
+[node name="Rock6" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 112, 368 )
+
+[node name="Rock10" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 240, 336 )
+
+[node name="Rock13" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 240, 304 )
+
+[node name="Rock19" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 560, 336 )
+
+[node name="Rock25" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 560, 304 )
+
+[node name="Rock38" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 560, 752 )
+
+[node name="Rock39" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 560, 720 )
+
+[node name="Rock40" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 240, 752 )
+
+[node name="Rock41" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 240, 720 )
+
+[node name="Rock17" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 688, 400 )
+
+[node name="Rock18" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 688, 368 )
+
+[node name="Rock11" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 112, 688 )
+
+[node name="Rock12" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 112, 656 )
+
+[node name="Rock23" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 688, 688 )
+
+[node name="Rock24" parent="Rocks" instance=ExtResource( 11 )]
+position = Vector2( 688, 656 )
+
+[node name="Barrels" type="Node2D" parent="."]
+
+[node name="Barrel_Oil" parent="Barrels" instance=ExtResource( 10 )]
+position = Vector2( 240, 400 )
+
+[node name="Barrel_Oil2" parent="Barrels" instance=ExtResource( 10 )]
+position = Vector2( 560, 400 )
+
+[node name="Barrel_Oil3" parent="Barrels" instance=ExtResource( 10 )]
+position = Vector2( 560, 656 )
+
+[node name="Barrel_Oil4" parent="Barrels" instance=ExtResource( 10 )]
+position = Vector2( 240, 656 )

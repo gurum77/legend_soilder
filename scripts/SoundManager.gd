@@ -49,10 +49,7 @@ func _ready():
 	RPG_shot_audio.loop = false
 	FlameThrower_shot_audio.loop = false
 	
-	# sound, music 셋팅 초기화
-	set_sound_volume(0)
-	set_music_volume(0)
-		
+
 # 총알 발사 소리 리
 func get_bullet_shot_audio_stream(weapon)->AudioStream:
 	match weapon:

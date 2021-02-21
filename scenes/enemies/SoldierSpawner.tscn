@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/enemies/Soldier.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Spawner.tscn" type="PackedScene" id=2]
+
+[node name="SoldierSpawner" type="Node2D"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Spawner" parent="." instance=ExtResource( 2 )]
+
+[node name="Soldier" parent="Spawner" instance=ExtResource( 1 )]

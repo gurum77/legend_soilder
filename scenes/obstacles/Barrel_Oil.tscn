@@ -53,9 +53,12 @@ script = ExtResource( 12 )
 next_bomb = true
 
 [node name="Sprite" type="Sprite" parent="Body"]
+scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+visible = false
+scale = Vector2( 1.5, 1.5 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Body"]
