@@ -1,0 +1,322 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://maps/BattleField_Focus.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/YelloPortalSet.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/TestWorld.gd" type="Script" id=4]
+[ext_resource path="res://scenes/RedPortalSet.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/GreenPortalSet.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/BluePortalSet.tscn" type="PackedScene" id=7]
+
+[sub_resource type="Environment" id=1]
+background_mode = 4
+glow_enabled = true
+glow_blend_mode = 0
+
+[node name="TestWorld" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="BattleField_Focus" parent="." instance=ExtResource( 2 )]
+position = Vector2( -0.793701, 0.793701 )
+scale = Vector2( 1.03657, 1.00572 )
+z_index = -1
+
+[node name="YellowPortalSet" parent="BattleField_Focus" instance=ExtResource( 3 )]
+position = Vector2( 304.794, 303.206 )
+
+[node name="Portal1" parent="BattleField_Focus/YellowPortalSet" index="0"]
+position = Vector2( -160, 704 )
+
+[node name="Portal2" parent="BattleField_Focus/YellowPortalSet" index="1"]
+position = Vector2( 192, 416 )
+
+[node name="YellowPortalSet2" parent="BattleField_Focus" instance=ExtResource( 3 )]
+position = Vector2( 304.794, 303.206 )
+
+[node name="Portal1" parent="BattleField_Focus/YellowPortalSet2" index="0"]
+position = Vector2( -160, 448 )
+
+[node name="Portal2" parent="BattleField_Focus/YellowPortalSet2" index="1"]
+position = Vector2( 256, 640 )
+
+[node name="YellowPortalSet3" parent="BattleField_Focus" instance=ExtResource( 3 )]
+position = Vector2( 304.794, 303.206 )
+
+[node name="Portal1" parent="BattleField_Focus/YellowPortalSet3" index="0"]
+position = Vector2( -128, 448 )
+
+[node name="Portal2" parent="BattleField_Focus/YellowPortalSet3" index="1"]
+position = Vector2( 288, 608 )
+
+[node name="RedPortalSet" parent="BattleField_Focus" instance=ExtResource( 5 )]
+position = Vector2( 320.663, 805.15 )
+
+[node name="Portal1" parent="BattleField_Focus/RedPortalSet" index="0"]
+position = Vector2( -207.87, -85.9435 )
+
+[node name="Portal2" parent="BattleField_Focus/RedPortalSet" index="1"]
+position = Vector2( 144.13, 10.0565 )
+
+[node name="RedPortalSet4" parent="BattleField_Focus" instance=ExtResource( 5 )]
+position = Vector2( 320.663, 805.15 )
+
+[node name="Portal1" parent="BattleField_Focus/RedPortalSet4" index="0"]
+position = Vector2( -143.869, -85.9437 )
+
+[node name="Portal2" parent="BattleField_Focus/RedPortalSet4" index="1"]
+position = Vector2( 176.131, 42.0563 )
+
+[node name="RedPortalSet3" parent="BattleField_Focus" instance=ExtResource( 5 )]
+position = Vector2( 320.663, 805.15 )
+
+[node name="Portal1" parent="BattleField_Focus/RedPortalSet3" index="0"]
+position = Vector2( -271.87, -21.9435 )
+
+[node name="Portal2" parent="BattleField_Focus/RedPortalSet3" index="1"]
+position = Vector2( 208.131, -21.9437 )
+
+[node name="RedPortalSet5" parent="BattleField_Focus" instance=ExtResource( 5 )]
+position = Vector2( 320.663, 805.15 )
+
+[node name="Portal1" parent="BattleField_Focus/RedPortalSet5" index="0"]
+position = Vector2( -239.869, -53.9437 )
+
+[node name="Portal2" parent="BattleField_Focus/RedPortalSet5" index="1"]
+position = Vector2( 176.131, -21.9437 )
+
+[node name="RedPortalSet2" parent="BattleField_Focus" instance=ExtResource( 5 )]
+position = Vector2( 320.663, 805.15 )
+
+[node name="Portal1" parent="BattleField_Focus/RedPortalSet2" index="0"]
+position = Vector2( -111.87, -21.9435 )
+
+[node name="Portal2" parent="BattleField_Focus/RedPortalSet2" index="1"]
+position = Vector2( 240.131, 42.0563 )
+
+[node name="RedPortalSet6" parent="BattleField_Focus" instance=ExtResource( 5 )]
+position = Vector2( 320.663, 805.15 )
+
+[node name="Portal1" parent="BattleField_Focus/RedPortalSet6" index="0"]
+position = Vector2( -111.869, 138.056 )
+
+[node name="Portal2" parent="BattleField_Focus/RedPortalSet6" index="1"]
+position = Vector2( 80.1307, 202.056 )
+
+[node name="GreenPortalSet" parent="BattleField_Focus" instance=ExtResource( 6 )]
+
+[node name="Portal1" parent="BattleField_Focus/GreenPortalSet" index="0"]
+position = Vector2( 688.794, 783.206 )
+
+[node name="Portal2" parent="BattleField_Focus/GreenPortalSet" index="1"]
+position = Vector2( 368.794, 879.206 )
+
+[node name="GreenPortalSet11" parent="BattleField_Focus" instance=ExtResource( 6 )]
+
+[node name="Portal1" parent="BattleField_Focus/GreenPortalSet11" index="0"]
+position = Vector2( 688.794, 815.206 )
+
+[node name="Portal2" parent="BattleField_Focus/GreenPortalSet11" index="1"]
+position = Vector2( 496.794, 911.206 )
+
+[node name="GreenPortalSet8" parent="BattleField_Focus" instance=ExtResource( 6 )]
+
+[node name="Portal1" parent="BattleField_Focus/GreenPortalSet8" index="0"]
+position = Vector2( 624.794, 847.206 )
+
+[node name="Portal2" parent="BattleField_Focus/GreenPortalSet8" index="1"]
+position = Vector2( 432.794, 879.206 )
+
+[node name="GreenPortalSet6" parent="BattleField_Focus" instance=ExtResource( 6 )]
+
+[node name="Portal1" parent="BattleField_Focus/GreenPortalSet6" index="0"]
+position = Vector2( 624.794, 783.206 )
+
+[node name="Portal2" parent="BattleField_Focus/GreenPortalSet6" index="1"]
+position = Vector2( 336.794, 943.206 )
+
+[node name="GreenPortalSet2" parent="BattleField_Focus" instance=ExtResource( 6 )]
+
+[node name="Portal1" parent="BattleField_Focus/GreenPortalSet2" index="0"]
+position = Vector2( 112.794, 783.206 )
+
+[node name="Portal2" parent="BattleField_Focus/GreenPortalSet2" index="1"]
+position = Vector2( 496.794, 1007.21 )
+
+[node name="GreenPortalSet10" parent="BattleField_Focus" instance=ExtResource( 6 )]
+
+[node name="Portal1" parent="BattleField_Focus/GreenPortalSet10" index="0"]
+position = Vector2( 272.794, 783.206 )
+
+[node name="Portal2" parent="BattleField_Focus/GreenPortalSet10" index="1"]
+position = Vector2( 496.794, 1007.21 )
+
+[node name="GreenPortalSet7" parent="BattleField_Focus" instance=ExtResource( 6 )]
+
+[node name="Portal1" parent="BattleField_Focus/GreenPortalSet7" index="0"]
+position = Vector2( 112.794, 815.206 )
+
+[node name="Portal2" parent="BattleField_Focus/GreenPortalSet7" index="1"]
+position = Vector2( 80.7937, 1007.21 )
+
+[node name="GreenPortalSet3" parent="BattleField_Focus" instance=ExtResource( 6 )]
+
+[node name="Portal1" parent="BattleField_Focus/GreenPortalSet3" index="0"]
+position = Vector2( 560.794, 815.206 )
+
+[node name="Portal2" parent="BattleField_Focus/GreenPortalSet3" index="1"]
+position = Vector2( 272.794, 815.206 )
+
+[node name="GreenPortalSet9" parent="BattleField_Focus" instance=ExtResource( 6 )]
+
+[node name="Portal1" parent="BattleField_Focus/GreenPortalSet9" index="0"]
+position = Vector2( 336.794, 847.206 )
+
+[node name="Portal2" parent="BattleField_Focus/GreenPortalSet9" index="1"]
+position = Vector2( 368.794, 783.206 )
+
+[node name="GreenPortalSet5" parent="BattleField_Focus" instance=ExtResource( 6 )]
+
+[node name="Portal1" parent="BattleField_Focus/GreenPortalSet5" index="0"]
+position = Vector2( 432.794, 783.206 )
+
+[node name="Portal2" parent="BattleField_Focus/GreenPortalSet5" index="1"]
+position = Vector2( 720.794, 847.206 )
+
+[node name="GreenPortalSet4" parent="BattleField_Focus" instance=ExtResource( 6 )]
+
+[node name="Portal1" parent="BattleField_Focus/GreenPortalSet4" index="0"]
+position = Vector2( 432.794, 847.206 )
+
+[node name="Portal2" parent="BattleField_Focus/GreenPortalSet4" index="1"]
+position = Vector2( 368.794, 847.206 )
+
+[node name="BluePortalSet" parent="BattleField_Focus" instance=ExtResource( 7 )]
+
+[node name="Portal1" parent="BattleField_Focus/BluePortalSet" index="0"]
+position = Vector2( 208.794, 975.206 )
+
+[node name="Portal2" parent="BattleField_Focus/BluePortalSet" index="1"]
+position = Vector2( 624.794, 879.206 )
+
+[node name="BluePortalSet4" parent="BattleField_Focus" instance=ExtResource( 7 )]
+
+[node name="Portal1" parent="BattleField_Focus/BluePortalSet4" index="0"]
+position = Vector2( 464.794, 943.206 )
+
+[node name="Portal2" parent="BattleField_Focus/BluePortalSet4" index="1"]
+position = Vector2( 176.794, 815.206 )
+
+[node name="BluePortalSet7" parent="BattleField_Focus" instance=ExtResource( 7 )]
+
+[node name="Portal1" parent="BattleField_Focus/BluePortalSet7" index="0"]
+position = Vector2( 208.794, 847.206 )
+
+[node name="Portal2" parent="BattleField_Focus/BluePortalSet7" index="1"]
+position = Vector2( 592.794, 815.206 )
+
+[node name="BluePortalSet6" parent="BattleField_Focus" instance=ExtResource( 7 )]
+
+[node name="Portal1" parent="BattleField_Focus/BluePortalSet6" index="0"]
+position = Vector2( 464.794, 975.206 )
+
+[node name="Portal2" parent="BattleField_Focus/BluePortalSet6" index="1"]
+position = Vector2( 144.794, 847.206 )
+
+[node name="BluePortalSet5" parent="BattleField_Focus" instance=ExtResource( 7 )]
+
+[node name="Portal1" parent="BattleField_Focus/BluePortalSet5" index="0"]
+position = Vector2( 304.794, 751.206 )
+
+[node name="Portal2" parent="BattleField_Focus/BluePortalSet5" index="1"]
+position = Vector2( 80.7937, 943.206 )
+
+[node name="BluePortalSet2" parent="BattleField_Focus" instance=ExtResource( 7 )]
+
+[node name="Portal1" parent="BattleField_Focus/BluePortalSet2" index="0"]
+position = Vector2( 272.794, 943.206 )
+
+[node name="Portal2" parent="BattleField_Focus/BluePortalSet2" index="1"]
+position = Vector2( 720.794, 911.206 )
+
+[node name="BluePortalSet3" parent="BattleField_Focus" instance=ExtResource( 7 )]
+
+[node name="Portal1" parent="BattleField_Focus/BluePortalSet3" index="0"]
+position = Vector2( 528.794, 943.206 )
+
+[node name="Portal2" parent="BattleField_Focus/BluePortalSet3" index="1"]
+position = Vector2( 80.7937, 847.206 )
+
+[node name="YelloPortalSet" parent="BattleField_Focus" instance=ExtResource( 3 )]
+
+[node name="Portal1" parent="BattleField_Focus/YelloPortalSet" index="0"]
+position = Vector2( 304.794, 1007.21 )
+
+[node name="Portal2" parent="BattleField_Focus/YelloPortalSet" index="1"]
+position = Vector2( 208.794, 879.206 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 324.654, 429.304 )
+
+[node name="Player2" parent="." instance=ExtResource( 1 )]
+self_modulate = Color( 1, 0, 0, 1 )
+position = Vector2( 324.654, 429.304 )
+second_player = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
+
+[editable path="BattleField_Focus/YellowPortalSet"]
+
+[editable path="BattleField_Focus/YellowPortalSet2"]
+
+[editable path="BattleField_Focus/YellowPortalSet3"]
+
+[editable path="BattleField_Focus/RedPortalSet"]
+
+[editable path="BattleField_Focus/RedPortalSet4"]
+
+[editable path="BattleField_Focus/RedPortalSet3"]
+
+[editable path="BattleField_Focus/RedPortalSet5"]
+
+[editable path="BattleField_Focus/RedPortalSet2"]
+
+[editable path="BattleField_Focus/RedPortalSet6"]
+
+[editable path="BattleField_Focus/GreenPortalSet"]
+
+[editable path="BattleField_Focus/GreenPortalSet11"]
+
+[editable path="BattleField_Focus/GreenPortalSet8"]
+
+[editable path="BattleField_Focus/GreenPortalSet6"]
+
+[editable path="BattleField_Focus/GreenPortalSet2"]
+
+[editable path="BattleField_Focus/GreenPortalSet10"]
+
+[editable path="BattleField_Focus/GreenPortalSet7"]
+
+[editable path="BattleField_Focus/GreenPortalSet3"]
+
+[editable path="BattleField_Focus/GreenPortalSet9"]
+
+[editable path="BattleField_Focus/GreenPortalSet5"]
+
+[editable path="BattleField_Focus/GreenPortalSet4"]
+
+[editable path="BattleField_Focus/BluePortalSet"]
+
+[editable path="BattleField_Focus/BluePortalSet4"]
+
+[editable path="BattleField_Focus/BluePortalSet7"]
+
+[editable path="BattleField_Focus/BluePortalSet6"]
+
+[editable path="BattleField_Focus/BluePortalSet5"]
+
+[editable path="BattleField_Focus/BluePortalSet2"]
+
+[editable path="BattleField_Focus/BluePortalSet3"]
+
+[editable path="BattleField_Focus/YelloPortalSet"]

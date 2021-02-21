@@ -239,18 +239,32 @@ func move(_delta):
 	get_parent().global_position = self.global_position
 	self.position = position_old
 	
+func is_second_player()->bool:
+	return get_parent().second_player
+		
 # player 입력을 받는다
 func input_velocity_player():
-	if Input.is_action_pressed("ui_left"):
-		velocity.x = -SPEED
-	elif Input.is_action_pressed("ui_right"):
-		velocity.x = SPEED
-	if Input.is_action_pressed("ui_up"):
-		velocity.y = -SPEED
-	elif Input.is_action_pressed("ui_down"):
-		velocity.y = SPEED
-	elif not move_joystick_node == null and move_joystick_node.is_working:
-		velocity = move_joystick_node.output.normalized() * SPEED
+	if is_second_player():
+		if Input.is_action_pressed("ui_left_p2"):
+			velocity.x = -SPEED
+		elif Input.is_action_pressed("ui_right_p2"):
+			velocity.x = SPEED
+		if Input.is_action_pressed("ui_up_p2"):
+			velocity.y = -SPEED
+		elif Input.is_action_pressed("ui_down_p2"):
+			velocity.y = SPEED
+	else:
+		if Input.is_action_pressed("ui_left"):
+			velocity.x = -SPEED
+		elif Input.is_action_pressed("ui_right"):
+			velocity.x = SPEED
+		if Input.is_action_pressed("ui_up"):
+			velocity.y = -SPEED
+		elif Input.is_action_pressed("ui_down"):
+			velocity.y = SPEED
+		elif not move_joystick_node == null and move_joystick_node.is_working:
+			velocity = move_joystick_node.output.normalized() * SPEED
+			
 	
 
 func die():

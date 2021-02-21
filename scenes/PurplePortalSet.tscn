@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/Portal.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/PortalSet.gd" type="Script" id=2]
+
+[node name="YelloPortalSet" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Portal1" parent="." instance=ExtResource( 1 )]
+portal_color = 3
+
+[node name="Portal2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 240, 144 )
+portal_color = 3

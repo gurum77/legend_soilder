@@ -7,7 +7,7 @@ func update():
 	if si == null:
 		return
 	
-	var nodes = get_children()
+	var in= = get_children()
 	for node in nodes:
 		remove_child(node)
 		

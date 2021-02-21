@@ -4,7 +4,7 @@ signal dead
 
 var HP = Table.player_hp
 var max_HP = Table.player_hp
-
+export (bool) var second_player = false
 func _ready():
 	# signal 연결
 	var world = get_tree().root.get_node_or_null("World")
