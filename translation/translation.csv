@@ -5,15 +5,25 @@ SETTINGS,SETTINGS,설정
 PLAY,PLAY,PLAY
 EXIT,EXIT,종료
 RESET,RESET,초기화
-BACK,BACK,BACK
+BACK,BACK,뒤로
 POWER,POWER,파워
 INTERVAL,INTERVAL,발사간격
 START,START,시작
-MISSION FAILED,미션 실패
-HOME,HOME,HOME
+MISSION FAILED,MISSION FAILED,미션 실패
+HOME,HOME,홈
 REVIVAL,REVIVAL,부활
+  REVIVAL,  REVIVAL,  부활
 VICTORY,VICTORY,승리
 NEXT,NEXT,다음
 Music,Music,음악
 Sound,Sound,소리
 SET,SET,장착
+Quit?,Quit?,끝?
+Reset?,Reset?,초기화?
+Cancel,Cancel,취소
+You need more money.,You need more money.,자금이 더 필요합니다.
+Go to shop?,Go to shop?,상점으로 가시겠습니까?
+Alert!,Alert!,알림!
+No,No,아니오
+NO,NO,아니오
+Select your inventory,Select your inventory,인벤토리를 선택하세요

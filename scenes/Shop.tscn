@@ -5,13 +5,13 @@
 [ext_resource path="res://scenes/MoneyPanel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/ui/GAME LOGO.png" type="Texture" id=4]
 [ext_resource path="res://scenes/ShopItem.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://assets/fonts/neodgm_pro.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://assets/ui/money_pack_20000.png" type="Texture" id=7]
 [ext_resource path="res://assets/ui/money_pack_30000.png" type="Texture" id=8]
 [ext_resource path="res://scenes/GemPanel.tscn" type="PackedScene" id=9]
 
 [sub_resource type="DynamicFont" id=1]
-size = 50
+size = 60
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 6 )

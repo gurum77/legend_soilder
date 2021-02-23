@@ -67,9 +67,9 @@ func _on_EquipmentButton_pressed():
 # 구매를 한다.
 func _on_BuyButton_pressed():
 	if StaticData.total_money < price:
-		var dlg = AcceptDialog.new()
-		dlg.dialog_text = "You need more money.\nGo to shop?"
-		dlg.add_cancel("Cancel")
+		var dlg = MyAcceptDialog.new()
+		dlg.dialog_text = tr("You need more money.") + "\n" + tr("Go to shop?")
+		dlg.add_cancel(tr("NO"))
 		dlg.get_ok().connect("pressed", self, "on_GoToShopButton_pressed")
 		add_child(dlg)
 		dlg.popup_centered()

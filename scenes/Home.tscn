@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
+[ext_resource path="res://scenes/MyAcceptDialog.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/ui/Button BG shadow.png" type="Texture" id=3]
 [ext_resource path="res://assets/ui/GAME LOGO.png" type="Texture" id=4]
 [ext_resource path="res://assets/fonts/neodgm_pro.ttf" type="DynamicFontData" id=5]
@@ -10,10 +11,10 @@
 [ext_resource path="res://scenes/StarPanel.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/GemPanel.tscn" type="PackedScene" id=11]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 5 )
 
 [node name="Home" type="Panel"]
@@ -44,7 +45,7 @@ margin_left = 14.6084
 margin_top = 438.921
 margin_right = 92.6084
 margin_bottom = 471.921
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "RESET"
 icon = ExtResource( 7 )
 __meta__ = {
@@ -97,7 +98,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -1.0
 margin_right = -1.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.662745, 0.490196, 0.164706, 1 )
 text = "PLAY"
 align = 1
@@ -120,7 +121,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -1.0
 margin_right = -1.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.662745, 0.490196, 0.164706, 1 )
 text = "EQUIPMENT"
 align = 1
@@ -143,7 +144,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -1.0
 margin_right = -1.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.662745, 0.490196, 0.164706, 1 )
 text = "SHOP"
 align = 1
@@ -166,7 +167,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -1.0
 margin_right = -1.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.662745, 0.490196, 0.164706, 1 )
 text = "SETTINGS"
 align = 1
@@ -187,7 +188,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="VBoxContainer/ExitButton"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 0.227451, 0, 1 )
 text = "EXIT"
 align = 1
@@ -195,6 +196,8 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MyAcceptDialog" parent="." instance=ExtResource( 1 )]
 [connection signal="pressed" from="ResetButton" to="." method="_on_ResetButton_pressed"]
 [connection signal="banner_loaded" from="AdMob" to="." method="_on_AdMob_banner_loaded"]
 [connection signal="ready" from="AdMob" to="." method="_on_AdMob_ready"]

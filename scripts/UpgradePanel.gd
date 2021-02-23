@@ -109,9 +109,9 @@ func update_bar(level):
 # 돈이 부족하면 shop으로 이동할지 물어본다.
 func _on_Button_pressed():
 	if is_need_more_money_to_upgrade():
-		var dlg = AcceptDialog.new()
-		dlg.dialog_text = "You need more money.\nGo to shop?"
-		dlg.add_cancel("Cancel")
+		var dlg = MyAcceptDialog.new()
+		dlg.dialog_text = tr("You need more money.") + "\n" + tr("Go to shop?")
+		dlg.add_cancel(tr("Cancel"))
 		dlg.get_ok().connect("pressed", self, "on_GoToShopButton_pressed")
 		add_child(dlg)
 		dlg.popup_centered()
