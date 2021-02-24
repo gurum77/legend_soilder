@@ -40,7 +40,7 @@ animations = [ {
 
 [node name="Box2" type="Node2D"]
 script = ExtResource( 2 )
-HP = 10000
+type = 1
 
 [node name="HPBar" parent="." instance=ExtResource( 3 )]
 visible = false

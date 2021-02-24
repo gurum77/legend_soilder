@@ -2,11 +2,24 @@ extends Node2D
 
 class_name Obstacle
 
-export var HP = 3000
+# 종류 (걷기만 해도 깨짐, 박스처럼 잘 깨짐, 돌처럼 단단함, 쇠처럼 절대 깨지지 않음
+enum Type{broken_by_step, kind_of_box, kind_of_rock, kind_of_steel }
+export (Type) var type
+var HP = 3000
 onready var hp_bar = get_node_or_null("HPBar")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	match type:
+		Type.broken_by_step:
+			HP = Table.broken_by_step_obstacle_hp
+		Type.kind_of_box:
+			HP = Table.kind_of_box_obstacle_hp
+		Type.kind_of_rock:
+			HP = Table.kind_of_rock_obstacle_hp
+		Type.kind_of_steel:
+			HP = Table.kind_of_steel_obstacle_hp
+			
 	if hp_bar != null:
 		hp_bar.init(HP)
 	

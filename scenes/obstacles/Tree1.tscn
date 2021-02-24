@@ -41,7 +41,7 @@ animations = [ {
 [node name="Tree1" type="Node2D"]
 z_index = 1
 script = ExtResource( 2 )
-HP = 20000
+type = 2
 
 [node name="HPBar" parent="." instance=ExtResource( 3 )]
 margin_top = -26.0

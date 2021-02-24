@@ -41,7 +41,7 @@ animations = [ {
 
 [node name="Sandbags" type="Node2D"]
 script = ExtResource( 9 )
-HP = 100000
+type = 2
 
 [node name="HPBar" parent="." instance=ExtResource( 8 )]
 visible = false

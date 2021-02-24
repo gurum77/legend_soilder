@@ -4,10 +4,13 @@ var stage_name:String = "Unknown"
 var pressed_position
 onready var stage_selector = get_tree().root.get_node_or_null("StageSelector")
 func _ready():
+	
 	var si = StaticData.get_stage_information(stage_name)
 	if si != null:
-		$Circle/Stone.visible = si.is_cleard()
+		$Circle/Stone.visible = si.is_cleared()
 		$Label.text = stage_name
+		$Circle/Lock.visible = si.is_locked()
+		
 	$StageStepStatus.stage_name = stage_name
 	$StageStepStatus.update()
 

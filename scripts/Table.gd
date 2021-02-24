@@ -45,6 +45,11 @@ var factor_by_level = 0.1
 # 적 hp / power의 최대 업그레이드 level
 var max_enemy_level = 200
 
+# 장애물의 기본 체력들
+var broken_by_step_obstacle_hp = 0
+var kind_of_box_obstacle_hp = 500000
+var kind_of_rock_obstacle_hp = 1000000
+var kind_of_steel_obstacle_hp = 5000000
 
 # 무기별 interval
 func get_weapon_interval_by_level(weapon):

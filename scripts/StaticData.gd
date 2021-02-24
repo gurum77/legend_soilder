@@ -252,9 +252,13 @@ func align_stage_informations():
 	var max_index_x = 5
 	var index_x = 0
 	var index_y = 0
+	var last_si = null
 	for si_key in stage_informations.keys():
-		stage_informations[si_key].position.x = start_x + (index_x * offset_x)
-		stage_informations[si_key].position.y = start_y + (index_y * offset_y)
+		var si:StageInformation = stage_informations[si_key]
+		si.position.x = start_x + (index_x * offset_x)
+		si.position.y = start_y + (index_y * offset_y)
+		si.prev_stage = last_si	# 이전 stage를 연결해준다.
+		last_si = si
 		if index_x < max_index_x:
 			index_x += 1
 		else:

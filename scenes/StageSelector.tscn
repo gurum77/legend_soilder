@@ -119,7 +119,7 @@ position = Vector2( 396.85, 253.984 )
 z_index = 1
 
 [node name="LegAnimatedSprite" parent="MapScrollContainer/Map/Player/Body/AnimatedSprites" index="0"]
-frame = 2
+frame = 6
 
 [node name="CollisionShape2D" parent="MapScrollContainer/Map/Player/Body" index="9"]
 visible = false
