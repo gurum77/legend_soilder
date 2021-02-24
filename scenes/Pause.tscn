@@ -1,16 +1,15 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/ui/PAUSE PRESET.png" type="Texture" id=1]
 [ext_resource path="res://assets/ui/BTN SETTINGS_EMPTY.png" type="Texture" id=2]
-[ext_resource path="res://assets/ui/BTN SETTINGS_SMALL.png" type="Texture" id=3]
-[ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/fonts/neodgm_pro.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://scripts/Pause.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=1]
-font_data = ExtResource( 4 )
+font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=2]
-font_data = ExtResource( 4 )
+font_data = ExtResource( 3 )
 
 [node name="Pause" type="Panel"]
 pause_mode = 2
@@ -36,16 +35,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SettingButton" type="TextureButton" parent="TextureRect"]
-margin_left = 18.4891
-margin_top = 80.375
-margin_right = 128.489
-margin_bottom = 115.375
-texture_normal = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="HomeButton" type="TextureButton" parent="TextureRect"]
 margin_left = 18.2292
 margin_top = 132.662
@@ -62,6 +51,28 @@ anchor_bottom = 1.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.603922, 0.478431, 0.145098, 1 )
 text = "HOME"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingsButton" type="TextureButton" parent="TextureRect"]
+margin_left = 18.2292
+margin_top = 82.662
+margin_right = 128.229
+margin_bottom = 117.662
+texture_normal = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TextureRect/SettingsButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.603922, 0.478431, 0.145098, 1 )
+text = "SETTINGS"
 align = 1
 valign = 1
 __meta__ = {
@@ -89,6 +100,6 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="TextureRect/SettingButton" to="." method="_on_SettingButton_pressed"]
 [connection signal="pressed" from="TextureRect/HomeButton" to="." method="_on_HomeButton_pressed"]
+[connection signal="pressed" from="TextureRect/SettingsButton" to="." method="_on_SettingsButton_pressed"]
 [connection signal="pressed" from="TextureRect/ResumeButton" to="." method="_on_ResumeButton_pressed"]

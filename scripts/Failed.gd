@@ -10,8 +10,12 @@ func update_revival_button():
 	#  부활 기회가 있으면 버튼을 보여준다.
 	if StaticData.has_revival_chance:
 		$TextureRect/RevivalButton.visible = true
+		$TextureRect/HomeButton.visible = true
+		$TextureRect/HomeButtonCenter.visible = false
 	else:
 		$TextureRect/RevivalButton.visible = false
+		$TextureRect/HomeButton.visible = false
+		$TextureRect/HomeButtonCenter.visible = true
 		
 func _on_HomeButton_pressed():
 	get_tree().change_scene("res://scenes/Home.tscn")

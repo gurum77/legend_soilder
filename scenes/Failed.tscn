@@ -92,6 +92,34 @@ text = "HOME"
 align = 1
 valign = 1
 
+[node name="HomeButtonCenter" type="TextureButton" parent="TextureRect"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -38.0
+margin_top = -47.0
+margin_right = 72.0
+margin_bottom = -12.0
+rect_scale = Vector2( 0.7, 1 )
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TextureRect/HomeButtonCenter"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -2.85715
+margin_top = -1.0
+margin_right = -2.85715
+margin_bottom = -1.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.564706, 0.458824, 0.203922, 1 )
+text = "HOME"
+align = 1
+valign = 1
+
 [node name="RevivalButton" type="TextureButton" parent="TextureRect"]
 margin_left = 95.8524
 margin_top = 75.0
@@ -140,6 +168,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="pressed" from="TextureRect/HomeButton" to="." method="_on_HomeButton_pressed"]
+[connection signal="pressed" from="TextureRect/HomeButtonCenter" to="." method="_on_HomeButton_pressed"]
 [connection signal="pressed" from="TextureRect/RevivalButton" to="." method="_on_RevivalButton_pressed"]
 [connection signal="rewarded" from="AdMob" to="." method="_on_AdMob_rewarded"]
 [connection signal="rewarded_video_failed_to_load" from="AdMob" to="." method="_on_AdMob_rewarded_video_failed_to_load"]
