@@ -30,6 +30,7 @@ func load_gamedata(var dic):
 	
 # 잠겨 있는지?
 func is_locked()->bool:
+	return false
 	# 진행 중이면 잠그지 않는다
 	if current_step > 1:
 		return false

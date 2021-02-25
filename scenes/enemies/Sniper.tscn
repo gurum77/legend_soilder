@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://assets/enemies/sniper/Walk/SW_02.png" type="Texture" id=1]
 [ext_resource path="res://assets/enemies/sniper/Walk/SW_04.png" type="Texture" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://assets/enemies/sniper/Shot/2.png" type="Texture" id=19]
 [ext_resource path="res://assets/enemies/sniper/Shot/1.png" type="Texture" id=20]
 [ext_resource path="res://scenes/EnemyAI.tscn" type="PackedScene" id=21]
+[ext_resource path="res://scenes/ItemMaker.tscn" type="PackedScene" id=22]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -29,15 +30,15 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [  ],
-"loop": false,
-"name": "die",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 9 ), ExtResource( 1 ), ExtResource( 8 ), ExtResource( 2 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "walk",
 "speed": 15.0
+}, {
+"frames": [  ],
+"loop": false,
+"name": "die",
+"speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=2]
@@ -47,14 +48,14 @@ animations = [ {
 "name": "idle",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 11 ) ],
-"loop": false,
-"name": "fire",
-"speed": 10.0
-}, {
 "frames": [ ExtResource( 6 ), ExtResource( 3 ), ExtResource( 12 ), ExtResource( 10 ), ExtResource( 17 ) ],
 "loop": false,
 "name": "die",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": false,
+"name": "fire",
 "speed": 10.0
 } ]
 
@@ -83,7 +84,7 @@ __meta__ = {
 
 [node name="Body" type="KinematicBody2D" parent="."]
 collision_layer = 2
-collision_mask = 21
+collision_mask = 149
 script = ExtResource( 16 )
 weapon = 2
 
@@ -129,5 +130,7 @@ margin_bottom = -14.0
 
 [node name="PathFollow2D" parent="EnemyAI/EnemyAI_Move/PatrolPath" index="0"]
 position = Vector2( 90.5677, 113.894 )
+
+[node name="ItemMaker" parent="." instance=ExtResource( 22 )]
 
 [editable path="EnemyAI"]

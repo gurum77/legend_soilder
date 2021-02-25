@@ -12,7 +12,7 @@ func _ready():
 		$TextureRect/NextButton/Label.text = "NEXT"
 
 func is_cleared()->bool:
-	if si != null and si.is_cleard():
+	if si != null and si.is_cleared():
 		return true
 	return false
 	
@@ -25,7 +25,7 @@ func _on_HomeButton_pressed():
 func _on_NextButton_pressed():
 	# 모든 step을 완료 했다면 stage selector로 가서 결과를 본다
 	var err = OK
-	if si != null and si.is_cleard():
+	if si != null and si.is_cleared():
 		err = get_tree().change_scene("res://scenes/StageSelector.tscn")
 	else:
 		err = get_tree().change_scene("res://scenes/World.tscn")
