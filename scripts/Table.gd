@@ -46,7 +46,7 @@ var factor_by_level = 0.1
 var max_enemy_level = 200
 
 # 장애물의 기본 체력들
-var broken_by_step_obstacle_hp = 0
+var broken_by_oneshot_obstacle_hp = 0
 var kind_of_box_obstacle_hp = 500000
 var kind_of_rock_obstacle_hp = 1000000
 var kind_of_steel_obstacle_hp = 5000000

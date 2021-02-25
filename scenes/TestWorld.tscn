@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://maps/BattleField_Focus.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/WorldEnvironment.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/TestWorld.gd" type="Script" id=4]
+[ext_resource path="res://scenes/obstacles/dragon_head_skull.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Joystick/AimJoystick.tscn" type="PackedScene" id=6]
 
 [node name="TestWorld" type="Node2D"]
 script = ExtResource( 4 )
@@ -16,4 +18,24 @@ z_index = -1
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 324.654, 429.304 )
 
+[node name="Body" parent="Player" index="0"]
+aim_joystick = NodePath("../../CanvasLayer/AimJoystick")
+
+[node name="LegAnimatedSprite" parent="Player/Body/AnimatedSprites" index="0"]
+frame = 2
+
 [node name="WorldEnvironment" parent="." instance=ExtResource( 3 )]
+
+[node name="DragonHeadSkull" parent="." instance=ExtResource( 5 )]
+position = Vector2( 272, 976 )
+rotation = 0.523599
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="AimJoystick" parent="CanvasLayer" instance=ExtResource( 6 )]
+margin_left = 496.0
+margin_top = -144.0
+margin_right = 646.0
+margin_bottom = 6.00006
+
+[editable path="Player"]
