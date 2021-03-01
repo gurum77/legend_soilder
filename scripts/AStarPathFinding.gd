@@ -67,7 +67,7 @@ func init_tilemap(var map):
 	# map에서 tilemap 찾기
 	for node in all_nodes_in_map:
 		if not node is TileMap:
-			continue;
+			continue
 		self.tilemap = node as TileMap
 		break
 		

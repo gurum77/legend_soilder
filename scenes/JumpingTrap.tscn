@@ -1,28 +1,100 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/tools/jumpingtrap.png" type="Texture" id=1]
 [ext_resource path="res://scenes/JumpingTrap.gd" type="Script" id=2]
+[ext_resource path="res://assets/tools/jumpingtrap2.png" type="Texture" id=3]
+[ext_resource path="res://scripts/GuideLine.gd" type="Script" id=4]
+[ext_resource path="res://Joystick/joystick_background_cross.png" type="Texture" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
-"name": "run",
+"name": "jump",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 16, 16 )
+extents = Vector2( 14.3537, 14.63 )
 
 [node name="JumpingTrap" type="Area2D"]
+collision_mask = 27
 script = ExtResource( 2 )
+dist = 200.0
+speed_per_sec = 130.0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "run"
+animation = "jump"
+playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="RunningTimer" type="Timer" parent="."]
+
+[node name="TargetRayCast2D1" type="RayCast2D" parent="."]
+position = Vector2( 0.25, 0.25 )
+enabled = true
+cast_to = Vector2( 111, 0 )
+collision_mask = 144
+collide_with_areas = true
+script = ExtResource( 4 )
+
+[node name="Line2D" type="Line2D" parent="TargetRayCast2D1"]
+points = PoolVector2Array( 0, 0, 0, 0 )
+width = 1.0
+default_color = Color( 0.4, 0.501961, 1, 1 )
+
+[node name="TargetRayCast2D2" type="RayCast2D" parent="."]
+position = Vector2( 0.25, 0.25 )
+rotation = 0.174533
+enabled = true
+cast_to = Vector2( 10, 0 )
+collision_mask = 2147483792
+collide_with_areas = true
+script = ExtResource( 4 )
+
+[node name="Line2D" type="Line2D" parent="TargetRayCast2D2"]
+points = PoolVector2Array( 0, 0, 0, 0 )
+width = 1.0
+
+[node name="TargetRayCast2D3" type="RayCast2D" parent="."]
+rotation = -0.174533
+enabled = true
+cast_to = Vector2( 10, 0 )
+collision_mask = 144
+collide_with_areas = true
+script = ExtResource( 4 )
+
+[node name="Line2D" type="Line2D" parent="TargetRayCast2D3"]
+points = PoolVector2Array( 0, 0, 0, 0 )
+width = 1.0
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 100, 0 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 5 )
+
+[node name="TestRayCast2D" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 300, 0 )
+collision_mask = 144
+collide_with_areas = true
+script = ExtResource( 4 )
+
+[node name="Line2D" type="Line2D" parent="TestRayCast2D"]
+points = PoolVector2Array( 0, 0, 0, 0 )
+width = 1.0
+default_color = Color( 1, 0.454902, 0.12549, 1 )
 [connection signal="body_entered" from="." to="." method="_on_JumpingTrap_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_JumpingTrap_body_exited"]
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
+[connection signal="timeout" from="RunningTimer" to="." method="_on_RunningTimer_timeout"]
