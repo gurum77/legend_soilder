@@ -5,6 +5,7 @@ export var dist:float = 30
 export var speed_per_sec:float = 130
 export var running_time = 1.0
 
+var initialized_water_tilemap = false
 var water_tilemap:TileMap
 # 점핑패드 안에 있는 노드들
 var nodes_in_JumpingTrap:Dictionary
@@ -13,13 +14,17 @@ var jumping = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# water tilemap을 찾는다
-	water_tilemap = find_water_tile_map(get_tree().root)
 	$AnimatedSprite.stop()
 	running = false
 	nodes_in_JumpingTrap.clear()
-	$Sprite.global_position = find_target_position()
+	
 
+func _process(delta):
+	# water tilemap을 찾는다
+	if !initialized_water_tilemap:
+		water_tilemap = find_water_tile_map(get_tree().root)
+		$Sprite.global_position = find_target_position()
+		initialized_water_tilemap = true
 
 # water tile map을 찾는다.
 func find_water_tile_map(var cur_node)->TileMap:
@@ -69,7 +74,7 @@ func find_target_position()->Vector2:
 	# 처음 거리부터 늘려가면서 체크한다.
 	# 최대 30번 반복한다.
 	var offset = 30
-	var max_repeat = 32
+	var max_repeat = 100
 	var found_target_position = false
 	for i in max_repeat:
 		cur_dist += offset
@@ -139,7 +144,7 @@ func is_inside_water(var position)->bool:
 	if water_tilemap == null:
 		return false
 	var map_position = water_tilemap.world_to_map(position)
-	var c = water_tilemap.get_cellv(map_position)
+	var c = water_tilemap.get_cell(map_position.x, map_position.y)
 	# tile id 0 이 물만 있는 tile이다. 다른 타일은 흙이 섥여 있으니 점프 가능하다(물 아닌 것으로 한다)
 	if c == 0:
 		return true

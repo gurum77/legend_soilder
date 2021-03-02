@@ -46,7 +46,7 @@ var stage_informations:Dictionary={
 	"레이스" : StageInformation.new("res://maps/BattleField_Race.tscn", Vector2(918, 449)),
 	"큰호수" : StageInformation.new("res://maps/BattleField_BigLake.tscn", Vector2(918, 449)),
 	"체크박스" : StageInformation.new("res://maps/BattleField_CheckBox.tscn", Vector2(918, 449)),
-	"Surround9" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449)),
+	"점프" : StageInformation.new("res://maps/BattleField_Jump.tscn", Vector2(918, 449)),
 	"Surround10" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449)),
 	"Surround11" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449)),
 	"Surround12" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449)),

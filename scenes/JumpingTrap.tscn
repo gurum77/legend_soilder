@@ -8,15 +8,15 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 1 ) ],
-"loop": true,
-"name": "jump",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 1 ), ExtResource( 3 ) ],
 "loop": true,
 "name": "run",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -25,8 +25,10 @@ extents = Vector2( 14.3537, 14.63 )
 [node name="JumpingTrap" type="Area2D"]
 collision_mask = 27
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
 dist = 200.0
-speed_per_sec = 130.0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
@@ -79,21 +81,9 @@ points = PoolVector2Array( 0, 0, 0, 0 )
 width = 1.0
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 100, 0 )
+position = Vector2( 200, 0 )
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 5 )
-
-[node name="TestRayCast2D" type="RayCast2D" parent="."]
-enabled = true
-cast_to = Vector2( 300, 0 )
-collision_mask = 144
-collide_with_areas = true
-script = ExtResource( 4 )
-
-[node name="Line2D" type="Line2D" parent="TestRayCast2D"]
-points = PoolVector2Array( 0, 0, 0, 0 )
-width = 1.0
-default_color = Color( 1, 0.454902, 0.12549, 1 )
 [connection signal="body_entered" from="." to="." method="_on_JumpingTrap_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_JumpingTrap_body_exited"]
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
