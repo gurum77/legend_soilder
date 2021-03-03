@@ -1,0 +1,1210 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://assets/tilesets/BattleField.tres" type="TileSet" id=1]
+[ext_resource path="res://scenes/JumpingTrap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/obstacles/Bush.tscn" type="PackedScene" id=3]
+[ext_resource path="res://maps/Stage.gd" type="Script" id=4]
+[ext_resource path="res://scenes/PlayerSpawner.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Spawner.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/enemies/Soldier2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/enemies/Panzer.tscn" type="PackedScene" id=8]
+[ext_resource path="res://maps/BattleField_Ground.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/GreenPortalSet.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/YelloPortalSet.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/RedPortalSet.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/BluePortalSet.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/enemies/Sniper.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/obstacles/Rock1.tscn" type="PackedScene" id=15]
+
+[node name="BattleField_점프지옥" type="Node2D"]
+script = ExtResource( 4 )
+map_name = "Side Water"
+
+[node name="BattleField_Ground" parent="." instance=ExtResource( 9 )]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 128
+collision_mask = 3
+format = 1
+
+[node name="Portals" type="Node2D" parent="."]
+visible = false
+
+[node name="YelloPortalSet" parent="Portals" instance=ExtResource( 11 )]
+
+[node name="Portal1" parent="Portals/YelloPortalSet" index="0"]
+position = Vector2( 400, 944 )
+
+[node name="Portal2" parent="Portals/YelloPortalSet" index="1"]
+position = Vector2( 400, 656 )
+
+[node name="BluePortalSet" parent="Portals" instance=ExtResource( 13 )]
+
+[node name="Portal1" parent="Portals/BluePortalSet" index="0"]
+position = Vector2( 112, 496 )
+
+[node name="Portal2" parent="Portals/BluePortalSet" index="1"]
+position = Vector2( 304, 496 )
+
+[node name="RedPortalSet" parent="Portals" instance=ExtResource( 12 )]
+
+[node name="Portal1" parent="Portals/RedPortalSet" index="0"]
+position = Vector2( 400, 112 )
+
+[node name="Portal2" parent="Portals/RedPortalSet" index="1"]
+position = Vector2( 400, 336 )
+
+[node name="GreenPortalSet" parent="Portals" instance=ExtResource( 10 )]
+position = Vector2( 752, 528 )
+
+[node name="Portal1" parent="Portals/GreenPortalSet" index="0"]
+position = Vector2( -64, -32 )
+
+[node name="Portal2" parent="Portals/GreenPortalSet" index="1"]
+position = Vector2( -256, -32 )
+
+[node name="Box" type="Node2D" parent="."]
+
+[node name="Bush" type="Node2D" parent="."]
+
+[node name="Bush19" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 688, 560 )
+
+[node name="Bush140" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 464, 592 )
+
+[node name="Bush142" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 464, 368 )
+
+[node name="Bush143" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 336, 624 )
+
+[node name="Bush144" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 304, 400 )
+
+[node name="Bush145" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 496, 592 )
+
+[node name="Bush146" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 304, 432 )
+
+[node name="Bush148" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 464, 400 )
+
+[node name="Bush149" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 336, 592 )
+
+[node name="Bush150" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 464, 560 )
+
+[node name="Bush28" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 496, 560 )
+
+[node name="Bush108" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 336, 432 )
+
+[node name="Bush29" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 336, 400 )
+
+[node name="Bush23" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 112, 784 )
+
+[node name="Bush24" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 112, 656 )
+
+[node name="Bush25" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 112, 752 )
+
+[node name="Bush52" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 112, 720 )
+
+[node name="Bush53" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 112, 688 )
+
+[node name="Bush32" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 112, 624 )
+
+[node name="Bush54" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 688, 752 )
+
+[node name="Bush55" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 688, 688 )
+
+[node name="Bush56" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 688, 720 )
+
+[node name="Bush57" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 688, 656 )
+
+[node name="Bush14" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 688, 624 )
+
+[node name="Bush58" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 112, 816 )
+
+[node name="Bush59" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 688, 816 )
+
+[node name="Bush60" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 688, 784 )
+
+[node name="Bush68" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 112, 592 )
+
+[node name="Bush26" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 112, 432 )
+
+[node name="Bush27" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 112, 304 )
+
+[node name="Bush30" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 112, 400 )
+
+[node name="Bush61" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 112, 368 )
+
+[node name="Bush62" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 112, 336 )
+
+[node name="Bush33" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 112, 272 )
+
+[node name="Bush63" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 112, 464 )
+
+[node name="Bush70" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 112, 240 )
+
+[node name="Bush69" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 688, 592 )
+
+[node name="Bush64" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 688, 336 )
+
+[node name="Bush65" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 688, 272 )
+
+[node name="Bush66" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 688, 304 )
+
+[node name="Bush67" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 688, 240 )
+
+[node name="Bush72" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 688, 368 )
+
+[node name="PlayerSpawner" parent="." instance=ExtResource( 5 )]
+position = Vector2( 400, 976 )
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Spawner_Soldier3" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 80, 688 )
+
+[node name="Soldier2" parent="Enemies/Spawner_Soldier3" instance=ExtResource( 7 )]
+
+[node name="Spawner_Soldier7" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 720, 368 )
+
+[node name="Soldier2" parent="Enemies/Spawner_Soldier7" instance=ExtResource( 7 )]
+
+[node name="Spawner_Soldier4" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 720, 144 )
+
+[node name="Panzer" parent="Enemies/Spawner_Soldier4" instance=ExtResource( 8 )]
+
+[node name="Spawner_Soldier9" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 112, 944 )
+
+[node name="Panzer" parent="Enemies/Spawner_Soldier9" instance=ExtResource( 8 )]
+
+[node name="Spawner" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 144, 144 )
+
+[node name="Sniper" parent="Enemies/Spawner" instance=ExtResource( 14 )]
+
+[node name="Spawner2" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 656, 880 )
+
+[node name="Sniper" parent="Enemies/Spawner2" instance=ExtResource( 14 )]
+
+[node name="Rocks" type="Node2D" parent="."]
+
+[node name="Rock1" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 368, 272 )
+
+[node name="Rock2" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 400, 272 )
+
+[node name="Rock3" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 432, 272 )
+
+[node name="Rock4" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 336, 272 )
+
+[node name="Rock5" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 304, 272 )
+
+[node name="Rock6" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 272, 272 )
+
+[node name="Rock7" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 272, 304 )
+
+[node name="Rock8" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 272, 336 )
+
+[node name="Rock9" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 272, 368 )
+
+[node name="Rock13" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 272, 400 )
+
+[node name="Rock14" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 272, 432 )
+
+[node name="Rock15" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 272, 464 )
+
+[node name="Rock16" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 272, 496 )
+
+[node name="Rock17" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 272, 528 )
+
+[node name="Rock18" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 272, 560 )
+
+[node name="Rock19" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 272, 592 )
+
+[node name="Rock20" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 272, 624 )
+
+[node name="Rock21" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 272, 656 )
+
+[node name="Rock22" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 272, 688 )
+
+[node name="Rock23" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 272, 720 )
+
+[node name="Rock24" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 272, 752 )
+
+[node name="Rock34" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 528, 304 )
+
+[node name="Rock35" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 528, 336 )
+
+[node name="Rock36" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 528, 368 )
+
+[node name="Rock37" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 528, 400 )
+
+[node name="Rock38" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 528, 432 )
+
+[node name="Rock39" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 528, 464 )
+
+[node name="Rock40" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 528, 496 )
+
+[node name="Rock41" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 528, 528 )
+
+[node name="Rock42" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 528, 560 )
+
+[node name="Rock43" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 528, 592 )
+
+[node name="Rock44" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 528, 624 )
+
+[node name="Rock45" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 528, 656 )
+
+[node name="Rock46" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 528, 688 )
+
+[node name="Rock47" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 528, 720 )
+
+[node name="Rock48" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 528, 752 )
+
+[node name="Rock10" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 528, 272 )
+
+[node name="Rock11" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 496, 272 )
+
+[node name="Rock12" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 464, 272 )
+
+[node name="Rock25" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 368, 784 )
+
+[node name="Rock26" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 400, 784 )
+
+[node name="Rock27" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 432, 784 )
+
+[node name="Rock28" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 336, 784 )
+
+[node name="Rock29" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 304, 784 )
+
+[node name="Rock30" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 272, 784 )
+
+[node name="Rock31" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 528, 784 )
+
+[node name="Rock32" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 496, 784 )
+
+[node name="Rock33" parent="Rocks" instance=ExtResource( 15 )]
+position = Vector2( 464, 784 )
+
+[node name="JumpingTraps" type="Node2D" parent="."]
+
+[node name="JumpingTrap" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 176, 176 )
+
+[node name="JumpingTrap2" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 208, 176 )
+rotation = 3.14159
+
+[node name="JumpingTrap3" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 240, 176 )
+
+[node name="JumpingTrap4" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 272, 176 )
+
+[node name="JumpingTrap5" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 304, 176 )
+rotation = 3.14159
+
+[node name="JumpingTrap6" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 336, 176 )
+
+[node name="JumpingTrap7" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 368, 176 )
+
+[node name="JumpingTrap8" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 400, 176 )
+
+[node name="JumpingTrap9" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 432, 176 )
+
+[node name="JumpingTrap10" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 464, 176 )
+rotation = 1.5708
+
+[node name="JumpingTrap11" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 496, 176 )
+
+[node name="JumpingTrap12" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 528, 176 )
+rotation = 3.14159
+
+[node name="JumpingTrap13" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 560, 176 )
+rotation = -1.5708
+
+[node name="JumpingTrap14" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 592, 176 )
+rotation = 1.5708
+
+[node name="JumpingTrap15" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 176, 208 )
+rotation = -1.5708
+
+[node name="JumpingTrap16" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 208, 208 )
+rotation = -1.5708
+
+[node name="JumpingTrap17" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 240, 208 )
+
+[node name="JumpingTrap18" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 272, 208 )
+rotation = -1.5708
+
+[node name="JumpingTrap19" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 304, 208 )
+
+[node name="JumpingTrap20" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 336, 208 )
+
+[node name="JumpingTrap21" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 368, 208 )
+
+[node name="JumpingTrap22" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 400, 208 )
+
+[node name="JumpingTrap23" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 432, 208 )
+
+[node name="JumpingTrap24" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 464, 208 )
+
+[node name="JumpingTrap25" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 496, 208 )
+
+[node name="JumpingTrap26" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 528, 208 )
+
+[node name="JumpingTrap27" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 560, 208 )
+rotation = -1.5708
+
+[node name="JumpingTrap28" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 592, 208 )
+rotation = 3.14159
+
+[node name="JumpingTrap29" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 176, 144 )
+
+[node name="JumpingTrap30" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 208, 144 )
+rotation = -1.5708
+
+[node name="JumpingTrap31" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 240, 144 )
+
+[node name="JumpingTrap32" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 272, 144 )
+
+[node name="JumpingTrap33" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 304, 144 )
+
+[node name="JumpingTrap34" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 336, 144 )
+
+[node name="JumpingTrap35" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 368, 144 )
+
+[node name="JumpingTrap36" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 400, 144 )
+rotation = -1.5708
+
+[node name="JumpingTrap37" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 432, 144 )
+
+[node name="JumpingTrap38" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 464, 144 )
+
+[node name="JumpingTrap39" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 496, 144 )
+rotation = -1.5708
+
+[node name="JumpingTrap40" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 528, 144 )
+
+[node name="JumpingTrap41" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 560, 144 )
+
+[node name="JumpingTrap42" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 592, 144 )
+rotation = -1.5708
+
+[node name="JumpingTrap85" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 624, 176 )
+
+[node name="JumpingTrap86" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 624, 208 )
+
+[node name="JumpingTrap87" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 624, 144 )
+
+[node name="JumpingTrap43" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 208, 880 )
+rotation = 1.5708
+
+[node name="JumpingTrap44" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 240, 880 )
+
+[node name="JumpingTrap45" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 272, 880 )
+
+[node name="JumpingTrap46" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 304, 880 )
+
+[node name="JumpingTrap47" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 336, 880 )
+rotation = 1.5708
+
+[node name="JumpingTrap48" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 368, 880 )
+
+[node name="JumpingTrap49" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 400, 880 )
+
+[node name="JumpingTrap50" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 432, 880 )
+rotation = 1.5708
+
+[node name="JumpingTrap51" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 464, 880 )
+
+[node name="JumpingTrap52" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 496, 880 )
+
+[node name="JumpingTrap53" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 528, 880 )
+rotation = 1.5708
+
+[node name="JumpingTrap54" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 560, 880 )
+
+[node name="JumpingTrap55" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 592, 880 )
+
+[node name="JumpingTrap56" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 624, 880 )
+
+[node name="JumpingTrap57" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 208, 912 )
+
+[node name="JumpingTrap58" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 240, 912 )
+
+[node name="JumpingTrap59" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 272, 912 )
+rotation = -1.5708
+
+[node name="JumpingTrap60" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 304, 912 )
+
+[node name="JumpingTrap61" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 336, 912 )
+
+[node name="JumpingTrap62" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 368, 912 )
+rotation = -1.5708
+
+[node name="JumpingTrap63" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 400, 912 )
+
+[node name="JumpingTrap64" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 432, 912 )
+rotation = 3.14159
+
+[node name="JumpingTrap65" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 464, 912 )
+
+[node name="JumpingTrap66" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 496, 912 )
+rotation = -1.5708
+
+[node name="JumpingTrap67" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 528, 912 )
+
+[node name="JumpingTrap68" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 560, 912 )
+
+[node name="JumpingTrap69" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 592, 912 )
+rotation = -1.5708
+
+[node name="JumpingTrap70" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 624, 912 )
+rotation = 1.5708
+
+[node name="JumpingTrap71" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 208, 848 )
+rotation = -1.5708
+
+[node name="JumpingTrap88" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 176, 880 )
+
+[node name="JumpingTrap89" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 176, 912 )
+
+[node name="JumpingTrap90" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 176, 848 )
+rotation = 3.14159
+
+[node name="JumpingTrap72" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 240, 848 )
+
+[node name="JumpingTrap91" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 208, 784 )
+
+[node name="JumpingTrap92" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 240, 784 )
+
+[node name="JumpingTrap93" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 208, 816 )
+
+[node name="JumpingTrap94" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 240, 816 )
+rotation = 1.5708
+
+[node name="JumpingTrap95" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 208, 752 )
+
+[node name="JumpingTrap96" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 176, 784 )
+
+[node name="JumpingTrap97" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 176, 816 )
+rotation = -1.5708
+
+[node name="JumpingTrap98" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 176, 752 )
+rotation = -1.5708
+
+[node name="JumpingTrap99" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 240, 752 )
+
+[node name="JumpingTrap100" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 208, 688 )
+
+[node name="JumpingTrap101" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 240, 688 )
+
+[node name="JumpingTrap102" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 208, 720 )
+rotation = 3.14159
+
+[node name="JumpingTrap103" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 240, 720 )
+
+[node name="JumpingTrap104" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 208, 656 )
+
+[node name="JumpingTrap105" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 176, 688 )
+
+[node name="JumpingTrap106" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 176, 720 )
+
+[node name="JumpingTrap107" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 176, 656 )
+rotation = -1.5708
+
+[node name="JumpingTrap108" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 240, 656 )
+
+[node name="JumpingTrap109" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 208, 592 )
+
+[node name="JumpingTrap110" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 240, 592 )
+
+[node name="JumpingTrap111" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 208, 624 )
+rotation = -1.5708
+
+[node name="JumpingTrap112" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 240, 624 )
+rotation = 3.14159
+
+[node name="JumpingTrap113" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 208, 560 )
+
+[node name="JumpingTrap114" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 176, 592 )
+
+[node name="JumpingTrap115" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 176, 624 )
+rotation = -1.5708
+
+[node name="JumpingTrap116" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 176, 560 )
+rotation = 3.14159
+
+[node name="JumpingTrap117" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 240, 560 )
+
+[node name="JumpingTrap118" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 208, 528 )
+
+[node name="JumpingTrap119" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 176, 528 )
+
+[node name="JumpingTrap120" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 240, 528 )
+
+[node name="JumpingTrap121" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 208, 464 )
+
+[node name="JumpingTrap122" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 240, 464 )
+
+[node name="JumpingTrap123" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 208, 496 )
+rotation = 3.14159
+
+[node name="JumpingTrap124" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 240, 496 )
+
+[node name="JumpingTrap125" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 208, 432 )
+rotation = 1.5708
+
+[node name="JumpingTrap126" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 176, 464 )
+
+[node name="JumpingTrap127" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 176, 496 )
+rotation = -1.5708
+
+[node name="JumpingTrap128" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 176, 432 )
+rotation = -1.5708
+
+[node name="JumpingTrap129" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 240, 432 )
+
+[node name="JumpingTrap130" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 208, 368 )
+
+[node name="JumpingTrap131" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 240, 368 )
+
+[node name="JumpingTrap132" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 208, 400 )
+
+[node name="JumpingTrap133" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 240, 400 )
+
+[node name="JumpingTrap134" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 208, 336 )
+rotation = 3.14159
+
+[node name="JumpingTrap135" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 176, 368 )
+rotation = 3.14159
+
+[node name="JumpingTrap136" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 176, 400 )
+
+[node name="JumpingTrap137" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 176, 336 )
+
+[node name="JumpingTrap138" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 240, 336 )
+
+[node name="JumpingTrap139" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 208, 272 )
+
+[node name="JumpingTrap140" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 240, 272 )
+
+[node name="JumpingTrap141" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 208, 304 )
+
+[node name="JumpingTrap142" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 240, 304 )
+
+[node name="JumpingTrap143" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 208, 240 )
+
+[node name="JumpingTrap144" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 176, 272 )
+rotation = 1.5708
+
+[node name="JumpingTrap145" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 176, 304 )
+
+[node name="JumpingTrap205" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 400, 752 )
+
+[node name="JumpingTrap206" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 368, 752 )
+
+[node name="JumpingTrap207" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 432, 752 )
+
+[node name="JumpingTrap208" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 400, 688 )
+
+[node name="JumpingTrap209" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 432, 688 )
+
+[node name="JumpingTrap210" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 400, 720 )
+
+[node name="JumpingTrap211" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 432, 720 )
+rotation = 3.14159
+
+[node name="JumpingTrap212" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 400, 656 )
+
+[node name="JumpingTrap213" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 368, 688 )
+rotation = 3.14159
+
+[node name="JumpingTrap214" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 368, 720 )
+
+[node name="JumpingTrap215" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 368, 656 )
+
+[node name="JumpingTrap216" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 432, 656 )
+
+[node name="JumpingTrap217" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 400, 592 )
+rotation = 3.14159
+
+[node name="JumpingTrap218" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 432, 592 )
+
+[node name="JumpingTrap219" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 400, 624 )
+
+[node name="JumpingTrap220" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 432, 624 )
+
+[node name="JumpingTrap221" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 400, 560 )
+
+[node name="JumpingTrap222" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 368, 592 )
+
+[node name="JumpingTrap223" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 368, 624 )
+
+[node name="JumpingTrap224" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 368, 560 )
+
+[node name="JumpingTrap225" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 432, 560 )
+
+[node name="JumpingTrap226" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 400, 528 )
+
+[node name="JumpingTrap227" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 368, 528 )
+
+[node name="JumpingTrap228" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 432, 528 )
+
+[node name="JumpingTrap229" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 400, 464 )
+
+[node name="JumpingTrap230" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 432, 464 )
+
+[node name="JumpingTrap231" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 400, 496 )
+rotation = 3.14159
+
+[node name="JumpingTrap232" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 432, 496 )
+
+[node name="JumpingTrap233" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 400, 432 )
+rotation = -1.5708
+
+[node name="JumpingTrap234" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 368, 464 )
+
+[node name="JumpingTrap235" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 368, 496 )
+rotation = -1.5708
+
+[node name="JumpingTrap236" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 368, 432 )
+rotation = -1.5708
+
+[node name="JumpingTrap237" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 432, 432 )
+
+[node name="JumpingTrap238" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 400, 368 )
+rotation = 3.14159
+
+[node name="JumpingTrap239" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 432, 368 )
+
+[node name="JumpingTrap240" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 400, 400 )
+
+[node name="JumpingTrap241" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 432, 400 )
+
+[node name="JumpingTrap242" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 400, 336 )
+
+[node name="JumpingTrap243" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 368, 368 )
+
+[node name="JumpingTrap244" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 368, 400 )
+rotation = -1.5708
+
+[node name="JumpingTrap245" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 368, 336 )
+
+[node name="JumpingTrap246" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 432, 336 )
+
+[node name="JumpingTrap247" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 400, 304 )
+
+[node name="JumpingTrap248" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 432, 304 )
+
+[node name="JumpingTrap249" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 368, 304 )
+rotation = 3.14159
+
+[node name="JumpingTrap146" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 176, 240 )
+rotation = 3.14159
+
+[node name="JumpingTrap147" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 240, 240 )
+
+[node name="JumpingTrap148" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 592, 784 )
+
+[node name="JumpingTrap149" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 624, 784 )
+
+[node name="JumpingTrap150" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 592, 816 )
+
+[node name="JumpingTrap151" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 624, 816 )
+
+[node name="JumpingTrap152" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 592, 752 )
+
+[node name="JumpingTrap153" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 560, 784 )
+
+[node name="JumpingTrap154" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 560, 816 )
+
+[node name="JumpingTrap155" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 560, 752 )
+
+[node name="JumpingTrap156" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 624, 752 )
+
+[node name="JumpingTrap157" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 592, 688 )
+
+[node name="JumpingTrap158" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 624, 688 )
+
+[node name="JumpingTrap159" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 592, 720 )
+rotation = 3.14159
+
+[node name="JumpingTrap160" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 624, 720 )
+rotation = -1.5708
+
+[node name="JumpingTrap161" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 592, 656 )
+rotation = 1.5708
+
+[node name="JumpingTrap162" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 560, 688 )
+
+[node name="JumpingTrap163" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 560, 720 )
+rotation = 3.14159
+
+[node name="JumpingTrap164" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 560, 656 )
+
+[node name="JumpingTrap165" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 624, 656 )
+rotation = 3.14159
+
+[node name="JumpingTrap166" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 592, 592 )
+
+[node name="JumpingTrap167" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 624, 592 )
+
+[node name="JumpingTrap168" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 592, 624 )
+
+[node name="JumpingTrap169" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 624, 624 )
+
+[node name="JumpingTrap170" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 592, 560 )
+rotation = 3.14159
+
+[node name="JumpingTrap171" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 560, 592 )
+
+[node name="JumpingTrap172" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 560, 624 )
+
+[node name="JumpingTrap173" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 560, 560 )
+rotation = 1.5708
+
+[node name="JumpingTrap174" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 624, 560 )
+
+[node name="JumpingTrap175" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 592, 528 )
+rotation = 1.5708
+
+[node name="JumpingTrap176" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 560, 528 )
+
+[node name="JumpingTrap177" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 624, 528 )
+
+[node name="JumpingTrap178" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 592, 464 )
+
+[node name="JumpingTrap179" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 624, 464 )
+rotation = -1.5708
+
+[node name="JumpingTrap180" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 592, 496 )
+
+[node name="JumpingTrap181" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 624, 496 )
+rotation = 3.14159
+
+[node name="JumpingTrap182" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 592, 432 )
+rotation = -1.5708
+
+[node name="JumpingTrap183" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 560, 464 )
+
+[node name="JumpingTrap184" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 560, 496 )
+
+[node name="JumpingTrap185" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 560, 432 )
+
+[node name="JumpingTrap186" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 624, 432 )
+
+[node name="JumpingTrap187" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 592, 368 )
+
+[node name="JumpingTrap188" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 624, 368 )
+rotation = 3.14159
+
+[node name="JumpingTrap189" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 592, 400 )
+rotation = 1.5708
+
+[node name="JumpingTrap190" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 624, 400 )
+
+[node name="JumpingTrap191" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 592, 336 )
+
+[node name="JumpingTrap192" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 560, 368 )
+rotation = 3.14159
+
+[node name="JumpingTrap193" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 560, 400 )
+
+[node name="JumpingTrap194" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 560, 336 )
+
+[node name="JumpingTrap195" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 624, 336 )
+rotation = 1.5708
+
+[node name="JumpingTrap196" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 592, 272 )
+
+[node name="JumpingTrap197" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 624, 272 )
+rotation = 3.14159
+
+[node name="JumpingTrap198" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 592, 304 )
+rotation = 3.14159
+
+[node name="JumpingTrap199" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 624, 304 )
+
+[node name="JumpingTrap200" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 592, 240 )
+
+[node name="JumpingTrap201" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 560, 272 )
+
+[node name="JumpingTrap202" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 560, 304 )
+
+[node name="JumpingTrap203" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 560, 240 )
+
+[node name="JumpingTrap204" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 624, 240 )
+
+[node name="JumpingTrap73" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 272, 848 )
+rotation = -1.5708
+
+[node name="JumpingTrap74" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 304, 848 )
+
+[node name="JumpingTrap75" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 336, 848 )
+rotation = -1.5708
+
+[node name="JumpingTrap76" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 368, 848 )
+rotation = 3.14159
+
+[node name="JumpingTrap77" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 400, 848 )
+
+[node name="JumpingTrap78" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 432, 848 )
+
+[node name="JumpingTrap79" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 464, 848 )
+rotation = 1.5708
+
+[node name="JumpingTrap80" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 496, 848 )
+
+[node name="JumpingTrap81" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 528, 848 )
+
+[node name="JumpingTrap82" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 560, 848 )
+rotation = 3.14159
+
+[node name="JumpingTrap83" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 592, 848 )
+
+[node name="JumpingTrap84" parent="JumpingTraps" instance=ExtResource( 2 )]
+position = Vector2( 624, 848 )
+
+[editable path="Portals/YelloPortalSet"]
+
+[editable path="Portals/BluePortalSet"]
+
+[editable path="Portals/RedPortalSet"]
+
+[editable path="Portals/GreenPortalSet"]

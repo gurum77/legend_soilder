@@ -23,3 +23,19 @@ func is_equal_vector2(vec1, vec2, tol)->bool:
 	if abs(vec1.y - vec2.y) > tol:
 		return false
 	return true
+	
+# jump 중인지?
+func is_jumping(var node:Node2D)->bool:
+	if node == null:
+		return false
+	if node.z_index == 3:
+		return true
+	if node.has_method("collision_mask") && node.collision_mask == 0:
+		return true
+		
+	var parent = node.get_parent()
+	if parent.z_index == 3:
+		return true
+	if parent.has_method("collision_mask") && parent.collision_mask == 0:
+		return true
+	return false

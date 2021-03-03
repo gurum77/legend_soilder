@@ -5,7 +5,6 @@
 [ext_resource path="res://assets/player/body/Hero_Pistol.png" type="Texture" id=3]
 [ext_resource path="res://scripts/MiniMap.gd" type="Script" id=4]
 
-
 [node name="MiniMap" type="MarginContainer"]
 margin_right = 100.0
 margin_bottom = 64.0

@@ -159,6 +159,8 @@ func stop_aim():
 
 # fire		
 func fire():
+	if Define.no_attack_enemy:
+		return
 	if StaticData.game_state != Define.GameState.play:
 		return
 	# enemy의 상태가 공격범위 상태가 아니라면 발사하지 않는다.

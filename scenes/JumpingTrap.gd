@@ -7,6 +7,8 @@ export var running_time = 1.0
 
 var initialized_water_tilemap = false
 var water_tilemap:TileMap
+var ground_tilemap:TileMap
+
 # 점핑패드 안에 있는 노드들
 var nodes_in_JumpingTrap:Dictionary
 var running = false
@@ -22,17 +24,31 @@ func _ready():
 func _process(delta):
 	# water tilemap을 찾는다
 	if !initialized_water_tilemap:
-		water_tilemap = find_water_tile_map(get_tree().root)
+		water_tilemap = find_water_tilemap(get_tree().root)
+		ground_tilemap = find_ground_tilemap(get_tree().root)
 		$Sprite.global_position = find_target_position()
 		initialized_water_tilemap = true
-
-# water tile map을 찾는다.
-func find_water_tile_map(var cur_node)->TileMap:
+# ground tilemap을 찾는다.
+func find_ground_tilemap(var cur_node)->TileMap:
 	var nodes = cur_node.get_children()
 	for node in nodes:
 		if node is TileMap:
 			return node as TileMap
-		var tilemap = find_water_tile_map(node)
+		var tilemap = find_ground_tilemap(node)
+		if tilemap == null:
+			continue
+		if !tilemap.get_collision_layer_bit(7):
+			return tilemap
+		
+	return null
+	
+# water tile map을 찾는다.
+func find_water_tilemap(var cur_node)->TileMap:
+	var nodes = cur_node.get_children()
+	for node in nodes:
+		if node is TileMap:
+			return node as TileMap
+		var tilemap = find_water_tilemap(node)
 		if tilemap == null:
 			continue
 		if tilemap.get_collision_layer_bit(7):
@@ -41,6 +57,9 @@ func find_water_tile_map(var cur_node)->TileMap:
 	return null
 		
 func _on_JumpingTrap_body_entered(body):
+	# node가 jump 중이면 그냥 통
+	if Util.is_jumping(body):
+		return
 	# jump 중일때는 뭔가 들어와도 동작하지 않도록 한다
 	if jumping == true:
 		return
@@ -92,10 +111,19 @@ func find_target_position()->Vector2:
 			break
 		if found_target_position:
 			break
+
+	# 위치를 찾았지만, groundtile 바깥이면 가장 가까운 곳으로 점프한다.
+	if !found_target_position || is_outside_ground(target_position):
+		var r:RayCast2D = raycast
+		r.global_position = global_position
+		r.force_raycast_update()
+		target_position = r.get_collision_point()
+		
 	return target_position
 	
 func jump_nodes():
 	jumping = true
+	
 	$AnimatedSprite.stop()
 	# jumping trap을 스케일을 키운다.
 	$Tween.interpolate_property(self, "scale", scale, Vector2(1.5, 1.5), 0.05, Tween.TRANS_BOUNCE, Tween.EASE_IN) 
@@ -107,6 +135,9 @@ func jump_nodes():
 	var duration = dist / speed_per_sec
 	
 	for node in nodes_in_JumpingTrap:
+		if Util.is_jumping(node):
+			continue
+			
 		var target_node = null
 		if node is PlayerBody:
 			target_node = node.get_parent()
@@ -121,7 +152,7 @@ func jump_nodes():
 		var collision_mask_old = node.collision_mask
 		var scale_old = Vector2(target_node.scale.x, target_node.scale.y)
 
-		target_node.z_index = 2
+		target_node.z_index = 3
 		node.collision_mask = 0
 
 		# jump 위치 이동
@@ -139,6 +170,19 @@ func jump_nodes():
 			
 	$Tween.start()
 
+# 좌표가 ground 바깥인지?
+func is_outside_ground(var position)->bool:
+	if ground_tilemap == null:
+		return false
+		
+	var map_position = ground_tilemap.world_to_map(position)
+	var c = ground_tilemap.get_cell(map_position.x, map_position.y)
+	
+	# tile id -1이면 tile 이 안깔린 곳이다.
+	if c == -1:
+		return true
+	return false
+	
 # 좌표가 water안쪽인지?
 func is_inside_water(var position)->bool:
 	if water_tilemap == null:
