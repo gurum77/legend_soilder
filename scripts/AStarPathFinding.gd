@@ -76,18 +76,14 @@ func init_tilemap(var map):
 		_half_cell_size = tilemap.cell_size / 2
 		
 		obstacles = []#tilemap.get_used_cells_by_id(0)
-		# tile map중에서 collisionshape을 찾는다.
-#		for y in range(map_size.y):
-#			for x in range(map_size.x):
-#				pass
-#			pass
-		# map child중에서 tilemap이 있다면 모두 장애물로 기록한다.
-		# 물을 그리기 위한 tilemap 이다.
+		
+		# map child중에서 물타일이 있다면 모두 장애물로 기록한다.
 		var _nodes = map.get_children()
 		for node in _nodes:
 			if node is TileMap:
 				var tm:TileMap = node as TileMap
-				var cells = tm.get_used_cells()
+				# 0 이 물타일이다. 물타일이 사용된 cell을 가져온다 
+				var cells = tm.get_used_cells_by_id(0)
 				for cell in cells:
 					if not cell in obstacles:
 						obstacles.append(cell)

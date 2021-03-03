@@ -1,10 +1,20 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scripts/HPBar.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/neodgm_pro.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.721569, 0.0705882, 0.0705882, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.27451, 0.14902, 0.0313726, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 shadow_color = Color( 0.196078, 0.0196078, 0.0196078, 0.92549 )
 anti_aliasing = false
 
@@ -12,12 +22,17 @@ anti_aliasing = false
 size = 5
 font_data = ExtResource( 1 )
 
+[sub_resource type="DynamicFont" id=3]
+size = 15
+font_data = ExtResource( 3 )
+
 [node name="HPBar" type="ProgressBar"]
-margin_left = -10.0
-margin_top = -2.0
-margin_right = 10.0
-margin_bottom = 2.0
-rect_pivot_offset = Vector2( 10, 2 )
+margin_left = -20.0
+margin_top = -4.0
+margin_right = 20.0
+margin_bottom = 4.0
+rect_min_size = Vector2( 30, 8 )
+rect_pivot_offset = Vector2( 20, 4 )
 custom_styles/fg = SubResource( 1 )
 custom_fonts/font = SubResource( 2 )
 value = 33.0
@@ -31,13 +46,22 @@ __meta__ = {
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Label" type="Label" parent="."]
-visible = false
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -20.0
-margin_top = -15.0
-margin_right = 20.0
-margin_bottom = -1.0
-text = "0000"
+margin_left = -35.7051
+margin_top = -6.59993
+margin_right = 52.2949
+margin_bottom = 9.40007
+rect_scale = Vector2( 0.8, 0.8 )
+rect_pivot_offset = Vector2( 1, 0 )
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 1
+text = "6090"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

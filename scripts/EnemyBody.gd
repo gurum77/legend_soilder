@@ -45,6 +45,8 @@ func _ready():
 	Util.play_animation(fire_animated_sprite, "idle")
 	
 	start_aim()
+	# 처음 발사를 랜덤하게 시작한다.
+	yield(get_tree().create_timer(randf()), "timeout")
 	start_fire()
 
 

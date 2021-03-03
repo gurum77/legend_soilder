@@ -64,7 +64,7 @@ func make_item():
 	
 func on_take_damage(power):
 	var ins = Preloader.hud.instance()
-	ins.message = str(power as int)
+	ins.message = str(-power as int)
 	add_child(ins)
 	
 	for i in 1:

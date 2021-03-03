@@ -44,7 +44,7 @@ func damage(power):
 
 func on_take_damage(power):
 	var ins = Preloader.hud.instance()
-	ins.message = str(power as int)
+	ins.message = str(-power as int)
 	add_child(ins)
 	for i in 1:
 		modulate.r = 0.5
@@ -77,6 +77,6 @@ func dash()->bool:
 		return false
 		
 	var new_position = position + dir * 70
-	$Tween.interpolate_property(self, "position", position, new_position, 0.2, Tween.TRANS_SINE, Tween.EASE_OUT)
+	$Tween.interpolate_property(self, "position", position, new_position, 0.3, Tween.TRANS_SINE, Tween.EASE_OUT)
 	$Tween.start()
 	return true

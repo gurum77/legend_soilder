@@ -9,6 +9,8 @@ func _ready():
 	modulate = color
 	
 	var new_position = position + Vector2(0, -30)
+	new_position.x += rand_range(-15, 15)
+	new_position.y += rand_range(-15, 0)
 	var new_modulate = modulate
 	new_modulate.a = 0
 	

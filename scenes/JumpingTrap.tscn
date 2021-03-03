@@ -8,15 +8,15 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 1 ), ExtResource( 3 ) ],
-"loop": true,
-"name": "run",
-"speed": 10.0
-}, {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
 "name": "jump",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -36,6 +36,7 @@ animation = "jump"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 2 )
 
 [node name="Tween" type="Tween" parent="."]
@@ -43,6 +44,7 @@ shape = SubResource( 2 )
 [node name="RunningTimer" type="Timer" parent="."]
 
 [node name="TargetRayCast2D1" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0.25, 0.25 )
 enabled = true
 cast_to = Vector2( 111, 0 )
@@ -56,6 +58,7 @@ width = 1.0
 default_color = Color( 0.4, 0.501961, 1, 1 )
 
 [node name="TargetRayCast2D2" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0.25, 0.25 )
 rotation = 0.174533
 enabled = true
@@ -69,6 +72,7 @@ points = PoolVector2Array( 0, 0, 0, 0 )
 width = 1.0
 
 [node name="TargetRayCast2D3" type="RayCast2D" parent="."]
+visible = false
 rotation = -0.174533
 enabled = true
 cast_to = Vector2( 10, 0 )
@@ -81,6 +85,7 @@ points = PoolVector2Array( 0, 0, 0, 0 )
 width = 1.0
 
 [node name="Sprite" type="Sprite" parent="."]
+visible = false
 position = Vector2( 200, 0 )
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 5 )
