@@ -1,11 +1,14 @@
 extends Node2D
 
-export (float) var interval = 5.0
+# 지정된 spawn 간격(0이면 기본간격으로 됨)
+export (float) var specify_spawn_interval = 0
+
 # stage별 step이 requirement_step보다 작거나 같을때만 spawn된다.
 export (int) var requirement_step = 1
 export (bool) var disabled = false
 var spawn_position
 var spawn_node
+var interval = Define.default_spawn_interval
 onready var si:StageInformation = StaticData.get_current_stage_information()
 
 func _ready():
