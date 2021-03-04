@@ -17,9 +17,8 @@
 [ext_resource path="res://assets/effects/light_smoke/Light-Smoke_0000s_0005_2.png" type="Texture" id=15]
 [ext_resource path="res://scripts/ObstacleBody.gd" type="Script" id=16]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 16.4896
-height = 6.96017
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 14, 14 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {

@@ -29,6 +29,7 @@ __meta__ = {
 "_edit_group_": true
 }
 dist = 200.0
+running_time = 0.7
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
@@ -42,6 +43,10 @@ shape = SubResource( 2 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="RunningTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="CheckingTimer" type="Timer" parent="."]
+autostart = true
 
 [node name="TargetRayCast2D1" type="RayCast2D" parent="."]
 visible = false
@@ -93,3 +98,4 @@ texture = ExtResource( 5 )
 [connection signal="body_exited" from="." to="." method="_on_JumpingTrap_body_exited"]
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
 [connection signal="timeout" from="RunningTimer" to="." method="_on_RunningTimer_timeout"]
+[connection signal="timeout" from="CheckingTimer" to="." method="_on_CheckingTimer_timeout"]

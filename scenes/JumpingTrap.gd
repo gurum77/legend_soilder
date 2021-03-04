@@ -5,6 +5,10 @@ export var dist:float = 30
 export var speed_per_sec:float = 130
 export var running_time = 1.0
 
+# jump할때 커지는 scale
+const JUMPING_NODE_SCALE = 1.5
+const JUMPING_Z_INDEX = 3
+
 var initialized_water_tilemap = false
 var water_tilemap:TileMap
 var ground_tilemap:TileMap
@@ -26,8 +30,8 @@ func _process(delta):
 	if !initialized_water_tilemap:
 		water_tilemap = find_water_tilemap(get_tree().root)
 		ground_tilemap = find_ground_tilemap(get_tree().root)
-		$Sprite.global_position = find_target_position()
 		initialized_water_tilemap = true
+		
 # ground tilemap을 찾는다.
 func find_ground_tilemap(var cur_node)->TileMap:
 	var nodes = cur_node.get_children()
@@ -57,19 +61,22 @@ func find_water_tilemap(var cur_node)->TileMap:
 	return null
 		
 func _on_JumpingTrap_body_entered(body):
+	# 점핑트랩 안에 들어온 노드 등록을 한다.
+	# 어차피 빠져 나가면서 등록된 것이 제거되므로 등록은 무조건 함
+	nodes_in_JumpingTrap[body] = body.collision_mask
+		
 	# node가 jump 중이면 그냥 통
 	if Util.is_jumping(body):
 		return
+		
 	# jump 중일때는 뭔가 들어와도 동작하지 않도록 한다
 	if jumping == true:
 		return
-	# 점핑트랩 안에 들어온 노드 등록
-	nodes_in_JumpingTrap[body] = body.collision_mask
 	
 	# 동작중이 아니라면 동작을 시작한다.
 	if running == false:
 		run()
-
+		
 # jumping pad 동작을 시작한다.
 func run():
 	$AnimatedSprite.play("run")
@@ -90,6 +97,11 @@ func find_target_position()->Vector2:
 	var raycasts = [$TargetRayCast2D1, $TargetRayCast2D2, $TargetRayCast2D3]
 	
 	var cur_dist = dist
+	# 10미터 짜리로 검사한다.(셀크기가 32이기 때문에 셀의 중심에서 다른 셀까지 걸리않을 확실한 값으로 정함)
+	for raycast in raycasts:
+		var r:RayCast2D = raycast
+		r.cast_to = Vector2(10, 0)
+	
 	# 처음 거리부터 늘려가면서 체크한다.
 	# 최대 30번 반복한다.
 	var offset = 30
@@ -114,10 +126,15 @@ func find_target_position()->Vector2:
 
 	# 위치를 찾았지만, groundtile 바깥이면 가장 가까운 곳으로 점프한다.
 	if !found_target_position || is_outside_ground(target_position):
-		var r:RayCast2D = raycast
+		var r:RayCast2D = raycasts[0]
 		r.global_position = global_position
+		r.cast_to = Vector2(dist, 0)
 		r.force_raycast_update()
-		target_position = r.get_collision_point()
+		if r.is_colliding():
+			# 교차되는 점은 장애물의 가운데이기 때문에 앞쪽으로 16만큼 당긴다.
+			target_position = r.get_collision_point() + r.get_global_transform().x * -16
+		else:
+			target_position = r.to_global(r.cast_to)
 		
 	return target_position
 	
@@ -152,8 +169,8 @@ func jump_nodes():
 		var collision_mask_old = node.collision_mask
 		var scale_old = Vector2(target_node.scale.x, target_node.scale.y)
 
-		target_node.z_index = 3
-		node.collision_mask = 0
+		target_node.z_index = Util.JUMPING_NODE_Z_INDEX
+		node.collision_mask = Util.JUMPING_NODE_COLLISION_MASK
 
 		# jump 위치 이동
 		$Tween.interpolate_property(target_node, "global_position", target_node.global_position, target_position, duration, Tween.TRANS_LINEAR, Tween.EASE_OUT)
@@ -165,9 +182,9 @@ func jump_nodes():
 		$Tween.interpolate_property(node, "collision_mask", node.collision_mask, collision_mask_old, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN, duration)
 		
 		# scale 변경 후 복구
-		$Tween.interpolate_property(target_node, "scale", target_node.scale, Vector2(2, 2), duration/2.0, Tween.TRANS_SINE, Tween.EASE_IN)
-		$Tween.interpolate_property(target_node, "scale", Vector2(2, 2), scale_old, duration/2.0, Tween.TRANS_SINE, Tween.EASE_IN, duration/2.0)
-			
+		$Tween.interpolate_property(target_node, "scale", target_node.scale, Vector2(JUMPING_NODE_SCALE, JUMPING_NODE_SCALE), duration/2.0, Tween.TRANS_SINE, Tween.EASE_IN)
+		$Tween.interpolate_property(target_node, "scale", Vector2(JUMPING_NODE_SCALE, JUMPING_NODE_SCALE), scale_old, duration/2.0, Tween.TRANS_SINE, Tween.EASE_IN, duration/2.0)
+		
 	$Tween.start()
 
 # 좌표가 ground 바깥인지?
@@ -205,3 +222,11 @@ func _on_RunningTimer_timeout():
 func _on_Tween_tween_all_completed():
 	running = false
 	jumping = false
+
+# 점프해야할 node가 있는지 체크하는 타이머 이다.
+func _on_CheckingTimer_timeout():
+	if running == true || jumping == true:
+		return
+	# 비어 있지 않다면 동작을 시킨다.
+	if !nodes_in_JumpingTrap.empty():
+		_on_JumpingTrap_body_entered(nodes_in_JumpingTrap.keys()[0])

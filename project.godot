@@ -105,7 +105,7 @@ _global_script_classes=[ {
 "path": "res://scripts/WeaponInventoryItem.gd"
 } ]
 _global_script_class_icons={
-"AdMob": "res://admob-lib/icon.png",
+"AdMob": "",
 "Enemy": "",
 "EnemyAI": "",
 "EnemyAI_Move": "",

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/tilesets/BattleField.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/JumpingTrap.tscn" type="PackedScene" id=2]
@@ -6,14 +6,10 @@
 [ext_resource path="res://maps/Stage.gd" type="Script" id=4]
 [ext_resource path="res://scenes/PlayerSpawner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Spawner.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/enemies/Soldier2.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/enemies/Panzer.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/enemies/Soldier.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/obstacles/Barrel_Oil.tscn" type="PackedScene" id=8]
 [ext_resource path="res://maps/BattleField_Ground.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/GreenPortalSet.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/YelloPortalSet.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/RedPortalSet.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scenes/BluePortalSet.tscn" type="PackedScene" id=13]
-[ext_resource path="res://scenes/enemies/Sniper.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/enemies/Soldier2.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/obstacles/Rock1.tscn" type="PackedScene" id=15]
 
 [node name="BattleField_점프지옥" type="Node2D"]
@@ -29,42 +25,6 @@ collision_layer = 128
 collision_mask = 3
 format = 1
 
-[node name="Portals" type="Node2D" parent="."]
-visible = false
-
-[node name="YelloPortalSet" parent="Portals" instance=ExtResource( 11 )]
-
-[node name="Portal1" parent="Portals/YelloPortalSet" index="0"]
-position = Vector2( 400, 944 )
-
-[node name="Portal2" parent="Portals/YelloPortalSet" index="1"]
-position = Vector2( 400, 656 )
-
-[node name="BluePortalSet" parent="Portals" instance=ExtResource( 13 )]
-
-[node name="Portal1" parent="Portals/BluePortalSet" index="0"]
-position = Vector2( 112, 496 )
-
-[node name="Portal2" parent="Portals/BluePortalSet" index="1"]
-position = Vector2( 304, 496 )
-
-[node name="RedPortalSet" parent="Portals" instance=ExtResource( 12 )]
-
-[node name="Portal1" parent="Portals/RedPortalSet" index="0"]
-position = Vector2( 400, 112 )
-
-[node name="Portal2" parent="Portals/RedPortalSet" index="1"]
-position = Vector2( 400, 336 )
-
-[node name="GreenPortalSet" parent="Portals" instance=ExtResource( 10 )]
-position = Vector2( 752, 528 )
-
-[node name="Portal1" parent="Portals/GreenPortalSet" index="0"]
-position = Vector2( -64, -32 )
-
-[node name="Portal2" parent="Portals/GreenPortalSet" index="1"]
-position = Vector2( -256, -32 )
-
 [node name="Box" type="Node2D" parent="."]
 
 [node name="Bush" type="Node2D" parent="."]
@@ -78,8 +38,14 @@ position = Vector2( 464, 592 )
 [node name="Bush142" parent="Bush" instance=ExtResource( 3 )]
 position = Vector2( 464, 368 )
 
+[node name="Bush151" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 496, 304 )
+
 [node name="Bush143" parent="Bush" instance=ExtResource( 3 )]
 position = Vector2( 336, 624 )
+
+[node name="Bush147" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 304, 752 )
 
 [node name="Bush144" parent="Bush" instance=ExtResource( 3 )]
 position = Vector2( 304, 400 )
@@ -197,38 +163,6 @@ position = Vector2( 688, 368 )
 
 [node name="PlayerSpawner" parent="." instance=ExtResource( 5 )]
 position = Vector2( 400, 976 )
-
-[node name="Enemies" type="Node2D" parent="."]
-
-[node name="Spawner_Soldier3" parent="Enemies" instance=ExtResource( 6 )]
-position = Vector2( 80, 688 )
-
-[node name="Soldier2" parent="Enemies/Spawner_Soldier3" instance=ExtResource( 7 )]
-
-[node name="Spawner_Soldier7" parent="Enemies" instance=ExtResource( 6 )]
-position = Vector2( 720, 368 )
-
-[node name="Soldier2" parent="Enemies/Spawner_Soldier7" instance=ExtResource( 7 )]
-
-[node name="Spawner_Soldier4" parent="Enemies" instance=ExtResource( 6 )]
-position = Vector2( 720, 144 )
-
-[node name="Panzer" parent="Enemies/Spawner_Soldier4" instance=ExtResource( 8 )]
-
-[node name="Spawner_Soldier9" parent="Enemies" instance=ExtResource( 6 )]
-position = Vector2( 112, 944 )
-
-[node name="Panzer" parent="Enemies/Spawner_Soldier9" instance=ExtResource( 8 )]
-
-[node name="Spawner" parent="Enemies" instance=ExtResource( 6 )]
-position = Vector2( 144, 144 )
-
-[node name="Sniper" parent="Enemies/Spawner" instance=ExtResource( 14 )]
-
-[node name="Spawner2" parent="Enemies" instance=ExtResource( 6 )]
-position = Vector2( 656, 880 )
-
-[node name="Sniper" parent="Enemies/Spawner2" instance=ExtResource( 14 )]
 
 [node name="Rocks" type="Node2D" parent="."]
 
@@ -1201,10 +1135,70 @@ position = Vector2( 592, 848 )
 [node name="JumpingTrap84" parent="JumpingTraps" instance=ExtResource( 2 )]
 position = Vector2( 624, 848 )
 
-[editable path="Portals/YelloPortalSet"]
+[node name="Enemies" type="Node2D" parent="."]
 
-[editable path="Portals/BluePortalSet"]
+[node name="Spawner" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 112, 112 )
 
-[editable path="Portals/RedPortalSet"]
+[node name="Soldier" parent="Enemies/Spawner" instance=ExtResource( 7 )]
 
-[editable path="Portals/GreenPortalSet"]
+[node name="Spawner4" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 704, 104 )
+
+[node name="Soldier" parent="Enemies/Spawner4" instance=ExtResource( 7 )]
+
+[node name="Spawner2" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 328, 528 )
+
+[node name="Soldier" parent="Enemies/Spawner2" instance=ExtResource( 7 )]
+
+[node name="Spawner3" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 464, 520 )
+
+[node name="Soldier" parent="Enemies/Spawner3" instance=ExtResource( 7 )]
+
+[node name="Spawner5" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 80, 80 )
+interval = 5.0
+requirement_step = 3
+
+[node name="Soldier2" parent="Enemies/Spawner5" instance=ExtResource( 10 )]
+
+[node name="Spawner6" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 720, 80 )
+interval = 5.0
+requirement_step = 3
+
+[node name="Soldier2" parent="Enemies/Spawner6" instance=ExtResource( 10 )]
+
+[node name="Barrels" type="Node2D" parent="."]
+
+[node name="Barrel_Oil" parent="Barrels" instance=ExtResource( 8 )]
+position = Vector2( 336, 368 )
+
+[node name="Barrel_Oil2" parent="Barrels" instance=ExtResource( 8 )]
+position = Vector2( 464, 688 )
+
+[node name="Barrel_Oil3" parent="Barrels" instance=ExtResource( 8 )]
+position = Vector2( 688, 400 )
+
+[node name="Barrel_Oil7" parent="Barrels" instance=ExtResource( 8 )]
+position = Vector2( 688, 432 )
+
+[node name="Barrel_Oil8" parent="Barrels" instance=ExtResource( 8 )]
+position = Vector2( 688, 464 )
+
+[node name="Barrel_Oil9" parent="Barrels" instance=ExtResource( 8 )]
+position = Vector2( 688, 496 )
+
+[node name="Barrel_Oil10" parent="Barrels" instance=ExtResource( 8 )]
+position = Vector2( 688, 528 )
+
+[node name="Barrel_Oil4" parent="Barrels" instance=ExtResource( 8 )]
+position = Vector2( 112, 560 )
+
+[node name="Barrel_Oil5" parent="Barrels" instance=ExtResource( 8 )]
+position = Vector2( 112, 528 )
+
+[node name="Barrel_Oil6" parent="Barrels" instance=ExtResource( 8 )]
+position = Vector2( 112, 496 )

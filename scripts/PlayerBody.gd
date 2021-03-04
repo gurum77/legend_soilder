@@ -104,6 +104,10 @@ func _on_BodyAnimatedSprite_animation_finished():
 	playing_body_animation_for_fire = false		
 
 func fire():
+	# 점프 중일때는 발사를 하지 않는다
+	if Util.is_jumping(self):
+		return
+		
 	# play 중이 아니면 발사를 하지 않는다.
 	if StaticData.game_state != Define.GameState.play:
 		return

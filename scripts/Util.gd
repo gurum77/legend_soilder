@@ -1,4 +1,7 @@
 extends Node
+# jumping 하는 node의 z index값
+const JUMPING_NODE_Z_INDEX = 3
+const JUMPING_NODE_COLLISION_MASK = 0
 
 func play_animation(animated_sprite, anim, from_start_frame=false):
 	if animated_sprite == null:
@@ -28,13 +31,13 @@ func is_equal_vector2(vec1, vec2, tol)->bool:
 func is_jumping(var node:Node2D)->bool:
 	if node == null:
 		return false
-	if node.z_index == 3:
+	if node.z_index == JUMPING_NODE_Z_INDEX:
 		return true
 	if node.has_method("collision_mask") && node.collision_mask == 0:
 		return true
 		
 	var parent = node.get_parent()
-	if parent.z_index == 3:
+	if parent.z_index == JUMPING_NODE_Z_INDEX:
 		return true
 	if parent.has_method("collision_mask") && parent.collision_mask == 0:
 		return true
