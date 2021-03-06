@@ -51,7 +51,7 @@ var stage_informations:Dictionary={
 	"점프지옥" : StageInformation.new("res://maps/BattleField_JumpingHell.tscn", Vector2(918, 449)),
 	"사과" : StageInformation.new("res://maps/BattleField_Apple.tscn", Vector2(918, 449)),
 	"감옥" : StageInformation.new("res://maps/BattleField_Prison.tscn", Vector2(918, 449)),
-	"Surround14" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449)),
+	"벙커" : StageInformation.new("res://maps/BattleField_Bunker.tscn", Vector2(918, 449)),
 	"Surround15" : StageInformation.new("res://maps/플BattleField_Surround.tscn", Vector2(918, 449)),
 	"Surround16" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449))
 }

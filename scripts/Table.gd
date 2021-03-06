@@ -30,7 +30,7 @@ var interval_RPG = 1
 # player의 기본 공격력
 var player_power = 500
 # player의 기본 체력
-var player_hp = 3000#300000
+var player_hp = 300000#3000
 
 # 무기별 기본 파워
 var power_Pistol = 700

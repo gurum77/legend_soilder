@@ -105,7 +105,7 @@ _global_script_classes=[ {
 "path": "res://scripts/WeaponInventoryItem.gd"
 } ]
 _global_script_class_icons={
-"AdMob": "res://admob-lib/icon.png",
+"AdMob": "",
 "Enemy": "",
 "EnemyAI": "",
 "EnemyAI_Move": "",
@@ -242,6 +242,7 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_6="guide_line"
 2d_physics/layer_7="bush"
 2d_physics/layer_8="water"
+2d_physics/layer_9="airplane"
 
 [locale]
 

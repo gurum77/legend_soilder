@@ -6,7 +6,9 @@ enum Level {newbie, intermediate, expert, crazy}
 
 # ai가 움직일 실제 노드
 var enemy:Node2D
+
 onready var raycast:RayCast2D = $GuideLine
+
 
 export (Level) var level = Level.newbie
 export (float) var distance_in_eye = 250		# 시야 거리
@@ -16,6 +18,7 @@ export (float) var distance_in_dangerous = 50	# 위험 감지 거리
 var in_eye = false
 var in_attack = false
 var in_dangerous = false
+
 export var debugging = false
 
 func _ready():
@@ -40,6 +43,9 @@ func _ready():
 		$EnemyAI_Move/PatrolPath.visible = false
 		
 	#update()
+	
+func get_enemy_type():
+	 return enemy.get_body().enemy_type
 	
 func _process(_delta):
 	# target이 정해 졌다면 target 방향으로 본다.
@@ -101,14 +107,20 @@ func _on_PlayerDetectionTimer_timeout():
 		return
 	
 	# player 까지 거리
-	var distance = player.global_position.distance_to(self.global_position)
-	if distance < distance_in_attack:
-		# raycast가 장애물에 걸리면 공격하지 않는다.
-		# player보다 가까이에 있는 장애물에 걸리면 공격하지 않는다.
-		if !raycast.is_colliding() or raycast.get_collision_point().distance_to(self.global_position) >= distance:
-			in_attack = true
-	if distance < distance_in_dangerous:
-		in_dangerous = true
-	if distance < distance_in_eye:
+	# airplane은 시야에 들어오지 않더라도 공격하고 avoid는 없다.
+	if get_enemy_type() == EnemyBody.EnemyType.airplane:
+		in_attack = true
+		in_dangerous = false
 		in_eye = true
+	else:
+		var distance = player.global_position.distance_to(self.global_position)
+		if distance < distance_in_attack:
+			# raycast가 장애물에 걸리면 공격하지 않는다.
+			# player보다 가까이에 있는 장애물에 걸리면 공격하지 않는다.
+			if !raycast.is_colliding() or raycast.get_collision_point().distance_to(self.global_position) >= distance:
+				in_attack = true
+		if distance < distance_in_dangerous:
+			in_dangerous = true
+		if distance < distance_in_eye:
+			in_eye = true
 

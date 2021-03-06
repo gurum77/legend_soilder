@@ -7,7 +7,7 @@ onready var patrol_path = $PatrolPath
 onready var patrol_path_follow = $PatrolPath/PathFollow2D
 export var path_offset = 50
 var path_finder:PathFinder
-
+var airplane_move_distance_from_target = 1000	# airplane이 날아가는 거리(target 기준)
 # enemy의 moving 상태
 enum {patrol, move, avoid}
 var state = patrol
@@ -46,8 +46,10 @@ func determine_state():
 		start_move()
 		
 	# 공격 범위 안에 있으면 더이상 move하지 않고 avoid 상태로 전환한다.
+	# 단 airplane은 avoid를 하지 않는다.
 	if enemy_ai.in_attack:
-		start_avoid()
+		if enemy_ai.get_enemy_type() != EnemyBody.EnemyType.airplane:
+			start_avoid()
 
 # 목표 위치를 찾는다.
 # 목표 위치는 상태에 따라 다르다.
@@ -69,20 +71,31 @@ func _on_FindTargetTimer_timeout():
 				enemy_ai.enemy.get_body().target_position_to_move = self.global_position
 				return
 			
+				
 			# target위치 계산	
 			var target_position = player.global_position
 			var target_position_buffer := PoolVector2Array()
-			
-			# path finder가 있으면 path finder로 경로를 찾는다.
-			if path_finder != null:
-				var point_path = path_finder.find_path(self.global_position, player.global_position)
-				if point_path != null and point_path.size() > 3:
-#					var current_point = path_finder.tilemap.world_to_map(global_position)
-					# 겹치지 않게 하기 위해서 3~6 사이의 위치에 랜덤하게 배치한다.
-					var index:int = rand_range(1, point_path.size()) as int
-					for i in index-2:
-						target_position_buffer.append(point_path[i+2])
-					target_position = Vector2(point_path[1].x, point_path[1].y)
+			# airplane인 경우 target의 방향으로 airplane_move_distance미터 진행
+			# 그리고 aiplane은 목표지점에 도달해야 다음 목표를 정할 수 있다.
+			if enemy_ai.get_enemy_type() == EnemyBody.EnemyType.airplane:
+				var dist = enemy_ai.enemy.get_body().target_position_to_move.distance_to(enemy_ai.enemy.global_position)
+				# airplane은 빨라서 target 위치를 1미터 이상 벗어나기도 함
+				if dist > 10:
+					return
+				var dir:Vector2 = player.global_position - self.global_position
+				dir = dir.normalized()
+				target_position = target_position + dir * airplane_move_distance_from_target
+			else:
+				# path finder가 있으면 path finder로 경로를 찾는다.
+				if path_finder != null:
+					var point_path = path_finder.find_path(self.global_position, player.global_position)
+					if point_path != null and point_path.size() > 3:
+	#					var current_point = path_finder.tilemap.world_to_map(global_position)
+						# 겹치지 않게 하기 위해서 3~6 사이의 위치에 랜덤하게 배치한다.
+						var index:int = rand_range(1, point_path.size()) as int
+						for i in index-2:
+							target_position_buffer.append(point_path[i+2])
+						target_position = Vector2(point_path[1].x, point_path[1].y)
 			
 			enemy_ai.enemy.get_body().target_position_to_move = target_position
 			enemy_ai.enemy.get_body().target_position_buffer_to_move = target_position_buffer

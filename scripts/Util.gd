@@ -3,6 +3,9 @@ extends Node
 const JUMPING_NODE_Z_INDEX = 3
 const JUMPING_NODE_COLLISION_MASK = 0
 
+# airplane의 z_index값
+const AIRPLANE_NODE_Z_INDEX = 4
+
 func play_animation(animated_sprite, anim, from_start_frame=false):
 	if animated_sprite == null:
 		return
@@ -20,6 +23,11 @@ func show_message(scene, msg):
 	scene.add_child(dlg)
 	dlg.popup_centered()
 
+func is_equal_double(d1, d2, tol=0.1)->bool:
+	if abs(d1 - d2) > tol:
+		return false
+	return true
+	
 func is_equal_vector2(vec1, vec2, tol)->bool:
 	if abs(vec1.x - vec2.x) > tol:
 		return false

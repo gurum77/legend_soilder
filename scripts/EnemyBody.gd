@@ -1,12 +1,11 @@
 extends KinematicBody2D
 
 class_name EnemyBody
-
+enum EnemyType{normal, vehicle, airplane}
 export (Define.Weapon) var weapon
-export var vehicle = false
 export var bullet_nums = 1 # 총알 발사 개수
 export var speed = 50
-
+export (EnemyType) var enemy_type = EnemyType.normal
 var weight = 0.3
 var target_position_to_fire:Vector2 # 발사 목표 지점
 var target_position_to_move:Vector2 # 이동 목표 지점
@@ -14,20 +13,36 @@ var target_position_buffer_to_move:= PoolVector2Array() # 이동 지점에 도�
 var velocity:Vector2
 var dead = false # 죽었는지?
 var rayCast
+var fixed_rotation = false	# 방향이 정해짐
+var target_position_to_move_to_fixed_rotation:Vector2 # 방향이 고정됐을때의 target_position
+var fire_started = false	# fire를  시작했는지?
 
-onready var fire_animated_sprite = get_node_or_null("AnimatedSprites/BodyPivot/FireAnimatedSprite")
 onready var body_animated_sprite = $AnimatedSprites/BodyPivot/BodyAnimatedSprite
 onready var leg_animated_sprite = $AnimatedSprites/LegAnimatedSprite
+onready var fire_animated_sprite = get_node_or_null("AnimatedSprites/BodyPivot/FireAnimatedSprite")
+onready var fire_animated_sprite2 = get_node_or_null("AnimatedSprites/BodyPivot/FireAnimatedSprite2")
+onready var fire_animated_sprite3 = get_node_or_null("AnimatedSprites/BodyPivot/FireAnimatedSprite3")
+onready var fire_animated_sprite4 = get_node_or_null("AnimatedSprites/BodyPivot/FireAnimatedSprite4")
 onready var fire_position = $AnimatedSprites/BodyPivot/FirePosition
 onready var fire_position2 = get_node_or_null("AnimatedSprites/BodyPivot/FirePosition2")
+onready var fire_position3 = get_node_or_null("AnimatedSprites/BodyPivot/FirePosition3")
+onready var fire_position4 = get_node_or_null("AnimatedSprites/BodyPivot/FirePosition4")
 onready var body_pivot = $AnimatedSprites/BodyPivot
 onready var fire_timer = $FireTimer
 onready var aim_timer = $AimTimer
+onready var foot_step_audio = get_node_or_null("FootStepAudio")
 onready var enemy_ai = get_parent().get_node_or_null("EnemyAI")
+
 func _ready():
 	# layer/mask
-	collision_layer = 0b10
-	collision_mask	= 0b10100
+	if enemy_type == EnemyType.airplane:
+		collision_layer = 0b100000000
+		collision_mask	= 0b00100	# airplane인 경우에는 총알말고 어디에도 부딪히지 않는
+		z_index = Util.AIRPLANE_NODE_Z_INDEX
+	else:
+		collision_layer = 0b10
+		collision_mask	= 0b10100
+	
 	
 
 	# 이동 목표지점을 제자리로 한다.
@@ -45,15 +60,18 @@ func _ready():
 	Util.play_animation(fire_animated_sprite, "idle")
 	
 	start_aim()
-	# 처음 발사를 랜덤하게 시작한다.
-	yield(get_tree().create_timer(randf()), "timeout")
-	start_fire()
+	
 
 
 func _physics_process(_delta):
 	move_to_target()
 	play_animation_by_velocity(velocity)
 	turn_to_target()
+	if !fire_started:
+		fire_started = true
+		# 처음 발사를 랜덤하게 시작한다.
+		yield(get_tree().create_timer(randf()), "timeout")
+		start_fire()	
 	
 	
 
@@ -66,9 +84,15 @@ func play_animation_by_velocity(_velocity):
 	# walk
 	if _velocity.length() > 0.5:
 		Util.play_animation(leg_animated_sprite, "walk")
+		if foot_step_audio != null:
+			if !foot_step_audio.playing:
+				foot_step_audio.play()
+			foot_step_audio.stream_paused = false
 	# idle
 	else:
 		Util.play_animation(leg_animated_sprite, "idle")	
+		if foot_step_audio != null:
+			foot_step_audio.stream_paused = false
 			
 # 목표 지점으로 이동
 func move_to_target():
@@ -96,7 +120,12 @@ func move_to_target():
 		return
 		
 	# velocity 결정
-	velocity = (target_position_to_move - self.global_position).normalized() * speed
+	# airplane은 진행방향으로만 이동이 가능하다(후진 불가)
+	if enemy_type == EnemyType.airplane && !fixed_rotation:
+		var xdir = Vector2(cos(self.rotation), sin(self.rotation))
+		velocity = xdir * speed
+	else:
+		velocity = (target_position_to_move - self.global_position).normalized() * speed
 	
 	if velocity == Vector2(0, 0):
 		return
@@ -124,9 +153,22 @@ func turn_to_target():
 	if target_position_to_fire == null:
 		return
 	# vehicle은 이동 방향에 따라서 전체를 회전하고 target position to fire를 향해서 body를 회전한다
-	if vehicle == true:
+	if enemy_type == EnemyType.vehicle:
 		self.rotation = lerp_angle(self.rotation, (target_position_to_move - self.global_position).normalized().angle(), weight/10)
 		body_pivot.rotation = lerp_angle(body_pivot.rotation, (target_position_to_fire - body_pivot.global_position).normalized().angle() - self.rotation, weight)
+	elif enemy_type == EnemyType.airplane:
+		if !fixed_rotation:
+			var target_rotation = (target_position_to_move - self.global_position).normalized().angle()
+			self.rotation = lerp_angle(self.rotation, target_rotation, weight/10)
+			# 목표한 방향에 도달하면 target_position_to_move가 변경될때까지 회전하지 않는
+			if Util.is_equal_double(self.rotation, target_rotation, 0.1):
+				fixed_rotation = true
+				target_position_to_move_to_fixed_rotation = target_position_to_move
+		else:
+			# target_position_to_move가 변경되면 fixed rotation을 푼다
+			if !Util.is_equal_vector2(target_position_to_move, target_position_to_move_to_fixed_rotation, 1):
+				fixed_rotation = false
+				
 	else:
 		self.rotation = lerp_angle(self.rotation, (target_position_to_fire - self.global_position).normalized().angle(), weight)
 
@@ -157,6 +199,26 @@ func stop_aim():
 	if aim_timer.is_stopped() == false:
 		aim_timer.stop()
 
+func get_fire_animated_sprite(var bullet_index)->AnimatedSprite:
+	var fas = fire_animated_sprite
+	if bullet_index == 1:
+		fas = fire_animated_sprite2
+	elif bullet_index == 2:
+		fas = fire_animated_sprite3
+	elif bullet_index == 3:
+		fas = fire_animated_sprite4
+	return fas
+	
+func get_fire_position_node(var bullet_index)->Node2D:
+	var fire_position_node = fire_position;
+	if bullet_index == 1 && fire_position2 != null:
+		fire_position_node = fire_position2
+	elif bullet_index == 2 && fire_position3 != null:
+		fire_position_node = fire_position3
+	elif bullet_index == 3 && fire_position4 != null:
+		fire_position_node = fire_position4
+	return fire_position_node
+	
 # fire		
 func fire():
 	if Define.no_attack_enemy:
@@ -167,12 +229,18 @@ func fire():
 	if enemy_ai != null && !enemy_ai.in_attack:
 		return
 	
-		
+	# body animation
+	Util.play_animation(body_animated_sprite, "fire")
+
 	for i in range(bullet_nums):
+		# bullet 생성
 		var ins = Preloader.bullet.instance()
-		var fire_position_node = fire_position
-		if i == 1 && not fire_position2 == null:
-			fire_position_node = fire_position2
+		var fire_position_node = get_fire_position_node(i)
+		
+		if fire_position_node == null:
+			assert(false)
+			continue
+			
 		ins.position = fire_position_node.global_position
 		ins.visible = true
 		if weapon == null:
@@ -180,31 +248,35 @@ func fire():
 		else:
 			ins.weapon = weapon
 		get_tree().root.call_deferred("add_child", ins)
-		if vehicle == true:
+		if enemy_type == EnemyType.vehicle:
 			ins.rotation = self.rotation + body_pivot.rotation
 		else:
 			ins.rotation = rotation
+			
+		# fire animation
+		var fas = get_fire_animated_sprite(i)
+		Util.play_animation(fas, "fire", true)
 	
-	# body animation
-	Util.play_animation(body_animated_sprite, "fire")
 	
-	# fire animation
-	Util.play_animation(fire_animated_sprite, "fire", true)
 	
 # aim을 한다.
 # 발사 목표 점을 찾는다.
 func aim():
-	# player를 찾는다.
-	var players = get_tree().get_nodes_in_group("player")
-	if players == null or players.size() == 0:
-		return
-	
-	# target이 없다면 진행방향으로 aim을 한다.
-	if enemy_ai == null || !enemy_ai.in_eye:
+	# 비행기는 무조건 진행방향으로만 aim을 한다
+	if enemy_type == EnemyType.airplane:
 		target_position_to_fire = global_position + velocity * 10
-		return
+	else:
+		# player를 찾는다.
+		var players = get_tree().get_nodes_in_group("player")
+		if players == null or players.size() == 0:
+			return
 		
-	target_position_to_fire = players[0].position
+		# target이 없다면 진행방향으로 aim을 한다.
+		if enemy_ai == null || !enemy_ai.in_eye:
+			target_position_to_fire = global_position + velocity * 10
+			return
+			
+		target_position_to_fire = players[0].position
 
 
 func _on_FireTimer_timeout():

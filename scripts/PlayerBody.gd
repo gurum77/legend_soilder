@@ -25,7 +25,7 @@ func _ready():
 	collision_layer = 0b1
 	collision_mask = 0b11100
 	
-	$AudioStreamPlayer2D.play()
+	
 	target_position = self.global_position
 
 func _physics_process(delta):
@@ -159,11 +159,14 @@ func play_animation_by_velocity(_velocity):
 	# walk
 	if _velocity.length() > 0.5:
 		Util.play_animation ($AnimatedSprites/LegAnimatedSprite, "walk")
-		$AudioStreamPlayer2D.stream_paused = false
+		# 처음 한번만 play하고 이후 부터는 stream paused로 조절한다.
+		if !$FootStepAudio.playing:
+			$FootStepAudio.play()
+		$FootStepAudio.stream_paused = false
 	# idle
 	else:
 		Util.play_animation ($AnimatedSprites/LegAnimatedSprite, "idle")
-		$AudioStreamPlayer2D.stream_paused = true
+		$FootStepAudio.stream_paused = true
 		
 	# body animation
 	if playing_body_animation_for_fire == false:
