@@ -24,6 +24,7 @@ func _on_Circle_gui_input(event):
 			pressed_position = event.position
 		else:
 			if Util.is_equal_vector2(pressed_position, event.position, 1) and stage_selector != null:
+				SoundManager.play_ui_click_audio()
 				# 이 스테이지가 잠겨 있다면 이동하지 않는다.
 				if !is_locked:
 					StaticData.current_stage_name = stage_name

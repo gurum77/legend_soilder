@@ -32,6 +32,7 @@ func get_portal_color(var running_color=false)->Color:
 	
 func _ready():
 	$Sprite.modulate = get_portal_color()
+	$AudioStreamPlayer2D.stream.loop = false
 
 func get_other_animated_sprite()->AnimatedSprite:
 	 return other_portal.get_node_or_null("TransfortAnimatedSprite")
@@ -93,6 +94,8 @@ func transfort():
 	if other_portal == null:
 		return
 	
+	$AudioStreamPlayer2D.play()
+	
 	var global_position = other_portal.global_position
 	for node in in_nodes:
 		other_portal.out_nodes[node] = true
@@ -111,3 +114,7 @@ func transfort():
 func _on_TransfortAnimatedSprite_animation_finished():
 	$TransfortAnimatedSprite.visible = false
 	$TransfortAnimatedSprite.stop()
+
+
+func _on_AudioStreamPlayer2D_finished():
+	$AudioStreamPlayer2D.stop()

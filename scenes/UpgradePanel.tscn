@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/UpgradePanel.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://assets/ui/VBar.png" type="Texture" id=3]
 [ext_resource path="res://assets/ui/Money Icon.png" type="Texture" id=4]
 [ext_resource path="res://assets/fonts/neodgm_pro.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://assets/ui/white_rect.png" type="Texture" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0784314, 0.0705882, 0.0705882, 0.643137 )
@@ -223,4 +224,13 @@ align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 138.613, 22.7978 )
+scale = Vector2( 4.06328, 0.644572 )
+texture = ExtResource( 6 )
+energy = 0.0
+shadow_color = Color( 0.545098, 0.117647, 0.117647, 0 )
+
+[node name="Tween" type="Tween" parent="."]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

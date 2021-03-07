@@ -14,6 +14,7 @@ var footstep_audio:AudioStreamOGGVorbis = preload("res://assets/sounds/footstep.
 var click_audio:AudioStreamOGGVorbis = preload("res://assets/sounds/click.ogg")
 var bgm_audio:AudioStreamOGGVorbis = preload("res://assets/sounds/bgm.ogg")
 var bgm_ingame_audio:AudioStreamOGGVorbis = preload("res://assets/sounds/bgm_ingame.ogg")
+var upgrade_audio = preload("res://assets/sounds/upgrade.ogg")
 
 enum BgmType{ui, ingame}
 onready var ui_stream_player = $UIStreamPlayer
@@ -25,6 +26,9 @@ func play_bgm(bgm_type):
 	elif bgm_type == BgmType.ingame:
 		bgm_stream_player.stream = bgm_ingame_audio
 	bgm_stream_player.play()
+	
+func play_ui_upgrade_audio():
+	play_ui_audio(upgrade_audio)
 	
 func play_ui_click_audio():
 	play_ui_audio(click_audio)
@@ -75,6 +79,7 @@ func _ready():
 	
 	click_audio.loop = false
 	bgm_audio.loop = true
+	upgrade_audio.loop = false
 	
 
 # 총알 발사 소리 리

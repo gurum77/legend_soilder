@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/61847__simon-rue__boink-v3.wav-4c3b9683c8ccf922cb7fc8d8231b585a.sample"
+
+[deps]
+
+source_file="res://assets/sounds/61847__simon-rue__boink-v3.wav"
+dest_files=[ "res://.import/61847__simon-rue__boink-v3.wav-4c3b9683c8ccf922cb7fc8d8231b585a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

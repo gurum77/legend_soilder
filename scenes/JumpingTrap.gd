@@ -20,6 +20,7 @@ var jumping = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$AudioStreamPlayer2D.stream.loop = false
 	$AnimatedSprite.stop()
 	running = false
 	nodes_in_JumpingTrap.clear()
@@ -141,6 +142,7 @@ func find_target_position()->Vector2:
 func jump_nodes():
 	jumping = true
 	
+	$AudioStreamPlayer2D.play()
 	$AnimatedSprite.stop()
 	# jumping trap을 스케일을 키운다.
 	$Tween.interpolate_property(self, "scale", scale, Vector2(1.5, 1.5), 0.05, Tween.TRANS_BOUNCE, Tween.EASE_IN) 
