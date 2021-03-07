@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://scripts/EnemyBody.gd" type="Script" id=1]
 [ext_resource path="res://scenes/HPBar.tscn" type="PackedScene" id=2]
@@ -19,7 +19,8 @@
 [ext_resource path="res://assets/vehicles/panzer/fire/Panzer_fire1.png" type="Texture" id=17]
 [ext_resource path="res://scenes/EnemyAI.tscn" type="PackedScene" id=18]
 [ext_resource path="res://scenes/ItemMaker.tscn" type="PackedScene" id=19]
-[ext_resource path="res://assets/sounds/airplane+prop_planeidle.ogg" type="AudioStream" id=20]
+[ext_resource path="res://assets/sounds/tank.ogg" type="AudioStream" id=20]
+[ext_resource path="res://assets/sounds/Die_machine.ogg" type="AudioStream" id=21]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -116,12 +117,16 @@ position = Vector2( 81.3173, -0.470428 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
 shape = SubResource( 4 )
 
+[node name="DieAudio" type="AudioStreamPlayer2D" parent="Body"]
+stream = ExtResource( 21 )
+
 [node name="FootStepAudio" type="AudioStreamPlayer2D" parent="Body"]
 position = Vector2( -16, 16 )
 stream = ExtResource( 20 )
 autoplay = true
-max_distance = 700.0
-attenuation = 1.36604
+max_distance = 600.0
+attenuation = 3.24901
+bus = "sound"
 
 [node name="HPBar" parent="." instance=ExtResource( 2 )]
 margin_top = -49.0

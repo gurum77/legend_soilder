@@ -3,6 +3,8 @@ extends Node2D
 var pausePanel = preload("res://scenes/Pause.tscn")
 
 func _ready():
+	# bgm play
+	SoundManager.play_bgm(SoundManager.BgmType.ingame)
 
 	# 게임을 시작하면 현재  stage에 대한 데이타를 초기화 한다
 	StaticData.current_score_for_stage = 0

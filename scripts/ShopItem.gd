@@ -26,6 +26,7 @@ func _ready():
 		$BuyButton.icon = ad_texture
 
 func _on_BuyButton_pressed():
+	SoundManager.play_ui_click_audio()
 	# 지불방법이 gem인 경우
 	if pay_method == PayMethod.gem:
 		if StaticData.total_gem > price:

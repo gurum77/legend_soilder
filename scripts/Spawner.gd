@@ -23,6 +23,13 @@ func _ready():
 		spawn_node = load(n.filename)
 		n.call_deferred("queue_free")
 		break
+		
+	# 노드의 종류에 따른 기본 interval 설정
+	if spawn_node != null && spawn_node is Enemy:
+		var enemy = spawn_node as Enemy
+		if enemy.get_body().enemy_type == EnemyBody.EnemyType.airplane:
+			interval = Define.default_spawn_interval_airplane
+			
 	$Timer.start(interval)
 	
 

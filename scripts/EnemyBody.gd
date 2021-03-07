@@ -31,6 +31,7 @@ onready var body_pivot = $AnimatedSprites/BodyPivot
 onready var fire_timer = $FireTimer
 onready var aim_timer = $AimTimer
 onready var foot_step_audio = get_node_or_null("FootStepAudio")
+onready var die_audio = get_node_or_null("DieAudio")
 onready var enemy_ai = get_parent().get_node_or_null("EnemyAI")
 
 func _ready():
@@ -243,6 +244,9 @@ func fire():
 			
 		ins.position = fire_position_node.global_position
 		ins.visible = true
+		# 두번째 부터는 묵음처리
+		if i > 0:
+			ins.mute = true
 		if weapon == null:
 			ins.weapon = Define.Weapon.Pistol
 		else:
@@ -294,6 +298,10 @@ func die():
 	Util.play_animation(leg_animated_sprite, "die")
 	stop_aim()
 	stop_fire()
+	
+	# sound
+	if die_audio != null:
+		die_audio.play()
 	
 	# 모든 총돌 해제
 	$CollisionShape2D.queue_free()

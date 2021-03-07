@@ -1,5 +1,6 @@
 extends Node
 
+
 # audio
 var Pistol_shot_audio:AudioStreamOGGVorbis = preload("res://assets/sounds/Pistol_shot.ogg")
 var MG_shot_audio:AudioStreamOGGVorbis = preload("res://assets/sounds/MG_shot.ogg")
@@ -8,7 +9,29 @@ var RPG_shot_audio:AudioStreamOGGVorbis = preload("res://assets/sounds/RPG_shot.
 var FlameThrower_shot_audio:AudioStreamOGGVorbis = preload("res://assets/sounds/FlameThrower_shot.ogg")
 
 var footstep_audio:AudioStreamOGGVorbis = preload("res://assets/sounds/footstep.ogg")
-var airplane_fly_audio:AudioStreamOGGVorbis = preload("res://assets/sounds/airplane+prop_planeidle.ogg")
+
+# ui
+var click_audio:AudioStreamOGGVorbis = preload("res://assets/sounds/click.ogg")
+var bgm_audio:AudioStreamOGGVorbis = preload("res://assets/sounds/bgm.ogg")
+var bgm_ingame_audio:AudioStreamOGGVorbis = preload("res://assets/sounds/bgm_ingame.ogg")
+
+enum BgmType{ui, ingame}
+onready var ui_stream_player = $UIStreamPlayer
+onready var bgm_stream_player = $BGMStreamPlayer
+
+func play_bgm(bgm_type):
+	if bgm_type == BgmType.ui:
+		bgm_stream_player.stream = bgm_audio
+	elif bgm_type == BgmType.ingame:
+		bgm_stream_player.stream = bgm_ingame_audio
+	bgm_stream_player.play()
+	
+func play_ui_click_audio():
+	play_ui_audio(click_audio)
+	
+func play_ui_audio(var stream):
+	ui_stream_player.stream = stream
+	ui_stream_player.play()
 
 # settings
 func set_music_volume(volume):
@@ -49,6 +72,9 @@ func _ready():
 	SMG_shot_audio.loop = false
 	RPG_shot_audio.loop = false
 	FlameThrower_shot_audio.loop = false
+	
+	click_audio.loop = false
+	bgm_audio.loop = true
 	
 
 # 총알 발사 소리 리

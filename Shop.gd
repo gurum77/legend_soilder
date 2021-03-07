@@ -33,6 +33,7 @@ func _ready():
 	pass
 		
 func _on_BackButton_pressed():
+	SoundManager.play_ui_click_audio()
 	var err = get_tree().change_scene("res://scenes/Home.tscn")
 	if err != OK:
 		push_error("change_scene failed")

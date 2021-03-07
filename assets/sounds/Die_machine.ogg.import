@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Die_machine.ogg-d90949d26f1069b942cf7cdaae893cdc.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/Die_machine.ogg"
+dest_files=[ "res://.import/Die_machine.ogg-d90949d26f1069b942cf7cdaae893cdc.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

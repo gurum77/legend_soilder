@@ -1,16 +1,16 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scripts/EnemyBody.gd" type="Script" id=1]
 [ext_resource path="res://scenes/HPBar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/airplanes/Bomber/Bomber_Source.png" type="Texture" id=3]
-[ext_resource path="res://assets/airplanes/Bomber/Broken/Bomber Broken 01.png" type="Texture" id=4]
+[ext_resource path="res://assets/sounds/airplane.ogg" type="AudioStream" id=4]
 [ext_resource path="res://assets/airplanes/Bomber/Broken/Bomber Broken 03.png" type="Texture" id=5]
 [ext_resource path="res://assets/airplanes/Bomber/Broken/Bomber_Broken 02.png" type="Texture" id=6]
 [ext_resource path="res://assets/bullets/RPG/3.png" type="Texture" id=7]
 [ext_resource path="res://assets/bullets/RPG/4.png" type="Texture" id=8]
 [ext_resource path="res://assets/bullets/RPG/1.png" type="Texture" id=9]
 [ext_resource path="res://assets/bullets/RPG/2.png" type="Texture" id=10]
-[ext_resource path="res://assets/sounds/airplane+prop_planeidle.ogg" type="AudioStream" id=11]
+[ext_resource path="res://assets/sounds/Die_machine.ogg" type="AudioStream" id=11]
 [ext_resource path="res://scripts/Enemy.gd" type="Script" id=14]
 [ext_resource path="res://scenes/EnemyAI.tscn" type="PackedScene" id=18]
 [ext_resource path="res://scenes/ItemMaker.tscn" type="PackedScene" id=19]
@@ -45,7 +45,7 @@ animations = [ {
 "name": "fire",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": false,
 "name": "die",
 "speed": 5.0
@@ -63,9 +63,6 @@ animations = [ {
 "name": "fire",
 "speed": 10.0
 } ]
-
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 83.2743, 119.526 )
 
 [node name="Bomber" type="Node2D"]
 script = ExtResource( 14 )
@@ -89,7 +86,7 @@ animation = "walk"
 [node name="BodyPivot" type="Node2D" parent="Body/AnimatedSprites"]
 
 [node name="BodyAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites/BodyPivot"]
-position = Vector2( -27, -1 )
+position = Vector2( -27, -1.5 )
 rotation = -1.5708
 frames = SubResource( 2 )
 animation = "fire"
@@ -138,17 +135,18 @@ position = Vector2( -4.25504, 79.3456 )
 
 [node name="FireTimer" type="Timer" parent="Body"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
-position = Vector2( -28.0616, -1.12247 )
-shape = SubResource( 4 )
-
 [node name="FootStepAudio" type="AudioStreamPlayer2D" parent="Body"]
-stream = ExtResource( 11 )
-pitch_scale = 1.35
+stream = ExtResource( 4 )
 autoplay = true
 max_distance = 600.0
-attenuation = 0.965935
+attenuation = 2.29739
 bus = "sound"
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Body"]
+polygon = PoolVector2Array( -20, -122.5, -22.5227, -11.2045, -67.0902, -7.42044, -72.556, -59.9765, -93.9989, -59.556, -93.9989, -7.42044, -119.226, -3.21596, -119.226, 0.568069, -96.942, 5.61345, -94.4193, 56.0672, -72.556, 55.2263, -67.9311, 4.35211, -24.2045, 8.55659, -20, 115.771, 6.90869, 115.35, 14.0563, 14.0224, 28.772, 14.4429, 54.8398, -2.37506, 27.9311, -14.9885, 14.0563, -17.0908, 7.49419, -120.752 )
+
+[node name="DieAudio" type="AudioStreamPlayer2D" parent="Body"]
+stream = ExtResource( 11 )
 
 [node name="HPBar" parent="." instance=ExtResource( 2 )]
 margin_top = -49.0

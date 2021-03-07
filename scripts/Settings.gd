@@ -17,11 +17,13 @@ func _ready():
 
 	
 func _on_OkButton_pressed():
+	SoundManager.play_ui_click_audio()
 	SettingsStaticData.save_settings()
 	self.queue_free()
 
 
 func _on_MusicButton_toggled(button_pressed):
+	SoundManager.play_ui_click_audio()
 	if button_pressed:
 		SoundManager.set_music_volume(3)
 	else:
@@ -29,6 +31,7 @@ func _on_MusicButton_toggled(button_pressed):
 
 
 func _on_SoundButton_toggled(button_pressed):
+	SoundManager.play_ui_click_audio()
 	if button_pressed:
 		SoundManager.set_sound_volume(3)
 	else:
@@ -37,6 +40,7 @@ func _on_SoundButton_toggled(button_pressed):
 
 
 func _on_LanguageButton_pressed():
+	SoundManager.play_ui_click_audio()
 	$ItemList.visible = true
 	$ItemList.clear()
 	locales.clear()
@@ -53,6 +57,7 @@ func _on_LanguageButton_pressed():
 	$ItemList.select(selected_idx)
 
 func _on_ItemList_item_selected(index):
+	SoundManager.play_ui_click_audio()
 	$ItemList.visible = false
 	TranslationServer.set_locale(locales[index])
 	

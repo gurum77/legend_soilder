@@ -108,6 +108,7 @@ func update_bar(level):
 # UP 버튼
 # 돈이 부족하면 shop으로 이동할지 물어본다.
 func _on_Button_pressed():
+	SoundManager.play_ui_click_audio()
 	if is_need_more_money_to_upgrade():
 		var dlg = MyAcceptDialog.new()
 		dlg.dialog_text = tr("You need more money.") + "\n" + tr("Go to shop?")
@@ -136,6 +137,7 @@ func _on_Button_pressed():
 	update()
 
 func on_GoToShopButton_pressed():
+	SoundManager.play_ui_click_audio()
 	var err = get_tree().change_scene("res://scenes/Shop.tscn")
 	if err != OK:
 		push_error("change_scene failed")

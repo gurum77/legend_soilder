@@ -10,6 +10,7 @@ func _ready():
 
 
 func _on_ExitButton_pressed():
+	SoundManager.play_ui_click_audio()
 	self.queue_free()
 
 func update_weaponInventory():
@@ -23,6 +24,7 @@ func update_weaponInventory():
 	
 
 func _on_WeaponButton1_pressed():
+	SoundManager.play_ui_click_audio()
 	if !StaticData.get_inventory_item(0).enabled:
 		return
 	StaticData.get_inventory_item(0).weapon = weapon
@@ -32,6 +34,7 @@ func _on_WeaponButton1_pressed():
 
 
 func _on_WeaponButton2_pressed():
+	SoundManager.play_ui_click_audio()
 	if !StaticData.get_inventory_item(1).enabled:
 		return
 	StaticData.get_inventory_item(1).weapon = weapon
@@ -40,6 +43,7 @@ func _on_WeaponButton2_pressed():
 
 
 func _on_WeaponButton3_pressed():
+	SoundManager.play_ui_click_audio()
 	if !StaticData.get_inventory_item(2).enabled:
 		return
 	StaticData.get_inventory_item(2).weapon = weapon

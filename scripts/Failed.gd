@@ -18,14 +18,17 @@ func update_revival_button():
 		$TextureRect/HomeButtonCenter.visible = true
 		
 func _on_HomeButton_pressed():
+	SoundManager.play_ui_click_audio()
 	get_tree().change_scene("res://scenes/Home.tscn")
 
 
 func _on_RetryButton_pressed():
+	SoundManager.play_ui_click_audio()
 	get_tree().change_scene("res://scenes/World.tscn")
 
 # 부활을 누르면 reward video load를 한다.
 func _on_RevivalButton_pressed():
+	SoundManager.play_ui_click_audio()
 	var os_name = OS.get_name()
 	if os_name == "Windows":
 		_on_AdMob_rewarded(0, 0)

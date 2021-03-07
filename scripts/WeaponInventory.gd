@@ -24,6 +24,7 @@ func update():
 
 
 func _on_WeaponButton1_pressed():
+	SoundManager.play_ui_click_audio()
 	if StaticData.get_inventory_item(0).weapon == Define.Weapon.None:
 		return
 	StaticData.current_weapon_index = 0
@@ -31,6 +32,7 @@ func _on_WeaponButton1_pressed():
 
 
 func _on_WeaponButton2_pressed():
+	SoundManager.play_ui_click_audio()
 	if StaticData.get_inventory_item(1).weapon == Define.Weapon.None:
 		return
 	StaticData.current_weapon_index = 1
@@ -38,6 +40,7 @@ func _on_WeaponButton2_pressed():
 
 
 func _on_WeaponButton3_pressed():
+	SoundManager.play_ui_click_audio()
 	if StaticData.get_inventory_item(2).weapon == Define.Weapon.None:
 		return
 	StaticData.current_weapon_index = 2

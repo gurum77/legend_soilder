@@ -45,15 +45,15 @@ var stage_informations:Dictionary={
 	"곤충싸움" : StageInformation.new("res://maps/BattleField_BugsBattles.tscn", Vector2(918, 449)),
 	"레이스" : StageInformation.new("res://maps/BattleField_Race.tscn", Vector2(918, 449)),
 	"큰호수" : StageInformation.new("res://maps/BattleField_BigLake.tscn", Vector2(918, 449)),
+	"벙커" : StageInformation.new("res://maps/BattleField_Bunker.tscn", Vector2(918, 449)),
 	"체크박스" : StageInformation.new("res://maps/BattleField_CheckBox.tscn", Vector2(918, 449)),
 	"점프" : StageInformation.new("res://maps/BattleField_Jump.tscn", Vector2(918, 449)),
 	"교차로" : StageInformation.new("res://maps/BattleField_Intersection.tscn", Vector2(918, 449)),
 	"점프지옥" : StageInformation.new("res://maps/BattleField_JumpingHell.tscn", Vector2(918, 449)),
 	"사과" : StageInformation.new("res://maps/BattleField_Apple.tscn", Vector2(918, 449)),
 	"감옥" : StageInformation.new("res://maps/BattleField_Prison.tscn", Vector2(918, 449)),
-	"벙커" : StageInformation.new("res://maps/BattleField_Bunker.tscn", Vector2(918, 449)),
-	"Surround15" : StageInformation.new("res://maps/플BattleField_Surround.tscn", Vector2(918, 449)),
-	"Surround16" : StageInformation.new("res://maps/BattleField_Surround.tscn", Vector2(918, 449))
+	"에어쇼" : StageInformation.new("res://maps/BattleField_AirShow.tscn", Vector2(918, 449)),
+	"우당탕탕" : StageInformation.new("res://maps/BattleField_Udangtangtang.tscn", Vector2(918, 449))
 }
 
 # weapon 정보

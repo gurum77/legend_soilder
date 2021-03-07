@@ -3,11 +3,15 @@ class_name Enemy
 signal dead
 signal added
 signal removed
+
 export var HP = 3000
-onready var score = HP
 export var minimap_icon = "mob"
 
+onready var score = HP
 onready var max_HP = HP
+
+enum DamageType{normal, critical, headshot}
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# signal 연결
@@ -45,11 +49,32 @@ func set_HP(hp):
 # 이 적을 죽이면 받는 score
 func get_score()->int:
 	return score
-		
+	
+# damage type
+# 헤드샷 : 5% 확률
+# 크리티컬 : 10% 확률
+func get_damage_type()->int:
+	var v = rand_range(0, 100)
+	if v < 5:
+		return DamageType.headshot
+	elif v < 15:
+		return DamageType.critical
+	return DamageType.normal
+	
+func get_power_by_type(var power, var damage_type)->int:
+	if damage_type == DamageType.critical:
+		return power * 3
+	elif damage_type == DamageType.headshot:
+		return power * 5
+	return power
+	
 # damage 를 준다.
 func damage(power):
+	var dt = get_damage_type()
+	power = get_power_by_type(power, dt)
+	
 	HP = HP - power
-	on_take_damage(power)
+	on_take_damage(power, dt)
 	$HPBar.set_hp(HP)
 	if HP <= 0:
 		HP = 0
@@ -62,9 +87,16 @@ func make_item():
 	if item_maker != null:
 		item_maker.make_item(max_HP)
 	
-func on_take_damage(power):
+func on_take_damage(power, damage_type):
 	var ins = Preloader.hud.instance()
 	ins.message = str(-power as int)
+	if damage_type == DamageType.critical:
+		ins.color = Color.orange
+		ins.scale = Vector2(1.3, 1.3)
+	elif damage_type == DamageType.headshot:
+		ins.color = Color.red
+		ins.scale = Vector2(2, 2)
+	
 	add_child(ins)
 	
 	for i in 1:

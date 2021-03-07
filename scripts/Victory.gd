@@ -17,12 +17,14 @@ func is_cleared()->bool:
 	return false
 	
 func _on_HomeButton_pressed():
+	SoundManager.play_ui_click_audio()
 	var err = get_tree().change_scene("res://scenes/Home.tscn")
 	if err != OK:
 		push_error("change_scene failed")
 
 
 func _on_NextButton_pressed():
+	SoundManager.play_ui_click_audio()
 	# 모든 step을 완료 했다면 stage selector로 가서 결과를 본다
 	var err = OK
 	if si != null and si.is_cleared():

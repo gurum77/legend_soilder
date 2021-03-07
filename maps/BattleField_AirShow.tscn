@@ -1,0 +1,93 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://maps/Stage.gd" type="Script" id=1]
+[ext_resource path="res://scenes/enemies/Bomber.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Spawner.tscn" type="PackedScene" id=4]
+[ext_resource path="res://maps/BattleField_Ground.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/PlayerSpawner.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/enemies/Soldier.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/obstacles/Box1.tscn" type="PackedScene" id=9]
+
+[node name="BattleField_에어쇼" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ]
+}
+map_name = "Focus"
+
+[node name="BattleField_Ground" parent="." instance=ExtResource( 6 )]
+
+[node name="PlayerSpawner" parent="." instance=ExtResource( 7 )]
+position = Vector2( 400, 528 )
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Spawner" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( -112, -112 )
+
+[node name="Bomber" parent="Enemies/Spawner" instance=ExtResource( 2 )]
+
+[node name="Spawner3" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 1552, -368 )
+
+[node name="Bomber" parent="Enemies/Spawner3" instance=ExtResource( 2 )]
+
+[node name="Spawner2" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 1744, 1424 )
+
+[node name="Bomber" parent="Enemies/Spawner2" instance=ExtResource( 2 )]
+
+[node name="Spawner4" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( -464, 1136 )
+
+[node name="Bomber" parent="Enemies/Spawner4" instance=ExtResource( 2 )]
+
+[node name="Spawner5" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 80, 112 )
+requirement_step = 3
+
+[node name="Soldier" parent="Enemies/Spawner5" instance=ExtResource( 8 )]
+
+[node name="Spawner6" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 720, 112 )
+requirement_step = 3
+
+[node name="Soldier" parent="Enemies/Spawner6" instance=ExtResource( 8 )]
+
+[node name="Spawner7" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 688, 976 )
+requirement_step = 3
+
+[node name="Soldier" parent="Enemies/Spawner7" instance=ExtResource( 8 )]
+
+[node name="Spawner8" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 80, 976 )
+requirement_step = 3
+
+[node name="Soldier" parent="Enemies/Spawner8" instance=ExtResource( 8 )]
+
+[node name="Box" type="Node2D" parent="."]
+
+[node name="Box1" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 336, 464 )
+
+[node name="Box2" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 400, 464 )
+
+[node name="Box3" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 464, 464 )
+
+[node name="Box4" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 464, 528 )
+
+[node name="Box6" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 464, 592 )
+
+[node name="Box7" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 400, 592 )
+
+[node name="Box8" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 336, 592 )
+
+[node name="Box5" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 336, 528 )

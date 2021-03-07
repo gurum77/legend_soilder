@@ -5,6 +5,7 @@ func _ready():
 	_on_PlayerButton_pressed()
 	
 func _on_BackButton_pressed():
+	SoundManager.play_ui_click_audio()
 	var err = get_tree().change_scene("res://scenes/Home.tscn")
 	
 	if err != OK:
@@ -16,6 +17,7 @@ func _exit_tree():
 
 # player를 누르면 player 정보를 표시한다.
 func _on_PlayerButton_pressed():
+	SoundManager.play_ui_click_audio()
 	var desc_panel = get_tree().root.get_node("Equipment/Control/WeaponDescriptionPanel")
 	if desc_panel == null:
 		return

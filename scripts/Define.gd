@@ -19,7 +19,8 @@ var default_gem_amount = 1
 # 모든 적이 공격을 하지 않도록 하는 설정(디버깅용)
 var no_attack_enemy = false
 
-var default_spawn_interval = 5.0
+var default_spawn_interval = 6.0
+var default_spawn_interval_airplane = 12.0
 
 export (Texture) var Player_texture = null
 export (Texture) var FlameThrower_texture = null

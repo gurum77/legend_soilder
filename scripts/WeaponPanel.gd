@@ -42,6 +42,7 @@ func update():
 			
 # 무기를 클릭하면 상세창이 있는 경우에 상세창에 정보를 뿌린다.
 func _on_WeaponButton_pressed():
+	SoundManager.play_ui_click_audio()
 	var desc_panel = get_tree().root.get_node("Equipment/Control/WeaponDescriptionPanel")
 	if desc_panel == null:
 		return
@@ -60,12 +61,14 @@ func _on_WeaponButton_pressed():
 
 # set 버튼을 누르면 setting weapon panel을 보여준다.
 func _on_EquipmentButton_pressed():
+	SoundManager.play_ui_click_audio()
 	var ins = settingWeaponPanel.instance()
 	ins.weapon = weapon
 	get_tree().root.add_child(ins)
 
 # 구매를 한다.
 func _on_BuyButton_pressed():
+	SoundManager.play_ui_click_audio()
 	if StaticData.total_money < price:
 		var dlg = MyAcceptDialog.new()
 		dlg.dialog_text = tr("You need more money.") + "\n" + tr("Go to shop?")
@@ -82,6 +85,7 @@ func _on_BuyButton_pressed():
 		update()
 	
 func on_GoToShopButton_pressed():
+	SoundManager.play_ui_click_audio()
 	var err = get_tree().change_scene("res://scenes/Shop.tscn")
 	if err != OK:
 		push_error("change_scene failed")

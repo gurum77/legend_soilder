@@ -30,6 +30,11 @@ func make_money(hp):
 	var count = amount / Define.default_money_amount
 	if count < 0:
 		count = 1
+	var money_pack_count:int = count / 10
+	count -= (money_pack_count * 10)
 	for i in count:
 		var ins = Preloader.money.instance()
+		add_instance(ins)
+	for i in money_pack_count:
+		var ins = Preloader.money_pack.instance()
 		add_instance(ins)

@@ -10,6 +10,8 @@ var player:bool = false
 var free_after_animation = false
 var start_position 
 var hit_object:Dictionary
+# 동시에 여러발 발사하는 경우 2번째 이후는 소리를 내지 않도록 하기 위
+var mute = false
 
 
 export (Define.Weapon) var weapon
@@ -53,8 +55,9 @@ func _ready():
 
 	
 	# 무기 종류에 맞는 소리 실행
-	$AudioStreamPlayer2D.stream = SoundManager.get_bullet_shot_audio_stream(weapon)
-	$AudioStreamPlayer2D.play()
+	if !mute:
+		$AudioStreamPlayer2D.stream = SoundManager.get_bullet_shot_audio_stream(weapon)
+		$AudioStreamPlayer2D.play()
 		
 	
 # bullet이 날아가도록 한다

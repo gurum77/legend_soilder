@@ -78,6 +78,7 @@ func update_stage_buttons():
 
 # 버튼을 누르면 해당 position을 찾아서 스크롤을 한다
 func on_stage_button_pressed(button):
+	SoundManager.play_ui_click_audio()
 	move_to_stage_position(button.stage_name)
 		
 # 지정한 station position으로 이동
@@ -95,6 +96,7 @@ func move_to_stage_position(stage_name):
 	$Tween.start()
 
 func _on_TextureButton_pressed():
+	SoundManager.play_ui_click_audio()
 	var err = get_tree().change_scene("res://scenes/Home.tscn")
 	if err != OK:
 		push_error("change_scene failed")
@@ -102,6 +104,7 @@ func _on_TextureButton_pressed():
 # 게임 시작
 # go 버튼 클릭
 func _on_StartButton_pressed():
+	SoundManager.play_ui_click_audio()
 	# current_step이 max_step보다 크면 안됨
 	var si = StaticData.get_current_stage_information()
 	if si != null:

@@ -1,0 +1,491 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/obstacles/Bush.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/Bush.gd" type="Script" id=2]
+
+[node name="Bush" type="Node2D"]
+
+[node name="Bush" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 752, 688 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush2" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 784, 688 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush3" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 816, 688 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush4" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 848, 688 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush5" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 752, 656 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush6" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 784, 656 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush7" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 816, 656 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush8" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 848, 656 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush9" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 752, 624 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush65" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 880, 688 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush68" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 880, 656 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush13" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 624, 688 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush14" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 656, 688 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush15" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 688, 688 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush16" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 720, 688 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush17" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 624, 656 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush18" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 656, 656 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush19" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 688, 656 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush20" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 720, 656 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush21" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 624, 624 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush22" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 656, 624 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush23" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 688, 624 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush25" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 624, 784 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush26" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 656, 784 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush27" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 688, 784 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush28" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 624, 752 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush29" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 656, 752 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush30" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 688, 752 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush31" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 624, 720 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush32" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 656, 720 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush33" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 688, 720 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush34" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 720, 784 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush36" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 720, 752 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush38" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 720, 720 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush35" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 624, 880 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush37" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 656, 880 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush39" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 688, 880 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush40" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 624, 848 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush41" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 656, 848 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush42" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 688, 848 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush43" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 624, 816 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush44" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 656, 816 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush45" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 688, 816 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush46" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 720, 880 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush47" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 720, 848 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush49" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 624, 944 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush50" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 656, 944 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush51" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 688, 944 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush52" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 624, 912 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush53" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 656, 912 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush54" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 688, 912 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush74" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 912, 688 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush75" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 944, 688 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush76" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 976, 688 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush77" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 912, 656 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush78" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 944, 656 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush79" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 976, 656 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush81" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 944, 624 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush82" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 976, 624 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush83" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 912, 784 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush84" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 944, 784 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush85" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 976, 784 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush86" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 912, 752 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush87" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 944, 752 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush88" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 976, 752 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush89" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 912, 720 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush90" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 944, 720 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush91" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 976, 720 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush92" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 912, 880 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush93" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 944, 880 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush94" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 976, 880 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush95" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 912, 848 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush96" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 944, 848 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush97" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 976, 848 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush98" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 912, 816 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush99" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 944, 816 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush100" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 976, 816 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush101" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 912, 944 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush102" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 944, 944 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush103" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 976, 944 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush104" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 912, 912 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush105" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 944, 912 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush106" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 976, 912 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush55" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 720, 944 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush56" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 720, 912 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush57" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 752, 944 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush58" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 784, 944 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush59" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 816, 944 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush60" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 752, 912 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush61" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 784, 912 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush62" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 816, 912 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush63" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 848, 944 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush64" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 848, 912 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush66" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 880, 944 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush67" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 880, 912 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush48" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 720, 816 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Bush24" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 720, 624 )
+z_index = 1
+script = ExtResource( 2 )

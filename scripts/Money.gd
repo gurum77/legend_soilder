@@ -1,10 +1,17 @@
 extends ItemBase
 
-
+enum MoneyType{money, money_pack}
+export (MoneyType) var money_type = MoneyType.money
 var money_amount = Define.default_money_amount
 var max_dist = 30
 
+onready var stream_player = get_node_or_null("AudioStreamPlayer2D")
+
 func _ready():
+	if money_type == MoneyType.money:
+		money_amount = Define.default_money_amount
+	elif money_type == MoneyType.money_pack:
+		money_amount = Define.default_money_amount * 10
 	randomize()
 	var dist = rand_range(0, 1) * max_dist
 	var dir = Vector2(rand_range(0, 1), rand_range(0, 1))
@@ -13,6 +20,8 @@ func _ready():
 	
 
 func get_item():
+	if stream_player != null:
+		stream_player.play()
 	StaticData.total_money += money_amount
 	StaticData.current_stage_money += money_amount
 	# 더이상 선택되지 않게
