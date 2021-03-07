@@ -5,11 +5,11 @@ class_name PathFinder
 onready var astar_node
 
 # The Tilemap node doesn't have clear bounds so we're defining the map's limits here
-export(Vector2) var map_size = Vector2(16, 16)
+var map_size = Vector2(16, 16)
 
 # big size obstacle로 적용하는지?
 export(bool) var big_size_obstacle = false
-
+export(bool) var draw_path = false
 
 # The path start and end variables use setter methods
 # You can find them at the bottom of the script
@@ -68,12 +68,17 @@ func init_tilemap(var map):
 	for node in all_nodes_in_map:
 		if not node is TileMap:
 			continue
+		# 첫번째로 찾아 지는 타일맵이 ground이다.
 		self.tilemap = node as TileMap
 		break
 		
-	# tilemap을 찾은 경
+	# tilemap을 찾은 경우
+	# tilemap의 전체 크기(row, col)를 찾는다.
 	if tilemap != null:
 		_half_cell_size = tilemap.cell_size / 2
+		var rect = self.tilemap.get_used_rect()
+		map_size.x = rect.size.x
+		map_size.y = rect.size.y
 		
 		obstacles = []#tilemap.get_used_cells_by_id(0)
 		
@@ -82,6 +87,8 @@ func init_tilemap(var map):
 		for node in _nodes:
 			if node is TileMap:
 				var tm:TileMap = node as TileMap
+				
+
 				# 0 이 물타일이다. 물타일이 사용된 cell을 가져온다 
 				var cells = tm.get_used_cells_by_id(0)
 				for cell in cells:
@@ -257,6 +264,8 @@ func clear_previous_path_drawing():
 
 
 func _draw():
+	if not draw_path:
+		return
 	if not _point_path:
 		return
 	var point_start = _point_path[0]
