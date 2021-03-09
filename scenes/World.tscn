@@ -30,6 +30,7 @@ script = ExtResource( 3 )
 [node name="BattleField_SideWater" parent="MapManager" instance=ExtResource( 2 )]
 
 [node name="PathFinder" parent="." instance=ExtResource( 17 )]
+draw_path = true
 
 [node name="Line2D" type="Line2D" parent="PathFinder"]
 width = 3.0
@@ -37,6 +38,7 @@ default_color = Color( 0.4, 0.501961, 1, 1 )
 
 [node name="PathFinder64x64" parent="." instance=ExtResource( 17 )]
 big_size_obstacle = true
+draw_path = true
 
 [node name="Line2D" type="Line2D" parent="PathFinder64x64"]
 points = PoolVector2Array( 890.788, 446.315 )
@@ -166,13 +168,13 @@ margin_bottom = 25.6674
 [node name="Player" parent="." instance=ExtResource( 9 )]
 position = Vector2( 183.964, 186.716 )
 
-[node name="Body" parent="Player" index="0"]
+[node name="Body" parent="Player" index="1"]
 move_joystick = NodePath("../../CanvasLayer/MoveJoystick")
 aim_joystick = NodePath("../../CanvasLayer/AimJoystick")
 
-[node name="LegAnimatedSprite" parent="Player/Body/AnimatedSprites" index="0"]
+[node name="LegAnimatedSprite" parent="Player/Body/AnimatedSprites" index="1"]
 position = Vector2( 0.28064, 0 )
-frame = 0
+frame = 6
 
 [node name="Money" parent="." instance=ExtResource( 15 )]
 position = Vector2( 149.913, 136.683 )

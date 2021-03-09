@@ -53,7 +53,8 @@ var stage_informations:Dictionary={
 	"사과" : StageInformation.new("res://maps/BattleField_Apple.tscn", Vector2(918, 449)),
 	"감옥" : StageInformation.new("res://maps/BattleField_Prison.tscn", Vector2(918, 449)),
 	"에어쇼" : StageInformation.new("res://maps/BattleField_AirShow.tscn", Vector2(918, 449)),
-	"우당탕탕" : StageInformation.new("res://maps/BattleField_Udangtangtang.tscn", Vector2(918, 449))
+	"우당탕탕" : StageInformation.new("res://maps/BattleField_Udangtangtang.tscn", Vector2(918, 449)),
+	"체스" : StageInformation.new("res://maps/BattleField_Chess.tscn", Vector2(918, 449))
 }
 
 # weapon 정보

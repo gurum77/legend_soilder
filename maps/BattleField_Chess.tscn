@@ -1,0 +1,787 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://maps/Stage.gd" type="Script" id=1]
+[ext_resource path="res://scenes/enemies/Bomber.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/JumpingTrap.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Spawner.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/GreenPortalSet.tscn" type="PackedScene" id=5]
+[ext_resource path="res://maps/BattleField_Ground.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/PlayerSpawner.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/enemies/Soldier.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/obstacles/Box1.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/obstacles/Rock1.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/BluePortalSet.tscn" type="PackedScene" id=11]
+
+[node name="BattleField_체스" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ]
+}
+map_name = "Focus"
+
+[node name="BattleField_Ground" parent="." instance=ExtResource( 6 )]
+
+[node name="PlayerSpawner" parent="." instance=ExtResource( 7 )]
+position = Vector2( 432, 816 )
+
+[node name="JumpingTraps" type="Node2D" parent="."]
+
+[node name="JumpingTrap" parent="JumpingTraps" instance=ExtResource( 3 )]
+position = Vector2( 112, 112 )
+
+[node name="JumpingTrap2" parent="JumpingTraps" instance=ExtResource( 3 )]
+position = Vector2( 496, 112 )
+
+[node name="JumpingTrap3" parent="JumpingTraps" instance=ExtResource( 3 )]
+position = Vector2( 304, 112 )
+rotation = 3.14159
+
+[node name="JumpingTrap4" parent="JumpingTraps" instance=ExtResource( 3 )]
+position = Vector2( 688, 688 )
+rotation = 1.5708
+
+[node name="JumpingTrap5" parent="JumpingTraps" instance=ExtResource( 3 )]
+position = Vector2( 688, 880 )
+rotation = 3.14159
+
+[node name="JumpingTrap15" parent="JumpingTraps" instance=ExtResource( 3 )]
+position = Vector2( 496, 880 )
+
+[node name="JumpingTrap16" parent="JumpingTraps" instance=ExtResource( 3 )]
+position = Vector2( 496, 688 )
+
+[node name="JumpingTrap6" parent="JumpingTraps" instance=ExtResource( 3 )]
+position = Vector2( 688, 496 )
+rotation = -1.5708
+
+[node name="JumpingTrap7" parent="JumpingTraps" instance=ExtResource( 3 )]
+position = Vector2( 112, 688 )
+
+[node name="JumpingTrap13" parent="JumpingTraps" instance=ExtResource( 3 )]
+position = Vector2( 304, 688 )
+
+[node name="JumpingTrap14" parent="JumpingTraps" instance=ExtResource( 3 )]
+position = Vector2( 304, 880 )
+rotation = -0.785398
+
+[node name="JumpingTrap8" parent="JumpingTraps" instance=ExtResource( 3 )]
+position = Vector2( 112, 496 )
+
+[node name="JumpingTrap9" parent="JumpingTraps" instance=ExtResource( 3 )]
+position = Vector2( 112, 304 )
+rotation = -1.5708
+
+[node name="JumpingTrap10" parent="JumpingTraps" instance=ExtResource( 3 )]
+position = Vector2( 688, 304 )
+rotation = -1.5708
+
+[node name="JumpingTrap11" parent="JumpingTraps" instance=ExtResource( 3 )]
+position = Vector2( 496, 304 )
+rotation = 0.785398
+
+[node name="JumpingTrap12" parent="JumpingTraps" instance=ExtResource( 3 )]
+position = Vector2( 304, 304 )
+rotation = -0.785398
+
+[node name="Portals" type="Node2D" parent="."]
+
+[node name="GreenPortalSet" parent="Portals" instance=ExtResource( 5 )]
+position = Vector2( 304, 112 )
+
+[node name="Portal1" parent="Portals/GreenPortalSet" index="0"]
+position = Vector2( 384, 0 )
+
+[node name="Portal2" parent="Portals/GreenPortalSet" index="1"]
+position = Vector2( 192, 384 )
+
+[node name="BluePortalSet" parent="Portals" instance=ExtResource( 11 )]
+position = Vector2( 304, 496 )
+
+[node name="Portal1" parent="Portals/BluePortalSet" index="0"]
+position = Vector2( -192, 384 )
+
+[node name="Portal2" parent="Portals/BluePortalSet" index="1"]
+position = Vector2( 0, 0 )
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Spawner2" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 1744, 1424 )
+requirement_step = 2
+
+[node name="Bomber" parent="Enemies/Spawner2" instance=ExtResource( 2 )]
+
+[node name="Spawner5" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 112, 400 )
+
+[node name="Soldier" parent="Enemies/Spawner5" instance=ExtResource( 8 )]
+
+[node name="Spawner6" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 656, 400 )
+
+[node name="Soldier" parent="Enemies/Spawner6" instance=ExtResource( 8 )]
+
+[node name="Spawner7" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 496, 208 )
+requirement_step = 3
+
+[node name="Soldier" parent="Enemies/Spawner7" instance=ExtResource( 8 )]
+
+[node name="Spawner8" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 304, 208 )
+requirement_step = 3
+
+[node name="Soldier" parent="Enemies/Spawner8" instance=ExtResource( 8 )]
+
+[node name="Box" type="Node2D" parent="."]
+
+[node name="Box1" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 336, 464 )
+
+[node name="Box2" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 208, 464 )
+
+[node name="Box3" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 464, 272 )
+
+[node name="Box4" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 336, 528 )
+
+[node name="Box6" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 528, 272 )
+
+[node name="Box7" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 464, 336 )
+
+[node name="Box9" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 528, 336 )
+
+[node name="Box10" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 80, 656 )
+
+[node name="Box11" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 144, 656 )
+
+[node name="Box12" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 80, 720 )
+
+[node name="Box13" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 144, 720 )
+
+[node name="Box14" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 80, 272 )
+
+[node name="Box15" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 144, 272 )
+
+[node name="Box16" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 80, 336 )
+
+[node name="Box17" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 144, 336 )
+
+[node name="Box18" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 464, 656 )
+
+[node name="Box19" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 528, 656 )
+
+[node name="Box20" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 464, 720 )
+
+[node name="Box21" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 528, 720 )
+
+[node name="Box22" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 656, 464 )
+
+[node name="Box23" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 720, 464 )
+
+[node name="Box24" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 656, 528 )
+
+[node name="Box25" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 720, 528 )
+
+[node name="Box26" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 656, 80 )
+
+[node name="Box27" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 720, 80 )
+
+[node name="Box28" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 656, 144 )
+
+[node name="Box29" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 720, 144 )
+
+[node name="Box30" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 272, 80 )
+
+[node name="Box31" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 336, 80 )
+
+[node name="Box32" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 272, 144 )
+
+[node name="Box33" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 336, 144 )
+
+[node name="Box34" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 272, 848 )
+
+[node name="Box35" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 336, 848 )
+
+[node name="Box36" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 272, 912 )
+
+[node name="Box37" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 336, 912 )
+
+[node name="Box38" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 656, 848 )
+
+[node name="Box39" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 720, 848 )
+
+[node name="Box40" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 656, 912 )
+
+[node name="Box41" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 720, 912 )
+
+[node name="Box8" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 272, 464 )
+
+[node name="Box5" parent="Box" instance=ExtResource( 9 )]
+position = Vector2( 272, 528 )
+
+[node name="Rocks" type="Node2D" parent="."]
+
+[node name="Rock1" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 48 )
+
+[node name="Rock62" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 48 )
+
+[node name="Rock2" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 80 )
+
+[node name="Rock3" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 112 )
+
+[node name="Rock4" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 144 )
+
+[node name="Rock5" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 176 )
+
+[node name="Rock6" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 208 )
+
+[node name="Rock7" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 240 )
+
+[node name="Rock8" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 272 )
+
+[node name="Rock63" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 48, 208 )
+
+[node name="Rock64" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 80, 208 )
+
+[node name="Rock65" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 112, 208 )
+
+[node name="Rock66" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 144, 208 )
+
+[node name="Rock68" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 336, 208 )
+
+[node name="Rock69" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 368, 208 )
+
+[node name="Rock70" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 400, 208 )
+
+[node name="Rock74" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 432, 208 )
+
+[node name="Rock75" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 464, 208 )
+
+[node name="Rock71" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 176, 208 )
+
+[node name="Rock72" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 272, 208 )
+
+[node name="Rock73" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 240, 208 )
+
+[node name="Rock84" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 48, 400 )
+
+[node name="Rock85" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 80, 400 )
+
+[node name="Rock87" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 144, 400 )
+
+[node name="Rock88" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 176, 400 )
+
+[node name="Rock89" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 400 )
+
+[node name="Rock90" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 240, 400 )
+
+[node name="Rock91" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 48, 784 )
+
+[node name="Rock92" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 80, 784 )
+
+[node name="Rock93" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 112, 784 )
+
+[node name="Rock94" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 144, 784 )
+
+[node name="Rock95" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 176, 784 )
+
+[node name="Rock96" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 784 )
+
+[node name="Rock97" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 240, 784 )
+
+[node name="Rock98" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 304, 400 )
+
+[node name="Rock99" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 336, 400 )
+
+[node name="Rock101" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 400, 400 )
+
+[node name="Rock103" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 464, 400 )
+
+[node name="Rock104" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 496, 400 )
+
+[node name="Rock106" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 336, 784 )
+
+[node name="Rock107" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 368, 784 )
+
+[node name="Rock108" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 400, 784 )
+
+[node name="Rock109" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 432, 784 )
+
+[node name="Rock110" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 464, 784 )
+
+[node name="Rock112" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 560, 784 )
+
+[node name="Rock113" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 784 )
+
+[node name="Rock115" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 656, 784 )
+
+[node name="Rock122" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 624, 784 )
+
+[node name="Rock116" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 688, 784 )
+
+[node name="Rock117" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 720, 784 )
+
+[node name="Rock118" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 752, 784 )
+
+[node name="Rock119" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 560, 400 )
+
+[node name="Rock120" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 400 )
+
+[node name="Rock121" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 624, 400 )
+
+[node name="Rock123" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 688, 400 )
+
+[node name="Rock124" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 720, 400 )
+
+[node name="Rock125" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 752, 400 )
+
+[node name="Rock77" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 208 )
+
+[node name="Rock83" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 560, 208 )
+
+[node name="Rock78" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 624, 208 )
+
+[node name="Rock79" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 656, 208 )
+
+[node name="Rock80" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 688, 208 )
+
+[node name="Rock81" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 720, 208 )
+
+[node name="Rock82" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 752, 208 )
+
+[node name="Rock9" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 304 )
+
+[node name="Rock10" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 336 )
+
+[node name="Rock11" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 368 )
+
+[node name="Rock12" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 528 )
+
+[node name="Rock13" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 432 )
+
+[node name="Rock14" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 464 )
+
+[node name="Rock15" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 496 )
+
+[node name="Rock16" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 272, 400 )
+
+[node name="Rock18" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 592 )
+
+[node name="Rock19" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 624 )
+
+[node name="Rock20" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 656 )
+
+[node name="Rock21" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 688 )
+
+[node name="Rock22" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 720 )
+
+[node name="Rock23" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 752 )
+
+[node name="Rock24" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 272, 784 )
+
+[node name="Rock25" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 816 )
+
+[node name="Rock26" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 848 )
+
+[node name="Rock27" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 880 )
+
+[node name="Rock28" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 912 )
+
+[node name="Rock29" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 944 )
+
+[node name="Rock30" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 208, 976 )
+
+[node name="Rock32" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 80 )
+
+[node name="Rock33" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 112 )
+
+[node name="Rock34" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 144 )
+
+[node name="Rock35" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 176 )
+
+[node name="Rock36" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 528, 208 )
+
+[node name="Rock37" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 240 )
+
+[node name="Rock38" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 272 )
+
+[node name="Rock39" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 304 )
+
+[node name="Rock40" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 336 )
+
+[node name="Rock41" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 368 )
+
+[node name="Rock42" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 528 )
+
+[node name="Rock43" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 432 )
+
+[node name="Rock44" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 464 )
+
+[node name="Rock45" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 496 )
+
+[node name="Rock46" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 528, 400 )
+
+[node name="Rock127" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 48, 592 )
+
+[node name="Rock128" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 80, 592 )
+
+[node name="Rock129" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 112, 592 )
+
+[node name="Rock157" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 144, 592 )
+
+[node name="Rock160" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 240, 592 )
+
+[node name="Rock161" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 304, 592 )
+
+[node name="Rock162" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 336, 592 )
+
+[node name="Rock163" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 368, 592 )
+
+[node name="Rock164" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 400, 592 )
+
+[node name="Rock165" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 432, 592 )
+
+[node name="Rock166" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 464, 592 )
+
+[node name="Rock168" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 560, 592 )
+
+[node name="Rock169" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 592 )
+
+[node name="Rock170" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 624, 592 )
+
+[node name="Rock171" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 656, 592 )
+
+[node name="Rock172" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 688, 592 )
+
+[node name="Rock173" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 720, 592 )
+
+[node name="Rock175" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 272, 592 )
+
+[node name="Rock176" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 528, 592 )
+
+[node name="Rock47" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 560 )
+
+[node name="Rock49" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 624 )
+
+[node name="Rock50" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 656 )
+
+[node name="Rock52" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 720 )
+
+[node name="Rock53" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 752 )
+
+[node name="Rock54" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 528, 784 )
+
+[node name="Rock144" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 48, 976 )
+
+[node name="Rock159" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 80, 976 )
+
+[node name="Rock177" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 112, 976 )
+
+[node name="Rock178" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 144, 976 )
+
+[node name="Rock179" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 176, 976 )
+
+[node name="Rock181" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 240, 976 )
+
+[node name="Rock182" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 304, 976 )
+
+[node name="Rock183" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 336, 976 )
+
+[node name="Rock184" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 368, 976 )
+
+[node name="Rock185" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 400, 976 )
+
+[node name="Rock186" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 432, 976 )
+
+[node name="Rock187" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 464, 976 )
+
+[node name="Rock188" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 496, 976 )
+
+[node name="Rock189" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 560, 976 )
+
+[node name="Rock190" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 976 )
+
+[node name="Rock191" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 624, 976 )
+
+[node name="Rock192" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 656, 976 )
+
+[node name="Rock193" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 688, 976 )
+
+[node name="Rock194" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 720, 976 )
+
+[node name="Rock195" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 752, 976 )
+
+[node name="Rock48" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 272, 976 )
+
+[node name="Rock196" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 528, 976 )
+
+[node name="Rock55" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 816 )
+
+[node name="Rock56" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 848 )
+
+[node name="Rock57" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 880 )
+
+[node name="Rock58" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 912 )
+
+[node name="Rock59" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 592, 944 )
+
+[node name="Rock126" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 400, 48 )
+
+[node name="Rock130" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 400, 80 )
+
+[node name="Rock131" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 400, 112 )
+
+[node name="Rock132" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 400, 144 )
+
+[node name="Rock133" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 400, 176 )
+
+[node name="Rock134" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 400, 240 )
+
+[node name="Rock135" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 400, 272 )
+
+[node name="Rock137" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 400, 336 )
+
+[node name="Rock138" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 400, 368 )
+
+[node name="Rock139" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 400, 528 )
+
+[node name="Rock141" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 400, 464 )
+
+[node name="Rock142" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 400, 496 )
+
+[node name="Rock143" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 400, 560 )
+
+[node name="Rock145" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 400, 624 )
+
+[node name="Rock146" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 400, 656 )
+
+[node name="Rock147" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 400, 688 )
+
+[node name="Rock148" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 400, 720 )
+
+[node name="Rock149" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 400, 752 )
+
+[node name="Rock150" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 400, 816 )
+
+[node name="Rock152" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 400, 880 )
+
+[node name="Rock153" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 400, 912 )
+
+[node name="Rock154" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 400, 944 )
+
+[editable path="Portals/GreenPortalSet"]
+
+[editable path="Portals/BluePortalSet"]
