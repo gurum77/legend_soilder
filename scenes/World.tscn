@@ -77,12 +77,13 @@ __meta__ = {
 }
 
 [node name="MoveJoystick" parent="CanvasLayer" instance=ExtResource( 5 )]
-margin_left = -66.0
+margin_left = -66.7492
 margin_top = -240.0
-margin_right = 234.0
+margin_right = 233.251
 margin_bottom = 60.0
 joystick_mode = 1
 _pressed_color = Color( 0.160784, 0.713726, 0.788235, 1 )
+dead_zone = 0.03
 
 [node name="AimJoystick" parent="CanvasLayer" instance=ExtResource( 6 )]
 margin_left = 496.132
@@ -91,6 +92,7 @@ margin_right = 613.132
 margin_bottom = -22.1298
 joystick_mode = 1
 _pressed_color = Color( 0.776471, 0.192157, 0.192157, 1 )
+dead_zone = 0.03
 
 [node name="StageProgress" parent="CanvasLayer" instance=ExtResource( 12 )]
 step = 0.01
@@ -111,10 +113,10 @@ __meta__ = {
 
 [node name="DashButton" type="TextureButton" parent="CanvasLayer"]
 self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 450.087
-margin_top = 341.575
-margin_right = 514.087
-margin_bottom = 405.575
+margin_left = 444.521
+margin_top = 367.486
+margin_right = 508.521
+margin_bottom = 431.486
 rect_scale = Vector2( 0.7, 0.7 )
 texture_normal = ExtResource( 11 )
 script = ExtResource( 16 )
@@ -174,7 +176,7 @@ aim_joystick = NodePath("../../CanvasLayer/AimJoystick")
 
 [node name="LegAnimatedSprite" parent="Player/Body/AnimatedSprites" index="1"]
 position = Vector2( 0.28064, 0 )
-frame = 6
+frame = 2
 
 [node name="Money" parent="." instance=ExtResource( 15 )]
 position = Vector2( 149.913, 136.683 )
