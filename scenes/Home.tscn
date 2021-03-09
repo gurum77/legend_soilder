@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/MyAcceptDialog.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/ui/Button BG shadow pressed.png" type="Texture" id=2]
 [ext_resource path="res://assets/ui/Button BG shadow.png" type="Texture" id=3]
 [ext_resource path="res://assets/ui/GAME LOGO.png" type="Texture" id=4]
 [ext_resource path="res://assets/fonts/neodgm_pro.ttf" type="DynamicFontData" id=5]
@@ -89,6 +90,7 @@ __meta__ = {
 margin_right = 200.0
 margin_bottom = 48.0
 texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -112,6 +114,7 @@ margin_top = 52.0
 margin_right = 200.0
 margin_bottom = 100.0
 texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -135,6 +138,7 @@ margin_top = 104.0
 margin_right = 200.0
 margin_bottom = 152.0
 texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -158,6 +162,7 @@ margin_top = 156.0
 margin_right = 200.0
 margin_bottom = 204.0
 texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -181,6 +186,7 @@ margin_top = 208.0
 margin_right = 200.0
 margin_bottom = 256.0
 texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

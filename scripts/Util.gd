@@ -6,6 +6,14 @@ const JUMPING_NODE_COLLISION_MASK = 0
 # airplane의 z_index값
 const AIRPLANE_NODE_Z_INDEX = 4
 
+# light를 깜빡인다
+func blank_light(light, tween):
+	if light == null || tween == null:
+		return
+	light.energy = 1.0
+	tween.interpolate_property(light, "energy", light.energy, 0, 0.05, Tween.TRANS_LINEAR, Tween.EASE_IN, 0.05)
+	tween.start()
+	
 func play_animation(animated_sprite, anim, from_start_frame=false):
 	if animated_sprite == null:
 		return

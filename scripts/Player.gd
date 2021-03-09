@@ -5,6 +5,11 @@ signal dead
 var HP = Table.player_hp
 var max_HP = Table.player_hp
 export (bool) var second_player = false
+export var walk_speed = 100
+export var dash_speed = 400
+
+onready var effect_animated_sprite = get_node("Body/AnimatedSprites/EffectAnimatedSprite")
+onready var leg_animated_sprite = get_node("Body/AnimatedSprites/LegAnimatedSprite")
 func _ready():
 	# signal 연결
 	var world = get_tree().root.get_node_or_null("World")
@@ -17,6 +22,8 @@ func _ready():
 	HP = Table.get_player_hp_by_level()
 	max_HP = HP
 	
+	$Body.SPEED = walk_speed
+	effect_animated_sprite.play("none")
 	$HPBar.init(HP)
 	add_to_group("player")
 	
@@ -72,11 +79,14 @@ func revival():
 
 # dash를 한다
 func dash()->bool:
-	var dir:Vector2 = $Body.velocity.normalized()
-	if dir == Vector2.ZERO:
-		return false
-		
-	var new_position = position + dir * 70
-	$Tween.interpolate_property(self, "position", position, new_position, 0.3, Tween.TRANS_SINE, Tween.EASE_OUT)
-	$Tween.start()
+	$Body.SPEED = dash_speed
+	effect_animated_sprite.play("dash")
+	leg_animated_sprite.speed_scale = dash_speed / walk_speed
+	$DashTimer.start()
 	return true
+
+
+func _on_DashTimer_timeout():
+	$Body.SPEED = walk_speed
+	leg_animated_sprite.speed_scale = 1
+	effect_animated_sprite.play("none")

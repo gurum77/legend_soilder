@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://assets/player/body/HPistolFire_02.png" type="Texture" id=1]
 [ext_resource path="res://assets/player/body/Hero_MachineGunFire.png" type="Texture" id=2]
@@ -53,6 +53,20 @@
 [ext_resource path="res://scenes/GuideLine.tscn" type="PackedScene" id=51]
 [ext_resource path="res://Joystick/joystick_circle.png" type="Texture" id=52]
 [ext_resource path="res://scripts/Shield.gd" type="Script" id=53]
+[ext_resource path="res://assets/player/dash.png" type="Texture" id=54]
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 54 ) ],
+"loop": true,
+"name": "dash",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "none",
+"speed": 5.0
+} ]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -69,15 +83,40 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 10 ), ExtResource( 7 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 8 ) ],
 "loop": true,
-"name": "RPG_fire",
-"speed": 15.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "SMG_fire",
+"name": "SMG",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "RPG",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ) ],
+"loop": true,
+"name": "FlameThrower",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "MG",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "Pistol",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 49 ), ExtResource( 50 ), ExtResource( 47 ), ExtResource( 48 ) ],
+"loop": false,
+"name": "die",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "MG_fire",
+"speed": 15.0
 }, {
 "frames": [ ExtResource( 11 ), ExtResource( 1 ), ExtResource( 5 ) ],
 "loop": true,
@@ -89,57 +128,32 @@ animations = [ {
 "name": "FlameThrower_fire",
 "speed": 15.0
 }, {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 4 ) ],
 "loop": true,
-"name": "MG_fire",
+"name": "SMG_fire",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 7 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "RPG_fire",
 "speed": 15.0
-}, {
-"frames": [ ExtResource( 14 ) ],
-"loop": true,
-"name": "FlameThrower",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "Pistol",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 8 ) ],
-"loop": true,
-"name": "SMG",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "MG",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "RPG",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 49 ), ExtResource( 50 ), ExtResource( 47 ), ExtResource( 48 ) ],
-"loop": false,
-"name": "die",
-"speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 37 ), ExtResource( 43 ), ExtResource( 38 ), ExtResource( 31 ), ExtResource( 42 ), ExtResource( 28 ), ExtResource( 29 ) ],
-"loop": true,
-"name": "FlameThrower",
-"speed": 15.0
-}, {
-"frames": [ ExtResource( 39 ), ExtResource( 41 ), ExtResource( 40 ) ],
-"loop": true,
-"name": "Pistol",
-"speed": 15.0
-}, {
 "frames": [ ExtResource( 35 ), ExtResource( 27 ), ExtResource( 33 ) ],
 "loop": true,
 "name": "SMG",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 26 ), ExtResource( 32 ), ExtResource( 36 ), ExtResource( 25 ) ],
+"loop": true,
+"name": "RPG",
+"speed": 20.0
+}, {
+"frames": [ ExtResource( 37 ), ExtResource( 43 ), ExtResource( 38 ), ExtResource( 31 ), ExtResource( 42 ), ExtResource( 28 ), ExtResource( 29 ) ],
+"loop": true,
+"name": "FlameThrower",
 "speed": 15.0
 }, {
 "frames": [ ExtResource( 34 ), ExtResource( 30 ), ExtResource( 24 ) ],
@@ -147,10 +161,10 @@ animations = [ {
 "name": "MG",
 "speed": 15.0
 }, {
-"frames": [ ExtResource( 26 ), ExtResource( 32 ), ExtResource( 36 ), ExtResource( 25 ) ],
+"frames": [ ExtResource( 39 ), ExtResource( 41 ), ExtResource( 40 ) ],
 "loop": true,
-"name": "RPG",
-"speed": 20.0
+"name": "Pistol",
+"speed": 15.0
 } ]
 
 [sub_resource type="CircleShape2D" id=4]
@@ -158,6 +172,10 @@ animations = [ {
 [node name="Player" type="Node2D"]
 modulate = Color( 1, 1, 1, 0.858824 )
 script = ExtResource( 23 )
+
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
 
 [node name="Body" type="KinematicBody2D" parent="."]
 collision_mask = 28
@@ -193,11 +211,15 @@ bus = "sound"
 
 [node name="AnimatedSprites" type="Node2D" parent="Body"]
 
+[node name="EffectAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites"]
+frames = SubResource( 5 )
+animation = "none"
+
 [node name="LegAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites"]
 rotation = -1.5708
 frames = SubResource( 1 )
 animation = "walk"
-frame = 6
+frame = 1
 playing = true
 
 [node name="BodyAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites"]
@@ -213,6 +235,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+visible = false
 position = Vector2( -0.375851, 0.141575 )
 shape = SubResource( 4 )
 
@@ -234,6 +257,7 @@ drag_margin_right = 0.1
 drag_margin_bottom = 0.1
 
 [node name="Shield" type="Sprite" parent="."]
+visible = false
 modulate = Color( 0.368627, 1, 0.0509804, 0.152941 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 52 )
@@ -245,6 +269,7 @@ wait_time = 0.05
 [node name="EnableTimer" type="Timer" parent="Shield"]
 
 [node name="Tween" type="Tween" parent="."]
+[connection signal="timeout" from="DashTimer" to="." method="_on_DashTimer_timeout"]
 [connection signal="timeout" from="Body/FireTimer" to="Body" method="_on_FireTimer_timeout"]
 [connection signal="timeout" from="Body/AimTimer" to="Body" method="_on_AimTimer_timeout"]
 [connection signal="animation_finished" from="Body/AnimatedSprites/BodyAnimatedSprite" to="Body" method="_on_BodyAnimatedSprite_animation_finished"]

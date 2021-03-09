@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/ui/BTN BACK.png" type="Texture" id=1]
 [ext_resource path="res://Shop.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/ui/money_pack_20000.png" type="Texture" id=7]
 [ext_resource path="res://assets/ui/money_pack_30000.png" type="Texture" id=8]
 [ext_resource path="res://scenes/GemPanel.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/ui/BTN BACK pressed.png" type="Texture" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
@@ -30,6 +31,7 @@ __meta__ = {
 margin_right = 40.0
 margin_bottom = 40.0
 texture_normal = ExtResource( 1 )
+texture_pressed = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

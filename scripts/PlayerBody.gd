@@ -3,7 +3,7 @@ extends KinematicBody2D
 class_name PlayerBody
 
 var velocity = Vector2(0, 0)
-const SPEED = 100
+var SPEED = 100
 export (NodePath) var move_joystick
 onready var move_joystick_node : Joystick = get_node_or_null(move_joystick)
 

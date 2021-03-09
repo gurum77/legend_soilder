@@ -2,7 +2,7 @@ extends TextureButton
 
 export (NodePath) var player
 onready var player_node : Player = get_node(player)
-var sec = 3
+var sec = 0.75
 func _ready():
 	disabled = false
 	

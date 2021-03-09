@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/ui/Bonus 03_flip_v.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scripts/WeaponPanel.gd" type="Script" id=5]
 [ext_resource path="res://assets/ui/Money Icon.png" type="Texture" id=6]
 [ext_resource path="res://assets/fonts/neodgm_pro.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://assets/ui/Button BG shadow pressed.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 15
@@ -65,6 +66,7 @@ margin_right = 72.352
 margin_bottom = -10.3415
 rect_min_size = Vector2( 50, 35 )
 texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 8 )
 expand = true
 __meta__ = {
 "_edit_group_": true,

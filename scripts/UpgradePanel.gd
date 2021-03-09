@@ -119,9 +119,8 @@ func _on_Button_pressed():
 		return
 		
 	# 효과
-	$Light2D.energy = 1.0
-	$Tween.interpolate_property($Light2D, "energy", $Light2D.energy, 0, 0.05, Tween.TRANS_LINEAR, Tween.EASE_IN, 0.05)
-	$Tween.start()
+	Util.blank_light($Light2D, $Tween)
+	
 	SoundManager.play_ui_upgrade_audio()
 	
 	# 비용만큼 가진 돈에서 뺀다

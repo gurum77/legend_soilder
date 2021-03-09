@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/WeaponPanel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/ui/Pistol HUD.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://scenes/WeaponInventory.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/ui/man icon_no_bg.png" type="Texture" id=12]
 [ext_resource path="res://assets/ui/man icon.png" type="Texture" id=13]
+[ext_resource path="res://assets/ui/BTN BACK pressed.png" type="Texture" id=14]
 
 [sub_resource type="DynamicFont" id=1]
 size = 18
@@ -172,6 +173,7 @@ margin_top = 5.0
 margin_right = 98.0595
 margin_bottom = 58.9405
 texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
