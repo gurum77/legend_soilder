@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/ui/circle_yellow_button_64.png" type="Texture" id=1]
+[ext_resource path="res://assets/ui/Run_icon.png" type="Texture" id=2]
+[ext_resource path="res://scripts/DashButton.gd" type="Script" id=3]
+
+[node name="DashButton" type="TextureRect"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 432.0
+margin_top = 368.0
+margin_right = 496.0
+margin_bottom = 432.0
+rect_scale = Vector2( 0.7, 0.7 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+player = NodePath("../../Player")
+
+[node name="TextureProgress" type="TextureProgress" parent="."]
+margin_right = 64.0
+margin_bottom = 64.0
+value = 100.0
+texture_under = ExtResource( 1 )
+texture_progress = ExtResource( 1 )
+fill_mode = 4
+tint_under = Color( 0.270588, 0.270588, 0.270588, 1 )
+tint_progress = Color( 0.858824, 0.745098, 0.439216, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Icon" type="TextureRect" parent="."]
+self_modulate = Color( 0.054902, 0.054902, 0.054902, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 15.0
+margin_right = 16.0
+margin_bottom = 15.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 32.0862, 31.9866 )
+scale = Vector2( 0.997969, 1.00188 )
+texture = ExtResource( 1 )
+range_item_cull_mask = -2147483647
+
+[node name="TweenBlink" type="Tween" parent="."]
+[connection signal="gui_input" from="." to="." method="_on_DashButton_gui_input"]
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

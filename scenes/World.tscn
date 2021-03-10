@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scenes/MoneyPanel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://maps/BattleField_SideWater.tscn" type="PackedScene" id=2]
@@ -10,12 +10,10 @@
 [ext_resource path="res://scripts/World.gd" type="Script" id=8]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/MiniMap.tscn" type="PackedScene" id=10]
-[ext_resource path="res://assets/ui/circle_yellow_button_64.png" type="Texture" id=11]
+[ext_resource path="res://scenes/DashButton.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/StageProgress.tscn" type="PackedScene" id=12]
-[ext_resource path="res://assets/ui/Run_icon.png" type="Texture" id=13]
 [ext_resource path="res://scenes/StartSign.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/Money.tscn" type="PackedScene" id=15]
-[ext_resource path="res://scripts/DashButton.gd" type="Script" id=16]
 [ext_resource path="res://scenes/AStarPathFinder.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/StarPanel.tscn" type="PackedScene" id=18]
 [ext_resource path="res://scenes/GemPanel.tscn" type="PackedScene" id=19]
@@ -111,51 +109,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DashButton" type="TextureButton" parent="CanvasLayer"]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 444.521
-margin_top = 367.486
-margin_right = 508.521
-margin_bottom = 431.486
-rect_scale = Vector2( 0.7, 0.7 )
-texture_normal = ExtResource( 11 )
-script = ExtResource( 16 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-player = NodePath("../../Player")
-
-[node name="TextureProgress" type="TextureProgress" parent="CanvasLayer/DashButton"]
-margin_right = 64.0
-margin_bottom = 64.0
-value = 100.0
-texture_under = ExtResource( 11 )
-texture_progress = ExtResource( 11 )
-fill_mode = 4
-tint_under = Color( 0.270588, 0.270588, 0.270588, 1 )
-tint_progress = Color( 0.858824, 0.745098, 0.439216, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Tween" type="Tween" parent="CanvasLayer/DashButton"]
-
-[node name="Icon" type="TextureRect" parent="CanvasLayer/DashButton"]
-self_modulate = Color( 0.054902, 0.054902, 0.054902, 1 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 15.0
-margin_right = 16.0
-margin_bottom = 15.0
-rect_scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 13 )
-expand = true
-stretch_mode = 4
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="DashButton" parent="CanvasLayer" instance=ExtResource( 11 )]
 
 [node name="StarPanel" parent="CanvasLayer" instance=ExtResource( 18 )]
 margin_left = -480.5
@@ -176,15 +130,13 @@ aim_joystick = NodePath("../../CanvasLayer/AimJoystick")
 
 [node name="LegAnimatedSprite" parent="Player/Body/AnimatedSprites" index="1"]
 position = Vector2( 0.28064, 0 )
-frame = 2
+frame = 6
 
 [node name="Money" parent="." instance=ExtResource( 15 )]
 position = Vector2( 149.913, 136.683 )
 
 [node name="WorldEnvironment" parent="." instance=ExtResource( 20 )]
 [connection signal="pressed" from="CanvasLayer/PauseButton" to="." method="_on_PauseButton_pressed"]
-[connection signal="pressed" from="CanvasLayer/DashButton" to="CanvasLayer/DashButton" method="_on_DashButton_pressed"]
-[connection signal="tween_completed" from="CanvasLayer/DashButton/Tween" to="CanvasLayer/DashButton" method="_on_Tween_tween_completed"]
 
 [editable path="CanvasLayer/MiniMap"]
 

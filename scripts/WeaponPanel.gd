@@ -1,10 +1,10 @@
-extends Panel
+extends TextureRect
 
 export (Define.Weapon) var weapon
 
 var settingWeaponPanel = preload("res://scenes/SettingWeaponPanel.tscn")
 var weaponInventory = preload("res://scenes/WeaponInventory.tscn")
-
+var pressed_position
 onready var price = Table.get_weapon_price(weapon)
 func _ready():
 	update()
@@ -89,3 +89,13 @@ func on_GoToShopButton_pressed():
 	var err = get_tree().change_scene("res://scenes/Shop.tscn")
 	if err != OK:
 		push_error("change_scene failed")
+
+
+func _on_WeaponButton_gui_input(event):
+	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
+		if event.pressed:
+			pressed_position = event.position
+		else:
+			if Util.is_equal_vector2(pressed_position, event.position, 1):
+				Util.blank_light($Light2D, $Tween)
+				_on_WeaponButton_pressed()
