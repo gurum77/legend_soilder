@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://assets/tilesets/Rocks/TDS04_0005_Rock01.png" type="Texture" id=1]
+[ext_resource path="res://assets/walls/wall_purple.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Obstacle.gd" type="Script" id=2]
 [ext_resource path="res://scenes/HPBar.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/effects/big_explosion/Explode Source.png" type="Texture" id=4]

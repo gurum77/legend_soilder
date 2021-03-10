@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/tilesets/Trees Bushes/TDS04_0012_Bush-01.png" type="Texture" id=1]
+[ext_resource path="res://assets/bushs/bush_green.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Bush.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]

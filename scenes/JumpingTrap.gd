@@ -144,10 +144,13 @@ func jump_nodes():
 	
 	$AudioStreamPlayer2D.play()
 	$AnimatedSprite.stop()
-	# jumping trap을 스케일을 키운다.
+	
+	# jumping trap을 스케일을 키운다. z_index로 1 높여 준다.(주변 점프패드에 가져지지 않게 해야함)
 	$Tween.interpolate_property(self, "scale", scale, Vector2(1.5, 1.5), 0.05, Tween.TRANS_BOUNCE, Tween.EASE_IN) 
+	$Tween.interpolate_property(self, "z_index", z_index, z_index+1, 0.05, Tween.TRANS_LINEAR, Tween.EASE_IN) 
 #	$Tween.interpolate_property(self, "scale", Vector2(1.5, 1.5), Vector2(1.2, 1.2), 0.3, Tween.TRANS_BOUNCE, Tween.EASE_IN, 0.1)
 	$Tween.interpolate_property(self, "scale", Vector2(1.3, 1.3), Vector2(1.0, 1.0), 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN, 0.4)
+	$Tween.interpolate_property(self, "z_index", z_index+1, z_index, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN, 0.4)
 	
 	# 목적지 계산
 	var target_position:Vector2 = find_target_position()
