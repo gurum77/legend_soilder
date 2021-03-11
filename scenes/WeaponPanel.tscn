@@ -32,6 +32,9 @@ rect_min_size = Vector2( 250, 70 )
 texture = ExtResource( 9 )
 expand = true
 script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 weapon = 3
 
 [node name="WeaponButton" type="TextureRect" parent="."]
@@ -113,6 +116,7 @@ __meta__ = {
 [node name="Light2D" type="Light2D" parent="."]
 position = Vector2( 80.2408, 37.5862 )
 scale = Vector2( 4.40256, 1.51392 )
+enabled = false
 texture = ExtResource( 9 )
 energy = 0.0
 

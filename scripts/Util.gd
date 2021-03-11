@@ -10,8 +10,10 @@ const AIRPLANE_NODE_Z_INDEX = 4
 func blank_light(light, tween):
 	if light == null || tween == null:
 		return
+	light.enabled = true
 	light.energy = 1.0
 	tween.interpolate_property(light, "energy", light.energy, 0, 0.05, Tween.TRANS_LINEAR, Tween.EASE_IN, 0.05)
+	tween.interpolate_property(light, "enabled", true, false, 0.05, Tween.TRANS_LINEAR, Tween.EASE_IN, 0.05)
 	tween.start()
 	
 func play_animation(animated_sprite, anim, from_start_frame=false):

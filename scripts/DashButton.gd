@@ -25,7 +25,7 @@ func _on_Tween_tween_completed(_object, _key):
 
 
 func _on_DashButton_gui_input(event):
-	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
+	if event is InputEventScreenTouch and event.pressed or event is InputEventMouseButton and event.is_pressed():
 		if disabled:
 			return
 		Util.blank_light($Light2D, $TweenBlink)

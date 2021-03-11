@@ -31,12 +31,7 @@ func resize_map():
 		$MapScrollContainer/Map.rect_min_size.y = max_y
 	
 func draw_positions():
-	var path:Line2D = $MapScrollContainer/Map/Path
-	var path_outline:Line2D = $MapScrollContainer/Map/PathOutline
-	
-	path.clear_points()
-	path_outline.clear_points()
-	
+
 	for si_key in StaticData.stage_informations.keys():
 		var si = StaticData.get_stage_information(si_key)
 		if si == null:
@@ -47,8 +42,7 @@ func draw_positions():
 		ins.stage_name = si_key
 		
 		$MapScrollContainer/Map.add_child(ins)
-		path.add_point(ins.position)
-		path_outline.add_point(ins.position)
+
 		
 # stage position 노드를 찾는다
 func find_stage_position(stage_name)->Node2D:

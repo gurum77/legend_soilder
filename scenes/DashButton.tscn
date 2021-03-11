@@ -53,6 +53,7 @@ __meta__ = {
 position = Vector2( 32.0862, 31.9866 )
 scale = Vector2( 0.997969, 1.00188 )
 texture = ExtResource( 1 )
+energy = 0.0
 range_item_cull_mask = -2147483647
 
 [node name="TweenBlink" type="Tween" parent="."]
