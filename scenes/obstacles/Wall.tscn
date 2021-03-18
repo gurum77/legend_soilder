@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/effects/light_smoke/Light-Smoke_0000s_0001_6.png" type="Texture" id=5]
 [ext_resource path="res://assets/effects/light_smoke/Light-Smoke_0000s_0005_2.png" type="Texture" id=6]
 [ext_resource path="res://assets/effects/light_smoke/Light-Smoke_0000s_0006_1.png" type="Texture" id=7]
-[ext_resource path="res://assets/tilesets/Walls/wall.png" type="Texture" id=8]
+[ext_resource path="res://assets/walls/wall_gray.png" type="Texture" id=8]
 [ext_resource path="res://assets/effects/light_smoke/Light-Smoke_0000s_0004_3.png" type="Texture" id=9]
 [ext_resource path="res://scenes/HPBar.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scripts/ObstacleBody.gd" type="Script" id=11]
@@ -41,6 +41,7 @@ animations = [ {
 [node name="Wall" type="Node2D"]
 script = ExtResource( 1 )
 type = 3
+random_rotation_degree = 90
 
 [node name="HPBar" parent="." instance=ExtResource( 10 )]
 visible = false

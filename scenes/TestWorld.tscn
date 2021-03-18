@@ -31,11 +31,11 @@ cast_to = Vector2( 10, 0 )
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 704, 800 )
 
-[node name="Body" parent="Player" index="0"]
+[node name="Body" parent="Player" index="1"]
 aim_joystick = NodePath("../../CanvasLayer/AimJoystick")
 
-[node name="Camera2D" parent="Player" index="2"]
-zoom = Vector2( 3, 3 )
+[node name="LegAnimatedSprite" parent="Player/Body/AnimatedSprites" index="1"]
+frame = 6
 
 [node name="WorldEnvironment" parent="." instance=ExtResource( 3 )]
 

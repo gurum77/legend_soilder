@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/TDS04_0014_Box-02-mini.png-fba898fe3c39b7fc68e43da205339e62.stex"
+path="res://.import/wall_gray.png-a7a625fc54008f0a453a395eb492caf6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilesets/Crates Barrels/TDS04_0014_Box-02-mini.png"
-dest_files=[ "res://.import/TDS04_0014_Box-02-mini.png-fba898fe3c39b7fc68e43da205339e62.stex" ]
+source_file="res://assets/walls/wall_gray.png"
+dest_files=[ "res://.import/wall_gray.png-a7a625fc54008f0a453a395eb492caf6.stex" ]
 
 [params]
 

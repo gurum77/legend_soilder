@@ -6,6 +6,12 @@ const JUMPING_NODE_COLLISION_MASK = 0
 # airplane의 z_index값
 const AIRPLANE_NODE_Z_INDEX = 4
 
+# node를 랜덤하게 회전시킨다.
+func rotate_random(var node:Node2D, var random_rotation_degree):
+	var max_rotation_count = 360 / random_rotation_degree
+	var rotation_count = rand_range(0, max_rotation_count) as int
+	node.rotation_degrees = rotation_count * random_rotation_degree
+	
 # light를 깜빡인다
 func blank_light(light, tween):
 	if light == null || tween == null:

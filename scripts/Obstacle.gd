@@ -5,11 +5,19 @@ class_name Obstacle
 # 종류 (걷기만 해도 깨짐, 박스처럼 잘 깨짐, 돌처럼 단단함, 쇠처럼 절대 깨지지 않음
 enum Type{broken_by_oneshot, kind_of_box, kind_of_rock, kind_of_steel }
 export (Type) var type
+# 랜덤하고 회전하는 각도 단위
+export (int) var random_rotation_degree = 0
 var HP = 3000
 onready var hp_bar = get_node_or_null("HPBar")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# 랜덤회전 단위가 있으면 회전시킨다.
+	if random_rotation_degree > 0:
+		Util.rotate_random(self, random_rotation_degree)
+		
+		
+		
 	match type:
 		Type.broken_by_oneshot:
 			HP = Table.broken_by_oneshot_obstacle_hp

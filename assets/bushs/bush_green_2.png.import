@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/TDS04_0014_Box-02-mini.png-fba898fe3c39b7fc68e43da205339e62.stex"
+path="res://.import/bush_green_2.png-e3dcdb066689fce8b3455efa4e9efd22.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilesets/Crates Barrels/TDS04_0014_Box-02-mini.png"
-dest_files=[ "res://.import/TDS04_0014_Box-02-mini.png-fba898fe3c39b7fc68e43da205339e62.stex" ]
+source_file="res://assets/bushs/bush_green_2.png"
+dest_files=[ "res://.import/bush_green_2.png-e3dcdb066689fce8b3455efa4e9efd22.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

@@ -83,34 +83,9 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 10 ) ],
 "loop": true,
-"name": "MG_fire",
-"speed": 15.0
-}, {
-"frames": [ ExtResource( 16 ), ExtResource( 22 ), ExtResource( 21 ) ],
-"loop": true,
-"name": "FlameThrower_fire",
-"speed": 15.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "SMG_fire",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 11 ), ExtResource( 1 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "Pistol_fire",
-"speed": 15.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 7 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "RPG_fire",
-"speed": 15.0
-}, {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "Pistol",
+"name": "RPG",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ) ],
@@ -128,23 +103,48 @@ animations = [ {
 "name": "FlameThrower",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ) ],
+"frames": [ ExtResource( 3 ) ],
 "loop": true,
-"name": "RPG",
+"name": "Pistol",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 49 ), ExtResource( 50 ), ExtResource( 47 ), ExtResource( 48 ) ],
 "loop": false,
 "name": "die",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "MG_fire",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "SMG_fire",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 7 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "RPG_fire",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 22 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "FlameThrower_fire",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 1 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "Pistol_fire",
+"speed": 15.0
 } ]
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ ExtResource( 39 ), ExtResource( 41 ), ExtResource( 40 ) ],
+"frames": [ ExtResource( 26 ), ExtResource( 32 ), ExtResource( 36 ), ExtResource( 25 ) ],
 "loop": true,
-"name": "Pistol",
-"speed": 15.0
+"name": "RPG",
+"speed": 20.0
 }, {
 "frames": [ ExtResource( 34 ), ExtResource( 30 ), ExtResource( 24 ) ],
 "loop": true,
@@ -161,10 +161,10 @@ animations = [ {
 "name": "FlameThrower",
 "speed": 15.0
 }, {
-"frames": [ ExtResource( 26 ), ExtResource( 32 ), ExtResource( 36 ), ExtResource( 25 ) ],
+"frames": [ ExtResource( 39 ), ExtResource( 41 ), ExtResource( 40 ) ],
 "loop": true,
-"name": "RPG",
-"speed": 20.0
+"name": "Pistol",
+"speed": 15.0
 } ]
 
 [sub_resource type="CircleShape2D" id=5]
@@ -219,7 +219,6 @@ animation = "none"
 rotation = -1.5708
 frames = SubResource( 2 )
 animation = "walk"
-frame = 4
 playing = true
 
 [node name="BodyAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites"]
