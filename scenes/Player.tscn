@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=65 format=2]
 
 [ext_resource path="res://assets/player/body/HPistolFire_02.png" type="Texture" id=1]
 [ext_resource path="res://assets/player/body/Hero_MachineGunFire.png" type="Texture" id=2]
@@ -54,6 +54,15 @@
 [ext_resource path="res://Joystick/joystick_circle.png" type="Texture" id=52]
 [ext_resource path="res://scripts/Shield.gd" type="Script" id=53]
 [ext_resource path="res://assets/player/dash.png" type="Texture" id=54]
+[ext_resource path="res://assets/items/power posion.png" type="Texture" id=55]
+[ext_resource path="res://assets/fonts/neodgm_pro.ttf" type="DynamicFontData" id=56]
+[ext_resource path="res://scenes/PowerPosionHUD.gd" type="Script" id=57]
+[ext_resource path="res://assets/sounds/dash.ogg" type="AudioStream" id=58]
+
+[sub_resource type="DynamicFont" id=6]
+size = 32
+outline_size = 1
+font_data = ExtResource( 56 )
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -88,9 +97,9 @@ animations = [ {
 "name": "RPG",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ) ],
+"frames": [ ExtResource( 14 ) ],
 "loop": true,
-"name": "MG",
+"name": "FlameThrower",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 8 ) ],
@@ -98,9 +107,9 @@ animations = [ {
 "name": "SMG",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 14 ) ],
+"frames": [ ExtResource( 6 ) ],
 "loop": true,
-"name": "FlameThrower",
+"name": "MG",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ) ],
@@ -113,19 +122,19 @@ animations = [ {
 "name": "die",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "MG_fire",
-"speed": 15.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "SMG_fire",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 10 ), ExtResource( 7 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "RPG_fire",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 1 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "Pistol_fire",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "MG_fire",
 "speed": 15.0
 }, {
 "frames": [ ExtResource( 16 ), ExtResource( 22 ), ExtResource( 21 ) ],
@@ -133,10 +142,10 @@ animations = [ {
 "name": "FlameThrower_fire",
 "speed": 15.0
 }, {
-"frames": [ ExtResource( 11 ), ExtResource( 1 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 4 ) ],
 "loop": true,
-"name": "Pistol_fire",
-"speed": 15.0
+"name": "SMG_fire",
+"speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=4]
@@ -146,9 +155,9 @@ animations = [ {
 "name": "RPG",
 "speed": 20.0
 }, {
-"frames": [ ExtResource( 34 ), ExtResource( 30 ), ExtResource( 24 ) ],
+"frames": [ ExtResource( 37 ), ExtResource( 43 ), ExtResource( 38 ), ExtResource( 31 ), ExtResource( 42 ), ExtResource( 28 ), ExtResource( 29 ) ],
 "loop": true,
-"name": "MG",
+"name": "FlameThrower",
 "speed": 15.0
 }, {
 "frames": [ ExtResource( 35 ), ExtResource( 27 ), ExtResource( 33 ) ],
@@ -156,9 +165,9 @@ animations = [ {
 "name": "SMG",
 "speed": 15.0
 }, {
-"frames": [ ExtResource( 37 ), ExtResource( 43 ), ExtResource( 38 ), ExtResource( 31 ), ExtResource( 42 ), ExtResource( 28 ), ExtResource( 29 ) ],
+"frames": [ ExtResource( 34 ), ExtResource( 30 ), ExtResource( 24 ) ],
 "loop": true,
-"name": "FlameThrower",
+"name": "MG",
 "speed": 15.0
 }, {
 "frames": [ ExtResource( 39 ), ExtResource( 41 ), ExtResource( 40 ) ],
@@ -172,6 +181,41 @@ animations = [ {
 [node name="Player" type="Node2D"]
 modulate = Color( 1, 1, 1, 0.858824 )
 script = ExtResource( 23 )
+
+[node name="DashAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 58 )
+
+[node name="HUD" type="Node2D" parent="."]
+z_index = 1
+
+[node name="HPBar" parent="HUD" instance=ExtResource( 46 )]
+margin_top = -23.0
+margin_bottom = -15.0
+
+[node name="PowerPosionHUD" type="Node2D" parent="HUD"]
+position = Vector2( -10, -40 )
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 57 )
+
+[node name="Icon" type="Sprite" parent="HUD/PowerPosionHUD"]
+position = Vector2( 0, -1 )
+texture = ExtResource( 55 )
+hframes = 3
+
+[node name="Label" type="Label" parent="HUD/PowerPosionHUD"]
+margin_left = 16.3496
+margin_top = -14.1512
+margin_right = 48.3496
+margin_bottom = 17.8488
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0.776471, 0.901961, 0.0470588, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 0.2
@@ -219,6 +263,7 @@ animation = "none"
 rotation = -1.5708
 frames = SubResource( 2 )
 animation = "walk"
+frame = 5
 playing = true
 
 [node name="BodyAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites"]
@@ -240,10 +285,6 @@ shape = SubResource( 5 )
 
 [node name="GuideLine" parent="Body" instance=ExtResource( 51 )]
 z_index = 2
-
-[node name="HPBar" parent="." instance=ExtResource( 46 )]
-margin_top = -23.0
-margin_bottom = -15.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true

@@ -125,7 +125,8 @@ func fire():
 	var ins = Preloader.bullet.instance()
 	ins.position = get_fire_position_node().global_position
 	ins.visible = true
-	ins.player = true
+	ins.from_player = true
+	ins.player = get_parent()
 	ins.weapon = StaticData.get_current_inventory_item().weapon
 	
 	get_tree().root.add_child(ins)

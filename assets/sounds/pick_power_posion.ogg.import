@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/pick_power_posion.ogg-c28a290243cf7251a6b9ad967dfa5d0a.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/pick_power_posion.ogg"
+dest_files=[ "res://.import/pick_power_posion.ogg-c28a290243cf7251a6b9ad967dfa5d0a.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

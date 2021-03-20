@@ -6,7 +6,8 @@ export var speed = 500
 export var power = 400
 export var explosion_animation_name = "big_explosion"
 
-var player:bool = false
+var player:Player
+var from_player:bool = false
 var free_after_animation = false
 var start_position 
 var hit_object:Dictionary
@@ -32,8 +33,11 @@ func _ready():
 	if weapon != Define.Weapon.None:
 		# power
 		power = Table.get_weapon_power_by_level(weapon)
-		if player:
-			power = power + Table.get_player_power_by_level()
+		if from_player:
+			if player == null:
+				power = power + Table.get_player_power_by_level()
+			else:
+				power = power + Table.get_player_power_by_level(player.power_posion_nums)
 		
 		# speed
 		speed = Table.get_weapon_bullet_speed(weapon)
@@ -95,9 +99,9 @@ func _on_Bullet_body_entered(body):
 	
 	# 같은 편이면 리턴
 	# 건물은 편이 없으므로 그냥 총알을 터트린다.
-	if player and body is PlayerBody:
+	if from_player and body is PlayerBody:
 		return
-	if not player and body is EnemyBody:
+	if not from_player and body is EnemyBody:
 		return
 		
 	# player나 enemy이면 damage를 준다
@@ -149,7 +153,7 @@ func explosion():
 		get_tree().root.call_deferred("add_child", ins)
 		ins.global_position = global_position
 		ins.power = power;
-		ins.player = player
+		ins.from_player = from_player
 		
 
 

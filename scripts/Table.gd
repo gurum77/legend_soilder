@@ -20,6 +20,11 @@ var weapon_interval_factor = 0.965
 var upgrade1_cost = 1000	# 첫번째 upgrade 비용
 var upgrade_cost_factor = 1.3	# 이후 upgrade시 늘어나는 비용 factor
 
+# power posion effect
+var power_posion_power_up_factor = 0.07	# 파워업 7%
+var power_posion_hp_up_amount = 400	# 체력상승량
+
+
 # 무기별 interval
 var interval_Pistol = 0.4
 var interval_SMG = 0.25
@@ -47,6 +52,7 @@ var max_enemy_level = 200
 
 # 장애물의 기본 체력들
 var broken_by_oneshot_obstacle_hp = 0
+var kind_of_power_cube_hp = 2000
 var kind_of_box_obstacle_hp = 500000
 var kind_of_rock_obstacle_hp = 1000000
 var kind_of_steel_obstacle_hp = 5000000
@@ -83,8 +89,12 @@ func get_player_hp_by_level()->int:
 #	return hp as int
 	
 # power level이 반영된 palyer의 공격력 리턴
-func get_player_power_by_level():
-	return get_player_power(Table.player_power, StaticData.get_player_information().power_level)
+func get_player_power_by_level(var power_posion_nums=0):
+	var power = get_player_power(Table.player_power, StaticData.get_player_information().power_level)
+	# power posion은 player 기본 공격력의 7%증가
+	if power_posion_nums > 0:
+		power = power + (power_posion_nums * power * power_posion_power_up_factor)
+	return power
 	
 # power level이 반영된 무기의 공격력 리턴
 func get_weapon_power_by_level(weapon):

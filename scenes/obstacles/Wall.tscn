@@ -41,7 +41,6 @@ animations = [ {
 [node name="Wall" type="Node2D"]
 script = ExtResource( 1 )
 type = 3
-random_rotation_degree = 90
 
 [node name="HPBar" parent="." instance=ExtResource( 10 )]
 visible = false

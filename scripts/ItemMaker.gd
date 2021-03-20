@@ -1,18 +1,31 @@
 extends Node2D
-
+export (bool) var make_money = true
+export (bool) var make_gem= true
+export (bool) var make_power_posion = false
 var money_factor = 0.01
 var gem_factor = 0.01
 
 func make_item(hp):
 	# money (hp에 비례해서 만든다)
-	make_money(hp)
+	if make_money:
+		make_money(hp)
 	# gem (hp에 비례한 확률로 만든다)
-	make_gem(hp)
+	if make_gem:
+		make_gem(hp)
+	# power_posion 1개를 만든다.
+	if make_power_posion:
+		make_power_posion()
+	
 
 func add_instance(ins):
 	ins.global_position = global_position
 	get_tree().root.call_deferred("add_child", ins);
 	
+# power posion을 만든다.
+func make_power_posion():
+	var ins = Preloader.power_posion.instance()
+	add_instance(ins)
+			
 # gem을 만든다
 # todo : hp에 비례한 기준으로 세워서적용해야함
 # 기본 확률 0.01

@@ -23,7 +23,8 @@ size = 5
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
-size = 15
+size = 32
+outline_size = 1
 font_data = ExtResource( 3 )
 
 [node name="HPBar" type="ProgressBar"]
@@ -48,18 +49,19 @@ __meta__ = {
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -35.7051
-margin_top = -6.59993
-margin_right = 52.2949
-margin_bottom = 9.40007
-rect_scale = Vector2( 0.8, 0.8 )
+margin_left = -22.0
+margin_top = -8.0
+margin_right = 84.0
+margin_bottom = 24.0
+rect_scale = Vector2( 0.4, 0.4 )
 rect_pivot_offset = Vector2( 1, 0 )
 size_flags_horizontal = 4
 custom_fonts/font = SubResource( 3 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
 custom_constants/shadow_offset_y = 1
-text = "6090"
+text = "609000"
 align = 1
 valign = 1
 __meta__ = {

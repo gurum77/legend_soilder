@@ -35,10 +35,6 @@ func die():
 		ins.power = Table.get_enemy_hp(next_bomb_power, StaticData.get_current_stage_information())
 		ins.scale = Vector2(1.5, 1.5)
 		ins.player = true
-		
-	# 3초뒤 삭제
-	yield(get_tree().create_timer(10), "timeout")
-	call_deferred("queue_free")
 	
 func _on_AnimatedSprite_animation_finished():
 	if state == explosion:

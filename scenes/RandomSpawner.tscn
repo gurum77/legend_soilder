@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+
+# spawn 성공 비율(0 ~ 1)
+export (float) var spawn_factor = 0.5
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	var val = randf()
+	if val > spawn_factor:
+		call_deferredqueue_free()
+		
+		
+"
+
+[node name="RandomSpawner" type="Node2D"]
+script = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+spawn_percent = null
