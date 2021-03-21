@@ -47,7 +47,10 @@ func _ready():
 	
 # damage 를 준다.
 func damage(power):
-	HP = HP - power
+	# steel은 절대 부서지면 안
+	if type != Type.kind_of_steel:
+		HP = HP - power
+		
 	on_take_damage()
 	if hp_bar != null:
 		hp_bar.set_hp(HP)

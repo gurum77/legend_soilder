@@ -168,12 +168,3 @@ func get_collision_size(shape)->float:
 		push_error("정의 되지 않은 shape type입니다.")
 	
 	return size
-	
-	
-	
-
-
-
-func _on_Timer_timeout():
-	pass # Replace with function body.
-

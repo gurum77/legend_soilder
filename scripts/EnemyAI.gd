@@ -18,7 +18,8 @@ export (float) var distance_in_dangerous = 50	# 위험 감지 거리
 var in_eye = false
 var in_attack = false
 var in_dangerous = false
-
+# player detection을 비활성화 할지?
+var disabled_player_detection_timer = false
 export var debugging = false
 
 func _ready():
@@ -41,8 +42,10 @@ func _ready():
 	# 디버깅중일때는 path를 표시하고 사거리 원을 표시한다
 	if !debugging:
 		$EnemyAI_Move/PatrolPath.visible = false
-		
+	
 	#update()
+func get_enemy_ai_move():
+	return $EnemyAI_Move
 	
 func get_enemy_type():
 	 return enemy.get_body().enemy_type
@@ -89,7 +92,7 @@ func set_no_player():
 	in_dangerous = false
 	
 # player를 찾는다
-func find_player()->Node:
+func find_player()->Node2D:
 	var players = get_tree().get_nodes_in_group("player")
 	if players.size() == 0:
 		return null
@@ -98,6 +101,8 @@ func find_player()->Node:
 # player를 찾아서 현재 상태를 기록한다.
 func _on_PlayerDetectionTimer_timeout():
 	if enemy == null:
+		return
+	if disabled_player_detection_timer:
 		return
 		
 	set_no_player()

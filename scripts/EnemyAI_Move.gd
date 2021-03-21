@@ -11,6 +11,7 @@ var airplane_move_distance_from_target = 1000	# airplane이 날아가는 거리(
 # enemy의 moving 상태
 enum {patrol, move, avoid}
 var state = patrol
+var enabled_find_target_position = true
 
 func start_patrol():
 	state = patrol
@@ -57,6 +58,9 @@ func determine_state():
 # patrol 일때는 patrol path를 따라 움직인다.
 # avoid 일때는 avoid path를 따라 움직인다.
 func _on_FindTargetTimer_timeout():
+	if !enabled_find_target_position:
+		return
+		
 	match state:
 		patrol:
 			if patrol_path_follow != null:

@@ -99,7 +99,14 @@ func play_animation_by_velocity(_velocity):
 		Util.play_animation(leg_animated_sprite, "idle")	
 		if foot_step_audio != null:
 			foot_step_audio.stream_paused = false
-			
+	
+# 이동 목표 지점에 도달했는지?		
+func arrived_in_target_position_to_move()->bool:
+	var dist = target_position_to_move.distance_to(self.global_position)
+	if dist < speed / 100.0:
+		return true
+	return false
+	
 # 목표 지점으로 이동
 func move_to_target():
 	# 게임중이 아니라면 이동하지 않는다.
@@ -112,9 +119,7 @@ func move_to_target():
 		
 	# 목표 지점 근처까지 오면 buffer에서 target을 가져오거나 
 	# buffer가 없으면 더이상 이동 하지 않는다.
-	
-	var dist = target_position_to_move.distance_to(self.global_position)
-	if  dist < 0.5:
+	if arrived_in_target_position_to_move():
 		for i in target_position_buffer_to_move.size():
 			if target_position_buffer_to_move[i] == target_position_to_move:
 				target_position_buffer_to_move.remove(0)

@@ -436,6 +436,7 @@ max_step = 4
 position = Vector2( 230.38, -203.737 )
 
 [node name="SpawnerBoss" parent="Enemies" instance=ExtResource( 7 )]
+min_step = 5
 
 [node name="PanzerBoss" parent="Enemies/SpawnerBoss" instance=ExtResource( 11 )]
 position = Vector2( 368, 112 )

@@ -14,7 +14,6 @@ map_name = "Side Water"
 [node name="BattleField_Ground" parent="." instance=ExtResource( 9 )]
 
 [node name="TileMap" type="TileMap" parent="."]
-visible = false
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 collision_layer = 128
