@@ -1,0 +1,145 @@
+[gd_scene load_steps=51 format=2]
+
+[ext_resource path="res://assets/enemies/zombie_boss/die/Death_006 (2).png" type="Texture" id=1]
+[ext_resource path="res://assets/enemies/zombie_boss/die/Death_011 (2).png" type="Texture" id=3]
+[ext_resource path="res://assets/enemies/zombie_boss/die/Death_003 (2).png" type="Texture" id=4]
+[ext_resource path="res://assets/enemies/zombie_boss/die/Death_008 (2).png" type="Texture" id=5]
+[ext_resource path="res://assets/enemies/zombie_boss/Attack1/attack1_000 (2).png" type="Texture" id=6]
+[ext_resource path="res://assets/enemies/zombie_boss/walk/Walk_004.png" type="Texture" id=13]
+[ext_resource path="res://scripts/Enemy.gd" type="Script" id=14]
+[ext_resource path="res://scenes/HPBar.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scripts/EnemyBody.gd" type="Script" id=16]
+[ext_resource path="res://assets/enemies/sniper/Shot/3.png" type="Texture" id=17]
+[ext_resource path="res://assets/enemies/sniper/Shot/2.png" type="Texture" id=18]
+[ext_resource path="res://assets/enemies/sniper/Shot/1.png" type="Texture" id=19]
+[ext_resource path="res://scenes/EnemyAI.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scenes/ItemMaker.tscn" type="PackedScene" id=21]
+[ext_resource path="res://assets/enemies/zombie_boss/walk/Walk_005.png" type="Texture" id=22]
+[ext_resource path="res://assets/enemies/zombie_boss/walk/Walk_006.png" type="Texture" id=23]
+[ext_resource path="res://assets/enemies/zombie_boss/walk/Walk_007.png" type="Texture" id=24]
+[ext_resource path="res://assets/enemies/zombie_boss/walk/Walk_003.png" type="Texture" id=25]
+[ext_resource path="res://assets/enemies/zombie_boss/walk/Walk_001.png" type="Texture" id=26]
+[ext_resource path="res://assets/enemies/zombie_boss/walk/Walk_000.png" type="Texture" id=27]
+[ext_resource path="res://assets/enemies/zombie_boss/walk/Walk_002.png" type="Texture" id=28]
+[ext_resource path="res://assets/enemies/zombie_boss/Attack1/attack1_001 (2).png" type="Texture" id=29]
+[ext_resource path="res://assets/enemies/zombie_boss/Attack1/attack1_003 (2).png" type="Texture" id=30]
+[ext_resource path="res://assets/enemies/zombie_boss/Attack1/attack1_004 (2).png" type="Texture" id=31]
+[ext_resource path="res://assets/enemies/zombie_boss/Attack1/attack1_002 (2).png" type="Texture" id=32]
+[ext_resource path="res://assets/enemies/zombie_boss/Attack1/attack1_005 (2).png" type="Texture" id=33]
+[ext_resource path="res://assets/enemies/zombie_boss/Attack1/attack1_006 (2).png" type="Texture" id=34]
+[ext_resource path="res://assets/enemies/zombie_boss/Attack1/attack1_007 (2).png" type="Texture" id=35]
+[ext_resource path="res://assets/enemies/zombie_boss/Attack1/attack1_008 (2).png" type="Texture" id=36]
+[ext_resource path="res://assets/enemies/zombie_boss/Attack1/attack1_009 (2).png" type="Texture" id=37]
+[ext_resource path="res://assets/enemies/zombie_boss/Attack1/attack1_013 (2).png" type="Texture" id=38]
+[ext_resource path="res://assets/enemies/zombie_boss/Attack1/attack1_010 (2).png" type="Texture" id=39]
+[ext_resource path="res://assets/enemies/zombie_boss/Attack1/attack1_015 (2).png" type="Texture" id=40]
+[ext_resource path="res://assets/enemies/zombie_boss/Attack1/attack1_011 (2).png" type="Texture" id=41]
+[ext_resource path="res://assets/enemies/zombie_boss/Attack1/attack1_012 (2).png" type="Texture" id=42]
+[ext_resource path="res://assets/enemies/zombie_boss/Attack1/attack1_014 (2).png" type="Texture" id=43]
+[ext_resource path="res://assets/enemies/zombie_boss/die/Death_009 (2).png" type="Texture" id=44]
+[ext_resource path="res://assets/enemies/zombie_boss/die/Death_012 (2).png" type="Texture" id=45]
+[ext_resource path="res://assets/enemies/zombie_boss/die/Death_014 (2).png" type="Texture" id=46]
+[ext_resource path="res://assets/enemies/zombie_boss/die/Death_007 (2).png" type="Texture" id=47]
+[ext_resource path="res://assets/enemies/zombie_boss/die/Death_016 (2).png" type="Texture" id=48]
+[ext_resource path="res://assets/enemies/zombie_boss/die/Death_010 (2).png" type="Texture" id=49]
+[ext_resource path="res://assets/enemies/zombie_boss/die/Death_004 (2).png" type="Texture" id=50]
+[ext_resource path="res://assets/enemies/zombie_boss/die/Death_013 (2).png" type="Texture" id=51]
+[ext_resource path="res://assets/enemies/zombie_boss/die/Death_002 (2).png" type="Texture" id=52]
+[ext_resource path="res://assets/enemies/zombie_boss/die/Death_000 (2).png" type="Texture" id=53]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 27 ), ExtResource( 26 ), ExtResource( 28 ), ExtResource( 25 ), ExtResource( 13 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 53 ), ExtResource( 52 ), ExtResource( 4 ), ExtResource( 50 ), ExtResource( 1 ), ExtResource( 47 ), ExtResource( 5 ), ExtResource( 44 ), ExtResource( 49 ), ExtResource( 3 ), ExtResource( 45 ), ExtResource( 51 ), ExtResource( 46 ), ExtResource( 48 ) ],
+"loop": false,
+"name": "die",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 29 ), ExtResource( 32 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 39 ), ExtResource( 41 ), ExtResource( 42 ), ExtResource( 38 ), ExtResource( 43 ), ExtResource( 40 ) ],
+"loop": true,
+"name": "fire",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ), ExtResource( 18 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "fire",
+"speed": 20.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=4]
+height = 5.10226
+
+[node name="ZombieBoss" type="Node2D"]
+script = ExtResource( 14 )
+
+[node name="Body" type="KinematicBody2D" parent="."]
+script = ExtResource( 16 )
+
+[node name="FireTimer" type="Timer" parent="Body"]
+
+[node name="AimTimer" type="Timer" parent="Body"]
+
+[node name="AnimatedSprites" type="Node2D" parent="Body"]
+
+[node name="LegAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites"]
+visible = false
+rotation = -1.5708
+frames = SubResource( 1 )
+animation = "idle"
+
+[node name="BodyPivot" type="Node2D" parent="Body/AnimatedSprites"]
+
+[node name="BodyAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites/BodyPivot"]
+position = Vector2( 0.198425, 0 )
+rotation = -1.5708
+frames = SubResource( 2 )
+animation = "idle"
+frame = 3
+
+[node name="FirePosition" type="Node2D" parent="Body/AnimatedSprites/BodyPivot"]
+position = Vector2( 17, 3 )
+
+[node name="FireAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites/BodyPivot"]
+position = Vector2( 29, 3 )
+rotation = -1.5708
+frames = SubResource( 3 )
+animation = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+visible = false
+position = Vector2( -2.20486, 0.157492 )
+rotation = 1.5708
+shape = SubResource( 4 )
+
+[node name="HPBar" parent="." instance=ExtResource( 15 )]
+margin_top = -18.0
+margin_bottom = -14.0
+
+[node name="EnemyAI" parent="." instance=ExtResource( 20 )]
+
+[node name="ItemMaker" parent="." instance=ExtResource( 21 )]

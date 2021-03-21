@@ -4,7 +4,9 @@ extends Node2D
 export (float) var specify_spawn_interval = 0
 
 # stage별 step이 requirement_step보다 작거나 같을때만 spawn된다.
-export (int) var requirement_step = 1
+export (int) var min_step = 1
+# 최대 스탭이 지정된 경우 최대 스탭 이후로는 spawn 되지 않는다.
+export (int) var max_step = 5
 export (bool) var disabled = false
 var spawn_position
 var spawn_node
@@ -44,7 +46,9 @@ func _on_Timer_timeout():
 		return
 		
 	# step이 충족되지 않으면 spawn하지 않는다
-	if si.current_step < requirement_step:
+	if si.current_step < min_step:
+		return
+	if si.current_step > max_step:
 		return
 		
 	

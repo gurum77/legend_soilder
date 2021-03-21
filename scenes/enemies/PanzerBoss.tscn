@@ -1,0 +1,163 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://scripts/EnemyBody.gd" type="Script" id=1]
+[ext_resource path="res://scenes/HPBar.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/vehicles/panzer/move/PanzerMove (1).png" type="Texture" id=3]
+[ext_resource path="res://assets/vehicles/panzer/idle/PanzerTower.png" type="Texture" id=4]
+[ext_resource path="res://assets/vehicles/panzer/broken/Panzer_BrokenTower.png" type="Texture" id=5]
+[ext_resource path="res://assets/vehicles/panzer/fire/Panzer Shot 03.png" type="Texture" id=6]
+[ext_resource path="res://assets/vehicles/panzer/broken/Panzer_Broken.png" type="Texture" id=7]
+[ext_resource path="res://assets/vehicles/panzer/move/PanzerMove (2).png" type="Texture" id=8]
+[ext_resource path="res://assets/vehicles/panzer/fire/Panzer Shot 01.png" type="Texture" id=9]
+[ext_resource path="res://assets/vehicles/panzer/fire/Panzer Shot 02.png" type="Texture" id=10]
+[ext_resource path="res://assets/vehicles/panzer/move/PanzerMove (4).png" type="Texture" id=11]
+[ext_resource path="res://assets/vehicles/panzer/move/PanzerMove (3).png" type="Texture" id=12]
+[ext_resource path="res://assets/vehicles/panzer/broken/Panzer_Broken2.png" type="Texture" id=13]
+[ext_resource path="res://scripts/Enemy.gd" type="Script" id=14]
+[ext_resource path="res://assets/vehicles/panzer/fire/Panzer_fire2.png" type="Texture" id=15]
+[ext_resource path="res://assets/vehicles/panzer/fire/Panzer_fire3.png" type="Texture" id=16]
+[ext_resource path="res://assets/vehicles/panzer/fire/Panzer_fire1.png" type="Texture" id=17]
+[ext_resource path="res://scenes/EnemyAI.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/ItemMaker.tscn" type="PackedScene" id=19]
+[ext_resource path="res://assets/sounds/tank.ogg" type="AudioStream" id=20]
+[ext_resource path="res://assets/sounds/Die_machine.ogg" type="AudioStream" id=21]
+[ext_resource path="res://scripts/BodyAttack.gd" type="Script" id=22]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 13 ) ],
+"loop": false,
+"name": "die",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 8 ), ExtResource( 12 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "walk",
+"speed": 10.0
+} ]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": false,
+"name": "die",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 6 ) ],
+"loop": false,
+"name": "fire",
+"speed": 10.0
+} ]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": false,
+"name": "fire",
+"speed": 10.0
+} ]
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 31.3597
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 42.6258, 31.0347 )
+
+[node name="PanzerBoss" type="Node2D"]
+script = ExtResource( 14 )
+HP = 100000
+
+[node name="Body" type="KinematicBody2D" parent="."]
+scale = Vector2( 2, 2 )
+script = ExtResource( 1 )
+weapon = 3
+fire_interval = 0.3
+aim_interval = 0.1
+enemy_type = 1
+
+[node name="AnimatedSprites" type="Node2D" parent="Body"]
+
+[node name="LegAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites"]
+modulate = Color( 1, 0.670588, 0.670588, 1 )
+rotation = -1.5708
+frames = SubResource( 1 )
+animation = "walk"
+frame = 1
+
+[node name="BodyPivot" type="Node2D" parent="Body/AnimatedSprites"]
+position = Vector2( 5.96046e-08, 0 )
+
+[node name="BodyAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites/BodyPivot"]
+modulate = Color( 1, 0.670588, 0.670588, 1 )
+position = Vector2( 28, -1 )
+rotation = -1.5708
+frames = SubResource( 2 )
+animation = "fire"
+frame = 2
+
+[node name="FireAnimatedSprite" type="AnimatedSprite" parent="Body/AnimatedSprites/BodyPivot"]
+position = Vector2( 106, -1 )
+rotation = -1.5708
+frames = SubResource( 3 )
+animation = "idle"
+
+[node name="FirePosition" type="Node2D" parent="Body/AnimatedSprites/BodyPivot"]
+position = Vector2( 81.3173, -0.470428 )
+
+[node name="AimTimer" type="Timer" parent="Body"]
+
+[node name="FireTimer" type="Timer" parent="Body"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+visible = false
+shape = SubResource( 4 )
+
+[node name="DieAudio" type="AudioStreamPlayer2D" parent="Body"]
+stream = ExtResource( 21 )
+
+[node name="FootStepAudio" type="AudioStreamPlayer2D" parent="Body"]
+position = Vector2( -16, 16 )
+stream = ExtResource( 20 )
+autoplay = true
+max_distance = 600.0
+attenuation = 3.03143
+bus = "sound"
+
+[node name="BodyAttack" type="Area2D" parent="Body"]
+position = Vector2( 5.96046e-08, 0 )
+collision_layer = 2
+collision_mask = 81
+script = ExtResource( 22 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/BodyAttack"]
+visible = false
+shape = SubResource( 5 )
+
+[node name="Timer" type="Timer" parent="Body/BodyAttack"]
+
+[node name="HPBar" parent="." instance=ExtResource( 2 )]
+margin_top = -111.0
+margin_bottom = -103.0
+
+[node name="EnemyAI" parent="." instance=ExtResource( 18 )]
+
+[node name="ItemMaker" parent="." instance=ExtResource( 19 )]
+[connection signal="area_entered" from="Body/BodyAttack" to="Body/BodyAttack" method="_on_BodyAttack_area_entered"]
+[connection signal="body_entered" from="Body/BodyAttack" to="Body/BodyAttack" method="_on_BodyAttack_body_entered"]
+[connection signal="body_exited" from="Body/BodyAttack" to="Body/BodyAttack" method="_on_BodyAttack_body_exited"]
+[connection signal="timeout" from="Body/BodyAttack/Timer" to="Body/BodyAttack" method="_on_Timer_timeout"]

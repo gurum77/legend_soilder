@@ -90,10 +90,6 @@ func _on_Bullet_body_entered(body):
 	# 한번 맞으면 더이상 맞지 않도록 한다.
 	if hit_object.has(body):
 		return
-	
-	if !next_bomb:
-		var  l = 0
-		l = 1
 		
 	hit_object[body] = true
 	
@@ -110,7 +106,11 @@ func _on_Bullet_body_entered(body):
 		if body is PlayerBody or body is EnemyBody:
 			body.get_parent().damage(power)
 		elif body is ObstacleBody:
-			body.get_parent().damage(power)
+			# 적이 쏜 미사일은 장애물에 타격을 주지는 않는다.
+			if from_player:
+				body.get_parent().damage(power)
+			else:
+				body.get_parent().damage(0)
 		
 	# push
 	push_body(body)

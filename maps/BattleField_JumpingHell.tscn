@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/tilesets/BattleField.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/JumpingTrap.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://scenes/obstacles/Barrel_Oil.tscn" type="PackedScene" id=8]
 [ext_resource path="res://maps/BattleField_Ground.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/enemies/Soldier2.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/obstacles/PowerCube.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/obstacles/Rock1.tscn" type="PackedScene" id=15]
 
 [node name="BattleField_점프지옥" type="Node2D"]
@@ -160,6 +161,12 @@ position = Vector2( 688, 240 )
 
 [node name="Bush72" parent="Bush" instance=ExtResource( 3 )]
 position = Vector2( 688, 368 )
+
+[node name="Bush73" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 688, 400 )
+
+[node name="Bush74" parent="Bush" instance=ExtResource( 3 )]
+position = Vector2( 688, 432 )
 
 [node name="PlayerSpawner" parent="." instance=ExtResource( 5 )]
 position = Vector2( 400, 976 )
@@ -1177,12 +1184,6 @@ position = Vector2( 336, 368 )
 [node name="Barrel_Oil2" parent="Barrels" instance=ExtResource( 8 )]
 position = Vector2( 464, 688 )
 
-[node name="Barrel_Oil3" parent="Barrels" instance=ExtResource( 8 )]
-position = Vector2( 688, 400 )
-
-[node name="Barrel_Oil7" parent="Barrels" instance=ExtResource( 8 )]
-position = Vector2( 688, 432 )
-
 [node name="Barrel_Oil8" parent="Barrels" instance=ExtResource( 8 )]
 position = Vector2( 688, 464 )
 
@@ -1200,3 +1201,71 @@ position = Vector2( 112, 528 )
 
 [node name="Barrel_Oil6" parent="Barrels" instance=ExtResource( 8 )]
 position = Vector2( 112, 496 )
+
+[node name="PowerCubes" type="Node2D" parent="."]
+
+[node name="PowerCube" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 304, 240 )
+
+[node name="PowerCube10" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 80, 496 )
+
+[node name="PowerCube11" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 80, 528 )
+
+[node name="PowerCube12" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 80, 560 )
+
+[node name="PowerCube13" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 720, 464 )
+
+[node name="PowerCube14" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 720, 496 )
+
+[node name="PowerCube15" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 720, 528 )
+
+[node name="PowerCube8" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 304, 304 )
+
+[node name="PowerCube9" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 496, 752 )
+
+[node name="PowerCube2" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 494.75, 240 )
+
+[node name="PowerCube3" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 462.75, 240 )
+
+[node name="PowerCube4" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 430.75, 240 )
+
+[node name="PowerCube5" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 398.75, 240 )
+
+[node name="PowerCube6" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 366, 241.25 )
+
+[node name="PowerCube7" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 336, 241.25 )
+
+[node name="PowerCube16" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 304, 816 )
+
+[node name="PowerCube17" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 494.75, 816 )
+
+[node name="PowerCube18" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 462.75, 816 )
+
+[node name="PowerCube19" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 430.75, 816 )
+
+[node name="PowerCube20" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 398.75, 816 )
+
+[node name="PowerCube21" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 366, 817.25 )
+
+[node name="PowerCube22" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 336, 817.25 )

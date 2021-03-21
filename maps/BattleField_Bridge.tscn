@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/tilesets/BattleField.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/obstacles/Box1.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/enemies/Soldier.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/enemies/Panzer.tscn" type="PackedScene" id=8]
 [ext_resource path="res://maps/BattleField_Ground.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/obstacles/PowerCube.tscn" type="PackedScene" id=10]
 
 [node name="BattleField_외나무다리" type="Node2D"]
 script = ExtResource( 4 )
@@ -32,7 +33,7 @@ position = Vector2( 144, 496 )
 position = Vector2( 240, 560 )
 
 [node name="Box34" parent="Box" instance=ExtResource( 2 )]
-position = Vector2( 336, 496 )
+position = Vector2( 368, 496 )
 
 [node name="Box37" parent="Box" instance=ExtResource( 2 )]
 position = Vector2( 592, 496 )
@@ -161,7 +162,7 @@ position = Vector2( 496, 560 )
 [node name="Soldier" parent="Enemies/Spawner_Soldier2" instance=ExtResource( 7 )]
 
 [node name="Spawner_Soldier4" parent="Enemies" instance=ExtResource( 6 )]
-position = Vector2( 368, 496 )
+position = Vector2( 432, 496 )
 
 [node name="Soldier" parent="Enemies/Spawner_Soldier4" instance=ExtResource( 7 )]
 
@@ -171,6 +172,38 @@ position = Vector2( 624, 496 )
 [node name="Soldier" parent="Enemies/Spawner_Soldier5" instance=ExtResource( 7 )]
 
 [node name="Spawner_Soldier6" parent="Enemies" instance=ExtResource( 6 )]
-position = Vector2( 688, 528 )
+position = Vector2( 624, 560 )
 
 [node name="Panzer" parent="Enemies/Spawner_Soldier6" instance=ExtResource( 8 )]
+
+[node name="PowerCubes" type="Node2D" parent="."]
+
+[node name="PowerCube" parent="PowerCubes" instance=ExtResource( 10 )]
+position = Vector2( 272, 560 )
+
+[node name="PowerCube2" parent="PowerCubes" instance=ExtResource( 10 )]
+position = Vector2( 176, 496 )
+
+[node name="PowerCube3" parent="PowerCubes" instance=ExtResource( 10 )]
+position = Vector2( 432, 560 )
+
+[node name="PowerCube5" parent="PowerCubes" instance=ExtResource( 10 )]
+position = Vector2( 400, 496 )
+
+[node name="PowerCube4" parent="PowerCubes" instance=ExtResource( 10 )]
+position = Vector2( 560, 496 )
+
+[node name="PowerCube6" parent="PowerCubes" instance=ExtResource( 10 )]
+position = Vector2( 752, 464 )
+
+[node name="PowerCube7" parent="PowerCubes" instance=ExtResource( 10 )]
+position = Vector2( 752, 496 )
+
+[node name="PowerCube8" parent="PowerCubes" instance=ExtResource( 10 )]
+position = Vector2( 752, 528 )
+
+[node name="PowerCube9" parent="PowerCubes" instance=ExtResource( 10 )]
+position = Vector2( 752, 560 )
+
+[node name="PowerCube10" parent="PowerCubes" instance=ExtResource( 10 )]
+position = Vector2( 752, 592 )

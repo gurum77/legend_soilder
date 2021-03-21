@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/tilesets/BattleField.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/obstacles/Box1.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://scenes/enemies/Panzer.tscn" type="PackedScene" id=8]
 [ext_resource path="res://maps/BattleField_Ground.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/JumpingTrap.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/obstacles/PowerCube.tscn" type="PackedScene" id=11]
 
 [node name="BattleField_점프" type="Node2D"]
 script = ExtResource( 4 )
@@ -179,8 +180,67 @@ position = Vector2( 400, 272 )
 [node name="Soldier" parent="Enemies/Spawner_Soldier5" instance=ExtResource( 7 )]
 
 [node name="Spawner_Soldier6" parent="Enemies" instance=ExtResource( 6 )]
-position = Vector2( 400, 112 )
+position = Vector2( 400, 144 )
 
 [node name="Panzer" parent="Enemies/Spawner_Soldier6" instance=ExtResource( 8 )]
+
+[node name="PowerCubes" type="Node2D" parent="."]
+
+[node name="PowerCube" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 656, 848 )
+
+[node name="PowerCube6" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 656, 880 )
+
+[node name="PowerCube2" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 144, 848 )
+
+[node name="PowerCube3" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 624, 880 )
+
+[node name="PowerCube7" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 592, 496 )
+
+[node name="PowerCube8" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 592, 528 )
+
+[node name="PowerCube9" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 560, 496 )
+
+[node name="PowerCube10" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 240, 496 )
+
+[node name="PowerCube11" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 208, 528 )
+
+[node name="PowerCube12" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 208, 496 )
+
+[node name="PowerCube16" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 48, 432 )
+
+[node name="PowerCube17" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 752, 432 )
+
+[node name="PowerCube18" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 752, 464 )
+
+[node name="PowerCube19" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 48, 464 )
+
+[node name="PowerCube13" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 400, 48 )
+
+[node name="PowerCube15" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 432, 48 )
+
+[node name="PowerCube14" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 368, 48 )
+
+[node name="PowerCube4" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 144, 880 )
+
+[node name="PowerCube5" parent="PowerCubes" instance=ExtResource( 11 )]
+position = Vector2( 176, 880 )
 
 [editable path="BattleField_Ground"]

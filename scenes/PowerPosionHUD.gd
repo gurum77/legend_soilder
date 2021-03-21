@@ -8,7 +8,7 @@ onready var label = get_node_or_null("Label")
 func _ready():
 	pass # Replace with function body.
 
-func _process(delta):
+func _process(_delta):
 	if player == null:
 		return
 	if player.power_posion_nums == 0:

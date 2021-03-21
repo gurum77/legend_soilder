@@ -113,6 +113,10 @@ func on_take_damage(power, damage_type):
 func die():
 	$Body.die()
 	
+	# 자동차나 비행기가 파괴돌때는 카메라를 흔든다.
+	if $Body.enemy_type != EnemyBody.EnemyType.normal:
+		Util.shake_camera()
+	
 	# enemy가 죽을때 마다 player의 점수를 올린다
 	StaticData.current_score_for_stage += get_score()
 	
@@ -167,4 +171,9 @@ func get_collision_size(shape)->float:
 	
 	
 	
+
+
+
+func _on_Timer_timeout():
+	pass # Replace with function body.
 

@@ -16,6 +16,8 @@ onready var effect_animated_sprite = get_node("Body/AnimatedSprites/EffectAnimat
 onready var leg_animated_sprite = get_node("Body/AnimatedSprites/LegAnimatedSprite")
 onready var hp_bar = get_node_or_null("HUD/HPBar")
 onready var power_posion_hud = get_node_or_null("HUD/PowerPosionHUD")
+onready var camera = get_node_or_null("Camera2D")
+
 # hp바를 최대 hp를 기준으로 초기화 한다.
 func set_max_to_hp_bar():
 	hp_bar.max_value = max_HP
@@ -29,6 +31,8 @@ func _ready():
 		var err = connect("dead", world, "on_Player_dead")
 		if err != OK:
 			push_error("connect failed")
+	# util에 camera 연결
+	Util.player_camera = $Camera2D
 		
 	# level에 맞게 hp를 재계산
 	HP = Table.get_player_hp_by_level()
@@ -81,6 +85,7 @@ func on_take_damage(power):
 		modulate.g = 1
 		modulate.b = 1
 		modulate.a = 1.0
+	
 		
 func die():
 	$Body.die()
@@ -98,13 +103,12 @@ func revival():
 	$Shield.start()
 
 # dash를 한다
-func dash()->bool:
+func dash():
 	$Body.SPEED = dash_speed
 	$DashAudio.play()
 	effect_animated_sprite.play("dash")
 	leg_animated_sprite.speed_scale = dash_speed / walk_speed
 	$DashTimer.start()
-	return true
 
 
 func _on_DashTimer_timeout():

@@ -94,6 +94,8 @@ func get_player_power_by_level(var power_posion_nums=0):
 	# power posion은 player 기본 공격력의 7%증가
 	if power_posion_nums > 0:
 		power = power + (power_posion_nums * power * power_posion_power_up_factor)
+		# 공격력에서 소수점은 떼어낸다.
+		power = power as int
 	return power
 	
 # power level이 반영된 무기의 공격력 리턴

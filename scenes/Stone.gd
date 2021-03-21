@@ -4,7 +4,7 @@ var min_r = 0.5
 var max_r = 3
 var offset = 0.1
 var to_up = true
-func _process(delta):
+func _process(_delta):
 	if to_up:
 		modulate.r += offset
 		if modulate.r > max_r:

@@ -6,6 +6,12 @@ const JUMPING_NODE_COLLISION_MASK = 0
 # airplane의 z_index값
 const AIRPLANE_NODE_Z_INDEX = 4
 
+var player_camera:Camera2D
+
+# 카메라를 흔든다.
+func shake_camera():
+	player_camera.shake(0.7, 150, 5)
+	
 # node를 랜덤하게 회전시킨다.
 func rotate_random(var node:Node2D, var random_rotation_degree):
 	var max_rotation_count = 360 / random_rotation_degree

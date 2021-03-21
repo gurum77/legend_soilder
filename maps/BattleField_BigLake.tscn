@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/tilesets/BattleField.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/obstacles/Box1.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://scenes/RedPortalSet.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/BluePortalSet.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/enemies/Sniper.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/obstacles/PowerCube.tscn" type="PackedScene" id=15]
 
 [node name="BattleField_큰호수" type="Node2D"]
 script = ExtResource( 4 )
@@ -66,23 +67,14 @@ position = Vector2( -256, -32 )
 
 [node name="Box" type="Node2D" parent="."]
 
-[node name="Box31" parent="Box" instance=ExtResource( 2 )]
-position = Vector2( 400, 464 )
-
-[node name="Box32" parent="Box" instance=ExtResource( 2 )]
-position = Vector2( 368, 464 )
-
 [node name="Box33" parent="Box" instance=ExtResource( 2 )]
-position = Vector2( 368, 496 )
+position = Vector2( 368, 464 )
 
 [node name="Box34" parent="Box" instance=ExtResource( 2 )]
 position = Vector2( 400, 496 )
 
-[node name="Box37" parent="Box" instance=ExtResource( 2 )]
-position = Vector2( 432, 464 )
-
 [node name="Box38" parent="Box" instance=ExtResource( 2 )]
-position = Vector2( 432, 496 )
+position = Vector2( 432, 464 )
 
 [node name="Box39" parent="Box" instance=ExtResource( 2 )]
 position = Vector2( 368, 528 )
@@ -98,9 +90,6 @@ position = Vector2( 720, 816 )
 
 [node name="Box45" parent="Box" instance=ExtResource( 2 )]
 position = Vector2( 720, 240 )
-
-[node name="Box40" parent="Box" instance=ExtResource( 2 )]
-position = Vector2( 400, 528 )
 
 [node name="Box42" parent="Box" instance=ExtResource( 2 )]
 position = Vector2( 432, 528 )
@@ -267,6 +256,32 @@ position = Vector2( 144, 144 )
 position = Vector2( 656, 880 )
 
 [node name="Sniper" parent="Enemies/Spawner2" instance=ExtResource( 14 )]
+
+[node name="PowerCubes" type="Node2D" parent="."]
+
+[node name="PowerCube" parent="PowerCubes" instance=ExtResource( 15 )]
+position = Vector2( 368, 496 )
+
+[node name="PowerCube2" parent="PowerCubes" instance=ExtResource( 15 )]
+position = Vector2( 400, 464 )
+
+[node name="PowerCube4" parent="PowerCubes" instance=ExtResource( 15 )]
+position = Vector2( 400, 528 )
+
+[node name="PowerCube5" parent="PowerCubes" instance=ExtResource( 15 )]
+position = Vector2( 112, 848 )
+
+[node name="PowerCube6" parent="PowerCubes" instance=ExtResource( 15 )]
+position = Vector2( 688, 848 )
+
+[node name="PowerCube7" parent="PowerCubes" instance=ExtResource( 15 )]
+position = Vector2( 688, 208 )
+
+[node name="PowerCube8" parent="PowerCubes" instance=ExtResource( 15 )]
+position = Vector2( 112, 208 )
+
+[node name="PowerCube3" parent="PowerCubes" instance=ExtResource( 15 )]
+position = Vector2( 432, 496 )
 
 [editable path="Portals/YelloPortalSet"]
 

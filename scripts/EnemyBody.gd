@@ -5,7 +5,11 @@ enum EnemyType{normal, vehicle, airplane}
 export (Define.Weapon) var weapon
 export var bullet_nums = 1 # 총알 발사 개수
 export var speed = 50
+export (float) var fire_interval = 1.0	# 총알 발사 간격
+export (float) var aim_interval = 0.5	# 조준 간격
+export (int) var fire_nums_to_rest = 10	# 몇 번 발사후 쉬는지?
 export (EnemyType) var enemy_type = EnemyType.normal
+
 var weight = 0.3
 var target_position_to_fire:Vector2 # 발사 목표 지점
 var target_position_to_move:Vector2 # 이동 목표 지점
@@ -16,6 +20,7 @@ var rayCast
 var fixed_rotation = false	# 방향이 정해짐
 var target_position_to_move_to_fixed_rotation:Vector2 # 방향이 고정됐을때의 target_position
 var fire_started = false	# fire를  시작했는지?
+var current_fire_nums_to_rest = 0	# 쉬기 위해서 현재까지 몇번 발사를 했는지?
 
 onready var body_animated_sprite = $AnimatedSprites/BodyPivot/BodyAnimatedSprite
 onready var leg_animated_sprite = $AnimatedSprites/LegAnimatedSprite
@@ -174,9 +179,9 @@ func turn_to_target():
 		self.rotation = lerp_angle(self.rotation, (target_position_to_fire - self.global_position).normalized().angle(), weight)
 
 func get_fire_interval()->float:
-	return 1.0
+	return fire_interval
 func get_aim_interval()->float:
-	return 0.5
+	return aim_interval
 	
 # 발사를 시작한다
 func start_fire():
@@ -219,17 +224,28 @@ func get_fire_position_node(var bullet_index)->Node2D:
 	elif bullet_index == 3 && fire_position4 != null:
 		fire_position_node = fire_position4
 	return fire_position_node
+
+# 발사를 쉬는 중인지?
+func is_rest_to_fire():
+	return current_fire_nums_to_rest >= fire_nums_to_rest	
 	
 # fire		
 func fire():
+	if is_rest_to_fire():
+		return
+		
 	if Define.no_attack_enemy:
 		return
+		
 	if StaticData.game_state != Define.GameState.play:
 		return
+		
 	# enemy의 상태가 공격범위 상태가 아니라면 발사하지 않는다.
 	if enemy_ai != null && !enemy_ai.in_attack:
 		return
 	
+	
+		
 	# body animation
 	Util.play_animation(body_animated_sprite, "fire")
 
@@ -260,7 +276,15 @@ func fire():
 		# fire animation
 		var fas = get_fire_animated_sprite(i)
 		Util.play_animation(fas, "fire", true)
+
+	# 쉬기까지의 발사 횟수를 증가시킨다.
+	current_fire_nums_to_rest += 1
 	
+	# 쉬어야 하면 3초를 쉰
+	if is_rest_to_fire():
+		# 3초를 쉬고 발사횟수를 초기화 한다.
+		yield(get_tree().create_timer(3), "timeout")
+		current_fire_nums_to_rest = 0
 	
 	
 # aim을 한다.

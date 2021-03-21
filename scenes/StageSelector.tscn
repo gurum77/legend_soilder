@@ -105,15 +105,12 @@ position = Vector2( 396.85, 253.984 )
 z_index = 1
 
 [node name="LegAnimatedSprite" parent="MapScrollContainer/Map/Player/Body/AnimatedSprites" index="1"]
-frame = 4
+frame = 1
 
 [node name="GuideLine" parent="MapScrollContainer/Map/Player/Body" index="10"]
 visible = false
 
-[node name="HPBar" parent="MapScrollContainer/Map/Player" index="2"]
-visible = false
-
-[node name="Camera2D" parent="MapScrollContainer/Map/Player" index="3"]
+[node name="Camera2D" parent="MapScrollContainer/Map/Player" index="4"]
 current = false
 
 [node name="MoneyPanel" parent="." instance=ExtResource( 2 )]

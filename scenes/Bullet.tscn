@@ -29,6 +29,11 @@ height = 0.0
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
+"frames": [ ExtResource( 23 ) ],
+"loop": true,
+"name": "MG",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 16 ), ExtResource( 1 ) ],
 "loop": true,
 "name": "FlameThrower",
@@ -44,11 +49,6 @@ animations = [ {
 "name": "SMG",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 23 ) ],
-"loop": true,
-"name": "MG",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 25 ) ],
 "loop": true,
 "name": "RPG",
@@ -59,15 +59,15 @@ animations = [ {
 "name": "small_explosion",
 "speed": 23.0
 }, {
-"frames": [ ExtResource( 9 ), ExtResource( 15 ), ExtResource( 3 ), ExtResource( 11 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "middle_explosion",
-"speed": 18.0
-}, {
 "frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 12 ), ExtResource( 10 ), ExtResource( 2 ) ],
 "loop": true,
 "name": "big_explosion",
 "speed": 15.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 15 ), ExtResource( 3 ), ExtResource( 11 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "middle_explosion",
+"speed": 18.0
 } ]
 
 [node name="Bullet" type="Area2D"]
@@ -80,6 +80,7 @@ weapon = 1
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 rotation = 1.5708
 scale = Vector2( 0.742184, 1.34345 )
 shape = SubResource( 1 )
